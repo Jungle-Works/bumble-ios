@@ -1,17 +1,17 @@
 Pod::Spec.new do |s|
     s.name         = 'Bumble'
 
-    s.version      = '1.0.o'
+    s.version      = '1.0.0'
 
     s.summary      = 'Now add Agent in app for quick support.'
-    s.homepage     = 'https://github.com/Jungle-Works/Hippo-iOS-SDK'
-    s.documentation_url = 'https://github.com/Jungle-Works/Hippo-iOS-SDK'
+    s.homepage     = 'https://github.com/Jungle-Works/bumble-ios'
+    s.documentation_url = 'https://github.com/Jungle-Works/bumble-ios'
     
     s.license      = { :type => 'MIT', :file => 'FILE_LICENSE' }
     
-    s.author             = { 'Utkarsh Shukla' => 'utkarsh.shukla@jungleworks.com' }
+    s.author             = { 'Vishal Jhanjhri' => 'jhanjhri.vishal@gmail.com' }
     
-    s.source       = { :git => 'https://github.com/Jungle-Works/Hippo-iOS-SDK.git', :tag => s.version }
+    s.source       = { :git => 'https://github.com/Jungle-Works/bumble-ios.git', :tag => s.version }
     s.ios.deployment_target = '10.0'
     s.source_files = 'Hippo/**/*.{swift,h,m}'
     s.exclude_files = 'Classes/Exclude'
