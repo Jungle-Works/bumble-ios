@@ -1,0 +1,556 @@
+//
+//  FuguUserDetail.swift
+//  Fugu
+//
+//  Created by Gagandeep Arora on 31/08/17.
+//  Copyright © 2017 CL-macmini-88. All rights reserved.
+//
+
+import UIKit
+
+typealias FuguUserDetailCallback = (_ success: Bool, _ error: Error?) -> Void
+
+
+
+class User: NSObject {
+    var enUserID: String = ""
+    var userID: Int
+    var fullName: String = ""
+    var email: String = ""
+    var phoneNumber: String = ""
+    var userType: UserType = .customer
+    var image: String?
+    
+    
+    init?(dict: [String: Any]) {
+        guard let rawUserId = Int.parse(values: dict, key: "user_id") else {
+            return nil
+        }
+        self.userID = rawUserId
+        self.fullName = dict["full_name"] as? String ?? ""
+        self.image = dict["user_image"] as? String
+    }
+    init(name: String, imageURL: String?, userId: Int) {
+        self.fullName = name
+        self.image = imageURL
+        self.userID = userId
+    }
+    
+    func toJson() -> [String: Any] {
+        var json: [String: Any] = ["full_name": self.fullName]
+        
+        if userID > 0 {
+            json["user_id"] = userID
+        }
+        
+        if let parsedURL = image {
+            json["user_image"] = parsedURL
+        }
+        
+        return json
+    }
+    
+    class func parseArray(list: [[String: Any]]) -> [User] {
+        var users: [User] = []
+        
+        for each in list {
+            guard let user = User(dict: each) else {
+                continue
+            }
+            users.append(user)
+        }
+        return users
+    }
+    class func find(userId: Int, from list: [User]) -> (User, Int)? {
+        let userIndex = list.firstIndex { (u) -> Bool in
+            return u.userID == userId
+        }
+        guard let parsedUserIndex = userIndex else {
+            return nil
+        }
+        return (list[parsedUserIndex], parsedUserIndex)
+    }
+    
+}
+
+public class UserTag: NSObject {
+    var tagName: String? = nil
+    var teamId: Int? = nil
+    var tag_id: Int? = -1
+    
+    public init(tagName: String? = nil, teamId: Int? = nil) {
+        self.tagName = tagName
+        self.teamId = teamId
+    }
+    
+    
+    init(json: [String: Any]) {
+        self.tagName = json["tag_name"] as? String
+        self.tag_id = json["tag_id"] as? Int ?? -1
+    }
+}
+
+@objc public class HippoUserDetail: NSObject {
+    
+    // MARK: - Properties
+    var fullName: String?
+    var email: String?
+    var phoneNumber: String?
+    var userUniqueKey: String?
+    var addressAttribute: HippoAttributes?
+    var customAttributes: [String: Any]?
+    var userTags: [UserTag] = []
+    var customRequest: [String: Any] = [:]
+    var userImage: URL?
+    var selectedlanguage : String?
+    var userChannel: String?
+    static var shouldGetPaymentGateways : Bool = true
+    
+    class var HippoUserChannelId: String? {
+        get {
+            return UserDefaults.standard.value(forKey: Hippo_User_Channel_Id) as? String
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: Hippo_User_Channel_Id)
+        }
+    }
+    
+    
+    class var fuguUserID: Int? {
+        get {
+            return UserDefaults.standard.value(forKey: FUGU_USER_ID) as? Int
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: FUGU_USER_ID)
+        }
+    }
+    
+    class var fuguEnUserID: String? {
+        get {
+            return UserDefaults.standard.value(forKey: Fugu_en_user_id) as? String
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: Fugu_en_user_id)
+        }
+    }
+    static func isValidDetails() -> Bool {
+        let appSecretKey = BumbleConfig.shared.appSecretKey
+        let enUserID = fuguEnUserID?.trimWhiteSpacesAndNewLine() ?? ""
+        
+        return !appSecretKey.isEmpty && !enUserID.isEmpty
+    }
+    
+    // MARK: - Intializer
+    override init() {}
+    
+    
+    
+    public init(fullName: String, email: String, phoneNumber: String, userUniqueKey: String, addressAttribute: HippoAttributes? = nil, customAttributes: [String: Any]? = nil, userTags: [UserTag]? = nil, userImage: String? = nil, selectedlanguage : String? = nil, getPaymentGateways : Bool = true) {
+        super.init()
+        
+        self.fullName = fullName.trimWhiteSpacesAndNewLine()
+        self.email = email.trimWhiteSpacesAndNewLine()
+        self.phoneNumber = phoneNumber.trimWhiteSpacesAndNewLine()
+        self.userUniqueKey = userUniqueKey.trimWhiteSpacesAndNewLine()
+        self.addressAttribute = addressAttribute ?? HippoAttributes()
+        self.customAttributes = customAttributes
+        
+        self.userTags = userTags ?? []
+        
+        if let parsedUserImage = userImage?.trimWhiteSpacesAndNewLine(), let url = URL(string: parsedUserImage) {
+            self.userImage = url
+        }
+        
+       self.selectedlanguage = selectedlanguage
+        HippoUserDetail.shouldGetPaymentGateways = getPaymentGateways
+        
+        UserDefaults.standard.set(selectedlanguage, forKey: DefaultName.selectedLanguage.rawValue)
+    }
+    
+    func getUserTagsJSON() -> [[String: Any]] {
+        var object = [[String: Any]]()
+        
+        for each in self.userTags {
+            var temp = [String: Any]()
+            if each.tagName == nil && each.teamId == nil {
+                continue
+            }
+            if let id = each.teamId, id > 0 {
+                temp["reseller_team_id"] = id
+            }
+            if let tagName = each.tagName, !tagName.trimWhiteSpacesAndNewLine().isEmpty {
+                temp["tag_name"] = tagName
+            }
+            if temp["tag_name"] == nil && temp["reseller_team_id"] == nil {
+                continue
+            }
+            object.append(temp)
+        }
+        return object
+    }
+    func getUserTagNameArray() -> [String] {
+        var object = [String]()
+        
+        for each in self.userTags {
+            if each.tagName == nil {
+                continue
+            }
+            if let tagName = each.tagName, !tagName.trimWhiteSpacesAndNewLine().isEmpty {
+                object.append(tagName)
+            }
+        }
+        return object
+    }
+    
+    // MARK: - Helpers
+    func toJson() -> [String: Any] {
+        var params: [String: Any] = [
+//            "device_id": UIDevice.current.identifierForVendor?.uuidString ?? 0,
+//            "device_type" : Device_Type_iOS
+            "device_type" : 2
+
+        ]
+//        case FuguCredentialType.reseller:
+//            if HippoConfig.shared.resellerToken.isEmpty == false &&
+//                HippoConfig.shared.referenceId > 0 {
+//                params["reseller_token"] = HippoConfig.shared.resellerToken
+//                params["reference_id"] = HippoConfig.shared.referenceId
+//            }
+            
+            if BumbleConfig.shared.appSecretKey.isEmpty == false {
+                params["app_secret_key"] = BumbleConfig.shared.appSecretKey
+            }
+            
+      
+        
+        if let applicationType = BumbleConfig.shared.appType,
+            applicationType.isEmpty == false {
+            params["app_type"] = applicationType
+        }
+        
+        let userName = self.fullName ?? ""
+        if userName.isEmpty == false { params["full_name"] = userName }
+        
+        let userEmail = self.email ?? ""
+        if userEmail.isEmpty == false { params["email"] = userEmail }
+        
+        let userPhoneNumber = self.phoneNumber ?? ""
+        if userPhoneNumber.isEmpty == false { params["phone_number"] = userPhoneNumber }
+        
+        let userUniqueKey = self.userUniqueKey ?? ""
+        if userUniqueKey.isEmpty == false {
+            params["user_unique_key"] = userUniqueKey
+        }
+//        params["grouping_tags"] = getUserTagsJSON()
+        if let addressInfo = addressAttribute?.toJSON() {
+            params["attributes"] = addressInfo
+        }
+        var attributes = customAttributes ?? [:]
+        if let countryInfo = TookanHelper.countryInfo {
+            attributes["country_info"] = countryInfo
+        }
+//        if !attributes.isEmpty {
+//            params["custom_attributes"] = attributes
+//        }
+       
+        if TokenManager.deviceToken.isEmpty == false {
+            params["device_token"] = TokenManager.deviceToken
+        } else if let token = UserDefaults.standard.value(forKey: TokenManager.StoreKeys.normalToken) as? String, token.isEmpty == false {
+            TokenManager.deviceToken = token
+             params["device_token"] = TokenManager.deviceToken
+        }
+         print("TokenManager.deviceToken:", TokenManager.deviceToken)
+        if TokenManager.voipToken.isEmpty == false {
+            params["voip_token"] = TokenManager.voipToken
+        } else if let token = UserDefaults.standard.value(forKey: TokenManager.StoreKeys.voipToken) as? String, token.isEmpty == false {
+            TokenManager.voipToken = token
+             params["voip_token"] = TokenManager.voipToken
+        }
+        
+        if let image = userImage {
+            params["user_image"] = image.absoluteString
+        }
+        
+        params["lang"] = "en"
+        params["app_version_code"] = 100
+        //        params["device_details"] = AgentDetail.getDeviceDetails()
+//        params["fetch_business_lang"] = 1
+        params += customRequest
+        print("PUT USER PARAMS:\(params)")
+        
+        return params
+    }
+    
+    
+    // MARK: - Type Methods
+    class func getUserDetailsAndConversation(completion: FuguUserDetailCallback? = nil) {
+        var endPointName = FuguEndPoints.API_PUT_USER_DETAILS.rawValue
+    
+        
+        let params: [String: Any]
+        do {
+            params = try getParamsToGetFuguUserDetails()
+        } catch {
+            completion?(false, error)
+            return
+        }
+        
+        
+        
+        
+        HTTPClient.shared.makeSingletonConnectionWith(method: .POST, identifier: RequestIdenfier.putUser, para: params, extendedUrl: endPointName) { (responseObject, error, tag, statusCode) in
+            
+            guard let response = (responseObject as? [String: Any]), statusCode == STATUS_CODE_SUCCESS, let data = response["data"] as? [String: Any] else {
+                BumbleConfig.shared.log.error("PutUserError: \(error.debugDescription)", level: .error)
+                NotificationCenter.default.post(name: .putUserFailure, object:self)
+                completion?(false, (error ?? APIErrors.statusCodeNotFound))
+                return
+            }
+            BumbleConfig.shared.log.trace("PutUserData: \(data)", level: .response)
+            
+            userDetailData = data
+            
+//            if let jitsiUrl = userDetailData["jitsi_url"] as? String{
+//                HippoConfig.shared.jitsiUrl = jitsiUrl
+//            }
+//
+//            if let rawUserChannel = userDetailData["user_channel"] as? String {
+//                HippoUserDetail.HippoUserChannelId = rawUserChannel
+//                subscribeCustomerUserChannel(userChannelId: rawUserChannel)
+//
+//            }
+//            if let tags = data["grouping_tags"] as? [[String: Any]] {
+//                HippoConfig.shared.userDetail?.userTags.removeAll()
+//                for each in tags {
+//                    HippoConfig.shared.userDetail?.userTags.append(UserTag(json: each))
+//                }
+//            }
+//
+            if let appSecretKey = userDetailData["app_secret_key"] as? String {
+                BumbleConfig.shared.appSecretKey = appSecretKey
+//                subscribeMarkConversation()
+            }
+            
+            if let userId = userDetailData["user_id"] as? Int {
+                HippoUserDetail.fuguUserID = userId
+            }
+            
+            if let enUserId = userDetailData["en_user_id"] as? String {
+                HippoUserDetail.fuguEnUserID = enUserId
+            }
+            if let rawEmail = userDetailData["email"] as? String {
+                BumbleConfig.shared.userDetail?.email = rawEmail
+            }
+            
+            if let rawName = userDetailData["full_name"] as? String {
+                let existingName = BumbleConfig.shared.userDetail?.fullName ?? ""
+                if existingName.trimWhiteSpacesAndNewLine().isEmpty {
+                   BumbleConfig.shared.userDetail?.fullName = rawName.trimWhiteSpacesAndNewLine()
+                }
+            }
+//            if let customer_initial_form_info = userDetailData["customer_initial_form_info"] as? [String: Any] {
+//                HippoProperty.current.forms = FormData.getFormDataList(from: customer_initial_form_info)
+//                HippoProperty.current.formCollectorTitle = customer_initial_form_info["page_title"] as? String ?? HippoStrings.support.capitalized
+//            } else {
+//                HippoProperty.current.forms = []
+//            }
+            
+//            HippoProperty.current.showMessageSourceIcon = Bool.parse(key: "show_message_source", json: userDetailData, defaultValue: false)
+//
+//            var isFaqEnabled = false
+//            if let is_faq_enabled = userDetailData["is_faq_enabled"] as? Bool {
+//                isFaqEnabled = is_faq_enabled
+//            }
+//            HippoConfig.shared.log.trace("User Login Data\(userDetailData)", level: .response)
+            
+//            if let cusstomerBotID = String.parse(values: userDetailData, key: "customer_conversation_bot_id") {
+//                HippoProperty.setNewConversationBotGroupId(botGroupId: cusstomerBotID)
+//            }
+            
+            BussinessProperty.current.updateData(loginData: userDetailData)
+            
+            
+//            if let in_app_support_panel_version = userDetailData["in_app_support_panel_version"] as? Int, in_app_support_panel_version > HippoSupportList.currentFAQVersion, isFaqEnabled {
+//                HippoSupportList.getListForBusiness(completion: { (success, list) in
+//                    if success {
+//                        HippoSupportList.currentFAQVersion = in_app_support_panel_version
+//                    }
+//                })
+//            }
+//            if let botChannelsArray = userDetailData["conversations"] as? [[String: Any]] {
+//                FuguDefaults.set(value: botChannelsArray, forKey: DefaultName.conversationData.rawValue)
+//            }
+//            resetPushCount()
+            
+//            if let lastVisibleController = getLastVisibleController() as? ConversationsViewController, let channelId = lastVisibleController.channel?.id {
+//                lastVisibleController.clearUnreadCountForChannel(id: channelId)
+//            } else {
+//                pushTotalUnreadCount()
+//            }
+//            NotificationCenter.default.post(name: .putUserSuccess, object:self)
+
+//            let isAskPaymentAllowed = Bool.parse(key: "is_ask_payment_allowed", json: userDetailData, defaultValue: false)
+//            if isAskPaymentAllowed == true && self.shouldGetPaymentGateways{
+//
+//                self.getPaymentGateway() { (success) in
+//                    //guard success == true else { return }
+//                }
+//            }
+            let announcementCount = ((responseObject as? NSDictionary)?.value(forKey: "data") as? NSDictionary)?.value(forKey: "unread_channels") as? [String] ?? [String]()
+            if !(BumbleConfig.shared.isOpenedFromPush ?? false){
+                BumbleConfig.shared.announcementUnreadCount?(announcementCount.count)
+               UserDefaults.standard.set(announcementCount, forKey: DefaultName.announcementUnreadCount.rawValue)
+            }
+            completion?(true, nil)
+        }
+    }
+    
+    class func getPaymentGateway(completion: @escaping (Bool) -> Void) {
+        let params = getParamsForPaymentGateway()
+        getPaymentGateway(params: params, completion: completion)
+    }
+    
+    private class func getPaymentGateway(params: [String: Any],  completion: @escaping (Bool) -> Void) {
+        BumbleConfig.shared.log.debug("API_GetPaymentGateway.....\(params)", level: .request)
+        HTTPClient.makeConcurrentConnectionWith(method: .POST, para: params, extendedUrl: FuguEndPoints.getPaymentGateway.rawValue) { (response, error, _, statusCode) in
+            guard let responseDict = response as? [String: Any],
+                let statusCode = responseDict["statusCode"] as? Int, let data = responseDict["data"] as? [String: Any], let addedPaymentGateways = data["added_payment_gateways"] as? [[String: Any]], statusCode == 200 else {
+                    BumbleConfig.shared.log.debug("API_API_GetPaymentGateway ERROR.....\(error?.localizedDescription ?? "")", level: .error)
+                    completion(false)
+                    return
+            }
+//            let addedPaymentGatewaysArr = PaymentGateway.parse(addedPaymentGateways: addedPaymentGateways)
+            FuguDefaults.set(value: addedPaymentGateways, forKey: DefaultName.addedPaymentGatewaysData.rawValue)
+            completion(true)
+        }
+    }
+    private class func getParamsForPaymentGateway() -> [String: Any] {
+        var params = [String: Any]()
+        params["app_secret_key"] = BumbleConfig.shared.appSecretKey
+        params["app_version"] = fuguAppVersion
+        params["device_type"] = Device_Type_iOS
+        params["source_type"] = SourceType.SDK.rawValue
+        params["app_version_code"] = versionCode
+        params["get_enabled_gateways"] = 1
+        return params
+    }
+    
+    private class func getParamsToGetFuguUserDetails() throws -> [String: Any] {
+        guard var params = BumbleConfig.shared.userDetail?.toJson() else {
+            throw FuguUserIntializationError.invalidUserUniqueKey
+        }
+        
+//        switch HippoConfig.shared.credentialType {
+       
+            if params["app_secret_key"] == nil {
+                throw FuguUserIntializationError.invalidAppSecretKey
+            }
+//        }
+//        params["app_version_code"] = versionCode
+        params["source"] = 7
+        
+//        if HippoProperty.current.singleChatApp {
+////            params["neglect_conversations"] = true
+//        }
+//        params["neglect_conversations"] = true
+//        params["fetch_announcements_unread_count"] = 1
+        
+        return params
+    }
+    class func clearAgentData() {
+        BumbleConfig.shared.agentDetail = nil
+        AgentConversationManager.errorMessage = nil
+        AgentChannelPersistancyManager.shared.clearChannels()
+        HippoChannel.hashmapTransactionIdToChannelID = [:]
+        FuguDefaults.removeObject(forKey: "hashmapTransactionIdToChannelID")
+        
+        AgentDetail.agentLoginData = nil
+        UnreadCount.clearAllStoredUnreadCount()
+        AgentConversationManager.searchUserUniqueKeys.removeAll()
+        AgentConversationManager.transactionID = nil
+        ConversationStore.shared.clearData()
+//        AgentUserChannel.shared = nil
+    }
+    
+    class func clearAllData(completion: ((Bool) -> Void)? = nil) {
+        
+        
+        FuguDefaults.removeAllPersistingData()
+//        if FayeConnection.shared.isConnected{
+//            FayeConnection.shared.disconnectFaye()
+//        }
+        //Clear agent data
+        clearAgentData()
+        
+        //unSubscribe(userChannelId: HippoUserDetail.HippoUserChannelId ?? "")
+        BumbleConfig.shared.groupCallData.removeAll()
+        HippoProperty.current = HippoProperty()
+        //FuguConfig.shared.deviceToken = ""
+        BumbleConfig.shared.appSecretKey = ""
+        BumbleConfig.shared.resellerToken = ""
+        BumbleConfig.shared.referenceId = -1
+        BumbleConfig.shared.appType = nil
+        BumbleConfig.shared.userDetail = nil
+        BumbleConfig.shared.muidList = []
+        resetPushCount()
+        
+        userDetailData = [String: Any]()
+        FuguChannelPersistancyManager.shared.clearChannels()
+        HippoChannel.hashmapTransactionIdToChannelID = [:]
+        FuguDefaults.removeObject(forKey: "hashmapTransactionIdToChannelID")
+        
+        FuguDefaults.removeObject(forKey: DefaultKey.myChatConversations)
+        FuguDefaults.removeObject(forKey: DefaultKey.allChatConversations)
+        FuguDefaults.removeObject(forKey: DefaultKey.allChatConversations)
+        
+        
+        FuguDefaults.removeObject(forKey: DefaultName.conversationData.rawValue)
+        FuguDefaults.removeObject(forKey: DefaultName.appointmentData.rawValue)
+        FuguDefaults.removeObject(forKey: DefaultName.addedPaymentGatewaysData.rawValue)
+        
+        FuguDefaults.removeAllPersistingData()
+        
+        CallManager.shared.hungupCall()
+        
+        let defaults = UserDefaults.standard
+        defaults.removeObject(forKey: Hippo_User_Channel_Id)
+        defaults.removeObject(forKey: FUGU_USER_ID)
+        defaults.removeObject(forKey: Fugu_en_user_id)
+
+        defaults.synchronize()
+        completion?(true)
+    }
+    
+    class func logoutFromFugu(completion: ((Bool) -> Void)? = nil) {
+        if BumbleConfig.shared.appSecretKey.isEmpty {
+            completion?(false)
+            return
+            
+        }
+        var params: [String: Any] = [
+            "app_secret_key": BumbleConfig.shared.appSecretKey
+        ]
+        
+        if let savedUserId = HippoUserDetail.fuguEnUserID {
+            params["en_user_id"] = savedUserId
+        }
+        
+        let deviceToken = TokenManager.deviceToken
+        let voipToken = TokenManager.voipToken
+        
+        HTTPClient.makeConcurrentConnectionWith(method: .POST, para: params, extendedUrl: FuguEndPoints.API_CLEAR_USER_DATA_LOGOUT.rawValue) { (responseObject, error, tag, statusCode) in
+            if currentUserType() == .customer{
+                unSubscribe(userChannelId: HippoUserDetail.HippoUserChannelId ?? "")
+            }else{
+                unSubscribe(userChannelId: BumbleConfig.shared.agentDetail?.userChannel ?? "")
+            }
+            clearAllData(completion: completion)
+            TokenManager.deviceToken = deviceToken
+            TokenManager.voipToken = voipToken
+            unSubscribe(userChannelId: BumbleConfig.shared.appSecretKey + "/" + "markConversation")
+//            let tempStatusCode = statusCode ?? 0
+//            let success = (200 <= tempStatusCode) && (300 > tempStatusCode)
+//            completion?(success)
+        }
+    }
+}
