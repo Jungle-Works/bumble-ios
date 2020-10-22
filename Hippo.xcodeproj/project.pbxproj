@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		45E80621253A352000BEDDD4 /* GroupCallModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E80620253A352000BEDDD4 /* GroupCallModel.swift */; };
-		47B12417C887BBD208902F39 /* Pods_Hippo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0A922564912516EF04B93F /* Pods_Hippo.framework */; };
+		4F0D0E3CC7CDCBA2C26681A8 /* Pods_Hippo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E78AC86E8C9B5EB6C6DDACF0 /* Pods_Hippo.framework */; };
 		6B1011F2248128D2007FC8EC /* loader.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6B1011F1248128D2007FC8EC /* loader.gif */; };
 		6B45484A249B89C8006F84C7 /* HippoLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6B45484C249B89C8006F84C7 /* HippoLocalizable.strings */; };
 		6B584EF52502369800A7633A /* P2PUnreadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B584EF42502369800A7633A /* P2PUnreadData.swift */; };
@@ -440,7 +440,6 @@
 		6F7645C36ABF77183FAD526B /* Pods-Hippo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hippo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hippo/Pods-Hippo.debug.xcconfig"; sourceTree = "<group>"; };
 		717BE1731EC1BE11003EA321 /* Hippo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hippo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73C5DC7752C82068B4CD5EB2 /* Pods-Hippo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hippo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hippo/Pods-Hippo.release.xcconfig"; sourceTree = "<group>"; };
-		8C0A922564912516EF04B93F /* Pods_Hippo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hippo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9B77D7A21A01B060092848D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C9B77D7D21A01B060092848D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C9B77D7E21A01B060092848D /* Montserrat-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Medium.otf"; sourceTree = "<group>"; };
@@ -892,7 +891,7 @@
 		D8F6D2EA24195E9200B168C5 /* CheckIntializationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckIntializationViewController.swift; sourceTree = "<group>"; };
 		D8F6D2EB24195E9400B168C5 /* AllConversationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllConversationsViewController.swift; sourceTree = "<group>"; };
 		D8F6D2EC24195E9400B168C5 /* ConversationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsViewController.swift; sourceTree = "<group>"; };
-		E0E4A9E31B1EC7F72EC2F38D /* Pods_Fugu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fugu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E78AC86E8C9B5EB6C6DDACF0 /* Pods_Hippo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hippo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -900,18 +899,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				47B12417C887BBD208902F39 /* Pods_Hippo.framework in Frameworks */,
+				4F0D0E3CC7CDCBA2C26681A8 /* Pods_Hippo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0DC6F74BF9725EE6841BA0D8 /* Frameworks */ = {
+		146E3CCD4B9E6277E006B6B6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E0E4A9E31B1EC7F72EC2F38D /* Pods_Fugu.framework */,
-				8C0A922564912516EF04B93F /* Pods_Hippo.framework */,
+				E78AC86E8C9B5EB6C6DDACF0 /* Pods_Hippo.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1005,8 +1003,8 @@
 				C9B77CF521A01B050092848D /* Hippo */,
 				717BE1741EC1BE11003EA321 /* Products */,
 				2147B1B6158113464954FE5C /* Pods */,
-				0DC6F74BF9725EE6841BA0D8 /* Frameworks */,
 				2B6220C42451650B0002752F /* Recovered References */,
+				146E3CCD4B9E6277E006B6B6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2555,7 +2553,6 @@
 				717BE16F1EC1BE11003EA321 /* Sources */,
 				717BE1701EC1BE11003EA321 /* Frameworks */,
 				717BE1711EC1BE11003EA321 /* Resources */,
-				75B9B621D9B333A4B27D8547 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2721,26 +2718,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		75B9B621D9B333A4B27D8547 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Hippo/Pods-Hippo-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/MZFayeClient/MZFayeClient.framework",
-				"${BUILT_PRODUCTS_DIR}/SocketRocket/SocketRocket.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MZFayeClient.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketRocket.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Hippo/Pods-Hippo-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		778DA9DBA8B35F32864A747E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

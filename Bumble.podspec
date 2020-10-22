@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
     s.name         = 'Bumble'
 
-    s.version      = '1.0.0'
+    s.version      = '1.0.1'
 
     s.summary      = 'Now add Agent in app for quick support.'
     s.homepage     = 'https://github.com/Jungle-Works/bumble-ios'
@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
     
     s.license      = { :type => 'MIT', :file => 'FILE_LICENSE' }
     
-    s.author             = { 'Vishal Jhanjhri' => 'jhanjhri.vishal@gmail.com' }
+    s.author             = { 'utkarsh' => 'utkarsh.shukla@jungleworks.com' }
     
     s.source       = { :git => 'https://github.com/Jungle-Works/bumble-ios.git', :tag => s.version }
     s.ios.deployment_target = '10.0'
@@ -23,19 +23,6 @@ Pod::Spec.new do |s|
         'Hippo' => ['Hippo/*.{lproj,storyboard,xcassets,gif}','Hippo/Assets/**/*.imageset','Hippo/UIView/TableViewCell/**/*.xib','Hippo/UIView/CollectionViewCells/**/*.xib','Hippo/UIView/CustomViews/**/*.xib','Hippo/InternalClasses/Views/**/*.xib','Hippo/InternalClasses/Module/**/*.xib', 'Hippo/**/*.gif','Hippo/Language/**/*.strings', 'README.md']
     }
     s.resources = ['Hippo/*.xcassets']
-    s.preserve_paths = ['README.md']
-    
-    s.dependency 'MZFayeClient'
-    
-    s.default_subspec = 'Chat'
-    
-    s.subspec 'Chat' do |chat|
-        
-    end
-    
-    s.subspec 'Call' do |callClient|
-        s.pod_target_xcconfig = { "ENABLE_BITCODE" => "No" }
-        callClient.dependency 'HippoCallClient'
-    end
+    s.preserve_paths = ['README.md']   
     
 end

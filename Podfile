@@ -7,7 +7,7 @@ target 'Hippo' do
 
   # Pods for Fugu
   
-  pod 'MZFayeClient'
+#  pod 'MZFayeClient'
 
     post_install do |installer|
       
