@@ -216,24 +216,24 @@ struct BotAction {
     }
     
     //Function to get current channel id
-    open func getCurrentChannelId()->Int?{
-        let topViewController = getLastVisibleController()
-        //will return channel id if we have some active chat else return nil
-        if topViewController is ConversationsViewController{
-            return (topViewController as? ConversationsViewController)?.channelId
-        }
-        return nil
-    }
+//    open func getCurrentChannelId()->Int?{
+//        let topViewController = getLastVisibleController()
+//        //will return channel id if we have some active chat else return nil
+//        if topViewController is ConversationsViewController{
+//            return (topViewController as? ConversationsViewController)?.channelId
+//        }
+//        return nil
+//    }
     
     //Function to get current agent sdk channel id
-    open func getCurrentAgentSdkChannelId()->Int?{
-        let topViewController = getLastVisibleController()
-        //will return channel id if we have some active chat else return nil
-        if topViewController is AgentConversationViewController{
-            return (topViewController as? AgentConversationViewController)?.channelId
-        }
-        return nil
-    }
+//    open func getCurrentAgentSdkChannelId()->Int?{
+//        let topViewController = getLastVisibleController()
+//        //will return channel id if we have some active chat else return nil
+//        if topViewController is AgentConversationViewController{
+//            return (topViewController as? AgentConversationViewController)?.channelId
+//        }
+//        return nil
+//    }
     
     internal func setAgentStoredData() {
         guard let storedData = AgentDetail.agentLoginData else {
@@ -301,7 +301,7 @@ struct BotAction {
                 completion(false, HippoError.general)
                 return
             }
-            FuguFlowManager.shared.pushAgentConversationViewController(chatAttributes: attributes)
+//            FuguFlowManager.shared.pushAgentConversationViewController(chatAttributes: attributes)
         }
         
     }
@@ -457,7 +457,7 @@ struct BotAction {
     }
     
     public func consultNowButtonClicked(consultNowInfoDict: [String: Any]){
-        FuguFlowManager.shared.consultNowButtonClicked(consultNowInfoDict: consultNowInfoDict)
+//        FuguFlowManager.shared.consultNowButtonClicked(consultNowInfoDict: consultNowInfoDict)
     }
     
     public func presentPromotionalPushController(){
@@ -477,10 +477,10 @@ struct BotAction {
             return
         }
         if let vc = viewController {
-            FuguFlowManager.shared.openChatViewController(on: vc, labelId: labelId, hideBackButton: hideBackButton, animation: animation)
+//            FuguFlowManager.shared.openChatViewController(on: vc, labelId: labelId, hideBackButton: hideBackButton, animation: animation)
         } else {
             //FuguFlowManager.shared.openChatViewController(labelId: labelId)
-            FuguFlowManager.shared.openChatViewControllerTempFunc(labelId: labelId)
+//            FuguFlowManager.shared.openChatViewControllerTempFunc(labelId: labelId)
         }
     }
     
@@ -518,7 +518,7 @@ struct BotAction {
             
             var fuguChat = FuguNewChatAttributes(transactionId: transactionId, userUniqueKey: uniqueKey, otherUniqueKey: nil, tags: tags, channelName: channelName, preMessage: message)
             fuguChat.isInAppChat = isInAppMessage
-            FuguFlowManager.shared.showFuguChat(fuguChat)
+//            FuguFlowManager.shared.showFuguChat(fuguChat)
             completion(true, nil)
         }
     }
@@ -532,11 +532,11 @@ struct BotAction {
         
         if let tempTransactionID = transactionId, !tempTransactionID.isEmpty, !otherUserUniqueKey.isEmpty {
             AgentConversationManager.transactionID = tempTransactionID.trimWhiteSpacesAndNewLine()
-            FuguFlowManager.shared.openDirectAgentConversation(channelTitle: channelTitle)
+//            FuguFlowManager.shared.openDirectAgentConversation(channelTitle: channelTitle)
         } else {
             if let tempTransactionID = transactionId, !tempTransactionID.isEmpty {
                 AgentConversationManager.transactionID = tempTransactionID.trimWhiteSpacesAndNewLine()
-                FuguFlowManager.shared.openDirectAgentConversation(channelTitle: channelTitle)
+//                FuguFlowManager.shared.openDirectAgentConversation(channelTitle: channelTitle)
             }
 //            else {
 //                FuguFlowManager.shared.openDirectConversationHome()
@@ -588,9 +588,9 @@ struct BotAction {
             var fuguChat = FuguNewChatAttributes(transactionId: data.uniqueChatId, userUniqueKey: data.userUniqueId, otherUniqueKey: nil, tags: data.tags, channelName: data.channelName, preMessage: "", groupingTag: data.groupingTags)
             fuguChat.hideBackButton = data.hideBackButton
             if let vc = viewController {
-                FuguFlowManager.shared.showFuguChat(on: vc, chat: fuguChat, createConversationOnStart: true)
+//                FuguFlowManager.shared.showFuguChat(on: vc, chat: fuguChat, createConversationOnStart: true)
             } else {
-                FuguFlowManager.shared.showFuguChat(fuguChat, createConversationOnStart: true)
+//                FuguFlowManager.shared.showFuguChat(fuguChat, createConversationOnStart: true)
             }
             completion?(true, nil)
         }
@@ -608,7 +608,7 @@ struct BotAction {
                 return
             }
             let fuguChat = FuguNewChatAttributes(transactionId: data.uniqueChatId ?? "", userUniqueKey: data.userUniqueId, otherUniqueKey: data.idsOfPeers, tags: nil, channelName: data.channelName, preMessage: "")
-            FuguFlowManager.shared.showFuguChat(fuguChat, createConversationOnStart: true)
+//            FuguFlowManager.shared.showFuguChat(fuguChat, createConversationOnStart: true)
             completion(true, nil)
         }
         
@@ -623,173 +623,173 @@ struct BotAction {
 //        }
 //    }
     
-    public func openChatWith(channelId: Int, completion: @escaping (_ success: Bool, _ error: Error?) -> Void) {
-        switch appUserType {
-        case .agent:
-            openAgentConversationWith(channelId: channelId, completion: completion)
-        case .customer:
-            openCustomerConversationWith(channelId: channelId, completion: completion)
-        }
-    }
-    public func startCall(data: PeerToPeerChat, callType: CallType, completion: @escaping (_ success: Bool, _ error: Error?) -> Void) {
-        guard FuguNetworkHandler.shared.isNetworkConnected else {
-            completion(false, HippoError.networkError)
-            return
-        }
-        guard CallManager.shared.isCallClientAvailable() else {
-            log.error(HippoError.callClientNotFound.localizedDescription, level: .error)
-            completion(false, HippoError.callClientNotFound)
-            return
-        }
-        guard appUserType == .customer else {
-            completion(false, HippoError.threwError(message: "Not Allowed For Hippo Agent"))
-            return
-        }
-        guard ((BussinessProperty.current.isVideoCallEnabled && callType == .video) || (BussinessProperty.current.isAudioCallEnabled && callType == .audio)) else {
-            completion(false, HippoError.threwError(message: strings.videoCallDisabledFromHippo))
-            return
-        }
-        
-        checkForIntialization { (success, error) in
-            guard success else {
-                completion(success, error)
-                return
-            }
-            self.findChannelAndStartCall(data: data, callType: callType, completion: completion)
-        }
-    }
-    private func findChannelAndStartCall(data: PeerToPeerChat, callType: CallType, completion: @escaping (_ success: Bool, _ error: Error?) -> Void) {
-        let uuid: String = String.uuid()
-        let peer = User(name: data.peerName, imageURL: data.otherUserImage?.absoluteString, userId: -222)
-        CallManager.shared.startConnection(peerUser: peer, muid: uuid, callType: callType, completion: { success in })
-        
-        let attributes = FuguNewChatAttributes(transactionId: data.uniqueChatId ?? "", userUniqueKey: data.userUniqueId, otherUniqueKey: data.idsOfPeers, tags: nil, channelName: data.channelName, preMessage: "", groupingTag: nil)
-        
-        HippoChannel.get(withFuguChatAttributes: attributes, completion: {(result) in
-            guard result.isSuccessful, let channel = result.channel else {
-                CallManager.shared.hungupCall()
-                completion(false, HippoError.threwError(message: HippoStrings.somethingWentWrong))
-                return
-            }
-            let call = CallData.init(peerData: peer, callType: callType, muid: uuid, signallingClient: channel)
-  
-//            CallManager.shared.startCall(call: call, completion: { (success)  in
+//    public func openChatWith(channelId: Int, completion: @escaping (_ success: Bool, _ error: Error?) -> Void) {
+//        switch appUserType {
+//        case .agent:
+//            openAgentConversationWith(channelId: channelId, completion: completion)
+//        case .customer:
+//            openCustomerConversationWith(channelId: channelId, completion: completion)
+//        }
+//    }
+//    public func startCall(data: PeerToPeerChat, callType: CallType, completion: @escaping (_ success: Bool, _ error: Error?) -> Void) {
+//        guard FuguNetworkHandler.shared.isNetworkConnected else {
+//            completion(false, HippoError.networkError)
+//            return
+//        }
+//        guard CallManager.shared.isCallClientAvailable() else {
+//            log.error(HippoError.callClientNotFound.localizedDescription, level: .error)
+//            completion(false, HippoError.callClientNotFound)
+//            return
+//        }
+//        guard appUserType == .customer else {
+//            completion(false, HippoError.threwError(message: "Not Allowed For Hippo Agent"))
+//            return
+//        }
+//        guard ((BussinessProperty.current.isVideoCallEnabled && callType == .video) || (BussinessProperty.current.isAudioCallEnabled && callType == .audio)) else {
+//            completion(false, HippoError.threwError(message: strings.videoCallDisabledFromHippo))
+//            return
+//        }
+//
+//        checkForIntialization { (success, error) in
+//            guard success else {
+//                completion(success, error)
+//                return
+//            }
+//            self.findChannelAndStartCall(data: data, callType: callType, completion: completion)
+//        }
+//    }
+//    private func findChannelAndStartCall(data: PeerToPeerChat, callType: CallType, completion: @escaping (_ success: Bool, _ error: Error?) -> Void) {
+//        let uuid: String = String.uuid()
+//        let peer = User(name: data.peerName, imageURL: data.otherUserImage?.absoluteString, userId: -222)
+//        CallManager.shared.startConnection(peerUser: peer, muid: uuid, callType: callType, completion: { success in })
+//
+//        let attributes = FuguNewChatAttributes(transactionId: data.uniqueChatId ?? "", userUniqueKey: data.userUniqueId, otherUniqueKey: data.idsOfPeers, tags: nil, channelName: data.channelName, preMessage: "", groupingTag: nil)
+//
+//        HippoChannel.get(withFuguChatAttributes: attributes, completion: {(result) in
+//            guard result.isSuccessful, let channel = result.channel else {
+//                CallManager.shared.hungupCall()
+//                completion(false, HippoError.threwError(message: HippoStrings.somethingWentWrong))
+//                return
+//            }
+//            let call = CallData.init(peerData: peer, callType: callType, muid: uuid, signallingClient: channel)
+//
+////            CallManager.shared.startCall(call: call, completion: { (success)  in
+////                if !success {
+////                    CallManager.shared.hungupCall()
+////                }
+////                completion(true, nil)
+////            })
+//            CallManager.shared.startCall(call: call, completion: { (success,error)  in
 //                if !success {
 //                    CallManager.shared.hungupCall()
 //                }
 //                completion(true, nil)
 //            })
-            CallManager.shared.startCall(call: call, completion: { (success,error)  in
-                if !success {
-                    CallManager.shared.hungupCall()
-                }
-                completion(true, nil)
-            })
-            
-        })
-        completion(true, nil)
-    }
-    public func startCallToAgent(data: PeerToPeerChat, agentEmail: String, callType: CallType, completion: @escaping (_ success: Bool, _ error: Error?) -> Void) {
-        guard FuguNetworkHandler.shared.isNetworkConnected else {
-            completion(false, HippoError.networkError)
-            return
-        }
-        guard CallManager.shared.isCallClientAvailable() else {
-            log.error(HippoError.callClientNotFound.localizedDescription, level: .error)
-            completion(false, HippoError.callClientNotFound)
-            return
-        }
-        guard appUserType == .customer else {
-            completion(false, HippoError.threwError(message: "Not Allowed For Hippo Agent"))
-            return
-        }
-        guard ((BussinessProperty.current.isVideoCallEnabled && callType == .video) || (BussinessProperty.current.isAudioCallEnabled && callType == .audio)) else {
-            completion(false, HippoError.threwError(message: strings.videoCallDisabledFromHippo))
-            return
-        }
-        
-        guard agentEmail != "" else {
-            completion(false, HippoError.threwError(message: "Agent email is required"))
-            return
-        }
-        
-        checkForIntialization { (success, error) in
-            guard success else {
-                completion(success, error)
-                return
-            }
-            self.findChannelAndStartCallToAgent(data: data, agentEmail: agentEmail, callType: callType, completion: completion)
-        }
-    }
-    private func findChannelAndStartCallToAgent(data: PeerToPeerChat, agentEmail: String, callType: CallType, completion: @escaping (_ success: Bool, _ error: Error?) -> Void) {
-        let uuid: String = String.uuid()
-        let peer = User(name: data.peerName, imageURL: data.otherUserImage?.absoluteString, userId: -222)
-        CallManager.shared.startConnection(peerUser: peer, muid: uuid, callType: callType, completion: { success in })
-        let attributes = FuguNewChatAttributes(transactionId: data.uniqueChatId ?? "", userUniqueKey: nil, otherUniqueKey: [data.userUniqueId], tags: nil, channelName: data.channelName, preMessage: "", groupingTag: nil)
-        HippoChannel.getToCallAgent(withFuguChatAttributes: attributes, agentEmail: agentEmail, completion: {(result) in
-            guard result.isSuccessful, let channel = result.channel else {
-                CallManager.shared.hungupCall()
-                completion(false, HippoError.threwError(message: HippoStrings.somethingWentWrong))
-                return
-            }
-            let call = CallData.init(peerData: peer, callType: callType, muid: uuid, signallingClient: channel)
-  
-//            CallManager.shared.startCall(call: call, completion: { (success)  in
+//
+//        })
+//        completion(true, nil)
+//    }
+//    public func startCallToAgent(data: PeerToPeerChat, agentEmail: String, callType: CallType, completion: @escaping (_ success: Bool, _ error: Error?) -> Void) {
+//        guard FuguNetworkHandler.shared.isNetworkConnected else {
+//            completion(false, HippoError.networkError)
+//            return
+//        }
+//        guard CallManager.shared.isCallClientAvailable() else {
+//            log.error(HippoError.callClientNotFound.localizedDescription, level: .error)
+//            completion(false, HippoError.callClientNotFound)
+//            return
+//        }
+//        guard appUserType == .customer else {
+//            completion(false, HippoError.threwError(message: "Not Allowed For Hippo Agent"))
+//            return
+//        }
+//        guard ((BussinessProperty.current.isVideoCallEnabled && callType == .video) || (BussinessProperty.current.isAudioCallEnabled && callType == .audio)) else {
+//            completion(false, HippoError.threwError(message: strings.videoCallDisabledFromHippo))
+//            return
+//        }
+//
+//        guard agentEmail != "" else {
+//            completion(false, HippoError.threwError(message: "Agent email is required"))
+//            return
+//        }
+//
+//        checkForIntialization { (success, error) in
+//            guard success else {
+//                completion(success, error)
+//                return
+//            }
+//            self.findChannelAndStartCallToAgent(data: data, agentEmail: agentEmail, callType: callType, completion: completion)
+//        }
+//    }
+//    private func findChannelAndStartCallToAgent(data: PeerToPeerChat, agentEmail: String, callType: CallType, completion: @escaping (_ success: Bool, _ error: Error?) -> Void) {
+//        let uuid: String = String.uuid()
+//        let peer = User(name: data.peerName, imageURL: data.otherUserImage?.absoluteString, userId: -222)
+//        CallManager.shared.startConnection(peerUser: peer, muid: uuid, callType: callType, completion: { success in })
+//        let attributes = FuguNewChatAttributes(transactionId: data.uniqueChatId ?? "", userUniqueKey: nil, otherUniqueKey: [data.userUniqueId], tags: nil, channelName: data.channelName, preMessage: "", groupingTag: nil)
+//        HippoChannel.getToCallAgent(withFuguChatAttributes: attributes, agentEmail: agentEmail, completion: {(result) in
+//            guard result.isSuccessful, let channel = result.channel else {
+//                CallManager.shared.hungupCall()
+//                completion(false, HippoError.threwError(message: HippoStrings.somethingWentWrong))
+//                return
+//            }
+//            let call = CallData.init(peerData: peer, callType: callType, muid: uuid, signallingClient: channel)
+//
+////            CallManager.shared.startCall(call: call, completion: { (success)  in
+////                if !success {
+////                    CallManager.shared.hungupCall()
+////                }
+////                completion(true, nil)
+////            })
+//            CallManager.shared.startCall(call: call, completion: { (success,error)  in
 //                if !success {
 //                    CallManager.shared.hungupCall()
 //                }
 //                completion(true, nil)
 //            })
-            CallManager.shared.startCall(call: call, completion: { (success,error)  in
-                if !success {
-                    CallManager.shared.hungupCall()
-                }
-                completion(true, nil)
-            })
-        })
-        completion(true, nil)
-    }
-    internal func openCustomerConversationWith(channelId: Int, completion: @escaping (_ success: Bool, _ error: Error?) -> Void) {
-        checkForIntialization { (success, error) in
-            guard success else {
-                completion(false, error)
-                return
-            }
-            
-            let conVC = ConversationsViewController.getWith(channelID: channelId, channelName: "Group Chat")
-            let lastVC = getLastVisibleController()
-            lastVC?.modalPresentationStyle = .fullScreen
-            lastVC?.present(conVC, animated: true, completion: nil)
-        }
-    }
-    internal func openAgentConversationWith(channelId: Int, completion: @escaping (_ success: Bool, _ error: Error?) -> Void) {
-        HippoChecker.checkForAgentIntialization { (success, error) in
-            guard success else {
-                completion(false, error)
-                return
-            }
-
-            let conVC = AgentConversationViewController.getWith(channelID: channelId, channelName: "")
-            let lastVC = getLastVisibleController()
-            let navVC = UINavigationController(rootViewController: conVC)
-            navVC.setTheme()
-            navVC.modalPresentationStyle = .fullScreen
-            lastVC?.present(navVC, animated: true, completion: nil)
-        }
-    }
-    public func openAgentChatWith(channelId: Int, completion: @escaping (_ success: Bool, _ error: Error?) -> Void) {
-            HippoChecker.checkForAgentIntialization { (success, error) in
-                guard success else {
-                    completion(false, error)
-                    return
-                }
-                guard channelId > 0 else {
-                    completion(false, HippoError.invalidInputData)
-                    return
-                }
-                FuguFlowManager.shared.pushAgentConversationViewController(channelId: channelId, channelName: "")
-            }
-    }
+//        })
+//        completion(true, nil)
+//    }
+//    internal func openCustomerConversationWith(channelId: Int, completion: @escaping (_ success: Bool, _ error: Error?) -> Void) {
+//        checkForIntialization { (success, error) in
+//            guard success else {
+//                completion(false, error)
+//                return
+//            }
+//
+//            let conVC = ConversationsViewController.getWith(channelID: channelId, channelName: "Group Chat")
+//            let lastVC = getLastVisibleController()
+//            lastVC?.modalPresentationStyle = .fullScreen
+//            lastVC?.present(conVC, animated: true, completion: nil)
+//        }
+//    }
+//    internal func openAgentConversationWith(channelId: Int, completion: @escaping (_ success: Bool, _ error: Error?) -> Void) {
+//        HippoChecker.checkForAgentIntialization { (success, error) in
+//            guard success else {
+//                completion(false, error)
+//                return
+//            }
+//
+//            let conVC = AgentConversationViewController.getWith(channelID: channelId, channelName: "")
+//            let lastVC = getLastVisibleController()
+//            let navVC = UINavigationController(rootViewController: conVC)
+//            navVC.setTheme()
+//            navVC.modalPresentationStyle = .fullScreen
+//            lastVC?.present(navVC, animated: true, completion: nil)
+//        }
+//    }
+//    public func openAgentChatWith(channelId: Int, completion: @escaping (_ success: Bool, _ error: Error?) -> Void) {
+//            HippoChecker.checkForAgentIntialization { (success, error) in
+//                guard success else {
+//                    completion(false, error)
+//                    return
+//                }
+//                guard channelId > 0 else {
+//                    completion(false, HippoError.invalidInputData)
+//                    return
+//                }
+//                FuguFlowManager.shared.pushAgentConversationViewController(channelId: channelId, channelName: "")
+//            }
+//    }
     
     internal func validateLogin(completion: @escaping (_ success: Bool, _ error: Error?) -> Void) {
         
@@ -841,7 +841,7 @@ struct BotAction {
             baseUrl = SERVERS.liveUrl
             fayeBaseURLString = SERVERS.liveFaye
         }
-        FayeConnection.shared.enviromentSwitchedWith(urlString: fayeBaseURLString)
+//        FayeConnection.shared.enviromentSwitchedWith(urlString: fayeBaseURLString)
     }
     
     
@@ -916,28 +916,28 @@ struct BotAction {
         //showAlertWith(message: "Device Tokan saved", action: nil)
     }
     
-    func checkForChannelSubscribe(completion: @escaping (_ success: Bool, _ error: Error?) -> Void) {
-        
-        if let hippoUserChannelId = BumbleUserDetail.HippoUserChannelId {
-            guard isSubscribed(userChannelId: hippoUserChannelId) else {
-                subscribeCustomerUserChannel(userChannelId: hippoUserChannelId)
-                completion(false, nil)
-                return
-            }
-            completion(true, nil)
-            return
-        }
-    }
+//    func checkForChannelSubscribe(completion: @escaping (_ success: Bool, _ error: Error?) -> Void) {
+//
+//        if let hippoUserChannelId = BumbleUserDetail.HippoUserChannelId {
+//            guard isSubscribed(userChannelId: hippoUserChannelId) else {
+//                subscribeCustomerUserChannel(userChannelId: hippoUserChannelId)
+//                completion(false, nil)
+//                return
+//            }
+//            completion(true, nil)
+//            return
+//        }
+//    }
     
     
-    public func isHippoUserChannelSubscribe() -> Bool {
-        var checkStatus = false
-        self.checkForChannelSubscribe(completion: { (success, error) in
-           checkStatus = success
-        })
-        
-        return checkStatus
-    }
+//    public func isHippoUserChannelSubscribe() -> Bool {
+//        var checkStatus = false
+//        self.checkForChannelSubscribe(completion: { (success, error) in
+//           checkStatus = success
+//        })
+//
+//        return checkStatus
+//    }
     
     public func isHippoNotification(withUserInfo userInfo: [String: Any]) -> Bool {
         if let pushSource = userInfo["push_source"] as? String, (pushSource == "FUGU" || pushSource == "HIPPO") {
@@ -995,19 +995,19 @@ struct BotAction {
         guard let json = payload as? [String: Any] else {
             return
         }
-        guard isHippoUserChannelSubscribe() else {
-            self.handleVoipNotification(payloadDict: json)
-            return
-        }
+//        guard isHippoUserChannelSubscribe() else {
+//            self.handleVoipNotification(payloadDict: json)
+//            return
+//        }
         
     }
         
     public func handleVoipNotification(payloadDict: [String: Any]) {
         
-        guard isHippoUserChannelSubscribe() else {
-            CallManager.shared.voipNotificationRecieved(payloadDict: payloadDict)
-            return
-        }
+//        guard isHippoUserChannelSubscribe() else {
+//            CallManager.shared.voipNotificationRecieved(payloadDict: payloadDict)
+//            return
+//        }
         //        CallManager.shared.voipNotificationRecieved(payloadDict: payloadDict)
     }
     
@@ -1064,40 +1064,40 @@ struct BotAction {
         }
     
     
-    func subscribeChannelAndStartListening(_ channelId : Int){
-        FayeConnection.shared.subscribeTo(channelId: "\(channelId)", completion: {(success) in
-            if !success{
-                if !FayeConnection.shared.isConnected && FuguNetworkHandler.shared.isNetworkConnected{
-                    //FayeConnection.shared.enviromentSwitchedWith(urlString: self.fayeBaseURLString)
-                    var retryAttempt = 0
-                    fuguDelay(0.2) {
-                        if retryAttempt <= 3{
-                            self.subscribeChannelAndStartListening(channelId)
-                            retryAttempt += 1
-                        }else{
-                            return
-                        }
-                    }
-                }
-            }
-            print("channel subscribed", success)
-        }) {(messageDict) in
-            print(messageDict)
-            if let messageType = messageDict["message_type"] as? Int, messageType == MessageType.groupCall.rawValue{
-                CallManager.shared.voipNotificationRecievedForGroupCall(payloadDict: messageDict)
-                unSubscribe(userChannelId: "\(channelId)")
-            }else if let messageType = messageDict["message_type"] as? Int, messageType == MessageType.call.rawValue {
-                CallManager.shared.voipNotificationRecieved(payloadDict: messageDict)
-            }
-        }
-    }
+//    func subscribeChannelAndStartListening(_ channelId : Int){
+//        FayeConnection.shared.subscribeTo(channelId: "\(channelId)", completion: {(success) in
+//            if !success{
+//                if !FayeConnection.shared.isConnected && FuguNetworkHandler.shared.isNetworkConnected{
+//                    //FayeConnection.shared.enviromentSwitchedWith(urlString: self.fayeBaseURLString)
+//                    var retryAttempt = 0
+//                    fuguDelay(0.2) {
+//                        if retryAttempt <= 3{
+//                            self.subscribeChannelAndStartListening(channelId)
+//                            retryAttempt += 1
+//                        }else{
+//                            return
+//                        }
+//                    }
+//                }
+//            }
+//            print("channel subscribed", success)
+//        }) {(messageDict) in
+//            print(messageDict)
+//            if let messageType = messageDict["message_type"] as? Int, messageType == MessageType.groupCall.rawValue{
+//                CallManager.shared.voipNotificationRecievedForGroupCall(payloadDict: messageDict)
+//                unSubscribe(userChannelId: "\(channelId)")
+//            }else if let messageType = messageDict["message_type"] as? Int, messageType == MessageType.call.rawValue {
+//                CallManager.shared.voipNotificationRecieved(payloadDict: messageDict)
+//            }
+//        }
+//    }
     
     func handleAgentNotification(userInfo: [String: Any]) {
         if userInfo["notification_type"] as? Int == 25{
             return
         }else if userInfo["notification_type"] as? Int == 20{
             if let channelId = userInfo["channel_id"] as? Int{
-                subscribeChannelAndStartListening(channelId)
+//                subscribeChannelAndStartListening(channelId)
                 return
             }
         }
@@ -1115,29 +1115,29 @@ struct BotAction {
             return
         }
         
-        if let conVC = visibleController as? AgentConversationViewController {
-            if channelId != conVC.channel?.id, channelId > 0 {
-                conVC.channel?.delegate = nil
-                conVC.channel = AgentChannelPersistancyManager.shared.getChannelBy(id: channelId)
-                conVC.messagesGroupedByDate = []
-                conVC.populateTableViewWithChannelData()
-                conVC.label = channelName
-                conVC.navigationItem.title = channelName
-                if isSendingDisabled {
-                    conVC.disableSendingReply()
-                }
-                
-                conVC.getMessagesBasedOnChannel(fromMessage: 1, pageEnd: nil, completion: {(_) in
-                    conVC.enableSendingNewMessages()
-                })
-                
-            }
-            return
-        }
+//        if let conVC = visibleController as? AgentConversationViewController {
+//            if channelId != conVC.channel?.id, channelId > 0 {
+//                conVC.channel?.delegate = nil
+//                conVC.channel = AgentChannelPersistancyManager.shared.getChannelBy(id: channelId)
+//                conVC.messagesGroupedByDate = []
+//                conVC.populateTableViewWithChannelData()
+//                conVC.label = channelName
+//                conVC.navigationItem.title = channelName
+//                if isSendingDisabled {
+//                    conVC.disableSendingReply()
+//                }
+//
+//                conVC.getMessagesBasedOnChannel(fromMessage: 1, pageEnd: nil, completion: {(_) in
+//                    conVC.enableSendingNewMessages()
+//                })
+//
+//            }
+//            return
+//        }
         
         if let _ = visibleController as? AgentHomeViewController {
             if channelId > 0 {
-                FuguFlowManager.shared.pushAgentConversationViewController(channelId: channelId, channelName: channelName)
+//                FuguFlowManager.shared.pushAgentConversationViewController(channelId: channelId, channelName: channelName)
             }
             return
         }
@@ -1146,7 +1146,7 @@ struct BotAction {
             guard success else {
                 return
             }
-            FuguFlowManager.shared.pushAgentConversationViewController(channelId: channelId, channelName: channelName)
+//            FuguFlowManager.shared.pushAgentConversationViewController(channelId: channelId, channelName: channelName)
         }
     }
     
@@ -1157,7 +1157,7 @@ struct BotAction {
     func handleCustomerNotification(userInfo: [String: Any]) {
         if userInfo["notification_type"] as? Int == 25{
             if let channelId = userInfo["user_channel_id"] as? String{
-                subscribeCustomerUserChannel(userChannelId: channelId)
+//                subscribeCustomerUserChannel(userChannelId: channelId)
                 return
             }
             return
@@ -1176,65 +1176,65 @@ struct BotAction {
         let rawSendingReplyDisabled = (userInfo["disable_reply"] as? Int) ?? 0
         let isSendingDisabled = rawSendingReplyDisabled == 1 ? true : false
         
-        if let conVC = visibleController as? ConversationsViewController {
-            
-            if channel_Type == channelType.BROADCAST_CHANNEL.rawValue {
-                conVC.channel?.delegate = nil
-                conVC.messagesGroupedByDate = []
-                conVC.tableViewChat.reloadData()
-                conVC.label = channelName
-                conVC.labelId = labelId
-                conVC.channel = nil
-                conVC.fetchMessagesFrom1stPage()
-            } else if channelId != conVC.channel?.id, channelId > 0 {
-                let existingChannelID = conVC.channel?.id ?? -1
-                conVC.clearUnreadCountForChannel(id: existingChannelID)
-                conVC.channel?.delegate = nil
-                conVC.channel = FuguChannelPersistancyManager.shared.getChannelBy(id: channelId)
-                conVC.messagesGroupedByDate = []
-                conVC.populateTableViewWithChannelData()
-                conVC.label = channelName
-//                conVC.navigationTitleLabel?.text = channelName
-                if isSendingDisabled {
-                    conVC.disableSendingReply()
-                }
-                conVC.getMessagesBasedOnChannel(fromMessage: 1, pageEnd: nil, completion: {(_) in
-                    conVC.enableSendingNewMessages()
-                })
-            } else if labelId > 0 {
-                conVC.channel?.delegate = nil
-                conVC.messagesGroupedByDate = []
-                conVC.tableViewChat.reloadData()
-                conVC.label = channelName
-                conVC.labelId = labelId
-//                conVC.navigationTitleLabel?.text = channelName
-                if isSendingDisabled {
-                    conVC.disableSendingReply()
-                }
-                conVC.fetchMessagesFrom1stPage()
-            }
-            return
-        }
+//        if let conVC = visibleController as? ConversationsViewController {
+//
+//            if channel_Type == channelType.BROADCAST_CHANNEL.rawValue {
+//                conVC.channel?.delegate = nil
+//                conVC.messagesGroupedByDate = []
+//                conVC.tableViewChat.reloadData()
+//                conVC.label = channelName
+//                conVC.labelId = labelId
+//                conVC.channel = nil
+//                conVC.fetchMessagesFrom1stPage()
+//            } else if channelId != conVC.channel?.id, channelId > 0 {
+//                let existingChannelID = conVC.channel?.id ?? -1
+//                conVC.clearUnreadCountForChannel(id: existingChannelID)
+//                conVC.channel?.delegate = nil
+//                conVC.channel = FuguChannelPersistancyManager.shared.getChannelBy(id: channelId)
+//                conVC.messagesGroupedByDate = []
+//                conVC.populateTableViewWithChannelData()
+//                conVC.label = channelName
+////                conVC.navigationTitleLabel?.text = channelName
+//                if isSendingDisabled {
+//                    conVC.disableSendingReply()
+//                }
+//                conVC.getMessagesBasedOnChannel(fromMessage: 1, pageEnd: nil, completion: {(_) in
+//                    conVC.enableSendingNewMessages()
+//                })
+//            } else if labelId > 0 {
+//                conVC.channel?.delegate = nil
+//                conVC.messagesGroupedByDate = []
+//                conVC.tableViewChat.reloadData()
+//                conVC.label = channelName
+//                conVC.labelId = labelId
+////                conVC.navigationTitleLabel?.text = channelName
+//                if isSendingDisabled {
+//                    conVC.disableSendingReply()
+//                }
+//                conVC.fetchMessagesFrom1stPage()
+//            }
+//            return
+//        }
         
-        if let allConVC = visibleController as? AllConversationsViewController {
-            
-             if channel_Type == channelType.BROADCAST_CHANNEL.rawValue {
-                let conVC = ConversationsViewController.getWith(labelId: "\(labelId)")
-                conVC.delegate = allConVC
-                allConVC.navigationController?.pushViewController(conVC, animated: true)
-                
-            } else if channelId > 0 {
-                let conVC = ConversationsViewController.getWith(channelID: channelId, channelName: channelName)
-                conVC.delegate = allConVC
-                allConVC.navigationController?.pushViewController(conVC, animated: true)
-            } else if labelId > 0 {
-                let conVC = ConversationsViewController.getWith(labelId: "\(labelId)")
-                conVC.delegate = allConVC
-                allConVC.navigationController?.pushViewController(conVC, animated: true)
-            }
-            
-            return
-        }
+//        if let allConVC = visibleController as? AllConversationsViewController {
+//            
+//             if channel_Type == channelType.BROADCAST_CHANNEL.rawValue {
+//                let conVC = ConversationsViewController.getWith(labelId: "\(labelId)")
+//                conVC.delegate = allConVC
+//                allConVC.navigationController?.pushViewController(conVC, animated: true)
+//
+//            } else if channelId > 0 {
+//                let conVC = ConversationsViewController.getWith(channelID: channelId, channelName: channelName)
+//                conVC.delegate = allConVC
+//                allConVC.navigationController?.pushViewController(conVC, animated: true)
+//            } else if labelId > 0 {
+//                let conVC = ConversationsViewController.getWith(labelId: "\(labelId)")
+//                conVC.delegate = allConVC
+//                allConVC.navigationController?.pushViewController(conVC, animated: true)
+//            }
+//            
+//            return
+//        }
         
         guard channelId > 0 || labelId > 0 else {
             BumbleConfig.shared.presentChatsViewController()
@@ -1246,25 +1246,25 @@ struct BotAction {
                 return
             }
             
-            if channel_Type == channelType.BROADCAST_CHANNEL.rawValue {
-                   let conVC = ConversationsViewController.getWith(labelId: "\(labelId)")
-                   let navVC = UINavigationController(rootViewController: conVC)
-                   navVC.isNavigationBarHidden = true
-                   navVC.modalPresentationStyle = .fullScreen
-                   visibleController?.present(navVC, animated: true, completion: nil)
-               } else if channelId > 0 {
-                   let conVC = ConversationsViewController.getWith(channelID: channelId, channelName: channelName)
-                   let navVC = UINavigationController(rootViewController: conVC)
-                   navVC.isNavigationBarHidden = true
-                   navVC.modalPresentationStyle = .fullScreen
-                   visibleController?.present(navVC, animated: true, completion: nil)
-               } else if labelId > 0 {
-                   let conVC = ConversationsViewController.getWith(labelId: "\(labelId)")
-                   let navVC = UINavigationController(rootViewController: conVC)
-                   navVC.isNavigationBarHidden = true
-                   navVC.modalPresentationStyle = .fullScreen
-                   visibleController?.present(navVC, animated: true, completion: nil)
-               }
+//            if channel_Type == channelType.BROADCAST_CHANNEL.rawValue {
+//                   let conVC = ConversationsViewController.getWith(labelId: "\(labelId)")
+//                   let navVC = UINavigationController(rootViewController: conVC)
+//                   navVC.isNavigationBarHidden = true
+//                   navVC.modalPresentationStyle = .fullScreen
+//                   visibleController?.present(navVC, animated: true, completion: nil)
+//               } else if channelId > 0 {
+//                   let conVC = ConversationsViewController.getWith(channelID: channelId, channelName: channelName)
+//                   let navVC = UINavigationController(rootViewController: conVC)
+//                   navVC.isNavigationBarHidden = true
+//                   navVC.modalPresentationStyle = .fullScreen
+//                   visibleController?.present(navVC, animated: true, completion: nil)
+//               } else if labelId > 0 {
+//                   let conVC = ConversationsViewController.getWith(labelId: "\(labelId)")
+//                   let navVC = UINavigationController(rootViewController: conVC)
+//                   navVC.isNavigationBarHidden = true
+//                   navVC.modalPresentationStyle = .fullScreen
+//                   visibleController?.present(navVC, animated: true, completion: nil)
+//               }
         }
     }
 }

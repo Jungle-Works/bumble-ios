@@ -118,8 +118,8 @@ class HippoConversationViewController: UIViewController {
         removeKeyboardNotificationObserver()
         removeAppDidEnterForegroundObserver()
         removeNotificationObserverToKnowWhenAppIsKilledOrMovedToBackground()
-        NotificationCenter.default.removeObserver(self, name: .fayeConnected, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .fayeDisconnected, object: nil)
+//        NotificationCenter.default.removeObserver(self, name: .fayeConnected, object: nil)
+//        NotificationCenter.default.removeObserver(self, name: .fayeDisconnected, object: nil)
     }
     
     //Set Delegate For channels
@@ -256,8 +256,8 @@ class HippoConversationViewController: UIViewController {
     }
     
     func registerFayeNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(self.fayeConnected), name: .fayeConnected, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.fayeDisconnected), name: .fayeDisconnected, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(self.fayeConnected), name: .fayeConnected, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(self.fayeDisconnected), name: .fayeDisconnected, object: nil)
     }
     func registerNotificationToKnowWhenAppIsKilledOrMovedToBackground() {
         #if swift(>=4.2)
@@ -606,38 +606,38 @@ class HippoConversationViewController: UIViewController {
         
         self.view.endEditing(true)
         
-        let call = CallData.init(peerData: peerDetail, callType: .audio, muid: String.uuid(), signallingClient: channel)
+//        let call = CallData.init(peerData: peerDetail, callType: .audio, muid: String.uuid(), signallingClient: channel)
         
         if versionCode < 350{
-            CallManager.shared.startCall(call: call) { (success,error) in
-                if !success {
-                    assertionFailure("Cannot start the call")
-                }
-            }
+//            CallManager.shared.startCall(call: call) { (success,error) in
+//                if !success {
+//                    assertionFailure("Cannot start the call")
+//                }
+//            }
         }else{
             //            // #####-------USE THIS METHOD IF YOU ARE USING JITSI CALLING BARNCH FOR CALLING FEATURE -----#####
             //
-            CallManager.shared.startCall(call: call) { (success, error) in
-                
-                if let mismatchError = error, mismatchError.code == 415 {
-                    
-                    let message = peerDetail.fullName + " " + HippoStrings.callOldSdk
-                    self.showOptionAlert(title: HippoStrings.versionMismatch, message: message, successButtonName: HippoStrings.callAnyway, successComplete: { (successAction) in
-                        
-                        CallManager.shared.startWebRTCCall(call: call) { (success) in
-                            if !success {
-                                assertionFailure("Cannot start webrtc the call too")
-                            }
-                        }
-                        
-                    }, failureButtonName: HippoStrings.cancel) { (failureAction) in
-                        //do nothing
-                    }
-                }
-                else if !success {
-                    assertionFailure("Cannot start the call")
-                }
-            }
+//            CallManager.shared.startCall(call: call) { (success, error) in
+//
+//                if let mismatchError = error, mismatchError.code == 415 {
+//
+//                    let message = peerDetail.fullName + " " + HippoStrings.callOldSdk
+//                    self.showOptionAlert(title: HippoStrings.versionMismatch, message: message, successButtonName: HippoStrings.callAnyway, successComplete: { (successAction) in
+//
+//                        CallManager.shared.startWebRTCCall(call: call) { (success) in
+//                            if !success {
+//                                assertionFailure("Cannot start webrtc the call too")
+//                            }
+//                        }
+//
+//                    }, failureButtonName: HippoStrings.cancel) { (failureAction) in
+//                        //do nothing
+//                    }
+//                }
+//                else if !success {
+//                    assertionFailure("Cannot start the call")
+//                }
+//            }
         }
     }
     func startVideoCall() {
@@ -649,36 +649,36 @@ class HippoConversationViewController: UIViewController {
         }
         self.view.endEditing(true)
         
-        let call = CallData.init(peerData: peerDetail, callType: .video, muid: String.uuid(), signallingClient: channel)
+//        let call = CallData.init(peerData: peerDetail, callType: .video, muid: String.uuid(), signallingClient: channel)
         if versionCode < 350{
-            CallManager.shared.startCall(call: call) { (success,error) in
-                if !success {
-                    assertionFailure("Cannot start the call")
-                }
-            }
+//            CallManager.shared.startCall(call: call) { (success,error) in
+//                if !success {
+//                    assertionFailure("Cannot start the call")
+//                }
+//            }
         }else{
             //            // #####-------USE THIS METHOD IF YOU ARE USING JITSI CALLING BARNCH FOR CALLING FEATURE -----#####
-            CallManager.shared.startCall(call: call) { (success, error) in
-                
-                if let mismatchError = error, mismatchError.code == 415 {
-                    
-                    let message = peerDetail.fullName + " " + HippoStrings.callOldSdk
-                    self.showOptionAlert(title: HippoStrings.versionMismatch, message: message, successButtonName: HippoStrings.callAnyway, successComplete: { (successAction) in
-                        
-                        CallManager.shared.startWebRTCCall(call: call) { (success) in
-                            if !success {
-                                assertionFailure("Cannot start webrtc the call too")
-                            }
-                        }
-                        
-                    }, failureButtonName: HippoStrings.cancel) { (failureAction) in
-                        //do nothing
-                    }
-                }
-                else if !success {
-                    assertionFailure("Cannot start the call")
-                }
-            }
+//            CallManager.shared.startCall(call: call) { (success, error) in
+//
+//                if let mismatchError = error, mismatchError.code == 415 {
+//
+//                    let message = peerDetail.fullName + " " + HippoStrings.callOldSdk
+//                    self.showOptionAlert(title: HippoStrings.versionMismatch, message: message, successButtonName: HippoStrings.callAnyway, successComplete: { (successAction) in
+//
+//                        CallManager.shared.startWebRTCCall(call: call) { (success) in
+//                            if !success {
+//                                assertionFailure("Cannot start webrtc the call too")
+//                            }
+//                        }
+//
+//                    }, failureButtonName: HippoStrings.cancel) { (failureAction) in
+//                        //do nothing
+//                    }
+//                }
+//                else if !success {
+//                    assertionFailure("Cannot start the call")
+//                }
+//            }
         }
     }
     func canMakeAnyCall() -> Bool {

@@ -288,15 +288,10 @@ func fuguDelay(_ withDuration: Double, completion: @escaping () -> ()) {
 }
 
 func isSubscribed(userChannelId: String) -> Bool {
-    
-    return FayeConnection.shared.isChannelSubscribed(channelID: userChannelId)
-}
+    return false}
 
 func unSubscribe(userChannelId: String) {
-    
-    FayeConnection.shared.unsubscribe(fromChannelId: userChannelId, completion: { (success, error) in
-    })
-}
+    }
 
 func subscribeCustomerUserChannel(userChannelId: String) {
     
@@ -304,49 +299,50 @@ func subscribeCustomerUserChannel(userChannelId: String) {
         return
     }
     
-    FayeConnection.shared.subscribeTo(channelId: userChannelId, completion: { (success) in
-        if !success{
-            if !FayeConnection.shared.isConnected && FuguNetworkHandler.shared.isNetworkConnected{
-                // wait for faye and try again
-                var retryAttempt = 0
-                fuguDelay(0.5) {
-                    if retryAttempt <= 2{
-                        subscribeCustomerUserChannel(userChannelId: userChannelId)
-                        retryAttempt += 1
-                    }else{
-                        return
-                    }
-                }
-            }
-        }
-    }) {  (messageDict) in
-         BumbleConfig.shared.log.trace("UserChannel:: --->\(messageDict)", level: .socket)
-        if let messageType = messageDict["message_type"] as? Int, messageType == MessageType.call.rawValue {
-            if let channel_id = messageDict["channel_id"] as? Int{ //isSubscribed(userChannelId: "\(channel_id)") == false {
-                
-                let channel = FuguChannelPersistancyManager.shared.getChannelBy(id: channel_id)
-                if versionCode < 350{//call for old version
-                    channel.signalReceivedFromPeer?(messageDict)
-                }
-                CallManager.shared.voipNotificationRecieved(payloadDict: messageDict)
-            }
-        }else if let messageType = messageDict["message_type"] as? Int, messageType == MessageType.groupCall.rawValue{
-            CallManager.shared.voipNotificationRecievedForGroupCall(payloadDict: messageDict)
-        }
+//    FayeConnection.shared.subscribeTo(channelId: userChannelId, completion: { (success) in
+//        if !success{
+//            if !FayeConnection.shared.isConnected && FuguNetworkHandler.shared.isNetworkConnected{
+//                // wait for faye and try again
+//                var retryAttempt = 0
+//                fuguDelay(0.5) {
+//                    if retryAttempt <= 2{
+//                        subscribeCustomerUserChannel(userChannelId: userChannelId)
+//                        retryAttempt += 1
+//                    }else{
+//                        return
+//                    }
+//                }
+//            }
+//        }
+//    }
+//    ) {  (messageDict) in
+//         BumbleConfig.shared.log.trace("UserChannel:: --->\(messageDict)", level: .socket)
+//        if let messageType = messageDict["message_type"] as? Int, messageType == MessageType.call.rawValue {
+//            if let channel_id = messageDict["channel_id"] as? Int{ //isSubscribed(userChannelId: "\(channel_id)") == false {
+//
+//                let channel = FuguChannelPersistancyManager.shared.getChannelBy(id: channel_id)
+//                if versionCode < 350{//call for old version
+//                    channel.signalReceivedFromPeer?(messageDict)
+//                }
+//                CallManager.shared.voipNotificationRecieved(payloadDict: messageDict)
+//            }
+//        }else if let messageType = messageDict["message_type"] as? Int, messageType == MessageType.groupCall.rawValue{
+//            CallManager.shared.voipNotificationRecievedForGroupCall(payloadDict: messageDict)
+//        }
         
-        if let notificationType = messageDict["notification_type"] as? Int{
-            if notificationType == NotificationType.message.rawValue && messageDict["channel_id"] as? Int != BumbleConfig.shared.getCurrentChannelId(){
-                if let channelId = messageDict["channel_id"] as? Int, let otherUserUniqueKey = ((messageDict["user_unique_keys"] as? [String])?.filter{$0 != BumbleConfig.shared.userDetail?.userUniqueKey}.first){
-                    let transactionId = P2PUnreadData.shared.getTransactionId(with: channelId)
-                    if let data = P2PUnreadData.shared.getData(with: transactionId) , data.id == (transactionId + "-" + otherUserUniqueKey){
-                        let unreadCount = (data.count ?? 0) + 1
-                        P2PUnreadData.shared.updateChannelId(transactionId: transactionId, channelId: channelId, count: unreadCount, otherUserUniqueKey: otherUserUniqueKey)
-                    }
-                }
-            }
-        }
+//        if let notificationType = messageDict["notification_type"] as? Int{
+//            if notificationType == NotificationType.message.rawValue && messageDict["channel_id"] as? Int != BumbleConfig.shared.getCurrentChannelId(){
+//                if let channelId = messageDict["channel_id"] as? Int, let otherUserUniqueKey = ((messageDict["user_unique_keys"] as? [String])?.filter{$0 != BumbleConfig.shared.userDetail?.userUniqueKey}.first){
+//                    let transactionId = P2PUnreadData.shared.getTransactionId(with: channelId)
+//                    if let data = P2PUnreadData.shared.getData(with: transactionId) , data.id == (transactionId + "-" + otherUserUniqueKey){
+//                        let unreadCount = (data.count ?? 0) + 1
+//                        P2PUnreadData.shared.updateChannelId(transactionId: transactionId, channelId: channelId, count: unreadCount, otherUserUniqueKey: otherUserUniqueKey)
+//                    }
+//                }
+//            }
+//        }
     }
-}
+
 
 func subscribeMarkConversation(){
     var markConversationChannel = ""
@@ -360,33 +356,33 @@ func subscribeMarkConversation(){
         return
     }
     
-    FayeConnection.shared.subscribeTo(channelId: markConversationChannel, completion: { (success) in
-    }) {  (messageDict) in
-        print(messageDict)
-        if let notificationType = messageDict["notification_type"] as? Int, notificationType == 12{
-            if let status = messageDict["status"] as? String{
-                if status != "2"{
-                    return
-                }
-            }else if let status = messageDict["status"] as? Int{
-                if status != 2{
-                    return
-                }
-            }
-            for controller in getLastVisibleController()?.navigationController?.viewControllers ?? [UIViewController](){
-                if controller is AllConversationsViewController{
-                    (controller as? AllConversationsViewController)?.closeChat(messageDict["channel_id"] as? Int ?? -1)
-                    return
-                }
-            }
-            
-            if currentUserType() == .agent{
-                if let channelId = messageDict["channel_id"] as? Int{
-                   removeChannelForUnreadCount(channelId)
-                }
-            }
-        }
-    }
+//    FayeConnection.shared.subscribeTo(channelId: markConversationChannel, completion: { (success) in
+//    }) {  (messageDict) in
+//        print(messageDict)
+//        if let notificationType = messageDict["notification_type"] as? Int, notificationType == 12{
+//            if let status = messageDict["status"] as? String{
+//                if status != "2"{
+//                    return
+//                }
+//            }else if let status = messageDict["status"] as? Int{
+//                if status != 2{
+//                    return
+//                }
+//            }
+//            for controller in getLastVisibleController()?.navigationController?.viewControllers ?? [UIViewController](){
+//                if controller is AllConversationsViewController{
+//                    (controller as? AllConversationsViewController)?.closeChat(messageDict["channel_id"] as? Int ?? -1)
+//                    return
+//                }
+//            }
+//
+//            if currentUserType() == .agent{
+//                if let channelId = messageDict["channel_id"] as? Int{
+//                   removeChannelForUnreadCount(channelId)
+//                }
+//            }
+//        }
+//    }
     
 }
 

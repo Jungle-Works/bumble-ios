@@ -2726,18 +2726,18 @@ extension ConversationsViewController: HippoChannelDelegate {
         tableViewChat.reloadData()
     }
     
-    func cancelSendingMessage(message: HippoMessage, errorMessage: String?,errorCode : FayeConnection.FayeError?) {
-        self.cancelMessage(message: message)
-        
-        if let message = errorMessage {
-            showErrorMessage(messageString: message)
-            updateErrorLabelView(isHiding: true)
-        }
-        
-        if errorCode == FayeConnection.FayeError.personalInfoSharedError{
-            self.messageTextView.text = message.message
-        }
-    }
+//    func cancelSendingMessage(message: HippoMessage, errorMessage: String?,errorCode : FayeConnection.FayeError?) {
+//        self.cancelMessage(message: message)
+//
+//        if let message = errorMessage {
+//            showErrorMessage(messageString: message)
+//            updateErrorLabelView(isHiding: true)
+//        }
+//
+//        if errorCode == FayeConnection.FayeError.personalInfoSharedError{
+//            self.messageTextView.text = message.message
+//        }
+//    }
     
     func typingMessageReceived(newMessage: HippoMessage) {
         guard !newMessage.isSentByMe() else {

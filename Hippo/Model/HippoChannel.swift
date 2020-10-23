@@ -31,7 +31,7 @@ protocol HippoChannelDelegate: class {
     func newMessageReceived(newMessage: HippoMessage)
     func typingMessageReceived(newMessage: HippoMessage)
     func sendingFailedFor(message: HippoMessage)
-    func cancelSendingMessage(message: HippoMessage, errorMessage: String?,errorCode : FayeConnection.FayeError?)
+//    func cancelSendingMessage(message: HippoMessage, errorMessage: String?,errorCode : FayeConnection.FayeError?)
     func channelDataRefreshed()
     func closeChatActionFromRefreshChannel()
 }
@@ -147,7 +147,7 @@ class HippoChannel {
         NotificationCenter.default.addObserver(self, selector: #selector(HippoChannel.saveMessagesInCache), name: HippoVariable.willResignActiveNotification, object: nil)
     }
     func addObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(checkForReconnection), name: .fayeConnected, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(checkForReconnection), name: .fayeConnected, object: nil)
     }
     private func loadCachedHashMap() {
         messageHashMap = HippoChannel.getCachedHashMapFor(channelId: id)
@@ -639,42 +639,42 @@ class HippoChannel {
         let messageDict = message.getJsonToSendToFaye()
         
         BumbleConfig.shared.log.debug("sendFormValues \(messageDict)", level: .socket)
-        FayeConnection.shared.send(messageDict: messageDict, toChannelID: id.description) { (result) in
-            if result.success {
-                message.status = ReadUnReadStatus.sent
-                if message.type == .quickReply && !message.values.isEmpty {
-                    self.updateBotButtonMessage(newMessage: message)
-                }
-            }
-            message.wasMessageSendingFailed = !result.success
-            message.creationDateTime = Date()
-            completion()
-        }
+//        FayeConnection.shared.send(messageDict: messageDict, toChannelID: id.description) { (result) in
+//            if result.success {
+//                message.status = ReadUnReadStatus.sent
+//                if message.type == .quickReply && !message.values.isEmpty {
+//                    self.updateBotButtonMessage(newMessage: message)
+//                }
+//            }
+//            message.wasMessageSendingFailed = !result.success
+//            message.creationDateTime = Date()
+//            completion()
+//        }
     }
     func subscribe(completion: HippoChannelHandler? = nil) {
-        FayeConnection.shared.subscribeTo(channelId: id.description, completion: {(success) in
-            completion?(success, nil)
-        }) {[weak self] (messageDict) in
-            BumbleConfig.shared.log.trace("Active channel Recieveddddd -\(self?.id ?? 0000) >>>>> \(messageDict)", level: .socket)
-            guard let weakSelf = self, weakSelf.handleByNotification(dict: messageDict) else {
-                return
-            }
-            let chatType = self?.chatDetail?.chatType
-            guard let message = HippoMessage.createMessage(rawMessage: messageDict, chatType: chatType) else {
-                return
-            }
-            if message.type == .call {
-                if versionCode < 350 && BumbleConfig.shared.appUserType == .agent{
-                    DispatchQueue.main.async {
-                        self?.signalReceivedFromPeer?(messageDict)
-                        CallManager.shared.voipNotificationRecieved(payloadDict: messageDict)
-                    }
-                }
-                return
-            }
-            
-            self?.messageReceived(message: message)
-        }
+//        FayeConnection.shared.subscribeTo(channelId: id.description, completion: {(success) in
+//            completion?(success, nil)
+//        }) {[weak self] (messageDict) in
+//            BumbleConfig.shared.log.trace("Active channel Recieveddddd -\(self?.id ?? 0000) >>>>> \(messageDict)", level: .socket)
+//            guard let weakSelf = self, weakSelf.handleByNotification(dict: messageDict) else {
+//                return
+//            }
+//            let chatType = self?.chatDetail?.chatType
+//            guard let message = HippoMessage.createMessage(rawMessage: messageDict, chatType: chatType) else {
+//                return
+//            }
+//            if message.type == .call {
+//                if versionCode < 350 && BumbleConfig.shared.appUserType == .agent{
+//                    DispatchQueue.main.async {
+//                        self?.signalReceivedFromPeer?(messageDict)
+//                        CallManager.shared.voipNotificationRecieved(payloadDict: messageDict)
+//                    }
+//                }
+//                return
+//            }
+//
+//            self?.messageReceived(message: message)
+//        }
     }
     //should Continue after handling NotificationType
     func handleByNotification(dict: [String: Any]) -> Bool {
@@ -873,7 +873,7 @@ class HippoChannel {
     // MARK: - Methods
     func send(message: HippoMessage, completion: (() -> Void)?) {
         guard !message.isANotification() else {
-            FayeConnection.shared.send(messageDict: message.getJsonToSendToFaye(), toChannelID: id.description, completion: {_ in completion?()})
+//            FayeConnection.shared.send(messageDict: message.getJsonToSendToFaye(), toChannelID: id.description, completion: {_ in completion?()})
             return
         }
         if isSendingDisabled && !(message.type == .feedback){
@@ -932,33 +932,34 @@ class HippoChannel {
         return true
     }
     fileprivate func unSubscribe(completion: HippoChannelHandler? = nil) {
-        FayeConnection.shared.unsubscribe(fromChannelId: id.description, completion: { (success, error) in
-            completion?(success, error)
-        })
+//        FayeConnection.shared.unsubscribe(fromChannelId: id.description, completion: { (success, error) in
+//            completion?(success, error)
+//        })
     }
     func send(dict: [String: Any], completion: @escaping  (Bool, NSError?) -> Void) {
         var json = dict
         json["channel_id"] = id.description
         
-        FayeConnection.shared.send(messageDict: json, toChannelID: id.description) { (result) in
-            completion(result.success, result.error?.error as NSError?)
-        }
+//        FayeConnection.shared.send(messageDict: json, toChannelID: id.description) { (result) in
+//            completion(result.success, result.error?.error as NSError?)
+//        }
     }
     func send(publishable: FuguPublishable, completion: @escaping  (Bool, NSError?) -> Void) {
         var json = publishable.getJsonToSendToFaye()
         json["channel_id"] = id.description
         
-        FayeConnection.shared.send(messageDict: json, toChannelID: id.description) { (result) in
-            completion(result.success, result.error?.error as NSError?)
-        }
+//        FayeConnection.shared.send(messageDict: json, toChannelID: id.description) { (result) in
+//            completion(result.success, result.error?.error as NSError?)
+//        }
     }
     
     func isSubscribed() -> Bool {
-        return FayeConnection.shared.isChannelSubscribed(channelID: id.description)
+        return false
+        
     }
     
     func isConnected() -> Bool {
-        return isSubscribed() && FayeConnection.shared.isConnected && FuguNetworkHandler.shared.isNetworkConnected
+        return false
     }
     
     
@@ -1012,14 +1013,14 @@ extension HippoChannel: MessageSenderDelegate {
         message.messageUniqueID = newUniqueID
         set(message: message, positionInHashMap: value)
     }
-    func messageSendingFailed(message: HippoMessage, result: FayeConnection.FayeResult) {
-        guard let _ = result.error?.error else {
-            return
-        }
-        message.wasMessageSendingFailed = true
-        let showErrorMessage = result.error?.showError ?? false
-        let messageToShow: String? = showErrorMessage ? result.error?.message : nil
-        delegate?.cancelSendingMessage(message: message, errorMessage: messageToShow, errorCode: result.error?.error)
-    }
+//    func messageSendingFailed(message: HippoMessage, result: FayeConnection.FayeResult) {
+//        guard let _ = result.error?.error else {
+//            return
+//        }
+//        message.wasMessageSendingFailed = true
+//        let showErrorMessage = result.error?.showError ?? false
+//        let messageToShow: String? = showErrorMessage ? result.error?.message : nil
+//        delegate?.cancelSendingMessage(message: message, errorMessage: messageToShow, errorCode: result.error?.error)
+//    }
     
 }

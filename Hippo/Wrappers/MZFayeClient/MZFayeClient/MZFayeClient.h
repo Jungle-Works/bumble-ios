@@ -24,7 +24,7 @@
 //  THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
-#import "SRWebSocket.h"
+//#import "SRWebSocket.h"
 
 @class MZFayeClient;
 
@@ -70,88 +70,88 @@ typedef void (^MZFayeClientFailureHandler)(NSError *error);
 
 @end
 
-@interface MZFayeClient : NSObject <SRWebSocketDelegate>
+//@interface MZFayeClient : NSObject <SRWebSocketDelegate>
 
 /**
  *  WebSocket client
  */
-@property (nonatomic, readonly, strong) SRWebSocket *webSocket;
+//@property (nonatomic, readonly, strong) SRWebSocket *webSocket;
 
 /**
  *  The URL for the faye server
  */
-@property (nonatomic, readonly, strong) NSURL *url;
+//@property (nonatomic, readonly, strong) NSURL *url;
 
 /**
  *  Uniquely identifies a client to the Bayeux server.
  */
-@property (nonatomic, readonly, strong) NSString *clientId;
+//@property (nonatomic, readonly, strong) NSString *clientId;
 
 /**
  *  The number of sent messages
  */
-@property (nonatomic, readonly) NSInteger sentMessageCount;
+//@property (nonatomic, readonly) NSInteger sentMessageCount;
 
 /**
  * Returns whether the faye client is connected to server
  */
-@property (nonatomic, readonly, assign, getter = isConnected) BOOL connected;
+//@property (nonatomic, readonly, assign, getter = isConnected) BOOL connected;
 
 /**
  *  The channels the client wishes to subscribe
  */
-@property (nonatomic, readonly) NSSet *subscriptions;
+//@property (nonatomic, readonly) NSSet *subscriptions;
 
-@property (nonatomic, readonly) NSSet *pendingSubscriptions;
-@property (nonatomic, readonly) NSSet *openSubscriptions;
+//@property (nonatomic, readonly) NSSet *pendingSubscriptions;
+//@property (nonatomic, readonly) NSSet *openSubscriptions;
 
 /**
  *  Returns list of extensions per channel.
  *  The contents of ext may be arbitrary values that allow extensions to be negotiated 
  *  and implemented between server and client implementations.
  */
-@property (nonatomic, readonly) NSDictionary *extensions;
+//@property (nonatomic, readonly) NSDictionary *extensions;
 
 /**
  * Returns whether the faye client should auto retry connection
  * By default, this is YES
  */
-@property (nonatomic, assign) BOOL shouldRetryConnection;
+//@property (nonatomic, assign) BOOL shouldRetryConnection;
 
 /**
  * How often should retry connection
  */
-@property (nonatomic, assign) NSTimeInterval retryInterval;
+//@property (nonatomic, assign) NSTimeInterval retryInterval;
 
 /**
  * Actual retry connection attempt number
  */
-@property (nonatomic, assign) NSInteger retryAttempt;
+//@property (nonatomic, assign) NSInteger retryAttempt;
 
 /**
  * Maximum retry connection attments
  */
-@property (nonatomic, assign) NSInteger maximumRetryAttempts;
+//@property (nonatomic, assign) NSInteger maximumRetryAttempts;
 
 /**
  *  The object that acts as the delegate of the receiving faye client events.
  */
-@property (nonatomic, weak) id <MZFayeClientDelegate> delegate;
+//@property (nonatomic, weak) id <MZFayeClientDelegate> delegate;
 
-- (instancetype)initWithURL:(NSURL *)url;
-+ (instancetype)clientWithURL:(NSURL *)url;
-
-- (void)setExtension:(NSDictionary *)extension forChannel:(NSString *)channel;
-- (void)removeExtensionForChannel:(NSString *)channel;
-
-- (void)sendMessage:(NSDictionary *)message toChannel:(NSString *)channel success:(MZFayeClientSuccessHandler)successHandler failure:(MZFayeClientFailureHandler)failureHandler;
-- (void)sendMessage:(NSDictionary *)message toChannel:(NSString *)channel usingExtension:(NSDictionary *)extension success:(MZFayeClientSuccessHandler)successHandler failure:(MZFayeClientFailureHandler)failureHandler;
-
-- (void)subscribeToChannel:(NSString *)channel success:(MZFayeClientSuccessHandler)successHandler failure:(MZFayeClientFailureHandler)failureHandler receivedMessage:(MZFayeClientSubscriptionHandler)subscriptionHandler;
-- (void)unsubscribeFromChannel:(NSString *)channel success:(MZFayeClientSuccessHandler)successHandler failure:(MZFayeClientFailureHandler)failureHandler;
-
-- (void)connect:(MZFayeClientSuccessHandler)successHandler failure:(MZFayeClientFailureHandler)failureHandler;
-
-- (void)disconnect:(MZFayeClientSuccessHandler)successHandler failure:(MZFayeClientFailureHandler)failureHandler;
-
-@end
+//- (instancetype)initWithURL:(NSURL *)url;
+//+ (instancetype)clientWithURL:(NSURL *)url;
+//
+//- (void)setExtension:(NSDictionary *)extension forChannel:(NSString *)channel;
+////- (void)removeExtensionForChannel:(NSString *)channel;
+//
+//- (void)sendMessage:(NSDictionary *)message toChannel:(NSString *)channel success:(MZFayeClientSuccessHandler)successHandler failure:(MZFayeClientFailureHandler)failureHandler;
+//- (void)sendMessage:(NSDictionary *)message toChannel:(NSString *)channel usingExtension:(NSDictionary *)extension success:(MZFayeClientSuccessHandler)successHandler failure:(MZFayeClientFailureHandler)failureHandler;
+//
+//- (void)subscribeToChannel:(NSString *)channel success:(MZFayeClientSuccessHandler)successHandler failure:(MZFayeClientFailureHandler)failureHandler receivedMessage:(MZFayeClientSubscriptionHandler)subscriptionHandler;
+//- (void)unsubscribeFromChannel:(NSString *)channel success:(MZFayeClientSuccessHandler)successHandler failure:(MZFayeClientFailureHandler)failureHandler;
+//
+//- (void)connect:(MZFayeClientSuccessHandler)successHandler failure:(MZFayeClientFailureHandler)failureHandler;
+//
+//- (void)disconnect:(MZFayeClientSuccessHandler)successHandler failure:(MZFayeClientFailureHandler)failureHandler;
+//
+//@end

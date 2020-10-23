@@ -38,20 +38,20 @@ class PrePaymentViewController: UIViewController {
         navigationBar.rightButton.isHidden = isPrePayment ?? false ? false : true
         navigationBar.rightButton.isEnabled = isPrePayment ?? false ? true : false
         navigationBar.rightButton.tintColor = .black
-        FayeConnection.shared.subscribeTo(channelId: "\(channelId ?? -1)", completion: {(success) in
-            print("channel subscribed", success)
-        }) {(messageDict) in
-            print(messageDict)
-            if messageDict["message_type"] as? Int == 22{
-                if (messageDict["custom_action"] as? NSDictionary)?.value(forKey: "selected_id") as? Int == 1{
-                    self.isPaymentSuccess?(true)
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
-                        self.backAction(UIButton())
-                    })
-                    FayeConnection.shared.unsubscribe(fromChannelId: "\(self.channelId ?? -1)", completion: nil)
-                }
-            }
-        }
+//        FayeConnection.shared.subscribeTo(channelId: "\(channelId ?? -1)", completion: {(success) in
+//            print("channel subscribed", success)
+//        }) {(messageDict) in
+//            print(messageDict)
+//            if messageDict["message_type"] as? Int == 22{
+//                if (messageDict["custom_action"] as? NSDictionary)?.value(forKey: "selected_id") as? Int == 1{
+//                    self.isPaymentSuccess?(true)
+//                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
+//                        self.backAction(UIButton())
+//                    })
+//                    FayeConnection.shared.unsubscribe(fromChannelId: "\(self.channelId ?? -1)", completion: nil)
+//                }
+//            }
+//        }
     }
     
     private func initalizeWebView() {
