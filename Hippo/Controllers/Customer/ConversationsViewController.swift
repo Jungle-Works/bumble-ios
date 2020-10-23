@@ -508,7 +508,7 @@ class ConversationsViewController: HippoConversationViewController {//}, UIGestu
         self.titleForNavigation?.setBackButton(hide: hideBackButton)
     }
     func addObserver() {
-        guard HippoUserDetail.fuguEnUserID == nil else {
+        guard BumbleUserDetail.fuguEnUserID == nil else {
             return
         }
         NotificationCenter.default.addObserver(self, selector: #selector(putUserSuccess), name: .putUserSuccess, object: nil)
@@ -1279,7 +1279,7 @@ class ConversationsViewController: HippoConversationViewController {//}, UIGestu
         var dict = [String : Any]()
         dict["agent_email"] = authorEmail
         dict["app_secret_key"] = BumbleConfig.shared.appSecretKey
-        dict["en_user_id"] = HippoUserDetail.fuguEnUserID ?? "-1"
+        dict["en_user_id"] = BumbleUserDetail.fuguEnUserID ?? "-1"
         dict["channel_id"] = self.channel?.id ?? -1
         //dict["access_token"] = ""
         //dict["user_id"] = ""
@@ -1292,7 +1292,7 @@ class ConversationsViewController: HippoConversationViewController {//}, UIGestu
     
     override func startNewConversation(replyMessage: HippoMessage?, completion: ((_ success: Bool, _ result: HippoChannelCreationResult?) -> Void)?) {
       
-        guard HippoUserDetail.fuguEnUserID != nil else {
+        guard BumbleUserDetail.fuguEnUserID != nil else {
             startLoaderAnimation()
             completion?(false, nil)
             return
@@ -3123,7 +3123,7 @@ extension ConversationsViewController {
     
     func logoutOptionClicked() {
         BumbleConfig.shared.clearHippoUserData { (s) in
-            HippoUserDetail.clearAllData()
+            BumbleUserDetail.clearAllData()
             BumbleConfig.shared.delegate?.hippoUserLogOut()
         }
     }

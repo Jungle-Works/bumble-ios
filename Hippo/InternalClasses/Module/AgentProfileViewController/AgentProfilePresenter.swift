@@ -33,7 +33,7 @@ class AgentProfilePresenter {
         
         var json: [String : Any] = [:]
         
-        guard let enUserID = HippoUserDetail.fuguEnUserID else {
+        guard let enUserID = BumbleUserDetail.fuguEnUserID else {
             return nil
         }
         if channelID > 0 {

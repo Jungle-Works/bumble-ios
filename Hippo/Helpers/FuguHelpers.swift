@@ -774,7 +774,7 @@ func updateDeviceToken(deviceToken: String) {
         AgentConversationManager.updateAgentChannel{ (error,response) in
         }
     case .customer:
-        HippoUserDetail.getUserDetailsAndConversation()
+        BumbleUserDetail.getUserDetailsAndConversation()
     }
 }
 
@@ -833,7 +833,7 @@ func currentUserId() -> Int {
     case .agent:
         return BumbleConfig.shared.agentDetail?.id ?? -1
     case .customer:
-        return HippoUserDetail.fuguUserID ?? -1
+        return BumbleUserDetail.fuguUserID ?? -1
     }
 }
 
@@ -851,7 +851,7 @@ func currentEnUserId() -> String {
     case .agent:
         return BumbleConfig.shared.agentDetail?.enUserId ?? ""
     case .customer:
-        return HippoUserDetail.fuguEnUserID ?? ""
+        return BumbleUserDetail.fuguEnUserID ?? ""
     }
 }
 

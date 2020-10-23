@@ -170,7 +170,7 @@ class MessageStore {
             guard !BumbleConfig.shared.appSecretKey.isEmpty else {
                 return nil
             }
-            guard let enUserID = HippoUserDetail.fuguEnUserID else {
+            guard let enUserID = BumbleUserDetail.fuguEnUserID else {
                 return nil
             }
             params["app_secret_key"] = BumbleConfig.shared.appSecretKey

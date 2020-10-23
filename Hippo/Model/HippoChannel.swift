@@ -452,7 +452,7 @@ class HippoChannel {
        
         var params = [String: Any]()
         params["app_secret_key"] = BumbleConfig.shared.appSecretKey
-        params["en_user_id"] = HippoUserDetail.fuguEnUserID ?? -1
+        params["en_user_id"] = BumbleUserDetail.fuguEnUserID ?? -1
         
         if BumbleConfig.shared.isSkipBot
         {

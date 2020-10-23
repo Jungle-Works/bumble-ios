@@ -46,7 +46,7 @@ public class HippoChat {
         }
     }
     
-    public static func setUser(_ user: HippoUserDetail) {
+    public static func setUser(_ user: BumbleUserDetail) {
 //        HippoConfig.shared.updateUserDetail(userDetail: user)
     }
     

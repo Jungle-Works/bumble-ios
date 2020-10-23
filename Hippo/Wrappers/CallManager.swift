@@ -215,7 +215,7 @@ class CallManager {
         let channel = FuguChannelPersistancyManager.shared.getChannelBy(id: channelID)
         
         if BumbleConfig.shared.userDetail == nil {
-            BumbleConfig.shared.userDetail = HippoUserDetail()
+            BumbleConfig.shared.userDetail = BumbleUserDetail()
         } else if BumbleConfig.shared.agentDetail == nil {
             BumbleConfig.shared.setAgentStoredData()
         }
@@ -253,7 +253,7 @@ class CallManager {
                 return nil
             }
             let name = user.fullName ?? ""
-            let userID = HippoUserDetail.fuguUserID ?? -1
+            let userID = BumbleUserDetail.fuguUserID ?? -1
             let userImage = user.userImage
             return HippoUser(name: name, userID: userID, imageURL: userImage?.absoluteString)
         case .agent:

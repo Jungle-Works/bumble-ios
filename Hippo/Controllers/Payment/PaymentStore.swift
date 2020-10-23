@@ -234,7 +234,7 @@ class PaymentStore: NSObject {
     }
     
     static func generatePaymentUrl(channelId: Int, message: HippoMessage, selectedCard: CustomerPayment, selectedPaymentGateway: PaymentGateway?, completion: @escaping ((_ success: Bool, _ data: [String: Any]?) -> ())) {
-        guard let enUserId = HippoUserDetail.fuguEnUserID else {
+        guard let enUserId = BumbleUserDetail.fuguEnUserID else {
             completion(false, nil)
             return
         }

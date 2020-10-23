@@ -91,7 +91,7 @@ class AllConversationsViewController: UIViewController, NewChatSentDelegate {
         
         self.bottomLineView.backgroundColor = BumbleConfig.shared.theme.themeColor
         
-        if HippoUserDetail.fuguUserID == nil {
+        if BumbleUserDetail.fuguUserID == nil {
             putUserDetails()
         } else {
             getAllConversations()
@@ -150,7 +150,7 @@ class AllConversationsViewController: UIViewController, NewChatSentDelegate {
     }
     
     func handleIntialCustomerForm() -> Bool {
-        guard HippoUserDetail.fuguUserID != nil else {
+        guard BumbleUserDetail.fuguUserID != nil else {
             return false
         }
         guard HippoChecker().shouldCollectDataFromUser() else {
@@ -163,7 +163,7 @@ class AllConversationsViewController: UIViewController, NewChatSentDelegate {
         return true
     }
     func putUserDetails() {
-        HippoUserDetail.getUserDetailsAndConversation(completion: { [weak self] (success, error) in
+        BumbleUserDetail.getUserDetailsAndConversation(completion: { [weak self] (success, error) in
             guard success else {
                 let errorMessage = error?.localizedDescription ?? HippoStrings.somethingWentWrong
                 
@@ -278,7 +278,7 @@ class AllConversationsViewController: UIViewController, NewChatSentDelegate {
     @objc func logoutButtonClicked() {
         showOptionAlert(title: "", message: HippoStrings.logout, successButtonName: HippoStrings.yes, successComplete: { (_) in
             BumbleConfig.shared.clearHippoUserData { (s) in
-                HippoUserDetail.clearAllData()
+                BumbleUserDetail.clearAllData()
                 BumbleConfig.shared.delegate?.hippoUserLogOut()
             }
         }, failureButtonName: HippoStrings.no.capitalized, failureComplete: nil)
@@ -525,7 +525,7 @@ class AllConversationsViewController: UIViewController, NewChatSentDelegate {
         
         tableViewDefaultText = ""
         self.showConversationsTableView.reloadData()
-        if HippoUserDetail.fuguUserID == nil {
+        if BumbleUserDetail.fuguUserID == nil {
             putUserDetails()
         } else {
             getAllConversations()

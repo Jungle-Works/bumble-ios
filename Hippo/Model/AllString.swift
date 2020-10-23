@@ -2268,8 +2268,8 @@ class AllString{
     
     class func updateLanguageApi() {
         var params = [String: Any]()
-        params["user_id"] = HippoUserDetail.fuguUserID
-        params["en_user_id"] = HippoUserDetail.fuguEnUserID
+        params["user_id"] = BumbleUserDetail.fuguUserID
+        params["en_user_id"] = BumbleUserDetail.fuguEnUserID
         params["app_secret_key"] = BumbleConfig.shared.appSecretKey
         params["update_lang"] = getCurrentLanguageLocale()
         

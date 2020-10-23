@@ -90,7 +90,7 @@ public class UserTag: NSObject {
     }
 }
 
-@objc public class HippoUserDetail: NSObject {
+@objc public class BumbleUserDetail: NSObject {
     
     // MARK: - Properties
     var fullName: String?
@@ -162,7 +162,7 @@ public class UserTag: NSObject {
         }
         
        self.selectedlanguage = selectedlanguage
-        HippoUserDetail.shouldGetPaymentGateways = getPaymentGateways
+        BumbleUserDetail.shouldGetPaymentGateways = getPaymentGateways
         
         UserDefaults.standard.set(selectedlanguage, forKey: DefaultName.selectedLanguage.rawValue)
     }
@@ -332,11 +332,11 @@ public class UserTag: NSObject {
             }
             
             if let userId = userDetailData["user_id"] as? Int {
-                HippoUserDetail.fuguUserID = userId
+                BumbleUserDetail.fuguUserID = userId
             }
             
             if let enUserId = userDetailData["en_user_id"] as? String {
-                HippoUserDetail.fuguEnUserID = enUserId
+                BumbleUserDetail.fuguEnUserID = enUserId
             }
             if let rawEmail = userDetailData["email"] as? String {
                 BumbleConfig.shared.userDetail?.email = rawEmail
@@ -531,7 +531,7 @@ public class UserTag: NSObject {
             "app_secret_key": BumbleConfig.shared.appSecretKey
         ]
         
-        if let savedUserId = HippoUserDetail.fuguEnUserID {
+        if let savedUserId = BumbleUserDetail.fuguEnUserID {
             params["en_user_id"] = savedUserId
         }
         
@@ -540,7 +540,7 @@ public class UserTag: NSObject {
         
         HTTPClient.makeConcurrentConnectionWith(method: .POST, para: params, extendedUrl: FuguEndPoints.API_CLEAR_USER_DATA_LOGOUT.rawValue) { (responseObject, error, tag, statusCode) in
             if currentUserType() == .customer{
-                unSubscribe(userChannelId: HippoUserDetail.HippoUserChannelId ?? "")
+                unSubscribe(userChannelId: BumbleUserDetail.HippoUserChannelId ?? "")
             }else{
                 unSubscribe(userChannelId: BumbleConfig.shared.agentDetail?.userChannel ?? "")
             }

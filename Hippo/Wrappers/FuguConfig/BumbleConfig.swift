@@ -114,7 +114,7 @@ struct BotAction {
     internal var voipToken = ""
     internal var ticketDetails = HippoTicketAtrributes(categoryName: "")
     internal var theme = HippoTheme.defaultTheme()
-    internal var userDetail: HippoUserDetail?
+    internal var userDetail: BumbleUserDetail?
     internal var jitsiUrl : String?
     internal var jitsiOngoingCall : Bool?
     internal var agentDetail: AgentDetail?
@@ -326,11 +326,11 @@ struct BotAction {
         HippoProperty.current.skipBotReason = reason
     }
     
-    public func updateUserDetail(userDetail: HippoUserDetail, completion: @escaping (_ success: Bool, _ error: Error?) -> Void) {
+    public func updateUserDetail(userDetail: BumbleUserDetail, completion: @escaping (_ success: Bool, _ error: Error?) -> Void) {
         self.userDetail = userDetail
         self.appUserType = .customer
         AgentDetail.agentLoginData = nil
-        HippoUserDetail.getUserDetailsAndConversation { (status, error) in
+        BumbleUserDetail.getUserDetailsAndConversation { (status, error) in
             completion(status, error)
 //            if (self.userDetail?.selectedlanguage ?? "") == ""{
 //               self.userDetail?.selectedlanguage = BussinessProperty.current.buisnessLanguageArr?.filter{$0.is_default == true}.first?.lang_code
@@ -804,12 +804,12 @@ struct BotAction {
     
     func checkForIntialization(completion: @escaping (_ success: Bool, _ error: Error?) -> Void) {
         
-        if let fuguUserId = HippoUserDetail.fuguUserID, fuguUserId > 0 {
+        if let fuguUserId = BumbleUserDetail.fuguUserID, fuguUserId > 0 {
             completion(true, nil)
             return
         }
         
-        HippoUserDetail.getUserDetailsAndConversation(completion: { (success, error) in
+        BumbleUserDetail.getUserDetailsAndConversation(completion: { (success, error) in
             completion(success, error)
         })
     }
@@ -856,7 +856,7 @@ struct BotAction {
         case .agent:
             AgentDetail.LogoutAgent(completion: completion)
         case .customer:
-            HippoUserDetail.logoutFromFugu(completion: completion)
+            BumbleUserDetail.logoutFromFugu(completion: completion)
 //            print("customerLogout")
         }
     }
@@ -918,7 +918,7 @@ struct BotAction {
     
     func checkForChannelSubscribe(completion: @escaping (_ success: Bool, _ error: Error?) -> Void) {
         
-        if let hippoUserChannelId = HippoUserDetail.HippoUserChannelId {
+        if let hippoUserChannelId = BumbleUserDetail.HippoUserChannelId {
             guard isSubscribed(userChannelId: hippoUserChannelId) else {
                 subscribeCustomerUserChannel(userChannelId: hippoUserChannelId)
                 completion(false, nil)
@@ -1273,7 +1273,7 @@ extension BumbleConfig{
     
     public func getPaymentGateways(_ appSecretKey : String){
         BumbleConfig.shared.appSecretKey = appSecretKey
-        HippoUserDetail.getPaymentGateway { (success) in
+        BumbleUserDetail.getPaymentGateway { (success) in
             
         }
     }

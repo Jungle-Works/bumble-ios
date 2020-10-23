@@ -36,7 +36,7 @@ class RideDetail: NSObject {
     
     class func sendRideEndStatus(completion: @escaping ((_ success: Bool, _ error: Error?) -> ())) {
         let param: [String: Any] = ["app_secret_key": BumbleConfig.shared.appSecretKey,
-                                    "en_user_id": HippoUserDetail.fuguEnUserID ?? "-1"]
+                                    "en_user_id": BumbleUserDetail.fuguEnUserID ?? "-1"]
         
         
         HTTPClient.makeConcurrentConnectionWith(method: .POST, enCodingType: .json, showAlert: false, showAlertInDefaultCase: false, showActivityIndicator: false, para: param, extendedUrl: FuguEndPoints.updateRideStatus.rawValue) { (response, error, tag, statusCode) in

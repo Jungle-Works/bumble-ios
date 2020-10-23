@@ -314,14 +314,14 @@ extension AgentDetail {
     
     class func LogoutAgent(completion: ((Bool) -> Void)? = nil) {
         guard BumbleConfig.shared.appUserType == .agent && BumbleConfig.shared.agentDetail != nil else {
-            HippoUserDetail.clearAllData()
+            BumbleUserDetail.clearAllData()
             completion?(true)
             return
         }
         let params = getParamsForLogout()
         HTTPClient.makeConcurrentConnectionWith(method: .POST, para: params, extendedUrl: AgentEndPoints.logout.rawValue) { (responseObject, error, tag, statusCode) in
             
-            HippoUserDetail.clearAllData()
+            BumbleUserDetail.clearAllData()
             BumbleConfig.shared.delegate?.hippoUserLogOut()
             let tempStatusCode = statusCode ?? 0
             let success = (200 <= tempStatusCode) && (300 > tempStatusCode)

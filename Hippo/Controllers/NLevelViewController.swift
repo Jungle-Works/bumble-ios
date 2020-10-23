@@ -167,8 +167,8 @@ class NLevelViewController: UIViewController {
         guard HippoSupportList.FAQData.count <= 0 || userDetailData.count <= 0 else {
             return
         }
-        HippoUserDetail.getUserDetailsAndConversation(completion: { [weak self] (success, error) in
-            if success || HippoUserDetail.fuguUserID != nil {
+        BumbleUserDetail.getUserDetailsAndConversation(completion: { [weak self] (success, error) in
+            if success || BumbleUserDetail.fuguUserID != nil {
                 self?.setInitialData()
             }
         })

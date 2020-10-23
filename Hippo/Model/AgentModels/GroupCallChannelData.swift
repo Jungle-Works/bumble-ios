@@ -46,7 +46,7 @@ class GroupCallChannel{
     var channelId : Int?
     var userChannelId : String?{
         get{
-            return HippoUserDetail.HippoUserChannelId
+            return BumbleUserDetail.HippoUserChannelId
         }
         set{}
     }

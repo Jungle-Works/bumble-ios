@@ -147,7 +147,7 @@ class HippoSupportList: NSObject {
     
     class func getListForBusiness(completion: ((_ success: Bool, _ objectArray: [HippoSupportList]?) -> Void)? = nil) {
         
-        guard let userId = HippoUserDetail.fuguEnUserID else {
+        guard let userId = BumbleUserDetail.fuguEnUserID else {
             return
         }
         let params: [String: Any] = ["app_secret_key" : BumbleConfig.shared.appSecretKey,

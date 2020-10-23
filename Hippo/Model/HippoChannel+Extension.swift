@@ -104,7 +104,7 @@ extension HippoChannel: SignalingClient {
         
         json["server_push"] = true
         
-        let userChannelId = currentUserType() == .agent ? BumbleConfig.shared.agentDetail?.userChannel : HippoUserDetail.HippoUserChannelId
+        let userChannelId = currentUserType() == .agent ? BumbleConfig.shared.agentDetail?.userChannel : BumbleUserDetail.HippoUserChannelId
         
         FayeConnection.shared.send(messageDict: json, toChannelID: userChannelId ?? "") { (result) in
             completion(result.success,result.error?.error as NSError?)

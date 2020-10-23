@@ -188,7 +188,7 @@ class PromotionsViewController: UIViewController {
     
     func getAnnouncements(endOffset:Int,startOffset:Int) {
         
-        let params = ["en_user_id":HippoUserDetail.fuguEnUserID,"app_secret_key":BumbleConfig.shared.appSecretKey,"user_id":HippoUserDetail.fuguUserID] as [String : Any]
+        let params = ["en_user_id":BumbleUserDetail.fuguEnUserID,"app_secret_key":BumbleConfig.shared.appSecretKey,"user_id":BumbleUserDetail.fuguUserID] as [String : Any]
             
 //            ["end_offset":"\(endOffset)","start_offset":"\(startOffset)","en_user_id":HippoUserDetail.fuguEnUserID,"app_secret_key":HippoConfig.shared.appSecretKey]
         
@@ -268,9 +268,9 @@ class PromotionsViewController: UIViewController {
             //self.channelIdsArr[0] = data[indexPath.row].channelID
             self.channelIdsArr.insert(data[indexPath.row].channelID, at: 0)
             
-            params = ["app_secret_key":BumbleConfig.shared.appSecretKey,"en_user_id":HippoUserDetail.fuguEnUserID ?? "","channel_ids":self.channelIdsArr,"delete_all_announcements":isDeleteAllStatus,"user_id":HippoUserDetail.fuguUserID] as [String : Any]
+            params = ["app_secret_key":BumbleConfig.shared.appSecretKey,"en_user_id":BumbleUserDetail.fuguEnUserID ?? "","channel_ids":self.channelIdsArr,"delete_all_announcements":isDeleteAllStatus,"user_id":BumbleUserDetail.fuguUserID] as [String : Any]
         }else{
-            params = ["app_secret_key":BumbleConfig.shared.appSecretKey,"en_user_id":HippoUserDetail.fuguEnUserID ?? "","delete_all_announcements":isDeleteAllStatus,"user_id":HippoUserDetail.fuguUserID] as [String : Any]
+            params = ["app_secret_key":BumbleConfig.shared.appSecretKey,"en_user_id":BumbleUserDetail.fuguEnUserID ?? "","delete_all_announcements":isDeleteAllStatus,"user_id":BumbleUserDetail.fuguUserID] as [String : Any]
         }
         
         HTTPClient.makeConcurrentConnectionWith(method: .POST, para: params, extendedUrl: AgentEndPoints.clearAnnouncements.rawValue) { (response, error, _, statusCode) in
