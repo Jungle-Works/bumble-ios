@@ -24,5 +24,5 @@ FOUNDATION_EXPORT const unsigned char HippoChatVersionString[];
 
 
 #import "TWRDownloadManager.h"
-#import "MZFayeClient.h"
+//#import "MZFayeClient.h"
 #import "HCSStarRatingView.h"
