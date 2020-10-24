@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class FuguConversation: HippoConversation {
+class FuguConversation: BumbleConversation {
     
     var channelImage: String?
     var defaultMessage: String?

@@ -77,8 +77,8 @@ class FilterViewController: UIViewController {
         super.viewDidLoad()
         if FilterManager.shared.chatStatusArray.count > 0{
             var tempStatusArr = [labelWithId]()
-            tempStatusArr.append(labelWithId(label: HippoStrings.openChat, id: 1, isSelected: FilterManager.shared.chatStatusArray.filter{$0.id == 1}.first?.isSelected ?? false))
-            tempStatusArr.append(labelWithId(label: HippoStrings.closedChat, id: 2, isSelected: FilterManager.shared.chatStatusArray.filter{$0.id == 2}.first?.isSelected ?? false))
+            tempStatusArr.append(labelWithId(label: BumbleStrings.openChat, id: 1, isSelected: FilterManager.shared.chatStatusArray.filter{$0.id == 1}.first?.isSelected ?? false))
+            tempStatusArr.append(labelWithId(label: BumbleStrings.closedChat, id: 2, isSelected: FilterManager.shared.chatStatusArray.filter{$0.id == 2}.first?.isSelected ?? false))
             FilterManager.shared.chatStatusArray = tempStatusArr
         }
         
@@ -174,7 +174,7 @@ class FilterViewController: UIViewController {
         self.navigationController?.setTheme()
 //        setupCustomThemeOnNavigationBar(hideNavigationBar: false)
         self.navigationController?.isNavigationBarHidden = false
-        self.navigationItem.title = HippoStrings.filter
+        self.navigationItem.title = BumbleStrings.filter
         setupTableView()
         let theme = BumbleConfig.shared.theme
         optionsTableView.backgroundColor = theme.backgroundColor
@@ -201,7 +201,7 @@ class FilterViewController: UIViewController {
         resetButton.backgroundColor = BumbleConfig.shared.theme.backgroundColorOfFilterResetButton
 //        resetButton.font = UIFont.regular(ofSize: 15.0)
         resetButton.titleLabel?.font = UIFont.regular(ofSize: 15.0)
-        resetButton.setTitle(HippoStrings.reset, for: .normal)
+        resetButton.setTitle(BumbleStrings.reset, for: .normal)
 //        applyButton.clipsToBounds = true
         
 //        let group = theme.primaryButtonGroup
@@ -216,7 +216,7 @@ class FilterViewController: UIViewController {
         applyButton.setTitleColor(theme.titleColorOfFilterApplyButton, for: .normal)
 //        applyButton.font = UIFont.regular(ofSize: 15.0)
         applyButton.titleLabel?.font = UIFont.regular(ofSize: 15.0)
-        applyButton.setTitle(HippoStrings.apply, for: .normal)
+        applyButton.setTitle(BumbleStrings.apply, for: .normal)
         
         setTheme()
 //        applyButton.backgroundColor = HippoTheme.current.themeColor
@@ -532,7 +532,7 @@ extension FilterViewController: UITableViewDataSource {
 //        case .people:
 //            cell.setupCell(titleLabel: "People")
         case .status:
-            cell.setupCell(titleLabel: HippoStrings.status)
+            cell.setupCell(titleLabel: BumbleStrings.status)
 //        case .chatType:
 //            cell.setupCell(titleLabel: "Type")
 //        case .channels:

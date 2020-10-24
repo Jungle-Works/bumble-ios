@@ -21,13 +21,13 @@ enum AgentEnableStatus: Int {
     func getString() -> String {
         switch self {
         case .inActive:
-            return HippoStrings.inActive
+            return BumbleStrings.inActive
         case .invited:
-            return HippoStrings.invited
+            return BumbleStrings.invited
         case .revoked:
-            return HippoStrings.revoked
+            return BumbleStrings.revoked
         case .active:
-            return HippoStrings.active
+            return BumbleStrings.active
         }
     }
     func getColor() -> UIColor {

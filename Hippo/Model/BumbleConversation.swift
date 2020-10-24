@@ -11,7 +11,7 @@ class HippoConversationCallBack {
     var unreadCountupdated: (() -> ())?
 }
 
-class HippoConversation: HippoConversationCallBack {
+class BumbleConversation: HippoConversationCallBack {
     
     var channelId: Int?
     var channelStatus: ChatStatus = ChatStatus.open

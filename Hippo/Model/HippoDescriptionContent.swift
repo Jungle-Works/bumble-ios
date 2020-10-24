@@ -15,7 +15,7 @@ class HippoDescriptionContent {
     var textViewText = ""
     var isQueryFormEnabled = false
     var responseText = ""
-    var defaultText = HippoStrings.hippoDefaultText
+    var defaultText = BumbleStrings.hippoDefaultText
     
     var chatButton = buttonContent()
     var callButton = buttonContent()

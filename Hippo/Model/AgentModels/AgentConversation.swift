@@ -12,7 +12,7 @@ import UIKit
 //    let userUniqueKey: String
 //    let userId: Int
 //}
-class AgentConversation: HippoConversation {
+class AgentConversation: BumbleConversation {
     
     var agent_id: Int?
     var agent_name: String?
@@ -135,12 +135,12 @@ class AgentConversation: HippoConversation {
         
         
         if lastMessage.isEmpty {
-            title = HippoStrings.customer
-            end = HippoStrings.sentAPhoto
+            title = BumbleStrings.customer
+            end = BumbleStrings.sentAPhoto
         }
         
         if self.lastMessage?.senderId == AgentDetail.id {
-            title = HippoStrings.you + ":"
+            title = BumbleStrings.you + ":"
         }
         
         if notificationType  == NotificationType.assigned || self.lastMessage?.type == .assignAgent{
@@ -161,7 +161,7 @@ class AgentConversation: HippoConversation {
             case .call:
                 return messageObject.getVideoCallMessage(otherUserName: "")
             case .attachment:
-                end = HippoStrings.sentAFile
+                end = BumbleStrings.sentAFile
             case .hippoPay, .actionableMessage:
                 return "Payment initiated"
             default:

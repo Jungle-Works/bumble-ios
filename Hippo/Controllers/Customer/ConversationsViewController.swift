@@ -20,7 +20,7 @@ protocol NewChatSentDelegate: class {
 }
 
 
-class ConversationsViewController: HippoConversationViewController {//}, UIGestureRecognizerDelegate {
+class ConversationsViewController: BumbleConversationViewController {//}, UIGestureRecognizerDelegate {
     
     //MARK: Constants
     var createConversationOnStart = false
@@ -73,7 +73,7 @@ class ConversationsViewController: HippoConversationViewController {//}, UIGestu
     @IBOutlet weak var retryLoader: UIActivityIndicatorView!
     @IBOutlet weak var labelViewRetryButton: UIButton!{
         didSet{
-            let attributedString = NSAttributedString(string: BumbleConfig.shared.theme.chatListRetryBtnText == nil ? HippoStrings.retry : BumbleConfig.shared.theme.chatListRetryBtnText ?? "", attributes:[
+            let attributedString = NSAttributedString(string: BumbleConfig.shared.theme.chatListRetryBtnText == nil ? BumbleStrings.retry : BumbleConfig.shared.theme.chatListRetryBtnText ?? "", attributes:[
                 NSAttributedString.Key.font : UIFont.bold(ofSize: 15.0),
                 NSAttributedString.Key.foregroundColor : UIColor.black,
                 NSAttributedString.Key.underlineStyle:1.0
@@ -87,7 +87,7 @@ class ConversationsViewController: HippoConversationViewController {//}, UIGestu
     @IBOutlet weak var label_slowInternet : UILabel!{
         didSet{
             label_slowInternet.font = UIFont.regular(ofSize: 15.0)
-            label_slowInternet.text = HippoStrings.slowInternet
+            label_slowInternet.text = BumbleStrings.slowInternet
         }
     }
     
@@ -162,65 +162,65 @@ class ConversationsViewController: HippoConversationViewController {//}, UIGestu
                                 self?.fetchMessagesFrom1stPage()
                                 BumbleConfig.shared.notifyDidLoad()
                             }else{
-                                self?.startNewConversation(replyMessage: nil, completion: { [weak self] (success, result) in
-                                    guard success else {
-                                        return
-                                    }
-                                    if self?.isComingFromConsultNowButton == true  && !(result?.channel?.chatDetail?.agentAlreadyAssigned ?? false) { // checked
-                                        self?.isComingFromConsultNowButton = false
-                                        self?.callAssignAgentApi(completion: { [weak self] (success) in
-                                            guard success == true else {
-                                                return
-                                            }
-                                            self?.populateTableViewWithChannelData()
-                                            self?.fetchMessagesFrom1stPage()
-                                        })
-                                    } else {
-                                        self?.populateTableViewWithChannelData()
-                                        self?.fetchMessagesFrom1stPage()
-                                    }
-                                })
+//                                self?.startNewConversation(replyMessage: nil, completion: { [weak self] (success, result) in
+//                                    guard success else {
+//                                        return
+//                                    }
+//                                    if self?.isComingFromConsultNowButton == true  && !(result?.channel?.chatDetail?.agentAlreadyAssigned ?? false) { // checked
+//                                        self?.isComingFromConsultNowButton = false
+//                                        self?.callAssignAgentApi(completion: { [weak self] (success) in
+//                                            guard success == true else {
+//                                                return
+//                                            }
+//                                            self?.populateTableViewWithChannelData()
+//                                            self?.fetchMessagesFrom1stPage()
+//                                        })
+//                                    } else {
+//                                        self?.populateTableViewWithChannelData()
+//                                        self?.fetchMessagesFrom1stPage()
+//                                    }
+//                                })
                             }
                         }else{
-                            self?.startNewConversation(replyMessage: nil, completion: { [weak self] (success, result) in
-                                guard success else {
-                                    return
-                                }
-                                if self?.isComingFromConsultNowButton == true  && !(result?.channel?.chatDetail?.agentAlreadyAssigned ?? false) { // checked
-                                    self?.isComingFromConsultNowButton = false
-                                    self?.callAssignAgentApi(completion: { [weak self] (success) in
-                                        guard success == true else {
-                                            return
-                                        }
-                                        self?.populateTableViewWithChannelData()
-                                        self?.fetchMessagesFrom1stPage()
-                                    })
-                                } else {
-                                    self?.populateTableViewWithChannelData()
-                                    self?.fetchMessagesFrom1stPage()
-                                }
-                            })
+//                            self?.startNewConversation(replyMessage: nil, completion: { [weak self] (success, result) in
+//                                guard success else {
+//                                    return
+//                                }
+//                                if self?.isComingFromConsultNowButton == true  && !(result?.channel?.chatDetail?.agentAlreadyAssigned ?? false) { // checked
+//                                    self?.isComingFromConsultNowButton = false
+//                                    self?.callAssignAgentApi(completion: { [weak self] (success) in
+//                                        guard success == true else {
+//                                            return
+//                                        }
+//                                        self?.populateTableViewWithChannelData()
+//                                        self?.fetchMessagesFrom1stPage()
+//                                    })
+//                                } else {
+//                                    self?.populateTableViewWithChannelData()
+//                                    self?.fetchMessagesFrom1stPage()
+//                                }
+//                            })
                         }
                     }
                 } else {
-                    startNewConversation(replyMessage: nil, completion: { [weak self] (success, result) in
-                        guard success else {
-                            return
-                        }
-                        if self?.isComingFromConsultNowButton == true  && !(result?.channel?.chatDetail?.agentAlreadyAssigned ?? false) { // checked
-                            self?.isComingFromConsultNowButton = false
-                            self?.callAssignAgentApi(completion: { [weak self] (success) in
-                                guard success == true else {
-                                    return
-                                }
-                                self?.populateTableViewWithChannelData()
-                                self?.fetchMessagesFrom1stPage()
-                            })
-                        } else {
-                            self?.populateTableViewWithChannelData()
-                            self?.fetchMessagesFrom1stPage()
-                        }
-                    })
+//                    startNewConversation(replyMessage: nil, completion: { [weak self] (success, result) in
+//                        guard success else {
+//                            return
+//                        }
+//                        if self?.isComingFromConsultNowButton == true  && !(result?.channel?.chatDetail?.agentAlreadyAssigned ?? false) { // checked
+//                            self?.isComingFromConsultNowButton = false
+//                            self?.callAssignAgentApi(completion: { [weak self] (success) in
+//                                guard success == true else {
+//                                    return
+//                                }
+//                                self?.populateTableViewWithChannelData()
+//                                self?.fetchMessagesFrom1stPage()
+//                            })
+//                        } else {
+//                            self?.populateTableViewWithChannelData()
+//                            self?.fetchMessagesFrom1stPage()
+//                        }
+//                    })
                 }
             } else {
                 fetchMessagesFrom1stPage()
@@ -373,7 +373,7 @@ class ConversationsViewController: HippoConversationViewController {//}, UIGestu
             }
             sendMessageButton.setImage(BumbleConfig.shared.theme.sendBtnIcon, for: .normal)
             sendMessageButton.setTitle("", for: .normal)
-        } else { sendMessageButton.setTitle(HippoStrings.send, for: .normal) }
+        } else { sendMessageButton.setTitle(BumbleStrings.send, for: .normal) }
         
         if BumbleConfig.shared.theme.addButtonIcon != nil {
             
@@ -520,29 +520,29 @@ class ConversationsViewController: HippoConversationViewController {//}, UIGestu
         
         guard channel != nil else {
           if createConversationOnStart {
-              startNewConversation(replyMessage: nil, completion: { [weak self] (success, result) in
-                  guard success else {
-                      return
-                  }
-                
-                //self?.populateTableViewWithChannelData()
-                //self?.fetchMessagesFrom1stPage()
-//                if self?.isComingFromConsultNowButton == true{
-                if self?.isComingFromConsultNowButton == true && !(result?.channel?.chatDetail?.agentAlreadyAssigned ?? false) {
-                    self?.isComingFromConsultNowButton = false
-                    self?.callAssignAgentApi(completion: { [weak self] (success) in
-                        guard success == true else {
-                            return
-                        }
-                        self?.populateTableViewWithChannelData()
-                        self?.fetchMessagesFrom1stPage()
-                    })
-                }else{
-                    self?.populateTableViewWithChannelData()
-                    self?.fetchMessagesFrom1stPage()
-                }
-                
-              })
+//              startNewConversation(replyMessage: nil, completion: { [weak self] (success, result) in
+//                  guard success else {
+//                      return
+//                  }
+//
+//                //self?.populateTableViewWithChannelData()
+//                //self?.fetchMessagesFrom1stPage()
+////                if self?.isComingFromConsultNowButton == true{
+//                if self?.isComingFromConsultNowButton == true && !(result?.channel?.chatDetail?.agentAlreadyAssigned ?? false) {
+//                    self?.isComingFromConsultNowButton = false
+//                    self?.callAssignAgentApi(completion: { [weak self] (success) in
+//                        guard success == true else {
+//                            return
+//                        }
+//                        self?.populateTableViewWithChannelData()
+//                        self?.fetchMessagesFrom1stPage()
+//                    })
+//                }else{
+//                    self?.populateTableViewWithChannelData()
+//                    self?.fetchMessagesFrom1stPage()
+//                }
+//
+//              })
           } else {
               fetchMessagesFrom1stPage()
           }
@@ -613,7 +613,7 @@ class ConversationsViewController: HippoConversationViewController {//}, UIGestu
     closeKeyBoard()
     actionSheetTitleArr.removeAll()
     actionSheetImageArr.removeAll()
-    actionSheetTitleArr = [HippoStrings.photoLibrary,HippoStrings.camera,HippoStrings.document]
+    actionSheetTitleArr = [BumbleStrings.photoLibrary,BumbleStrings.camera,BumbleStrings.document]
     actionSheetImageArr = ["Library","Camera","Library"]
     heightForActionSheet = CGFloat((actionSheetTitleArr.count * 60))
     isProceedToPayActionSheet = false
@@ -706,7 +706,7 @@ class ConversationsViewController: HippoConversationViewController {//}, UIGestu
 
         if storeResponse?.restrictPersonalInfo ?? false && channel?.chatDetail?.chatType == .other{
             if messageTextStr.isValidPhoneNumber() || messageTextStr.isValidEmail(){
-                showErrorMessage(messageString: HippoStrings.donotAllowPersonalInfo)
+                showErrorMessage(messageString: BumbleStrings.donotAllowPersonalInfo)
                 updateErrorLabelView(isHiding: true)
                 return
             }
@@ -746,36 +746,36 @@ class ConversationsViewController: HippoConversationViewController {//}, UIGestu
                 checkBoolForApiHit = false
             }
             
-            startNewConversation(replyMessage: replyMessage, completion: { [weak self] (success, result) in
-                guard success else {
-                    return
-                }
-                self?.populateTableViewWithChannelData()
-                
-                let isReplyMessageSent = result?.isReplyMessageSent ?? false
-                let isGetMessageIsSuccess: Bool = result?.isGetMesssagesSuccess ?? false
-                
-                if !isGetMessageIsSuccess {
-                    self?.addMessageToUIBeforeSending(message: message)
-                } else {
-                    self?.messageTextView.text = ""
-                }
-                
-                if !isReplyMessageSent {
-                    self?.sendMessage(message: message)
-                    
-                    if checkBoolForApiHit == true{
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-                            // your code hear
-                            self?.getMessagesAfterCreateConversation(callback: { (success) in
-                                //print(success)
-                                checkBoolForApiHit = false
-                            })
-                        })
-                    }
-                }
-                
-            })
+//            startNewConversation(replyMessage: replyMessage, completion: { [weak self] (success, result) in
+//                guard success else {
+//                    return
+//                }
+//                self?.populateTableViewWithChannelData()
+//
+//                let isReplyMessageSent = result?.isReplyMessageSent ?? false
+//                let isGetMessageIsSuccess: Bool = result?.isGetMesssagesSuccess ?? false
+//
+//                if !isGetMessageIsSuccess {
+//                    self?.addMessageToUIBeforeSending(message: message)
+//                } else {
+//                    self?.messageTextView.text = ""
+//                }
+//
+//                if !isReplyMessageSent {
+//                    self?.sendMessage(message: message)
+//
+//                    if checkBoolForApiHit == true{
+//                        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+//                            // your code hear
+//                            self?.getMessagesAfterCreateConversation(callback: { (success) in
+//                                //print(success)
+//                                checkBoolForApiHit = false
+//                            })
+//                        })
+//                    }
+//                }
+//
+//            })
         }
     }
    
@@ -1178,33 +1178,33 @@ class ConversationsViewController: HippoConversationViewController {//}, UIGestu
         tableViewChat.reloadData()
         
         directChatDetail = FuguNewChatAttributes.defaultChat
-        label = (userDetailData["business_name"] as? String) ?? HippoStrings.support
+        label = (userDetailData["business_name"] as? String) ?? BumbleStrings.support
         userImage = nil
         setTitleForCustomNavigationBar()
         
         completion?(false)
-        startNewConversation(replyMessage: nil, completion: { [weak self] (success, result) in
-            if success {
-                
-                //self?.populateTableViewWithChannelData()
-                //self?.fetchMessagesFrom1stPage()
-//                if self?.isComingFromConsultNowButton == true{
-                if self?.isComingFromConsultNowButton == true && !(result?.channel?.chatDetail?.agentAlreadyAssigned ?? false) {
-                    self?.isComingFromConsultNowButton = false
-                    self?.callAssignAgentApi(completion: { [weak self] (success) in
-                        guard success == true else {
-                            return
-                        }
-                        self?.populateTableViewWithChannelData()
-                        self?.fetchMessagesFrom1stPage()
-                    })
-                }else{
-                    self?.populateTableViewWithChannelData()
-                    self?.fetchMessagesFrom1stPage()
-                }
-                
-            }
-        })
+//        startNewConversation(replyMessage: nil, completion: { [weak self] (success, result) in
+//            if success {
+//
+//                //self?.populateTableViewWithChannelData()
+//                //self?.fetchMessagesFrom1stPage()
+////                if self?.isComingFromConsultNowButton == true{
+//                if self?.isComingFromConsultNowButton == true && !(result?.channel?.chatDetail?.agentAlreadyAssigned ?? false) {
+//                    self?.isComingFromConsultNowButton = false
+//                    self?.callAssignAgentApi(completion: { [weak self] (success) in
+//                        guard success == true else {
+//                            return
+//                        }
+//                        self?.populateTableViewWithChannelData()
+//                        self?.fetchMessagesFrom1stPage()
+//                    })
+//                }else{
+//                    self?.populateTableViewWithChannelData()
+//                    self?.fetchMessagesFrom1stPage()
+//                }
+//
+//            }
+//        })
     }
     
     override func getMessagesWith(labelId: Int, completion: ((_ success: Bool) -> Void)?) {
@@ -1263,7 +1263,7 @@ class ConversationsViewController: HippoConversationViewController {//}, UIGestu
         }
         
         if ((result.channelID < 0) && (result.createNewChannel == true)){
-            weakSelf.startNewConversation(replyMessage: nil, completion: nil)
+//            weakSelf.startNewConversation(replyMessage: nil, completion: nil)
         }
         
         weakSelf.handleSuccessCompletionOfGetMessages(result: result, request: request, completion: completion)
@@ -1290,70 +1290,70 @@ class ConversationsViewController: HippoConversationViewController {//}, UIGestu
         
     }
     
-    override func startNewConversation(replyMessage: HippoMessage?, completion: ((_ success: Bool, _ result: HippoChannelCreationResult?) -> Void)?) {
-      
-        guard BumbleUserDetail.fuguEnUserID != nil else {
-            startLoaderAnimation()
-            completion?(false, nil)
-            return
-        }
-      disableSendingNewMessages()
-      if FuguNetworkHandler.shared.isNetworkConnected == false {
-         errorMessage = HippoStrings.noNetworkConnection
-         showErrorMessage()
-         disableSendingNewMessages()
+//    override func startNewConversation(replyMessage: HippoMessage?, completion: ((_ success: Bool, _ result: BumbleChannelCreationResult?) -> Void)?) {
+//
+//        guard BumbleUserDetail.fuguEnUserID != nil else {
+//            startLoaderAnimation()
+//            completion?(false, nil)
+//            return
+//        }
+//      disableSendingNewMessages()
+//      if FuguNetworkHandler.shared.isNetworkConnected == false {
+//         errorMessage = BumbleStrings.noNetworkConnection
+//         showErrorMessage()
+//         disableSendingNewMessages()
+////         return
+//      }
+//
+//      startLoaderAnimation()
+//
+//      if BumbleConfig.shared.appSecretKey.isEmpty {
 //         return
-      }
-      
-      startLoaderAnimation()
-      
-      if BumbleConfig.shared.appSecretKey.isEmpty {
-         return
-      }
-      
-      if isDefaultChannel() {
-        let request = CreateConversationWithLabelId(replyMessage: replyMessage, botGroupId: botGroupID, labelId: labelId, initalMessages: getAllLocalMessages(), channelName: label)
-        HippoChannel.get(request: request) { [weak self] (r) in
-            var result = r
-            if result.isSuccessful, request.shouldSendInitalMessages(), request.replyMessage != nil {
-                result.isReplyMessageSent = true
-            }
-            if !r.isChannelAvailableLocallay {
-               HippoChannel.botMessageMUID = nil
-            }
-            self?.enableSendingNewMessages()
-            self?.channelCreatedSuccessfullyWith(result: result)
-            
-            self?.getMessagesAfterCreateConversation(callback: { (sucess) in
-                result.isGetMesssagesSuccess = sucess
-                completion?(result.isSuccessful, result)
-            })
-         }
-      } else if directChatDetail != nil {
-//         HippoChannel.get(withFuguChatAttributes: directChatDetail!) { [weak self] (r) in
-        HippoChannel.get(withFuguChatAttributes: directChatDetail!, isComingFromConsultNow: self.isComingFromConsultNowButton) { [weak self] (r) in
-            var result = r
-    
-            result.isReplyMessageSent = false
-            self?.enableSendingNewMessages()
-            self?.channelCreatedSuccessfullyWith(result: result)
-            
-            if self?.channel?.chatDetail?.chatType == .p2p{
-                // * save data for p2punread count if transaction id is saved in local
-                if let data = P2PUnreadData.shared.getData(with: self?.directChatDetail?.transactionId ?? ""){
-                    let id = ((self?.directChatDetail?.transactionId ?? "") + "-" + (self?.directChatDetail?.otherUniqueKey?.first ?? ""))
-                    if ((data.channelId ?? -1) < 0 && (data.id == id)){
-                        P2PUnreadData.shared.updateChannelId(transactionId: self?.directChatDetail?.transactionId ?? "", channelId: result.channel?.id ?? -1, count: 0, otherUserUniqueKey: self?.directChatDetail?.otherUniqueKey?.first)
-                    }
-                }
-            }
-            completion?(result.isSuccessful, result)
-         }
-      } else {
-         enableSendingNewMessages()
-         stopLoaderAnimation()
-      }
-   }
+//      }
+//
+//      if isDefaultChannel() {
+//        let request = CreateConversationWithLabelId(replyMessage: replyMessage, botGroupId: botGroupID, labelId: labelId, initalMessages: getAllLocalMessages(), channelName: label)
+//        HippoChannel.get(request: request) { [weak self] (r) in
+//            var result = r
+//            if result.isSuccessful, request.shouldSendInitalMessages(), request.replyMessage != nil {
+//                result.isReplyMessageSent = true
+//            }
+//            if !r.isChannelAvailableLocallay {
+//               HippoChannel.botMessageMUID = nil
+//            }
+//            self?.enableSendingNewMessages()
+//            self?.channelCreatedSuccessfullyWith(result: result)
+//
+//            self?.getMessagesAfterCreateConversation(callback: { (sucess) in
+//                result.isGetMesssagesSuccess = sucess
+//                completion?(result.isSuccessful, result)
+//            })
+//         }
+//      } else if directChatDetail != nil {
+////         HippoChannel.get(withFuguChatAttributes: directChatDetail!) { [weak self] (r) in
+//        HippoChannel.get(withFuguChatAttributes: directChatDetail!, isComingFromConsultNow: self.isComingFromConsultNowButton) { [weak self] (r) in
+//            var result = r
+//
+//            result.isReplyMessageSent = false
+//            self?.enableSendingNewMessages()
+//            self?.channelCreatedSuccessfullyWith(result: result)
+//
+//            if self?.channel?.chatDetail?.chatType == .p2p{
+//                // * save data for p2punread count if transaction id is saved in local
+//                if let data = P2PUnreadData.shared.getData(with: self?.directChatDetail?.transactionId ?? ""){
+//                    let id = ((self?.directChatDetail?.transactionId ?? "") + "-" + (self?.directChatDetail?.otherUniqueKey?.first ?? ""))
+//                    if ((data.channelId ?? -1) < 0 && (data.id == id)){
+//                        P2PUnreadData.shared.updateChannelId(transactionId: self?.directChatDetail?.transactionId ?? "", channelId: result.channel?.id ?? -1, count: 0, otherUserUniqueKey: self?.directChatDetail?.otherUniqueKey?.first)
+//                    }
+//                }
+//            }
+//            completion?(result.isSuccessful, result)
+//         }
+//      } else {
+//         enableSendingNewMessages()
+//         stopLoaderAnimation()
+//      }
+//   }
     func getAllLocalMessages() -> [HippoMessage] {
         var messages: [HippoMessage] = [HippoMessage]()
         for each in messagesGroupedByDate {
@@ -1393,7 +1393,7 @@ class ConversationsViewController: HippoConversationViewController {//}, UIGestu
       sendMessageButton.isEnabled = false
    }
       
-    func channelCreatedSuccessfullyWith(result: HippoChannelCreationResult) {
+    func channelCreatedSuccessfullyWith(result: BumbleChannelCreationResult) {
         if let error = result.error, !result.isSuccessful {
             errorMessage = error.localizedDescription
             showErrorMessage()
@@ -1517,7 +1517,7 @@ extension ConversationsViewController {
         self.messageTextView.backgroundColor = .clear
         self.messageTextView.tintColor = BumbleConfig.shared.theme.messageTextViewTintColor//
         
-        placeHolderLabel.text = BumbleConfig.shared.theme.messagePlaceHolderText == nil ? HippoStrings.messagePlaceHolderText : BumbleConfig.shared.theme.messagePlaceHolderText
+        placeHolderLabel.text = BumbleConfig.shared.theme.messagePlaceHolderText == nil ? BumbleStrings.messagePlaceHolderText : BumbleConfig.shared.theme.messagePlaceHolderText
         
         errorLabel.text = ""
         if errorLabelTopConstraint != nil {
@@ -2899,14 +2899,14 @@ extension ConversationsViewController: LeadTableViewCellDelegate {
             replyMessage?.messageUniqueID = String.generateUniqueId()
         }
         
-        createChannelIfRequiredAndContinue(replyMessage: replyMessage) { (success, result) in
-            let isReplyMessageSent = result?.isReplyMessageSent ?? false
-            if !isReplyMessageSent {
-                self.channel?.sendFormValues(message: message, completion: {
-                    
-                })
-            }
-        }
+//        createChannelIfRequiredAndContinue(replyMessage: replyMessage) { (success, result) in
+//            let isReplyMessageSent = result?.isReplyMessageSent ?? false
+//            if !isReplyMessageSent {
+//                self.channel?.sendFormValues(message: message, completion: {
+//
+//                })
+//            }
+//        }
         cell.disableSkipButton()
     }
     
@@ -2958,24 +2958,24 @@ extension ConversationsViewController: LeadTableViewCellDelegate {
         HippoChannel.botMessageMUID = message.messageUniqueID ?? String.generateUniqueId()
         message.messageUniqueID = HippoChannel.botMessageMUID
         
-        createChannelIfRequiredAndContinue(replyMessage: message) {[weak self] (success, result) in
-            if let botMessageID = result?.botMessageID {
-               message.messageId = Int(botMessageID)
-            }
-            message.messageUniqueID = HippoChannel.botMessageMUID
-            message.botFormMessageUniqueID = HippoChannel.botMessageMUID
-            HippoChannel.botMessageMUID = nil
-            
-            let isReplyMessageSent = result?.isReplyMessageSent ?? false
-            
-            if !isReplyMessageSent {
-                self?.channel?.sendFormValues(message: message, completion: {
-                    message.botFormMessageUniqueID =  nil
-                    cell.checkAndDisableSkipButton()
-                    self?.cellUpdated(for: cell, data: data, isSkipAction: false)
-                })
-            }
-        }
+//        createChannelIfRequiredAndContinue(replyMessage: message) {[weak self] (success, result) in
+//            if let botMessageID = result?.botMessageID {
+//               message.messageId = Int(botMessageID)
+//            }
+//            message.messageUniqueID = HippoChannel.botMessageMUID
+//            message.botFormMessageUniqueID = HippoChannel.botMessageMUID
+//            HippoChannel.botMessageMUID = nil
+//
+//            let isReplyMessageSent = result?.isReplyMessageSent ?? false
+//
+//            if !isReplyMessageSent {
+//                self?.channel?.sendFormValues(message: message, completion: {
+//                    message.botFormMessageUniqueID =  nil
+//                    cell.checkAndDisableSkipButton()
+//                    self?.cellUpdated(for: cell, data: data, isSkipAction: false)
+//                })
+//            }
+//        }
     }
     
     
@@ -3006,23 +3006,23 @@ extension ConversationsViewController: BotOtgoingMessageCellDelegate {
             replyMessage?.messageUniqueID = String.generateUniqueId()
         }
         
-        createChannelIfRequiredAndContinue(replyMessage: replyMessage) {[weak self] (success, result) in
-            if shouldSendButtonTitle {
-                self?.sendQuickReplyMessage(with: chat.content.buttonTitles[buttonIndex])
-                fuguDelay(0.2, completion: {
-                    self?.channel?.sendFormValues(message: chat, completion: {
-                        chat.isQuickReplyEnabled = false
-                        self?.tableViewChat.reloadData()
-                    })
-                })
-            } else {
-                self?.channel?.sendFormValues(message: chat, completion: {
-                    chat.isQuickReplyEnabled = false
-                    self?.tableViewChat.reloadData()
-                    
-                })
-            }
-        }
+//        createChannelIfRequiredAndContinue(replyMessage: replyMessage) {[weak self] (success, result) in
+//            if shouldSendButtonTitle {
+//                self?.sendQuickReplyMessage(with: chat.content.buttonTitles[buttonIndex])
+//                fuguDelay(0.2, completion: {
+//                    self?.channel?.sendFormValues(message: chat, completion: {
+//                        chat.isQuickReplyEnabled = false
+//                        self?.tableViewChat.reloadData()
+//                    })
+//                })
+//            } else {
+//                self?.channel?.sendFormValues(message: chat, completion: {
+//                    chat.isQuickReplyEnabled = false
+//                    self?.tableViewChat.reloadData()
+//
+//                })
+//            }
+//        }
         
     }
     
@@ -3091,14 +3091,14 @@ extension ConversationsViewController {
     func presentActionsForCustomer(sender: UIView) {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
         
-        let logoutOption = UIAlertAction(title: HippoStrings.logoutTitle, style: .default, handler: { (alert: UIAlertAction!) -> Void in
+        let logoutOption = UIAlertAction(title: BumbleStrings.logoutTitle, style: .default, handler: { (alert: UIAlertAction!) -> Void in
             self.logoutOptionClicked()
         })
-        let chatHistory = UIAlertAction(title: HippoStrings.chatHistory, style: .default, handler: { (alert: UIAlertAction!) -> Void in
+        let chatHistory = UIAlertAction(title: BumbleStrings.chatHistory, style: .default, handler: { (alert: UIAlertAction!) -> Void in
             self.pushToChatHistory()
         })
         
-        let cancelAction = UIAlertAction(title: HippoStrings.cancel, style: .cancel, handler: { (alert: UIAlertAction!) -> Void in })
+        let cancelAction = UIAlertAction(title: BumbleStrings.cancel, style: .cancel, handler: { (alert: UIAlertAction!) -> Void in })
         
         actionSheet.addAction(chatHistory)
         actionSheet.addAction(logoutOption)
@@ -3114,7 +3114,7 @@ extension ConversationsViewController {
     }
     
     func pushToChatHistory() {
-        let config = AllConversationsConfig(enabledChatStatus: [ChatStatus.close], title: HippoStrings.chatHistory, shouldUseCache: false, shouldHandlePush: false, shouldPopVc: true, forceDisableReply: true, forceHideActionButton: true, isStaticRemoveConversation: true, lastChannelId: channel?.id, disbaleBackButton: false)
+        let config = AllConversationsConfig(enabledChatStatus: [ChatStatus.close], title: BumbleStrings.chatHistory, shouldUseCache: false, shouldHandlePush: false, shouldPopVc: true, forceDisableReply: true, forceHideActionButton: true, isStaticRemoveConversation: true, lastChannelId: channel?.id, disbaleBackButton: false)
         guard let vc = AllConversationsViewController.get(config: config) else {
             return
         }

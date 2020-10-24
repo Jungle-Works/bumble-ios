@@ -29,13 +29,13 @@ struct MessageSendingViewConfig {
     
     var allowedMentionForPrivate: [String] = ["@"]
     
-    var normalMessagePlaceHolder: String = HippoStrings.messagePlaceHolderText
-    var privateMessagePlaceHolder: String = HippoStrings.privateMessagePlaceHolder
+    var normalMessagePlaceHolder: String = BumbleStrings.messagePlaceHolderText
+    var privateMessagePlaceHolder: String = BumbleStrings.privateMessagePlaceHolder
     
-    var normalMessagePlaceHolderWithoutCannedMessage: String = HippoStrings.messagePlaceHolderText
+    var normalMessagePlaceHolderWithoutCannedMessage: String = BumbleStrings.messagePlaceHolderText
     
     var isActionButtonEnabled: Bool = false
-    var actionButtonMessage: String = HippoStrings.takeOver
+    var actionButtonMessage: String = BumbleStrings.takeOver
     var actionButtonHeightConstant: CGFloat = 50
     var actionButtonTopBottomPadding: CGFloat = 5
     

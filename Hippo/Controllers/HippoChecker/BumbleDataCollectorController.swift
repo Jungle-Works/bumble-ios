@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol HippoDataCollectorControllerDelegate: class {
+protocol BumbleDataCollectorControllerDelegate: class {
     func userUpdated()
 }
 
@@ -18,9 +18,9 @@ class HippoDataCollectorController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     //MARK: Variables
-    var datasource: HippoDataCollectorDataSource?
+    var datasource: BumbleDataCollectorDataSource?
     var forms: [FormData] = []
-    weak var delegate: HippoDataCollectorControllerDelegate?
+    weak var delegate: BumbleDataCollectorControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +40,7 @@ class HippoDataCollectorController: UIViewController {
         }
     }
     func setupTableView() {
-        datasource = HippoDataCollectorDataSource(forms: forms)
+        datasource = BumbleDataCollectorDataSource(forms: forms)
         tableView.dataSource = datasource
         tableView.delegate = self
         

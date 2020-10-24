@@ -66,11 +66,11 @@ class BoardCastSelectionCell: UITableViewCell {
         cellLabel.textColor = isTeamSelected ? UIColor.black : UIColor.lightGray
         bottomLineView.backgroundColor = isTeamSelected ? UIColor.lightGray : UIColor.lightGray.withAlphaComponent(0.5)
         
-        cellLabel.text = HippoStrings.selectString.trimWhiteSpacesAndNewLine() + " " + BumbleConfig.shared.strings.displayNameForCustomers.trimWhiteSpacesAndNewLine()
+        cellLabel.text = BumbleStrings.selectString.trimWhiteSpacesAndNewLine() + " " + BumbleConfig.shared.strings.displayNameForCustomers.trimWhiteSpacesAndNewLine()
         
         
         if manager?.selectedTeam?.tagId == -100 {
-            cellLabel.text = HippoStrings.allAgentsString + " " + BumbleConfig.shared.strings.displayNameForCustomers + " " + BumbleConfig.shared.strings.selectedString
+            cellLabel.text = BumbleStrings.allAgentsString + " " + BumbleConfig.shared.strings.displayNameForCustomers + " " + BumbleConfig.shared.strings.selectedString
         }
     }
     func setUpForShowAgents() {

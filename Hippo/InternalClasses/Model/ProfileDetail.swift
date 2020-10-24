@@ -32,7 +32,7 @@ class ProfileDetail {
         }
         descriptionField = CustomField(json: [:])
         descriptionField?.value = desc
-        descriptionField?.displayName = HippoStrings.description
+        descriptionField?.displayName = BumbleStrings.description
         
         filterList()
     }

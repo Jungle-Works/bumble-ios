@@ -11,7 +11,7 @@ import HippoCallClient
 #else
 #endif
 
-public class HippoStrings {
+public class BumbleStrings {
     //cp sdk
     static var ongoing = "Current".localized
     static var past = "Past".localized
@@ -247,11 +247,11 @@ public class HippoStrings {
     class func updateHippoCallClientStrings(){
         #if canImport(JitsiMeet)
         
-        HippoCallClientStrings.calling = HippoStrings.calling
-        HippoCallClientStrings.ringing = HippoStrings.ringing
-        HippoCallClientStrings.callingYou = HippoStrings.isCallingYou.lowercased()
-        HippoCallClientStrings.callDeclined = HippoStrings.callDeclined
-        HippoCallClientStrings.busyOnOtherCall = HippoStrings.busyAnotherCall
+        HippoCallClientStrings.calling = BumbleStrings.calling
+        HippoCallClientStrings.ringing = BumbleStrings.ringing
+        HippoCallClientStrings.callingYou = BumbleStrings.isCallingYou.lowercased()
+        HippoCallClientStrings.callDeclined = BumbleStrings.callDeclined
+        HippoCallClientStrings.busyOnOtherCall = BumbleStrings.busyAnotherCall
         
         #endif
     }

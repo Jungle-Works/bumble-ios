@@ -88,7 +88,7 @@ class CustomerPaymentCardCell: UITableViewCell {
 extension CustomerPaymentCardCell {
     func set(card: CustomerPayment) {
         setConstraint(config: card.cardConfig)
-        let paidString = card.isPaid ? "\n \(HippoStrings.paymentPaid)" : "\n \(HippoStrings.paymentPending)"
+        let paidString = card.isPaid ? "\n \(BumbleStrings.paymentPaid)" : "\n \(BumbleStrings.paymentPending)"
         if BumbleConfig.shared.appUserType == .agent{
             setLabel(label: label_PaidStatus, text: paidString)
         }else if card.isPaid , BumbleConfig.shared.appUserType == .customer{

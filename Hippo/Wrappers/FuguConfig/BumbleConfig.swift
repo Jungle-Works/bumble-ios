@@ -106,7 +106,7 @@ struct BotAction {
     internal var log = CoreLogger(formatter: Formatter.defaultFormat, theme: nil, minLevels: [.all])
     internal var muidList: [String] = []
     internal var pushArray = [PushInfo]()
-    internal var checker: HippoChecker = HippoChecker()
+    internal var checker: BumbleChecker = BumbleChecker()
     private(set)  open var isBroadcastEnabled: Bool = false
     open weak var messageDelegate: HippoMessageRecievedDelegate?
     internal weak var delegate: HippoDelegate?
@@ -118,7 +118,7 @@ struct BotAction {
     internal var jitsiUrl : String?
     internal var jitsiOngoingCall : Bool?
     internal var agentDetail: AgentDetail?
-    public var strings = HippoStrings()
+    public var strings = BumbleStrings()
     private(set)  open var newConversationButtonBorderWidth: Float = 0.0
 
     private(set)  open var isSuggestionNeeded = false
@@ -292,7 +292,7 @@ struct BotAction {
             completion(false, HippoError.invalidEmail)
             return
         }
-        HippoChecker.checkForAgentIntialization { (success, error) in
+        BumbleChecker.checkForAgentIntialization { (success, error) in
             guard success else {
                 completion(false, error)
                 return
@@ -797,7 +797,7 @@ struct BotAction {
         case .customer:
             checkForIntialization(completion: completion)
         case .agent:
-            HippoChecker.checkForAgentIntialization(completion: completion)
+            BumbleChecker.checkForAgentIntialization(completion: completion)
         }
         
     }
@@ -945,7 +945,7 @@ struct BotAction {
         }
         return false
     }
-    public func setStrings(stringsObject: HippoStrings) {
+    public func setStrings(stringsObject: BumbleStrings) {
         BumbleConfig.shared.strings = stringsObject
     }
     
@@ -1142,7 +1142,7 @@ struct BotAction {
             return
         }
         
-        HippoChecker.checkForAgentIntialization { (success, error) in
+        BumbleChecker.checkForAgentIntialization { (success, error) in
             guard success else {
                 return
             }

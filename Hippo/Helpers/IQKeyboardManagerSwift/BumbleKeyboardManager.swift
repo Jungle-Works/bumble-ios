@@ -35,7 +35,7 @@ import QuartzCore
 Codeless drop-in universal library allows to prevent issues of keyboard sliding up and cover UITextField/UITextView. Neither need to write any code nor any setup required and much more. A generic version of KeyboardManagement. https://developer.apple.com/library/ios/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/KeyboardManagement/KeyboardManagement.html
 */
 
-internal class HippoKeyboardManager: NSObject, UIGestureRecognizerDelegate {
+internal class BumbleKeyboardManager: NSObject, UIGestureRecognizerDelegate {
 
     /**
     Default tag for toolbar with Done button   -1002.
@@ -175,10 +175,10 @@ internal class HippoKeyboardManager: NSObject, UIGestureRecognizerDelegate {
     /**
     Returns the default singleton instance.
     */
-    @objc class var shared: HippoKeyboardManager {
+    @objc class var shared: BumbleKeyboardManager {
         struct Static {
             //Singleton instance. Initializing keyboard manger.
-            static let hippoManager = HippoKeyboardManager()
+            static let hippoManager = BumbleKeyboardManager()
         }
 
 //        /** @return Returns the default singleton instance. */
@@ -370,7 +370,7 @@ internal class HippoKeyboardManager: NSObject, UIGestureRecognizerDelegate {
         didSet {
             resignFirstResponderGesture.isEnabled = privateShouldResignOnTouchOutside()
 
-            let shouldResign = shouldResignOnTouchOutside ? HippoStrings.yes : HippoStrings.no
+            let shouldResign = shouldResignOnTouchOutside ? BumbleStrings.yes : BumbleStrings.no
 
             showLog("shouldResignOnTouchOutside: \(shouldResign)")
         }
@@ -816,11 +816,11 @@ internal class HippoKeyboardManager: NSObject, UIGestureRecognizerDelegate {
     private weak var    _textFieldView: UIView?
 
     /** To save rootViewController.view.frame.origin. */
-    private var         _topViewBeginOrigin = HippoKeyboardManager.kIQCGPointInvalid
+    private var         _topViewBeginOrigin = BumbleKeyboardManager.kIQCGPointInvalid
 
     /** To overcome with popGestureRecognizer issue Bug ID: #1361 */
     private weak var    _rootViewControllerWhilePopGestureRecognizerActive: UIViewController?
-    private var         _topViewBeginOriginWhilePopGestureRecognizerActive = HippoKeyboardManager.kIQCGPointInvalid
+    private var         _topViewBeginOriginWhilePopGestureRecognizerActive = BumbleKeyboardManager.kIQCGPointInvalid
 
     /** To save rootViewController */
     private weak var    _rootViewController: UIViewController?
@@ -1299,7 +1299,7 @@ internal class HippoKeyboardManager: NSObject, UIGestureRecognizerDelegate {
         _privateHasPendingAdjustRequest = false
 
         //  Setting rootViewController frame to it's original position. //  (Bug ID: #18)
-        if _topViewBeginOrigin.equalTo(HippoKeyboardManager.kIQCGPointInvalid) == false {
+        if _topViewBeginOrigin.equalTo(BumbleKeyboardManager.kIQCGPointInvalid) == false {
 
             if let rootViewController = _rootViewController {
 
@@ -1342,7 +1342,7 @@ internal class HippoKeyboardManager: NSObject, UIGestureRecognizerDelegate {
 
         if privateIsEnabled() == true {
             if _privateIsKeyboardShowing == true,
-                _topViewBeginOrigin.equalTo(HippoKeyboardManager.kIQCGPointInvalid) == false,
+                _topViewBeginOrigin.equalTo(BumbleKeyboardManager.kIQCGPointInvalid) == false,
                 let textFieldView = _textFieldView,
                 textFieldView.isAlertViewTextField() == false {
                 optimizedAdjustPosition()
@@ -1420,7 +1420,7 @@ internal class HippoKeyboardManager: NSObject, UIGestureRecognizerDelegate {
         showLog("****** \(#function) started ******")
 
         //  (Bug ID: #5)
-        if let textFieldView = _textFieldView, _topViewBeginOrigin.equalTo(HippoKeyboardManager.kIQCGPointInvalid) == true {
+        if let textFieldView = _textFieldView, _topViewBeginOrigin.equalTo(BumbleKeyboardManager.kIQCGPointInvalid) == true {
 
             //  keyboard is not showing(At the beginning only). We should save rootViewRect.
             _rootViewController = textFieldView.parentContainerViewController()
@@ -1433,7 +1433,7 @@ internal class HippoKeyboardManager: NSObject, UIGestureRecognizerDelegate {
                 }
 
                 _rootViewControllerWhilePopGestureRecognizerActive = nil
-                _topViewBeginOriginWhilePopGestureRecognizerActive = HippoKeyboardManager.kIQCGPointInvalid
+                _topViewBeginOriginWhilePopGestureRecognizerActive = BumbleKeyboardManager.kIQCGPointInvalid
 
                 self.showLog("Saving \(controller._IQDescription()) beginning origin : \(self._topViewBeginOrigin)")
             }
@@ -1572,7 +1572,7 @@ internal class HippoKeyboardManager: NSObject, UIGestureRecognizerDelegate {
         let startTime = CACurrentMediaTime()
         showLog("****** \(#function) started ******")
 
-        _topViewBeginOrigin = HippoKeyboardManager.kIQCGPointInvalid
+        _topViewBeginOrigin = BumbleKeyboardManager.kIQCGPointInvalid
 
         _kbSize = CGSize.zero
 
@@ -1640,7 +1640,7 @@ internal class HippoKeyboardManager: NSObject, UIGestureRecognizerDelegate {
         _textFieldView?.window?.addGestureRecognizer(resignFirstResponderGesture)    //   (Enhancement ID: #14)
 
         if privateIsEnabled() == true {
-            if _topViewBeginOrigin.equalTo(HippoKeyboardManager.kIQCGPointInvalid) == true {    //  (Bug ID: #5)
+            if _topViewBeginOrigin.equalTo(BumbleKeyboardManager.kIQCGPointInvalid) == true {    //  (Bug ID: #5)
 
                 _rootViewController = _textFieldView?.parentContainerViewController()
 
@@ -1653,7 +1653,7 @@ internal class HippoKeyboardManager: NSObject, UIGestureRecognizerDelegate {
                     }
 
                     _rootViewControllerWhilePopGestureRecognizerActive = nil
-                    _topViewBeginOriginWhilePopGestureRecognizerActive = HippoKeyboardManager.kIQCGPointInvalid
+                    _topViewBeginOriginWhilePopGestureRecognizerActive = BumbleKeyboardManager.kIQCGPointInvalid
 
                     self.showLog("Saving \(controller._IQDescription()) beginning origin : \(self._topViewBeginOrigin)")
                 }

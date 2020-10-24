@@ -49,7 +49,7 @@ class PaymentPlansViewController: UIViewController {
             DispatchQueue.main.async {
                 self?.view_Navigation.image_back.tintColor = BumbleConfig.shared.theme.headerTextColor
                 self?.view_Navigation.image_back.image = BumbleConfig.shared.theme.crossBarButtonImage
-                self?.view_Navigation.title = HippoStrings.savedPlans
+                self?.view_Navigation.title = BumbleStrings.savedPlans
                 self?.view_Navigation.leftButton.addTarget(self, action: #selector(self?.cancelButtonClicked(_:)), for: .touchUpInside)
                 self?.setaddIcon()
             }
@@ -65,7 +65,7 @@ class PaymentPlansViewController: UIViewController {
         datasource.plans = store.plans
         datasource.deletePlanClicked = {[weak self](plan) in
             DispatchQueue.main.async {
-                self?.showOptionAlert(title: "", message: HippoStrings.deletePaymentPlan, successButtonName: HippoStrings.yes, successComplete: { (_) in
+                self?.showOptionAlert(title: "", message: BumbleStrings.deletePaymentPlan, successButtonName: BumbleStrings.yes, successComplete: { (_) in
                 self?.DeletePaymentPlan(plan: plan, completion: { (success, error) in
                     if success{
                         self?.store.plans.removeAll(where: {$0.planId == plan.planId})
@@ -76,7 +76,7 @@ class PaymentPlansViewController: UIViewController {
                         self?.showAlert(title: "Error", message: error.debugDescription, actionComplete: nil)
                     }
                 })
-            }, failureButtonName: HippoStrings.no.capitalized, failureComplete: nil)
+            }, failureButtonName: BumbleStrings.no.capitalized, failureComplete: nil)
             }
         }
         
@@ -186,7 +186,7 @@ extension PaymentPlansViewController: UITableViewDelegate {
     }
     
     func sendPlan(_ plan : PaymentPlan){
-        showOptionAlert(title: "", message: HippoStrings.sendPaymentRequestPopup, successButtonName: HippoStrings.yes, successComplete: { (_) in
+        showOptionAlert(title: "", message: BumbleStrings.sendPaymentRequestPopup, successButtonName: BumbleStrings.yes, successComplete: { (_) in
             let paymentStore = PaymentStore(plan: plan, channelId: self.channelId, isEditing: false, isSending: self.channelId != nil)
             paymentStore.takeAction { (success, error) in
                 guard success else {
@@ -200,7 +200,7 @@ extension PaymentPlansViewController: UITableViewDelegate {
                     self.navigationController?.popViewController(animated: true)
                 }
             }
-        }, failureButtonName: HippoStrings.no.capitalized, failureComplete: nil)
+        }, failureButtonName: BumbleStrings.no.capitalized, failureComplete: nil)
     }
     
 }

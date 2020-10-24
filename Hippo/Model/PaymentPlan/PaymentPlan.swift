@@ -70,7 +70,7 @@ class PaymentPlan : NSCopying{
         ownerID = Int.parse(values: json, key: "user_id")
         
 //        displayOwner = (ownerID ?? -100) == (PersonInfo.current?.userID ?? -10) ? "Self" : ownerName
-        displayOwner = (ownerID ?? -100) == (currentUserId() ?? -10) ? HippoStrings.selfTag : ownerName
+        displayOwner = (ownerID ?? -100) == (currentUserId() ?? -10) ? BumbleStrings.selfTag : ownerName
         displayOwner = displayOwner?.capitalized
         
 //        canEdit = (ownerID ?? -100) == (PersonInfo.current?.userID ?? -10)

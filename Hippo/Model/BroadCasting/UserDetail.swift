@@ -40,7 +40,7 @@ class UserDetail {
     static func getAllAgentsDefaultObj() -> UserDetail {
         let obj = UserDetail(dict: [:])
         
-        obj.name = HippoStrings.allAgentsString + " " + BumbleConfig.shared.strings.displayNameForCustomers
+        obj.name = BumbleStrings.allAgentsString + " " + BumbleConfig.shared.strings.displayNameForCustomers
         obj.id = -100
         obj.tagId = -100
         

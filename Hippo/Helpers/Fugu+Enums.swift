@@ -420,45 +420,45 @@ struct MultiLanguageMsg{
     private func getMultiLanguageMsg(_ tag : String) -> String{
         switch tag{
         case MultiLanguageTags.RATING_AND_REVIEW.rawValue:
-            return HippoStrings.ratingReview
+            return BumbleStrings.ratingReview
         case MultiLanguageTags.PAYMENT_REQUESTED.rawValue:
-            return HippoStrings.paymentRequested
+            return BumbleStrings.paymentRequested
         case MultiLanguageTags.ASSIGNED_TO_THEMSELVES.rawValue:
-            return HippoStrings.assignedToThemselves
+            return BumbleStrings.assignedToThemselves
         case MultiLanguageTags.NEW_CHAT_ASSIGNED_TO_YOU.rawValue:
-            return HippoStrings.newChatAssignedToYou
+            return BumbleStrings.newChatAssignedToYou
         case MultiLanguageTags.ASSIGNED_CHAT_TO.rawValue:
-            return HippoStrings.chatAssigned
+            return BumbleStrings.chatAssigned
         case MultiLanguageTags.CHAT_REOPENED_BY.rawValue:
-            return HippoStrings.chatReopenedby
+            return BumbleStrings.chatReopenedby
         case MultiLanguageTags.CHAT_WAS_AUTO_OPENED.rawValue:
-            return HippoStrings.chatAutoOpened
+            return BumbleStrings.chatAutoOpened
         case MultiLanguageTags.CHAT_WAS_AUTO_CLOSED.rawValue:
-            return HippoStrings.chatAutoClosed
+            return BumbleStrings.chatAutoClosed
         case MultiLanguageTags.CHAT_WAS_RE_OPENED.rawValue:
-            return HippoStrings.chatReopened
+            return BumbleStrings.chatReopened
         case MultiLanguageTags.CHAT_WAS_CLOSED.rawValue:
-            return HippoStrings.chatClosedBy
+            return BumbleStrings.chatClosedBy
         case MultiLanguageTags.WAS_AUTO_ASSIGNED.rawValue:
-            return HippoStrings.chatAutoAssigned
+            return BumbleStrings.chatAutoAssigned
         case MultiLanguageTags.WAS_FORCE_ASSIGNED.rawValue:
-            return HippoStrings.forceAssigned
+            return BumbleStrings.forceAssigned
         case MultiLanguageTags.TAGGED.rawValue:
-            return HippoStrings.tagged
+            return BumbleStrings.tagged
         case MultiLanguageTags.MENTIONED_YOU.rawValue:
-            return HippoStrings.mentionedYou
+            return BumbleStrings.mentionedYou
         case MultiLanguageTags.CALLING_YOU.rawValue:
-            return HippoStrings.isCallingYou
+            return BumbleStrings.isCallingYou
         case MultiLanguageTags.newCustomer.rawValue:
-            return HippoStrings.newCustomer
+            return BumbleStrings.newCustomer
         case MultiLanguageTags.botSkipped.rawValue:
-            return HippoStrings.botSkipped
+            return BumbleStrings.botSkipped
         case MultiLanguageTags.missedCallFrom.rawValue:
-            return HippoStrings.missedCallFrom
+            return BumbleStrings.missedCallFrom
         case MultiLanguageTags.fileImage.rawValue:
-            return HippoStrings.sentAPhoto
+            return BumbleStrings.sentAPhoto
         case MultiLanguageTags.fileAttachment.rawValue:
-            return HippoStrings.sentAFile
+            return BumbleStrings.sentAFile
             
         default:
             return ""
@@ -506,11 +506,11 @@ enum BroadcastType: String, CaseCountable {
     var description: String {
         switch self {
         case .email:
-            return HippoStrings.email
+            return BumbleStrings.email
         case .unknown:
             return ""
         default:
-            return HippoStrings.inApp
+            return BumbleStrings.inApp
         }
     }
 }
@@ -539,13 +539,13 @@ enum FileType: String {
     func getTypeString() -> String {
         switch self {
         case .image:
-            return HippoStrings.image
+            return BumbleStrings.image
         case .audio:
-            return HippoStrings.audio
+            return BumbleStrings.audio
         case .video:
-            return HippoStrings.video
+            return BumbleStrings.video
         case .document:
-            return HippoStrings.document
+            return BumbleStrings.document
         }
     }
 }

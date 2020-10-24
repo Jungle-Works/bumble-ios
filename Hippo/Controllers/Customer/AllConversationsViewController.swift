@@ -86,8 +86,8 @@ class AllConversationsViewController: UIViewController, NewChatSentDelegate {
         
         self.openChatButton.titleLabel?.font = UIFont.bold(ofSize: 15)
         self.closeChatButton.titleLabel?.font = UIFont.regular(ofSize: 15)
-        self.openChatButton.setTitle(HippoStrings.ongoing, for: .normal)
-        self.closeChatButton.setTitle(HippoStrings.past, for: .normal)
+        self.openChatButton.setTitle(BumbleStrings.ongoing, for: .normal)
+        self.closeChatButton.setTitle(BumbleStrings.past, for: .normal)
         
         self.bottomLineView.backgroundColor = BumbleConfig.shared.theme.themeColor
         
@@ -153,7 +153,7 @@ class AllConversationsViewController: UIViewController, NewChatSentDelegate {
         guard BumbleUserDetail.fuguUserID != nil else {
             return false
         }
-        guard HippoChecker().shouldCollectDataFromUser() else {
+        guard BumbleChecker().shouldCollectDataFromUser() else {
             return false
         }
         let vc = HippoDataCollectorController.get(forms: HippoProperty.current.forms)
@@ -165,7 +165,7 @@ class AllConversationsViewController: UIViewController, NewChatSentDelegate {
     func putUserDetails() {
         BumbleUserDetail.getUserDetailsAndConversation(completion: { [weak self] (success, error) in
             guard success else {
-                let errorMessage = error?.localizedDescription ?? HippoStrings.somethingWentWrong
+                let errorMessage = error?.localizedDescription ?? BumbleStrings.somethingWentWrong
                 
                 //self?.tableViewDefaultText = errorMessage + "\n Please tap to retry."
                 self?.arrayOfConversation = []
@@ -192,9 +192,9 @@ class AllConversationsViewController: UIViewController, NewChatSentDelegate {
                     return
                 }
                 
-                if self?.ongoingConversationArr.count == 0 && self?.closedConversationArr.count == 0 && BumbleConfig.shared.theme.shouldShowBtnOnChatList == true{ self?.noConversationFound(true,BumbleConfig.shared.theme.noOpenAndcloseChatError == nil ? HippoStrings.noChatStarted : BumbleConfig.shared.theme.noOpenAndcloseChatError ?? "")
-                }else if self?.ongoingConversationArr.count == 0 && self?.closedConversationArr.count == 0{ self?.noConversationFound(false,BumbleConfig.shared.theme.noOpenAndcloseChatError == nil ? HippoStrings.noChatStarted : BumbleConfig.shared.theme.noOpenAndcloseChatError ?? "")
-                }else{ self?.noConversationFound(false,BumbleConfig.shared.theme.noChatUnderCatagoryError == nil ? HippoStrings.noChatInCatagory : BumbleConfig.shared.theme.noChatUnderCatagoryError ?? "")
+                if self?.ongoingConversationArr.count == 0 && self?.closedConversationArr.count == 0 && BumbleConfig.shared.theme.shouldShowBtnOnChatList == true{ self?.noConversationFound(true,BumbleConfig.shared.theme.noOpenAndcloseChatError == nil ? BumbleStrings.noChatStarted : BumbleConfig.shared.theme.noOpenAndcloseChatError ?? "")
+                }else if self?.ongoingConversationArr.count == 0 && self?.closedConversationArr.count == 0{ self?.noConversationFound(false,BumbleConfig.shared.theme.noOpenAndcloseChatError == nil ? BumbleStrings.noChatStarted : BumbleConfig.shared.theme.noOpenAndcloseChatError ?? "")
+                }else{ self?.noConversationFound(false,BumbleConfig.shared.theme.noChatUnderCatagoryError == nil ? BumbleStrings.noChatInCatagory : BumbleConfig.shared.theme.noChatUnderCatagoryError ?? "")
                 }
             }
         })
@@ -276,12 +276,12 @@ class AllConversationsViewController: UIViewController, NewChatSentDelegate {
         self.navigationItem.rightBarButtonItems = [logoutButton]
     }
     @objc func logoutButtonClicked() {
-        showOptionAlert(title: "", message: HippoStrings.logout, successButtonName: HippoStrings.yes, successComplete: { (_) in
+        showOptionAlert(title: "", message: BumbleStrings.logout, successButtonName: BumbleStrings.yes, successComplete: { (_) in
             BumbleConfig.shared.clearHippoUserData { (s) in
                 BumbleUserDetail.clearAllData()
                 BumbleConfig.shared.delegate?.hippoUserLogOut()
             }
-        }, failureButtonName: HippoStrings.no.capitalized, failureComplete: nil)
+        }, failureButtonName: BumbleStrings.no.capitalized, failureComplete: nil)
     }
     
     @objc func notificationButtonClicked()
@@ -340,7 +340,7 @@ class AllConversationsViewController: UIViewController, NewChatSentDelegate {
             errorLabel.text = ""
             updateErrorLabelView(isHiding: true)
         } else {
-            errorLabel.text = HippoStrings.noNetworkConnection
+            errorLabel.text = BumbleStrings.noNetworkConnection
             updateErrorLabelView(isHiding: false)
         }
     }
@@ -473,11 +473,11 @@ class AllConversationsViewController: UIViewController, NewChatSentDelegate {
         //            }
         //        }else{
         if ongoingConversationArr.count == 0 && closedConversationArr.count == 0 && BumbleConfig.shared.theme.shouldShowBtnOnChatList == true{
-            self.noConversationFound(true,BumbleConfig.shared.theme.noOpenAndcloseChatError == nil ? HippoStrings.noChatStarted : BumbleConfig.shared.theme.noOpenAndcloseChatError ?? "")
+            self.noConversationFound(true,BumbleConfig.shared.theme.noOpenAndcloseChatError == nil ? BumbleStrings.noChatStarted : BumbleConfig.shared.theme.noOpenAndcloseChatError ?? "")
         }else if ongoingConversationArr.count == 0 && closedConversationArr.count == 0{
-            self.noConversationFound(false,BumbleConfig.shared.theme.noOpenAndcloseChatError == nil ? HippoStrings.noChatStarted : BumbleConfig.shared.theme.noOpenAndcloseChatError ?? "")
+            self.noConversationFound(false,BumbleConfig.shared.theme.noOpenAndcloseChatError == nil ? BumbleStrings.noChatStarted : BumbleConfig.shared.theme.noOpenAndcloseChatError ?? "")
         }else{
-            self.noConversationFound(false,BumbleConfig.shared.theme.noChatUnderCatagoryError == nil ? HippoStrings.noChatInCatagory : BumbleConfig.shared.theme.noChatUnderCatagoryError ?? "")
+            self.noConversationFound(false,BumbleConfig.shared.theme.noChatUnderCatagoryError == nil ? BumbleStrings.noChatInCatagory : BumbleConfig.shared.theme.noChatUnderCatagoryError ?? "")
         }
         if self.arrayOfConversation.count > 0{
             self.showConversationsTableView.scrollToRow(at: IndexPath.init(row: 0, section: 0), at: .top, animated: true)
@@ -492,11 +492,11 @@ class AllConversationsViewController: UIViewController, NewChatSentDelegate {
         self.showConversationsTableView.reloadData()
         //        if self.arrayOfConversation.count <= 0 {
         if ongoingConversationArr.count == 0 && closedConversationArr.count == 0 && BumbleConfig.shared.theme.shouldShowBtnOnChatList == true{
-            self.noConversationFound(true,BumbleConfig.shared.theme.noOpenAndcloseChatError == nil ? HippoStrings.noChatStarted : BumbleConfig.shared.theme.noOpenAndcloseChatError ?? "")
+            self.noConversationFound(true,BumbleConfig.shared.theme.noOpenAndcloseChatError == nil ? BumbleStrings.noChatStarted : BumbleConfig.shared.theme.noOpenAndcloseChatError ?? "")
         }else if ongoingConversationArr.count == 0 && closedConversationArr.count == 0{
-            self.noConversationFound(false,BumbleConfig.shared.theme.noOpenAndcloseChatError == nil ? HippoStrings.noChatStarted : BumbleConfig.shared.theme.noOpenAndcloseChatError ?? "")
+            self.noConversationFound(false,BumbleConfig.shared.theme.noOpenAndcloseChatError == nil ? BumbleStrings.noChatStarted : BumbleConfig.shared.theme.noOpenAndcloseChatError ?? "")
         }else{
-            self.noConversationFound(false,BumbleConfig.shared.theme.noChatUnderCatagoryError == nil ? HippoStrings.noChatInCatagory : BumbleConfig.shared.theme.noChatUnderCatagoryError ?? "")
+            self.noConversationFound(false,BumbleConfig.shared.theme.noChatUnderCatagoryError == nil ? BumbleStrings.noChatInCatagory : BumbleConfig.shared.theme.noChatUnderCatagoryError ?? "")
         }
         if self.arrayOfConversation.count > 0{
             self.showConversationsTableView.scrollToRow(at: IndexPath.init(row: 0, section: 0), at: .top, animated: true)
@@ -553,7 +553,7 @@ class AllConversationsViewController: UIViewController, NewChatSentDelegate {
             pushTotalUnreadCount()
             
             guard result.isSuccessful else {
-                let errorMessage = result.error?.localizedDescription ?? HippoStrings.somethingWentWrong
+                let errorMessage = result.error?.localizedDescription ?? BumbleStrings.somethingWentWrong
                 self?.showErrorMessageInTopErrorLabel(withMessage: errorMessage)
                 return
             }
@@ -584,7 +584,7 @@ class AllConversationsViewController: UIViewController, NewChatSentDelegate {
             if result.conversations?.count == 0 {
                 self?.closedConversationArr.removeAll()
                 self?.ongoingConversationArr.removeAll()
-                if BumbleConfig.shared.theme.shouldShowBtnOnChatList == true{ self?.noConversationFound(true,BumbleConfig.shared.theme.noOpenAndcloseChatError == nil ? HippoStrings.noChatStarted : BumbleConfig.shared.theme.noOpenAndcloseChatError ?? "")
+                if BumbleConfig.shared.theme.shouldShowBtnOnChatList == true{ self?.noConversationFound(true,BumbleConfig.shared.theme.noOpenAndcloseChatError == nil ? BumbleStrings.noChatStarted : BumbleConfig.shared.theme.noOpenAndcloseChatError ?? "")
                 }
                 if BumbleConfig.shared.shouldOpenDefaultChannel{
                     self?.openDefaultChannel()
@@ -619,12 +619,12 @@ class AllConversationsViewController: UIViewController, NewChatSentDelegate {
         }else{}
         
         if ongoingConversationArr.count == 0 && closedConversationArr.count == 0 && BumbleConfig.shared.theme.shouldShowBtnOnChatList == true{
-            self.noConversationFound(true,BumbleConfig.shared.theme.noOpenAndcloseChatError == nil ? HippoStrings.noChatStarted : BumbleConfig.shared.theme.noOpenAndcloseChatError ?? "")
+            self.noConversationFound(true,BumbleConfig.shared.theme.noOpenAndcloseChatError == nil ? BumbleStrings.noChatStarted : BumbleConfig.shared.theme.noOpenAndcloseChatError ?? "")
         }else if ongoingConversationArr.count == 0 && closedConversationArr.count == 0{
-            self.noConversationFound(false,BumbleConfig.shared.theme.noOpenAndcloseChatError == nil ? HippoStrings.noChatStarted : BumbleConfig.shared.theme.noOpenAndcloseChatError ?? "")
+            self.noConversationFound(false,BumbleConfig.shared.theme.noOpenAndcloseChatError == nil ? BumbleStrings.noChatStarted : BumbleConfig.shared.theme.noOpenAndcloseChatError ?? "")
         }else{
             
-            self.noConversationFound(false,BumbleConfig.shared.theme.noChatUnderCatagoryError == nil ? HippoStrings.noChatInCatagory : BumbleConfig.shared.theme.noChatUnderCatagoryError ?? "")
+            self.noConversationFound(false,BumbleConfig.shared.theme.noChatUnderCatagoryError == nil ? BumbleStrings.noChatInCatagory : BumbleConfig.shared.theme.noChatUnderCatagoryError ?? "")
         }
         
     }
@@ -640,7 +640,7 @@ class AllConversationsViewController: UIViewController, NewChatSentDelegate {
             //self.showConversationsTableView.isHidden = true
             self.informationView?.informationImageView.image = BumbleConfig.shared.theme.noChatImage
             self.informationView?.isButtonInfoHidden = !shouldShowBtn
-            self.informationView?.button_Info.setTitle(BumbleConfig.shared.theme.chatListRetryBtnText == nil ? HippoStrings.retry : BumbleConfig.shared.theme.chatListRetryBtnText, for: .normal)
+            self.informationView?.button_Info.setTitle(BumbleConfig.shared.theme.chatListRetryBtnText == nil ? BumbleStrings.retry : BumbleConfig.shared.theme.chatListRetryBtnText, for: .normal)
             
             self.informationView?.isHidden = false
             self.showConversationsTableView.addSubview(informationView!)
@@ -979,7 +979,7 @@ extension AllConversationsViewController: UITableViewDelegate, UITableViewDataSo
     
 }
 
-extension AllConversationsViewController: HippoDataCollectorControllerDelegate {
+extension AllConversationsViewController: BumbleDataCollectorControllerDelegate {
     func userUpdated() {
         fuguDelay(0.4) {
             self.putUserDetails()

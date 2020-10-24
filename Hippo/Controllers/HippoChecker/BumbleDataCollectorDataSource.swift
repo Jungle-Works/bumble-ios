@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HippoDataCollectorDataSource: NSObject {
+class BumbleDataCollectorDataSource: NSObject {
     
     //MARK: Variables
     var forms: [FormData]
@@ -16,7 +16,7 @@ class HippoDataCollectorDataSource: NSObject {
         self.forms = forms
     }
 }
-extension HippoDataCollectorDataSource: UITableViewDataSource {
+extension BumbleDataCollectorDataSource: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1

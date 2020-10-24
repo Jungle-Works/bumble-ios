@@ -38,7 +38,7 @@ class CreatePaymentViewController: UIViewController {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        HippoKeyboardManager.shared.enable = false
+        BumbleKeyboardManager.shared.enable = false
     }
     
     @IBAction func backButtonAction(_ sender: Any) {
@@ -52,7 +52,7 @@ class CreatePaymentViewController: UIViewController {
         
         setupTableView()
         self.navigationController?.setTheme()
-        HippoKeyboardManager.shared.enable = true
+        BumbleKeyboardManager.shared.enable = true
         
         setUI()
         if self.messageType == .paymentCard{
@@ -80,7 +80,7 @@ class CreatePaymentViewController: UIViewController {
     }
     
     func setUI() {
-        view_Navigation.title = store?.isCustomisedPayment ?? false ? HippoStrings.paymentRequest : HippoStrings.savedPlans
+        view_Navigation.title = store?.isCustomisedPayment ?? false ? BumbleStrings.paymentRequest : BumbleStrings.savedPlans
         if BumbleConfig.shared.theme.leftBarButtonImage != nil {
             view_Navigation.image_back.image = BumbleConfig.shared.theme.leftBarButtonImage
             view_Navigation.image_back.tintColor = BumbleConfig.shared.theme.headerTextColor

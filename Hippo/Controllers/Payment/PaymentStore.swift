@@ -127,14 +127,14 @@ class PaymentStore: NSObject {
             let text: String
             if channelId != nil  {
                 if canEditPlan ?? false{
-                    text = HippoStrings.updatePlan
+                    text = BumbleStrings.updatePlan
                 }else{
-                    text = HippoStrings.sendPayment
+                    text = BumbleStrings.sendPayment
                 }
             } else if plan == nil && channelId == nil {
-                text = HippoStrings.savePlan
+                text = BumbleStrings.savePlan
             } else {
-                text = HippoStrings.updatePlan
+                text = BumbleStrings.updatePlan
             }
             
             for each in buttons {
@@ -192,7 +192,7 @@ class PaymentStore: NSObject {
         var actionButton: [String: Any] = [:]
         
         actionButton += buttonAction
-        actionButton["button_text"] = HippoStrings.Pay
+        actionButton["button_text"] = BumbleStrings.Pay
         
         json["action_buttons"] = [actionButton]
         

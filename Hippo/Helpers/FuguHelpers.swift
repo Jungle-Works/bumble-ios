@@ -264,13 +264,13 @@ func changeDateToParticularFormat(_ dateTobeConverted: Date, dateFormat: String,
         let comparisonResult = Calendar.current.compare(dateTobeConverted, to: Date(), toGranularity: .day)
         switch comparisonResult {
         case .orderedSame:
-            return HippoStrings.today
+            return BumbleStrings.today
         default:
             let calendar = NSCalendar.current
             let dateOfMsg = calendar.startOfDay(for: dateTobeConverted)
             let currentDate = calendar.startOfDay(for: Date())
             let dateDifference = calendar.dateComponents([.day], from: dateOfMsg, to: currentDate).day
-            if dateDifference == 1 { return HippoStrings.yesterday }
+            if dateDifference == 1 { return BumbleStrings.yesterday }
             return formatter.string(from: dateTobeConverted)
         }
     }
@@ -816,7 +816,7 @@ func getCurrentLanguageLocale() -> String {
 func showAlertWith(message: String, action: (() -> Void)?) {
     let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
     
-    let dismissAction = UIAlertAction(title: HippoStrings.ok, style: .default, handler: { _ in
+    let dismissAction = UIAlertAction(title: BumbleStrings.ok, style: .default, handler: { _ in
         action?()
     })
     alert.addAction(dismissAction)
@@ -854,9 +854,9 @@ func currentEnUserId() -> String {
 func currentUserName() -> String {
     switch BumbleConfig.shared.appUserType {
     case .agent:
-        return BumbleConfig.shared.agentDetail?.fullName ?? HippoStrings.agent
+        return BumbleConfig.shared.agentDetail?.fullName ?? BumbleStrings.agent
     case .customer:
-        return BumbleConfig.shared.userDetail?.fullName ?? HippoStrings.visitor
+        return BumbleConfig.shared.userDetail?.fullName ?? BumbleStrings.visitor
     }
 }
 

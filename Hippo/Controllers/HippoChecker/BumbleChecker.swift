@@ -7,9 +7,9 @@
 
 import UIKit
 
-class HippoChecker {
+class BumbleChecker {
     
-    enum HippoCheckerRequest {
+    enum BumbleCheckerRequest {
         case presentChat
     }
     
@@ -17,25 +17,25 @@ class HippoChecker {
         return BumbleConfig.shared
     }
     
-    var request: HippoCheckerRequest?
+    var request: BumbleCheckerRequest?
     
     func presentChatsViewController() {
         AgentDetail.setAgentStoredData()
-        switch config.appUserType {
-        case .customer:
-            FuguFlowManager.shared.presentCustomerConversations()
-        case .agent:
-            FuguFlowManager.shared.presentAgentConversations()
-        }
+//        switch config.appUserType {
+//        case .customer:
+//            FuguFlowManager.shared.presentCustomerConversations()
+//        case .agent:
+//            FuguFlowManager.shared.presentAgentConversations()
+//        }
     }
     func presentChatsViewController(on viewController: UIViewController) {
-           AgentDetail.setAgentStoredData()
-           switch config.appUserType {
-           case .customer:
-            FuguFlowManager.shared.presentCustomerConversations(on: viewController)
-           case .agent:
-               FuguFlowManager.shared.presentAgentConversations()
-           }
+//           AgentDetail.setAgentStoredData()
+//           switch config.appUserType {
+//           case .customer:
+//            FuguFlowManager.shared.presentCustomerConversations(on: viewController)
+//           case .agent:
+//               FuguFlowManager.shared.presentAgentConversations()
+//           }
        }
     
     func presentPromotionalPushController()
@@ -63,6 +63,6 @@ class HippoChecker {
         }
     }
 }
-extension HippoChecker {
+extension BumbleChecker {
     
 }

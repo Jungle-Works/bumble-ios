@@ -119,7 +119,7 @@ class BussinessProperty: NSObject {
     var unsupportedMessageString: String {
         get {
             guard let unsupportedMessageString = UserDefaults.standard.value(forKey: UserDefaultkeys.unsupportedMessageString) as? String, !unsupportedMessageString.isEmpty else {
-                return HippoStrings.unknownMessage
+                return BumbleStrings.unknownMessage
             }
             return unsupportedMessageString
         }

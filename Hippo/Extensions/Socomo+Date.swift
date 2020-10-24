@@ -44,9 +44,9 @@ extension Date {
             switch dateDifference {
             case 1:
                 //formatter.dateFormat = "hh:mm a"
-                return HippoStrings.yesterday
+                return BumbleStrings.yesterday
             case let difference where (difference > 1 && difference < 8):
-                return "\(dateDifference) \(HippoStrings.daysAgo)"
+                return "\(dateDifference) \(BumbleStrings.daysAgo)"
             default:
                 formatter.dateFormat = "d/MM/yyyy"
                 return formatter.string(from: self)

@@ -78,10 +78,10 @@ extension PaymentPlanHomeCell {
     func set(plan: PaymentPlan) {
         self.plan = plan
         
-        keyPlanIdLabel.text = HippoStrings.planId
-        keyPlanNameLabel.text = HippoStrings.planNameTitle
-        keyPlanOwnerLabel.text = HippoStrings.planOwner
-        keyUpdatedAtLabel.text = HippoStrings.updatedAt
+        keyPlanIdLabel.text = BumbleStrings.planId
+        keyPlanNameLabel.text = BumbleStrings.planNameTitle
+        keyPlanOwnerLabel.text = BumbleStrings.planOwner
+        keyUpdatedAtLabel.text = BumbleStrings.updatedAt
         
         planIdLabel.text = "\(plan.planId)"
         planNameLabel.text = plan.planName

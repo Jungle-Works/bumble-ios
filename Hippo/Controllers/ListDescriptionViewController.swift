@@ -72,7 +72,7 @@ class ListDescriptionViewController: UIViewController {
         if FuguNetworkHandler.shared.isNetworkConnected {
             handleErrorLabel(with: "", isForceShow: false)
         } else {
-            handleErrorLabel(with: HippoStrings.noNetworkConnection, isForceShow: true)
+            handleErrorLabel(with: BumbleStrings.noNetworkConnection, isForceShow: true)
         }
     }
     func handleErrorLabel(with errorMessage: String, isForceShow: Bool) {
@@ -215,7 +215,7 @@ class ListDescriptionViewController: UIViewController {
             if result.isSuccessful {
                 self.popToRootVC()
             } else {
-                let message = result.error?.localizedDescription ?? HippoStrings.somethingWentWrong
+                let message = result.error?.localizedDescription ?? BumbleStrings.somethingWentWrong
                 self.handleErrorLabel(with: message, isForceShow: true)
             }
         })
@@ -268,7 +268,7 @@ class ListDescriptionViewController: UIViewController {
             hippoChat.customAttributes = self.getCustomAttributes()
             hippoChat.isCustomAttributesRequired = true
             hippoChat.isInAppChat = true
-            FuguFlowManager.shared.showFuguChat(hippoChat)
+//            FuguFlowManager.shared.showFuguChat(hippoChat)
 
         }
         

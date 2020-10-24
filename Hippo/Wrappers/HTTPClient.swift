@@ -24,14 +24,14 @@ enum APIErrors: LocalizedError {
         case .serverThrewError(message: let errorMessage):
             return errorMessage
         default:
-            return HippoStrings.somethingWentWrong
+            return BumbleStrings.somethingWentWrong
         }
     }
 }
 
 struct NetworkError: LocalizedError {
     var errorDescription: String? {
-        return HippoStrings.noNetworkConnection
+        return BumbleStrings.noNetworkConnection
     }
 }
 

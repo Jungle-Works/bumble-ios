@@ -161,7 +161,7 @@ class FormData: NSObject {
         }
         
         if value.isEmpty, isRequired {
-            errorMessage = "\(title) \(HippoStrings.fieldEmpty)"
+            errorMessage = "\(title) \(BumbleStrings.fieldEmpty)"
             return
         }
         
@@ -305,7 +305,7 @@ let formDataJson: [String: Any] = [
         "button": [
             "type": "BUTTON",
             "action": "SUBMIT",
-            "title": HippoStrings.submit,
+            "title": BumbleStrings.submit,
             "title_color": "#000000",
             "background_color": "#ffffff"
         ]

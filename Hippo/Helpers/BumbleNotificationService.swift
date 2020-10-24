@@ -9,7 +9,7 @@
 import Foundation
 import UserNotifications
 
-class HippoNotificationService: UNNotificationServiceExtension {
+class BumbleNotificationService: UNNotificationServiceExtension {
 
     var contentHandler: ((UNNotificationContent) -> Void)?
     var bestAttemptContent: UNMutableNotificationContent?

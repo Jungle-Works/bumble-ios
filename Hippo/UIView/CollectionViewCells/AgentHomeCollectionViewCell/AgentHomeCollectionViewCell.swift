@@ -75,7 +75,7 @@ extension AgentHomeCollectionViewCell {
         var message = ""
         var enableButton = false
         if (AgentConversationManager.isAllChatInProgress && conversationType == .allChat) ||  (AgentConversationManager.isMyChatInProgress && conversationType == .myChat) {
-            message = HippoStrings.loading
+            message = BumbleStrings.loading
         } else if  BumbleConfig.shared.agentDetail == nil || BumbleConfig.shared.agentDetail!.oAuthToken.isEmpty {
             message = "Auth token is not found or found Empty"
         } else if BumbleConfig.shared.agentDetail!.id <= 0 {

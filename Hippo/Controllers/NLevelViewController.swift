@@ -104,7 +104,7 @@ class NLevelViewController: UIViewController {
         if FuguNetworkHandler.shared.isNetworkConnected {
             handleErrorLabel(with: "", isForceShow: false)
         } else {
-            handleErrorLabel(with: HippoStrings.noNetworkConnection, isForceShow: true)
+            handleErrorLabel(with: BumbleStrings.noNetworkConnection, isForceShow: true)
         }
     }
     

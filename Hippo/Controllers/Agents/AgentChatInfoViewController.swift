@@ -81,9 +81,9 @@ extension AgentChatInfoViewController {
         let closeImage = BumbleConfig.shared.theme.closeChatImage
         let reopenImage = BumbleConfig.shared.theme.chatReOpenIconWithTemplateMode
         if channelDetail?.channelStatus == .open {
-            actionArray.append(ChatInfoCell(infoImage: closeImage, nameOfCell: HippoStrings.closeChat))
+            actionArray.append(ChatInfoCell(infoImage: closeImage, nameOfCell: BumbleStrings.closeChat))
         } else {
-            actionArray.append(ChatInfoCell(infoImage: reopenImage, nameOfCell: HippoStrings.reopenChat))
+            actionArray.append(ChatInfoCell(infoImage: reopenImage, nameOfCell: BumbleStrings.reopenChat))
         }
     }
     
@@ -103,7 +103,7 @@ extension AgentChatInfoViewController {
 //                backButton.tintColor = HippoConfig.shared.theme.headerTextColor
 //            }
 //        }
-        view_NavigationBar.title = HippoStrings.info
+        view_NavigationBar.title = BumbleStrings.info
         view_NavigationBar.leftButton.addTarget(self, action: #selector(backButtonClicked(_:)), for: .touchUpInside)
         view_NavigationBar.view.layer.shadowOffset = CGSize(width: 0.0, height: 0.5)
         view_NavigationBar.view.layer.shadowRadius = 2.0
@@ -134,9 +134,9 @@ extension AgentChatInfoViewController {
             return message
         }
         if channelDetail!.channelStatus == .open {
-            message = HippoStrings.closeChatPopup
+            message = BumbleStrings.closeChatPopup
         } else {
-            message = HippoStrings.reopenChatPopup
+            message = BumbleStrings.reopenChatPopup
         }
         return message
     }
@@ -150,14 +150,14 @@ extension AgentChatInfoViewController {
         let message = getPopupMessage()
         let status = channelDetail!.channelStatus == .open ? ChatStatus.close : ChatStatus.open
         
-        showOptionAlert(title: "", message: message, preferredStyle: .alert, successButtonName: HippoStrings.yes.capitalized, successComplete: { (_) in
+        showOptionAlert(title: "", message: message, preferredStyle: .alert, successButtonName: BumbleStrings.yes.capitalized, successComplete: { (_) in
             self.changeChannelStatus(channelId: channelId, status: status)
-        }, failureButtonName: HippoStrings.no.capitalized, failureComplete: nil)
+        }, failureButtonName: BumbleStrings.no.capitalized, failureComplete: nil)
     }
     func changeChannelStatus(channelId: Int, status: ChatStatus) {
         AgentConversationManager.updateChannelStatus(for: channelId, newStatus: status.rawValue) {[weak self] (result) in
             guard self != nil, result.isSuccessful else {
-                showAlertWith(message: HippoStrings.somethingWentWrong, action: nil)
+                showAlertWith(message: BumbleStrings.somethingWentWrong, action: nil)
                 return
             }
             self?.updateHomeView(channelId: channelId, status: status)
@@ -169,7 +169,7 @@ extension AgentChatInfoViewController {
             return
         }
         for each in controllers {
-            if let vc = each as? HippoHomeViewController {
+            if let vc = each as? BumbleHomeViewController {
                 vc.channelStatusChanged(channelId: channelId, newStatus: status)
                 break
             }
@@ -207,11 +207,11 @@ extension AgentChatInfoViewController: UITableViewDelegate  {
         var sectionHeaderName = ""
         switch value {
         case .channelActions:
-            sectionHeaderName = HippoStrings.actions
+            sectionHeaderName = BumbleStrings.actions
         case .chatInfo:
-            sectionHeaderName = HippoStrings.channelInfo
+            sectionHeaderName = BumbleStrings.channelInfo
         case .userInfo:
-            sectionHeaderName = HippoStrings.userProfile
+            sectionHeaderName = BumbleStrings.userProfile
         }
         return ChatInfoHeader.configureSectionHeader(headerInfo: ChatInfoCell(infoImage: nil, nameOfCell: sectionHeaderName))
     }

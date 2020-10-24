@@ -7,12 +7,12 @@
 //
 
 import UIKit
-//import Kingfisherx
+//import Kingfisher
 
 struct HippoResource {
     let url: URL
 }
-extension BumbleResource: Resource {
+extension HippoResource: Resource {
     var cacheKey: String {
         return url.absoluteString
     }
@@ -22,16 +22,16 @@ extension BumbleResource: Resource {
     }
 }
 
-class BumbleImageView: UIImageView {
-    var resource: BumbleResource?
+class HippoImageView: UIImageView {
+    var resource: HippoResource?
     var imageURL: URL? {
         return resource?.downloadURL
     }
     var placeholder: UIImage?
 }
 
-extension BumbleImageView {
-    func setImage(resource: BumbleResource?, placeholder: UIImage?) {
+extension HippoImageView {
+    func setImage(resource: HippoResource?, placeholder: UIImage?) {
         self.resource = resource
         self.placeholder = placeholder
         

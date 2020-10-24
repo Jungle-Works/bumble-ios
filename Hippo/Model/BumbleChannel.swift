@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct HippoChannelCreationResult {
+struct BumbleChannelCreationResult {
     let isSuccessful: Bool
     let error: Error?
     let channel: HippoChannel?
@@ -81,7 +81,7 @@ struct CreateConversationWithLabelId {
             params["initiate_bot_group_id"] = botGroupId
         }
       
-        if let vc = getLastVisibleController() as? HippoConversationViewController{
+        if let vc = getLastVisibleController() as? BumbleConversationViewController{
             if vc.storeResponse?.createNewChannel == true{
                 //params["initial_bot_messages"] = []
             }else if !messagesList.isEmpty {
@@ -98,7 +98,7 @@ struct CreateConversationWithLabelId {
 //TODO: - Subscribe Fail-safe -> subscribe channel again if it is disconnected
 class HippoChannel {
     
-    typealias HippoChannelCreationHandler = (_ result: HippoChannelCreationResult) -> Void
+    typealias HippoChannelCreationHandler = (_ result: BumbleChannelCreationResult) -> Void
     typealias HippoChannelHandler = (_ success: Bool, _ error: Error?) -> Void
     typealias MessagesAndHashMap = (messages: [HippoMessage], hashmap: [String: Int])
     
@@ -263,7 +263,7 @@ class HippoChannel {
     
     class func get(withFuguChatAttributes attributes: AgentDirectChatAttributes, completion: @escaping HippoChannelCreationHandler) {
         guard let params = attributes.getParamsToStartNewChat() else {
-            let result = HippoChannelCreationResult(isSuccessful: false, error: HippoError.general, channel: nil, isChannelAvailableLocallay: false, botMessageID: nil)
+            let result = BumbleChannelCreationResult(isSuccessful: false, error: HippoError.general, channel: nil, isChannelAvailableLocallay: false, botMessageID: nil)
             completion(result)
             return
         }
@@ -283,14 +283,14 @@ class HippoChannel {
                 let data = responseDict["data"] as? [String: Any],
                 let channelID = data["channel_id"] as? Int else {
                     BumbleConfig.shared.log.debug("API_CREATE_CONVERSATION_ ERROR.....\(error?.localizedDescription ?? "")", level: .error)
-                    let result = HippoChannelCreationResult(isSuccessful: false, error: error, channel: nil, isChannelAvailableLocallay: false, botMessageID: nil)
+                    let result = BumbleChannelCreationResult(isSuccessful: false, error: error, channel: nil, isChannelAvailableLocallay: false, botMessageID: nil)
                     completion(result)
                     return
             }
             
             let channel = FuguChannelPersistancyManager.shared.getChannelBy(id: channelID)
             let botMessageID: String? = String.parse(values: data, key: "bot_message_id")
-            let result = HippoChannelCreationResult(isSuccessful: true, error: nil, channel: channel, isChannelAvailableLocallay: false, botMessageID: botMessageID)
+            let result = BumbleChannelCreationResult(isSuccessful: true, error: nil, channel: channel, isChannelAvailableLocallay: false, botMessageID: botMessageID)
             if var transactionID = params["transaction_id"] as? String {
                 if let otherUserUniqueKey = params["other_user_unique_key"] as? String{
                     if otherUserUniqueKey.trimWhiteSpacesAndNewLine().count > 0{
@@ -327,7 +327,7 @@ class HippoChannel {
                 let channelID = hashmapTransactionIdToChannelID[transactionID] {
                     
                     let channel = FuguChannelPersistancyManager.shared.getChannelBy(id: channelID)
-                    let result = HippoChannelCreationResult(isSuccessful: true, error: nil, channel: channel, isChannelAvailableLocallay: true, botMessageID: nil)
+                    let result = BumbleChannelCreationResult(isSuccessful: true, error: nil, channel: channel, isChannelAvailableLocallay: true, botMessageID: nil)
                     completion(result)
                     return
                     
@@ -336,7 +336,7 @@ class HippoChannel {
             
             if methodIsOnlyCallForChannelAvailableInLocalOrNot == true{
                 //methodIsOnlyCallForChannelAvailableInLocalOrNot = false
-                let result = HippoChannelCreationResult(isSuccessful: false, error: nil, channel: nil, isChannelAvailableLocallay: false, botMessageID: nil)
+                let result = BumbleChannelCreationResult(isSuccessful: false, error: nil, channel: nil, isChannelAvailableLocallay: false, botMessageID: nil)
                 completion(result)
                 return
             }
@@ -361,7 +361,7 @@ class HippoChannel {
                 let data = responseDict["data"] as? [String: Any],
                 let channelID = data["channel_id"] as? Int else {
                     BumbleConfig.shared.log.debug("API_CREATE_CONVERSATION_ ERROR.....\(error?.localizedDescription ?? "")", level: .error)
-                    let result = HippoChannelCreationResult(isSuccessful: false, error: error, channel: nil, isChannelAvailableLocallay: false, botMessageID: nil)
+                    let result = BumbleChannelCreationResult(isSuccessful: false, error: error, channel: nil, isChannelAvailableLocallay: false, botMessageID: nil)
                     completion(result)
                     return
             }
@@ -382,7 +382,7 @@ class HippoChannel {
 //            }
             
             let botMessageID: String? = String.parse(values: data, key: "bot_message_id")
-            let result = HippoChannelCreationResult(isSuccessful: true, error: nil, channel: channel, isChannelAvailableLocallay: false, botMessageID: botMessageID)
+            let result = BumbleChannelCreationResult(isSuccessful: true, error: nil, channel: channel, isChannelAvailableLocallay: false, botMessageID: botMessageID)
             if var transactionID = params["transaction_id"] as? String {
                 if let otherUserUniqueKey = (params["other_user_unique_key"] as? [String])?.first{
                     if otherUserUniqueKey.trimWhiteSpacesAndNewLine().count > 0{
@@ -402,7 +402,7 @@ class HippoChannel {
     class func getToCallAgent(withFuguChatAttributes attributes: FuguNewChatAttributes, agentEmail: String, completion: @escaping HippoChannelCreationHandler) {
         guard let transactionID = attributes.transactionId,
             FuguNewChatAttributes.isValidTransactionID(id: transactionID) else {
-                let result = HippoChannelCreationResult(isSuccessful: true, error: nil, channel: nil, isChannelAvailableLocallay: true, botMessageID: nil)
+                let result = BumbleChannelCreationResult(isSuccessful: true, error: nil, channel: nil, isChannelAvailableLocallay: true, botMessageID: nil)
                 completion(result)
                 return
         }
@@ -437,12 +437,12 @@ class HippoChannel {
     class func createNewConversationForTicket(params: [String: Any], completion: @escaping HippoChannelCreationHandler) {
         HTTPClient.makeConcurrentConnectionWith(method: .POST, para: params, extendedUrl: FuguEndPoints.API_CREATE_TICKET.rawValue) { (response, error, _, statusCode) in
             guard let responseDict = response as? [String: Any], let data = responseDict["data"] as? [String: Any] else {
-                let result = HippoChannelCreationResult(isSuccessful: false, error: error, channel: nil, isChannelAvailableLocallay: false, botMessageID: nil)
+                let result = BumbleChannelCreationResult(isSuccessful: false, error: error, channel: nil, isChannelAvailableLocallay: false, botMessageID: nil)
                 completion(result)
                 return
             }
             let botMessageID: String? = String.parse(values: data, key: "bot_message_id")
-            let result = HippoChannelCreationResult(isSuccessful: true, error: nil, channel: nil, isChannelAvailableLocallay: false, botMessageID: botMessageID)
+            let result = BumbleChannelCreationResult(isSuccessful: true, error: nil, channel: nil, isChannelAvailableLocallay: false, botMessageID: botMessageID)
             completion(result)
         }
     }
@@ -738,7 +738,7 @@ class HippoChannel {
 
         chatDetail.assignedAgentID = users.first?.userID ?? chatDetail.assignedAgentID
         chatDetail.assignedAgentName = users.first?.fullName ?? chatDetail.assignedAgentName
-        if let vc = getLastVisibleController() as? HippoConversationViewController{
+        if let vc = getLastVisibleController() as? BumbleConversationViewController{
             vc.storeResponse?.restrictPersonalInfo = dict["restrict_personal_info_sharing"] as? Bool ?? false
         }
         

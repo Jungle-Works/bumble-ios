@@ -122,7 +122,7 @@ struct PaymentSecurely {
 //        let secondAttributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.foregroundColor: UIColor.black,
 //                                                                      NSAttributedString.Key.font: theme.secureTextFont]
         
-        let headerAttributed = NSMutableAttributedString(string: HippoStrings.hippoSecurePayment, attributes: headerAttributes)
+        let headerAttributed = NSMutableAttributedString(string: BumbleStrings.hippoSecurePayment, attributes: headerAttributes)
 //        let secondAttributed = NSMutableAttributedString(string: "\nDiet Buddy Gurantee", attributes: secondAttributes)
         
 //        headerAttributed.append(secondAttributed)
@@ -192,7 +192,7 @@ class PayementButton {
 //
 //        let button = PayementButton(attributedString: image1String)
 //        return button
-        let button = PayementButton(title: HippoStrings.proccedToPay)
+        let button = PayementButton(title: BumbleStrings.proccedToPay)
         return button
     }
 }
@@ -248,7 +248,7 @@ class CustomerPayment {
     
     var displayAmount: NSAttributedString {
         let theme = BumbleConfig.shared.theme
-        var amountText: String = HippoStrings.free
+        var amountText: String = BumbleStrings.free
         let currencySymbol: String = currenySymbol?.trimWhiteSpacesAndNewLine() ?? ""
         if let temp = amount, temp > 0 {
             amountText = "\(currencySymbol) \(temp)"
@@ -259,7 +259,7 @@ class CustomerPayment {
                                                    NSAttributedString.Key.foregroundColor: theme.pricingTextColor ?? theme.headerBackgroundColor]
         attributedString.addAttributes(attr, range: range)
         
-        let paidString = isPaid ? "\n \(HippoStrings.paymentPaid)" : "\n \(HippoStrings.paymentPending)"
+        let paidString = isPaid ? "\n \(BumbleStrings.paymentPaid)" : "\n \(BumbleStrings.paymentPending)"
         let paidRange = (paidString as NSString).range(of: paidString)
         let paidAttr: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: theme.descriptionFont]
         

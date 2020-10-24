@@ -8,11 +8,11 @@
 
 import UIKit
 
-class HippoLabel: UILabel {
+class BumbleLabel: UILabel {
     
 }
 
-extension HippoLabel {
+extension BumbleLabel {
     
     func addTrailing(with trailingText: String, moreText: String, moreTextFont: UIFont, moreTextColor: UIColor) -> Bool {
         

@@ -33,15 +33,15 @@ public enum HippoError: LocalizedError {
         case .callClientNotFound:
             return BumbleConfig.shared.strings.callClientNotFound
         case .updateUserDetail:
-            return HippoStrings.somethingWentWrong
+            return BumbleStrings.somethingWentWrong
         case .invalidAppSecretKey:
             return "Invalid appsecret key"
         case .networkError:
-            return HippoStrings.noNetworkConnection
+            return BumbleStrings.noNetworkConnection
         case .ChannelIdNotFound:
             return "Channel id is empty"
         default:
-            return HippoStrings.somethingWentWrong
+            return BumbleStrings.somethingWentWrong
         }
     }
 }
@@ -255,10 +255,10 @@ extension AgentDetail {
             
             guard let unwrappedStatusCode = statusCode, let response = responseObject as? [String: Any], let data = response["data"] as? [String: Any], unwrappedStatusCode == STATUS_CODE_SUCCESS else {
                 let result = ResponseResult(isSuccessful: false, error: error)
-                print("Login errror: \(error?.localizedDescription ?? HippoStrings.somethingWentWrong)")
+                print("Login errror: \(error?.localizedDescription ?? BumbleStrings.somethingWentWrong)")
                 postLoginUpdated()
                // HippoUserDetail.clearAllData()
-                AgentConversationManager.errorMessage = error?.localizedDescription ?? HippoStrings.somethingWentWrong
+                AgentConversationManager.errorMessage = error?.localizedDescription ?? BumbleStrings.somethingWentWrong
                 completion(result)
                 return
             }

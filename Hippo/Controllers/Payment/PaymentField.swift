@@ -67,15 +67,15 @@ class PaymentField: FormData {
     static func initalPaymentField()-> [[String: Any]] {
        let initialPaymentField = [[
                "validation_type": "ANY",
-               "placeholder": HippoStrings.enterTitle,
-               "title": HippoStrings.title,
+               "placeholder": BumbleStrings.enterTitle,
+               "title": BumbleStrings.title,
                "is_required": true,
                "type": "TEXTFIELD",
                "key": "title"
                ], [
                    "validation_type": "CURRENCY",
-                   "placeholder": HippoStrings.currency,
-                   "title": HippoStrings.currency,
+                   "placeholder": BumbleStrings.currency,
+                   "title": BumbleStrings.currency,
                    "action_value": "United States dollar ($)",
                    "is_required": true,
                    "type": "TEXTFIELD",
@@ -87,8 +87,8 @@ class PaymentField: FormData {
     static func planNameFields() -> [String: Any] {
         let planNameFields = [
             "validation_type": "ANY",
-            "placeholder": HippoStrings.enterPlanName,
-            "title": HippoStrings.planName,
+            "placeholder": BumbleStrings.enterPlanName,
+            "title": BumbleStrings.planName,
             "is_required": true,
             "type": "TEXTFIELD",
             "key": "plan_name"
@@ -101,13 +101,13 @@ class PaymentField: FormData {
         let defaultButtons =  [[
             "type": "BUTTON",
             "action": "ADD_MORE",
-            "title": "\(HippoStrings.addOption)",
+            "title": "\(BumbleStrings.addOption)",
             "title_color": "#000000",
             "background_color": "#ffffff"
             ], [
                 "type": "BUTTON",
                 "action": "SUBMIT",
-                "title": HippoStrings.sendPayment,
+                "title": BumbleStrings.sendPayment,
                 "title_color": "#000000",
                 "background_color": "#ffffff"
             ]]
@@ -118,7 +118,7 @@ class PaymentField: FormData {
         let defaultButtonsWithoutAddMore = [[
         "type": "BUTTON",
         "action": "SUBMIT",
-        "title": HippoStrings.sendPayment,
+        "title": BumbleStrings.sendPayment,
         "title_color": "#000000",
         "background_color": "#ffffff"
         ]]

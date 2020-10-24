@@ -53,32 +53,32 @@ class PickerHelper {
     func present(sender: UIView, controller: UIViewController) {
         
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
-        let paymentOption = UIAlertAction(title: HippoStrings.requestPayment, style: .default, handler: { (alert: UIAlertAction!) -> Void in
+        let paymentOption = UIAlertAction(title: BumbleStrings.requestPayment, style: .default, handler: { (alert: UIAlertAction!) -> Void in
             controller.view.endEditing(true)
             self.delegate?.payOptionClicked()
         })
 
 
-        let cameraAction = UIAlertAction(title: HippoStrings.camera, style: .default, handler: { (alert: UIAlertAction!) -> Void in
+        let cameraAction = UIAlertAction(title: BumbleStrings.camera, style: .default, handler: { (alert: UIAlertAction!) -> Void in
             controller.view.endEditing(true)
             if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
                 self.performActionBasedOnCameraPermission()
             }
         })
 
-        let photoLibraryAction = UIAlertAction(title: HippoStrings.photoLibrary, style: .default, handler: { (alert: UIAlertAction!) -> Void in
+        let photoLibraryAction = UIAlertAction(title: BumbleStrings.photoLibrary, style: .default, handler: { (alert: UIAlertAction!) -> Void in
             controller.view.endEditing(true)
             self.performActionBasedOnGalleryPermission()
         })
 
-        let documentAction = UIAlertAction(title: HippoStrings.document, style: .default) { (_) in
+        let documentAction = UIAlertAction(title: BumbleStrings.document, style: .default) { (_) in
             controller.view.endEditing(true)
             self.documentPicker = CoreDocumentPicker(controller: self.currentViewController)
             self.documentPicker?.delegate = self.delegate
             self.documentPicker?.presentIn(viewController: self.currentViewController, completion: nil)
         }
 
-        let cancelAction = UIAlertAction(title: HippoStrings.cancel, style: .cancel, handler: { (alert: UIAlertAction!) -> Void in })
+        let cancelAction = UIAlertAction(title: BumbleStrings.cancel, style: .cancel, handler: { (alert: UIAlertAction!) -> Void in })
 
 
         if enablePayment {
@@ -108,18 +108,18 @@ class PickerHelper {
     func presentCustomActionSheet(sender: UIView, controller: UIViewController, openType: String) {
 
         switch openType{
-        case HippoStrings.requestPayment:
+        case BumbleStrings.requestPayment:
             controller.view.endEditing(true)
             self.delegate?.payOptionClicked()
-        case HippoStrings.camera:
+        case BumbleStrings.camera:
             controller.view.endEditing(true)
             if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
                 self.performActionBasedOnCameraPermission()
             }
-        case HippoStrings.photoLibrary:
+        case BumbleStrings.photoLibrary:
             controller.view.endEditing(true)
             self.performActionBasedOnGalleryPermission()
-        case HippoStrings.document:
+        case BumbleStrings.document:
             controller.view.endEditing(true)
             BumbleConfig.shared.HideJitsiView()
             self.documentPicker = CoreDocumentPicker(controller: self.currentViewController)

@@ -149,7 +149,7 @@ extension MultiSelectTableViewCell
         
     if message?.customAction?.minSelection == 0 
     {
-        showAlertWith(message: HippoStrings.noMinSelection, action: nil)
+        showAlertWith(message: BumbleStrings.noMinSelection, action: nil)
     }
     else
     {
@@ -160,7 +160,7 @@ extension MultiSelectTableViewCell
         }
         else
         {
-            showAlertWith(message: HippoStrings.noMinSelection, action: nil)
+            showAlertWith(message: BumbleStrings.noMinSelection, action: nil)
         }
     }
         
@@ -227,7 +227,7 @@ extension MultiSelectTableViewCell: UITableViewDataSource
             }
             
             cell.selectionStyle = .none
-            cell.cellButton.setTitle(HippoStrings.submit, for: .normal)
+            cell.cellButton.setTitle(BumbleStrings.submit, for: .normal)
             let theme = BumbleConfig.shared.theme
             cell.cellButton.tintColor = .white
 //            cell.cellButton.setTitleColor(.white, for: .normal)

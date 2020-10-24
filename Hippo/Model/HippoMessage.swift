@@ -1024,7 +1024,7 @@ class HippoMessage: MessageCallbacks, FuguPublishable {
 struct FeedbackMessage {
     var line_after_feedback_1 = "Your response is recorded"
     var line_after_feedback_2 = "Thank you"
-    var line_before_feedback = HippoStrings.ratingReview//"Please provide feedback for our conversation"
+    var line_before_feedback = BumbleStrings.ratingReview//"Please provide feedback for our conversation"
  
     init(json: [String: Any]) {
         line_after_feedback_1 = json["line_after_feedback_1"] as? String ?? line_after_feedback_1

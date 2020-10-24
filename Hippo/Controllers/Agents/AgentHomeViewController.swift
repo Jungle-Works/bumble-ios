@@ -9,7 +9,7 @@
 import UIKit
 import NotificationCenter
 
-class AgentHomeViewController: HippoHomeViewController {
+class AgentHomeViewController: BumbleHomeViewController {
     
     //MARK: Screen Constants
     private let maxErrorViewHeight: CGFloat = 25
@@ -60,7 +60,7 @@ class AgentHomeViewController: HippoHomeViewController {
         ConversationStore.shared.fetchAllCachedConversation()
         setData()
         if BumbleConfig.shared.agentDetail?.id == -1 || BumbleConfig.shared.agentDetail?.id == nil{
-            HippoChecker.checkForAgentIntialization { (success, error) in
+            BumbleChecker.checkForAgentIntialization { (success, error) in
                 guard success else {
                     return
                 }
@@ -304,7 +304,7 @@ extension AgentHomeViewController {
             errorLabel.text = ""
             updateErrorLabelView(isHiding: true)
         } else {
-            errorLabel.text = HippoStrings.noNetworkConnection
+            errorLabel.text = BumbleStrings.noNetworkConnection
             updateErrorLabelView(isHiding: false)
         }
     }
@@ -393,8 +393,8 @@ extension AgentHomeViewController {
         self.allChatButton.setBackgroundColor(color: #colorLiteral(red: 0.8156862745, green: 0.8156862745, blue: 0.8156862745, alpha: 1), forState: UIControl.State.highlighted)
         self.myChatButton.titleLabel?.font = UIFont.bold(ofSize: 15)
         self.allChatButton.titleLabel?.font = UIFont.regular(ofSize: 15)
-        self.myChatButton.setTitle(BumbleConfig.shared.theme.myChatBtnText == nil ? HippoStrings.myChats : BumbleConfig.shared.theme.myChatBtnText, for: .normal)
-        self.allChatButton.setTitle(BumbleConfig.shared.theme.allChatBtnText == nil ? HippoStrings.allChats : BumbleConfig.shared.theme.allChatBtnText, for: .normal)
+        self.myChatButton.setTitle(BumbleConfig.shared.theme.myChatBtnText == nil ? BumbleStrings.myChats : BumbleConfig.shared.theme.myChatBtnText, for: .normal)
+        self.allChatButton.setTitle(BumbleConfig.shared.theme.allChatBtnText == nil ? BumbleStrings.allChats : BumbleConfig.shared.theme.allChatBtnText, for: .normal)
         self.bottomLineView.backgroundColor = BumbleConfig.shared.theme.themeColor
         self.view.backgroundColor = BumbleConfig.shared.theme.backgroundColor
         view_NavigationBar.title = BumbleConfig.shared.theme.headerText
@@ -657,10 +657,10 @@ extension AgentHomeViewController: UITableViewDelegate, UITableViewDataSource {
         
         if let status = conversationList[indexPath.row].status {
             if status == 1{
-                let deleteAction = UITableViewRowAction(style: .default, title: HippoStrings.closeChat) { (action, indexpath) in
-                    self.showOptionAlert(title: "", message: HippoStrings.closeChatPopup, preferredStyle: .alert, successButtonName: HippoStrings.yes, successComplete: { (_) in
+                let deleteAction = UITableViewRowAction(style: .default, title: BumbleStrings.closeChat) { (action, indexpath) in
+                    self.showOptionAlert(title: "", message: BumbleStrings.closeChatPopup, preferredStyle: .alert, successButtonName: BumbleStrings.yes, successComplete: { (_) in
                         self.updateChannelStatus(for: indexPath.row)
-                    }, failureButtonName: HippoStrings.no.capitalized, failureComplete: nil)
+                    }, failureButtonName: BumbleStrings.no.capitalized, failureComplete: nil)
                 }
                 return [deleteAction]
             }else if status == 2{
@@ -679,7 +679,7 @@ extension AgentHomeViewController: UITableViewDelegate, UITableViewDataSource {
             AgentConversationManager.updateChannelStatus(for: channelId, newStatus: newStatus) { (result) in
                 guard result.isSuccessful else {
                     self.stopLoading()
-                    showAlertWith(message: HippoStrings.somethingWentWrong, action: nil)
+                    showAlertWith(message: BumbleStrings.somethingWentWrong, action: nil)
                     return
                 }
                 guard let controllers = self.navigationController?.viewControllers else {
@@ -687,7 +687,7 @@ extension AgentHomeViewController: UITableViewDelegate, UITableViewDataSource {
                     return
                 }
                 for each in controllers {
-                    if let vc = each as? HippoHomeViewController {
+                    if let vc = each as? BumbleHomeViewController {
 //                        vc.channelStatusChanged(channelId: channelId, newStatus: ChatStatus(rawValue: newStatus) ?? ChatStatus.open)
                         self.stopLoading()
                         self.deleteConversation(channelId: channelId)

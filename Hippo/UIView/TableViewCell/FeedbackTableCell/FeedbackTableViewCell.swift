@@ -52,7 +52,7 @@ class FeedbackTableViewCell: MessageTableViewCell {
     @IBOutlet weak var submitButton: UIButton! {
         didSet {
             submitButton.titleLabel?.font = UIFont.bold(ofSize: 16.0)
-            submitButton.setTitle(HippoStrings.submit, for: .normal)
+            submitButton.setTitle(BumbleStrings.submit, for: .normal)
             submitButton.setTitleColor(.white, for: .normal)
             submitButton.backgroundColor = BumbleConfig.shared.theme.themeColor
             submitButton.layer.cornerRadius = 6
@@ -116,7 +116,7 @@ class FeedbackTableViewCell: MessageTableViewCell {
 
     func setDataForAgent(with params: FeedbackParams) {
         self.data = params
-        label_ReviewSubmitted.text = HippoStrings.thanksForFeedback
+        label_ReviewSubmitted.text = BumbleStrings.thanksForFeedback
         textviewHeightConstraint?.isActive = true
         textviewHeightConstraint?.constant = 80
         if let message = params.messageObject {
@@ -124,7 +124,7 @@ class FeedbackTableViewCell: MessageTableViewCell {
         }
         
         data.cellTextView = cellTextView
-        titleLabel.text = HippoStrings.ratingReview
+        titleLabel.text = BumbleStrings.ratingReview
 
         
         if params.messageObject!.is_rating_given {
@@ -161,7 +161,7 @@ class FeedbackTableViewCell: MessageTableViewCell {
     
     func setData(params: FeedbackParams) {
         self.data = params
-        label_ReviewSubmitted.text = HippoStrings.thanksForFeedback
+        label_ReviewSubmitted.text = BumbleStrings.thanksForFeedback
         textviewHeightConstraint?.isActive = true
         textviewHeightConstraint?.constant = 80
         if let message = params.messageObject {
@@ -169,8 +169,8 @@ class FeedbackTableViewCell: MessageTableViewCell {
         }
         
         data.cellTextView = cellTextView
-        titleLabel.text = HippoStrings.ratingReview
-        placeholderLabel.text = HippoStrings.writeReview
+        titleLabel.text = BumbleStrings.ratingReview
+        placeholderLabel.text = BumbleStrings.writeReview
         
         if params.messageObject!.is_rating_given {
             //completionView.isHidden = false
@@ -227,7 +227,7 @@ class FeedbackTableViewCell: MessageTableViewCell {
             cellTextView.text = data.messageObject!.comment
             label_Rating.text = "\(data.messageObject?.rating_given ?? 0)" + "/" + "\(data.messageObject?.total_rating ?? 0)"
             if cellTextView.text.isEmpty {
-                placeholderLabel.text = HippoStrings.noComment
+                placeholderLabel.text = BumbleStrings.noComment
                 placeholderLabel.isHidden = false
             }
         }
@@ -321,15 +321,15 @@ extension FeedbackTableViewCell: UITextViewDelegate {
     
 
     func textViewDidBeginEditing(_ textView: UITextView) {
-        HippoKeyboardManager.shared.enable = true
+        BumbleKeyboardManager.shared.enable = true
         self.delegate?.cellTextViewBeginEditing(textView: textView, data: data)
     }
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
-        HippoKeyboardManager.shared.enable = true
+        BumbleKeyboardManager.shared.enable = true
         return true
     }
     func textViewDidEndEditing(_ textView: UITextView) {
-        HippoKeyboardManager.shared.enable = false
+        BumbleKeyboardManager.shared.enable = false
         self.delegate?.cellTextViewEndEditing(data: data)
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

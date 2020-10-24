@@ -141,7 +141,7 @@ class HippoBroadcaster {
         HTTPClient.makeConcurrentConnectionWith(method: .POST, para: params, extendedUrl: AgentEndPoints.getGroupingTag.rawValue) { (response, error, _, statusCode) in
             
             guard let responseDict = response as? [String: Any], let data = responseDict["data"] as? [String: Any], let tags = data["tags"] as? [[String: Any]] else {
-                    let message = error?.localizedDescription ?? HippoStrings.somethingWentWrong
+                    let message = error?.localizedDescription ?? BumbleStrings.somethingWentWrong
                     completion(false, message)
                     return
             }
@@ -170,18 +170,18 @@ class HippoBroadcaster {
     }
     func sendBroadcastMessage(dict: [String: Any], completion: @escaping sendBroadcastCompletion) {
         guard let params = getParamsForBroadcastMessage(with: dict) else {
-            completion(false, HippoStrings.somethingWentWrong)
+            completion(false, BumbleStrings.somethingWentWrong)
             return
         }
         
         HTTPClient.makeConcurrentConnectionWith(method: .POST, para: params, extendedUrl: AgentEndPoints.sendBroadcastMessage.rawValue) { (response, error, _, statusCode) in
             
             guard let responseDict = response as? [String: Any], let _ = responseDict["data"] as? [String: Any] else {
-                let message = HippoStrings.somethingWentWrong
+                let message = BumbleStrings.somethingWentWrong
                 completion(false, message)
                 return
             }
-            let message = responseDict["message"] as? String ?? HippoStrings.somethingWentWrong
+            let message = responseDict["message"] as? String ?? BumbleStrings.somethingWentWrong
             completion(true, message)
         }
     }

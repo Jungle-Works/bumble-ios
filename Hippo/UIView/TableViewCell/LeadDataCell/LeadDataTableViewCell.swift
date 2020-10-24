@@ -164,13 +164,13 @@ class LeadDataTableViewCell: UITableViewCell {
 
 extension LeadDataTableViewCell: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        HippoKeyboardManager.shared.enable = true
+        BumbleKeyboardManager.shared.enable = true
         self.delegate?.textfieldShouldBeginEditing(textfield: textField)
         return true
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        HippoKeyboardManager.shared.enable = false
+        BumbleKeyboardManager.shared.enable = false
         self.delegate?.textfieldShouldEndEditing(textfield: textField)
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

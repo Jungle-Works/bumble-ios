@@ -15,7 +15,7 @@ protocol AgentChatDeleagate: class {
 }
 
 
-class AgentConversationViewController: HippoConversationViewController {
+class AgentConversationViewController: BumbleConversationViewController {
     
     struct IntializationRequest {
         let config: MessageSendingViewConfig
@@ -128,12 +128,12 @@ class AgentConversationViewController: HippoConversationViewController {
         self.setTitleForCustomNavigationBar()
         getAgentsData()
         guard channel != nil else {
-            startNewConversation(replyMessage: nil, completion: { [weak self] (success, result) in
-                if success {
-                    self?.populateTableViewWithChannelData()
-                    self?.fetchMessagesFrom1stPage()
-                }
-            })
+//            startNewConversation(replyMessage: nil, completion: { [weak self] (success, result) in
+//                if success {
+//                    self?.populateTableViewWithChannelData()
+//                    self?.fetchMessagesFrom1stPage()
+//                }
+//            })
             return
         }
         //        infoButton.isHidden = true
@@ -243,7 +243,7 @@ class AgentConversationViewController: HippoConversationViewController {
              sendMessageButton.setImage(BumbleConfig.shared.theme.sendBtnIcon, for: .normal)
             
              sendMessageButton.setTitle("", for: .normal)
-         } else { sendMessageButton.setTitle(HippoStrings.send, for: .normal) }
+         } else { sendMessageButton.setTitle(BumbleStrings.send, for: .normal) }
          
          if BumbleConfig.shared.theme.addButtonIcon != nil {
              addFileButtonAction.tintColor = BumbleConfig.shared.theme.themeColor
@@ -372,7 +372,7 @@ class AgentConversationViewController: HippoConversationViewController {
             return
         }
         if botArray.isEmpty {
-            showAlertWith(message: HippoStrings.noBotActionAvailable, action: nil)
+            showAlertWith(message: BumbleStrings.noBotActionAvailable, action: nil)
             return
         }
         self.botActionView.removeFromSuperview()
@@ -458,9 +458,9 @@ class AgentConversationViewController: HippoConversationViewController {
     }
     
     func askBeforeAssigningChat() {
-        showOptionAlert(title: "", message: HippoStrings.takeOverChat, successButtonName: HippoStrings.yes, successComplete: { (action) in
+        showOptionAlert(title: "", message: BumbleStrings.takeOverChat, successButtonName: BumbleStrings.yes, successComplete: { (action) in
             self.assignChatToSelf()
-        }, failureButtonName: HippoStrings.no, failureComplete: nil)
+        }, failureButtonName: BumbleStrings.no, failureComplete: nil)
     }
     
     func assignChatToSelf() {
@@ -542,7 +542,7 @@ class AgentConversationViewController: HippoConversationViewController {
         if FuguNetworkHandler.shared.isNetworkConnected {
             hideErrorMessage()
         } else {
-            errorMessage = HippoStrings.noNetworkConnection
+            errorMessage = BumbleStrings.noNetworkConnection
             showErrorMessage()
         }
     }
@@ -565,7 +565,7 @@ class AgentConversationViewController: HippoConversationViewController {
             return
         }
         if FuguNetworkHandler.shared.isNetworkConnected == false {
-            let message = HippoStrings.noNetworkConnection
+            let message = BumbleStrings.noNetworkConnection
             showErrorMessage(messageString: message, bgColor: UIColor.red)
             completion?(false)
             return
@@ -701,37 +701,37 @@ class AgentConversationViewController: HippoConversationViewController {
     }
     
     
-    override func startNewConversation(replyMessage: HippoMessage?, completion: ((_ success: Bool, _ result: HippoChannelCreationResult) -> Void)?) {
-        
-        disableSendingNewMessages()
-        if FuguNetworkHandler.shared.isNetworkConnected == false {
-            errorMessage = HippoStrings.noNetworkConnection
-            showErrorMessage()
-            disableSendingNewMessages()
-            return
-        }
-        
-        startLoaderAnimation()
-        
-        guard let detail = BumbleConfig.shared.agentDetail, !detail.fuguToken.isEmpty else {
-            enableSendingNewMessages()
-            stopLoaderAnimation()
-            return
-        }
-        
-        if isDefaultChannel() {
-            
-        } else if agentDirectChatDetail != nil {
-            HippoChannel.get(withFuguChatAttributes: agentDirectChatDetail!) { [weak self] (result) in
-                self?.enableSendingNewMessages()
-                self?.channelCreatedSuccessfullyWith(result: result)
-                completion?(result.isSuccessful, result)
-            }
-        } else {
-            enableSendingNewMessages()
-            stopLoaderAnimation()
-        }
-    }
+//    override func startNewConversation(replyMessage: HippoMessage?, completion: ((_ success: Bool, _ result: BumbleChannelCreationResult) -> Void)?) {
+//        
+//        disableSendingNewMessages()
+//        if FuguNetworkHandler.shared.isNetworkConnected == false {
+//            errorMessage = BumbleStrings.noNetworkConnection
+//            showErrorMessage()
+//            disableSendingNewMessages()
+//            return
+//        }
+//        
+//        startLoaderAnimation()
+//        
+//        guard let detail = BumbleConfig.shared.agentDetail, !detail.fuguToken.isEmpty else {
+//            enableSendingNewMessages()
+//            stopLoaderAnimation()
+//            return
+//        }
+//        
+//        if isDefaultChannel() {
+//            
+//        } else if agentDirectChatDetail != nil {
+//            HippoChannel.get(withFuguChatAttributes: agentDirectChatDetail!) { [weak self] (result) in
+//                self?.enableSendingNewMessages()
+//                self?.channelCreatedSuccessfullyWith(result: result)
+//                completion?(result.isSuccessful, result)
+//            }
+//        } else {
+//            enableSendingNewMessages()
+//            stopLoaderAnimation()
+//        }
+//    }
     
     func enableSendingNewMessages() {
         addFileButtonAction.isUserInteractionEnabled = true
@@ -745,7 +745,7 @@ class AgentConversationViewController: HippoConversationViewController {
         messageTextView.isEditable = false
     }
     
-    func channelCreatedSuccessfullyWith(result: HippoChannelCreationResult) {
+    func channelCreatedSuccessfullyWith(result: BumbleChannelCreationResult) {
         if let error = result.error {
             errorMessage = error.localizedDescription
             showErrorMessage()
@@ -901,7 +901,7 @@ extension AgentConversationViewController {
         self.messageTextView.backgroundColor = .clear
         self.messageTextView.tintColor = BumbleConfig.shared.theme.messageTextViewTintColor//
 //        placeHolderLabel.text = HippoConfig.shared.strings.messagePlaceHolderText
-        placeHolderLabel.text = BumbleConfig.shared.theme.messagePlaceHolderText == nil ? HippoStrings.messagePlaceHolderText : BumbleConfig.shared.theme.messagePlaceHolderText
+        placeHolderLabel.text = BumbleConfig.shared.theme.messagePlaceHolderText == nil ? BumbleStrings.messagePlaceHolderText : BumbleConfig.shared.theme.messagePlaceHolderText
             //
         hideErrorMessage()
         sendMessageButton.isEnabled = false
@@ -917,10 +917,10 @@ extension AgentConversationViewController {
             backgroundImageView.contentMode = .scaleToFill
         }
 
-        self.attachments.append(Attachment(icon : BumbleConfig.shared.theme.alphabetSymbolIcon , title : HippoStrings.text))
-        self.attachments.append(Attachment(icon : BumbleConfig.shared.theme.privateInternalNotesIcon  , title : HippoStrings.internalNotes))
+        self.attachments.append(Attachment(icon : BumbleConfig.shared.theme.alphabetSymbolIcon , title : BumbleStrings.text))
+        self.attachments.append(Attachment(icon : BumbleConfig.shared.theme.privateInternalNotesIcon  , title : BumbleStrings.internalNotes))
         if BussinessProperty.current.isAskPaymentAllowed{
-            self.attachments.append(Attachment(icon : BumbleConfig.shared.theme.paymentIcon , title : HippoStrings.payment))
+            self.attachments.append(Attachment(icon : BumbleConfig.shared.theme.paymentIcon , title : BumbleStrings.payment))
         }
 //        self.attachments.append(Attachment(icon : HippoConfig.shared.theme.botIcon  , title : "Bot"))
         
@@ -1016,7 +1016,7 @@ extension AgentConversationViewController {
         takeOverButtonContainer.backgroundColor = BumbleConfig.shared.theme.headerBackgroundColor
         takeOverButton.backgroundColor = BumbleConfig.shared.theme.themeTextcolor
         takeOverButton.setTitleColor(BumbleConfig.shared.theme.themeColor, for: .normal)
-        takeOverButton.setTitle(BumbleConfig.shared.theme.takeOverButtonText == nil ? HippoStrings.takeOver : BumbleConfig.shared.theme.takeOverButtonText, for: .normal)
+        takeOverButton.setTitle(BumbleConfig.shared.theme.takeOverButtonText == nil ? BumbleStrings.takeOver : BumbleConfig.shared.theme.takeOverButtonText, for: .normal)
         
     }
     
@@ -1267,7 +1267,7 @@ extension AgentConversationViewController {
         
 //        if channel?.channelInfo?.chatType == .o2o {
         if channel?.chatDetail?.chatType == .o2o {
-            config.normalMessagePlaceHolder = BumbleConfig.shared.theme.messagePlaceHolderText == nil ? HippoStrings.messagePlaceHolderText : BumbleConfig.shared.theme.messagePlaceHolderText ?? ""
+            config.normalMessagePlaceHolder = BumbleConfig.shared.theme.messagePlaceHolderText == nil ? BumbleStrings.messagePlaceHolderText : BumbleConfig.shared.theme.messagePlaceHolderText ?? ""
         }
         
         let dataManager = MentionDataManager(mentions: Business.shared.agents)
@@ -1370,7 +1370,7 @@ extension AgentConversationViewController {
         textViewBgView.backgroundColor = isPrivate ? BumbleConfig.shared.theme.privateNoteChatBoxColor : UIColor.white
 //        messageTextView.tintColor = isPrivate ? UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1) : UIColor.black
 //        placeHolderLabel.textColor = isPrivate ? theme.chatBox.privateMessageTheme.placeholderColor : theme.label.primary
-        placeHolderLabel.text = !isPrivate ? (BumbleConfig.shared.theme.messagePlaceHolderText == nil ? HippoStrings.messagePlaceHolderText : BumbleConfig.shared.theme.messagePlaceHolderText) : HippoStrings.privateMessagePlaceHolder
+        placeHolderLabel.text = !isPrivate ? (BumbleConfig.shared.theme.messagePlaceHolderText == nil ? BumbleStrings.messagePlaceHolderText : BumbleConfig.shared.theme.messagePlaceHolderText) : BumbleStrings.privateMessagePlaceHolder
         textViewDidChange(messageTextView)
         updateDefaultTextAttributes()
     }
@@ -1479,7 +1479,7 @@ extension AgentConversationViewController {
 //        }
         if storeResponse?.restrictPersonalInfo ?? false{
             if message.matches(for: phoneNumberRegex).count > 0 || message.isValidEmail(){
-                showErrorMessage(messageString: HippoStrings.donotAllowPersonalInfo)
+                showErrorMessage(messageString: BumbleStrings.donotAllowPersonalInfo)
                 updateErrorLabelView(isHiding: true)
                 return
             }
@@ -1503,14 +1503,14 @@ extension AgentConversationViewController {
             self.sendMessageToFaye(mentions: mentions, messageString: trimmedMessage, isPrivate: isPrivate)
         } else {
             //TODO: - Loader animation
-            startNewConversation(replyMessage: nil, completion: { [weak self] (success, result) in
-                if success {
-                    self?.populateTableViewWithChannelData()
-//                    self?.addMessageToUIBeforeSending(message: message)
-//                    self?.sendMessage(message: message)
-                    self?.sendMessageToFaye(mentions: mentions, messageString: trimmedMessage, isPrivate: isPrivate)
-                }
-            })
+//            startNewConversation(replyMessage: nil, completion: { [weak self] (success, result) in
+//                if success {
+//                    self?.populateTableViewWithChannelData()
+////                    self?.addMessageToUIBeforeSending(message: message)
+////                    self?.sendMessage(message: message)
+//                    self?.sendMessageToFaye(mentions: mentions, messageString: trimmedMessage, isPrivate: isPrivate)
+//                }
+//            })
         }
     }
     func sendMessageToFaye(mentions: [Mention], messageString: String, isPrivate: Bool) {
@@ -2384,7 +2384,7 @@ extension AgentConversationViewController: BotTableDelegate {
     }
     func sendFeedbackMessageToFaye() {
 //        let message = HippoMessage(message: "Please provide a feedback for our conversation", type: .feedback, uniqueID: generateUniqueId(), chatType: chatType)
-        let message = HippoMessage(message: HippoStrings.ratingReview, type: .feedback, uniqueID: generateUniqueId(), chatType: chatType)
+        let message = HippoMessage(message: BumbleStrings.ratingReview, type: .feedback, uniqueID: generateUniqueId(), chatType: chatType)
         message.updateObject(with: message)
         channel.unsentMessages.append(message)
         self.addMessageToUIBeforeSending(message: message)
@@ -2437,14 +2437,14 @@ extension AgentConversationViewController{
 //            }
 //        }
         switch attachCVCell.attachmentDetail?.title {
-        case HippoStrings.text:
+        case BumbleStrings.text:
             enableNormalMessage()
-        case HippoStrings.internalNotes:
+        case BumbleStrings.internalNotes:
             enablePrivateNote()
-        case HippoStrings.payment:
+        case BumbleStrings.payment:
             self.closeKeyBoard()
             presentPlansVc()
-        case HippoStrings.bot:
+        case BumbleStrings.bot:
             self.closeKeyBoard()
             AgentConversationManager.getBotsAction(userId: self.channel.chatDetail?.customerID ?? 0, channelId: self.channelId) { (botActions) in
                 self.addBotActionView(with: botActions)

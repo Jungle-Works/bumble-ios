@@ -31,7 +31,7 @@ class PrePayment{
                 return
             }
             guard let response = responseObject as? [String: Any], let data = response["data"] as? [String: Any] else {
-                BumbleConfig.shared.log.error(error ?? HippoStrings.somethingWentWrong, level: .error)
+                BumbleConfig.shared.log.error(error ?? BumbleStrings.somethingWentWrong, level: .error)
                 completion(HippoError.general)
                 return
             }
@@ -195,7 +195,7 @@ extension UnreadCount {
                 return
             }
             guard let response = responseObject as? [String: Any], let data = response["data"] as? [String: Any], let unreadCount = Int.parse(values: data, key: "unread_count") else {
-                BumbleConfig.shared.log.error(error ?? HippoStrings.somethingWentWrong, level: .error)
+                BumbleConfig.shared.log.error(error ?? BumbleStrings.somethingWentWrong, level: .error)
                 callback(HippoError.general, nil)
                 return
             }
@@ -239,14 +239,14 @@ extension UnreadCount {
         HTTPClient.makeConcurrentConnectionWith(method: .POST, para: params, extendedUrl: AgentEndPoints.getUnreadCount.rawValue) { (responseObject, error, tag, statusCode) in
             
             guard let unwrappedStatusCode = statusCode, error == nil, unwrappedStatusCode == STATUS_CODE_SUCCESS, error == nil  else {
-                BumbleConfig.shared.log.error(error ?? HippoStrings.somethingWentWrong, level: .error)
+                BumbleConfig.shared.log.error(error ?? BumbleStrings.somethingWentWrong, level: .error)
                 completion(ResponseResult(isSuccessful: false, error: error))
                 return
             }
             BumbleConfig.shared.log.debug("\(responseObject ?? [:])", level: .response)
             
             guard let response = responseObject as? [String: Any], let data = response["data"] as? [String: Any], let user_unread_count = data["user_unread_count"] as? [[String: Any]] else {
-                BumbleConfig.shared.log.error(error ?? HippoStrings.somethingWentWrong, level: .error)
+                BumbleConfig.shared.log.error(error ?? BumbleStrings.somethingWentWrong, level: .error)
                 completion(ResponseResult(isSuccessful: false, error: error))
                 return
             }
@@ -300,7 +300,7 @@ extension UnreadCount{
          
         HTTPClient.makeConcurrentConnectionWith(method: .POST, para: params, extendedUrl: AgentEndPoints.conversationUnread.rawValue) { (responseObject, error, tag, statusCode) in
             guard let unwrappedStatusCode = statusCode, error == nil, unwrappedStatusCode == STATUS_CODE_SUCCESS, error == nil  else {
-                BumbleConfig.shared.log.error(error ?? HippoStrings.somethingWentWrong, level: .error)
+                BumbleConfig.shared.log.error(error ?? BumbleStrings.somethingWentWrong, level: .error)
                 completion(ResponseResult(isSuccessful: false, error: error))
                 return
             }

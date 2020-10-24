@@ -133,7 +133,7 @@ class PromotionsViewController: UIViewController {
    
         navigationBar.title = BumbleConfig.shared.theme.promotionsAnnouncementsHeaderText
         navigationBar.leftButton.addTarget(self, action: #selector(backButtonClicked), for: .touchUpInside)
-        navigationBar.rightButton.setTitle(HippoStrings.clearAll, for: .normal)
+        navigationBar.rightButton.setTitle(BumbleStrings.clearAll, for: .normal)
         navigationBar.rightButton.titleLabel?.font = UIFont.regular(ofSize: 14)
         navigationBar.rightButton.setTitleColor(UIColor(red: 95/255, green: 95/255, blue: 95/255, alpha: 1.0), for: .normal)
         navigationBar.rightButton.addTarget(self, action: #selector(deleteAllAnnouncementsButtonClicked), for: .touchUpInside)
@@ -239,7 +239,7 @@ class PromotionsViewController: UIViewController {
            // self.navigationItem.rightBarButtonItem?.tintColor = .clear
             if informationView == nil {
                 informationView = InformationView.loadView(self.promotionsTableView.bounds, delegate: self)
-                informationView?.informationLabel.text = HippoStrings.noNotificationFound
+                informationView?.informationLabel.text = BumbleStrings.noNotificationFound
             }
 
             self.informationView?.isHidden = false
@@ -369,14 +369,14 @@ extension PromotionsViewController: UITableViewDelegate,UITableViewDataSource
                 //                     NSAttributedString.Key.underlineColor: UIColor(red:109.0/255.0, green:212.0/255.0, blue:0.0, alpha:1.0),
                 //                     NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue])
                 //                cell.showReadMoreLessButton.setAttributedTitle(attrs, for: .normal)
-                cell.showReadMoreLessButton.setTitle(HippoStrings.readMore, for: .normal)
+                cell.showReadMoreLessButton.setTitle(BumbleStrings.readMore, for: .normal)
                 cell.showReadMoreLessButton.titleLabel?.font = UIFont.regular(ofSize: 14.0)
                 cell.showReadMoreLessButton.setTitleColor(BumbleConfig.shared.theme.themeColor, for: .normal)
                 
             }else if states[indexPath.row] == false{
                 cell.descriptionLabel.isHidden = true
                 cell.fullDescriptionLabel.isHidden = false
-                cell.showReadMoreLessButton.setTitle(HippoStrings.readLess, for: .normal)
+                cell.showReadMoreLessButton.setTitle(BumbleStrings.readLess, for: .normal)
                 cell.showReadMoreLessButton.titleLabel?.font = UIFont.regular(ofSize: 14.0)
                 cell.showReadMoreLessButton.setTitleColor(BumbleConfig.shared.theme.themeColor, for: .normal)
                 //                let attrs = NSAttributedString(string: "Read less",
@@ -431,7 +431,7 @@ extension PromotionsViewController: UITableViewDelegate,UITableViewDataSource
         return true
     }
     func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
-        return HippoStrings.clear
+        return BumbleStrings.clear
     }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
@@ -519,7 +519,7 @@ extension PromotionsViewController{
         } else {
             viewError_Height.constant = 20
             errorContentView.backgroundColor = .red
-            errorLabel.text = HippoStrings.noNetworkConnection
+            errorLabel.text = BumbleStrings.noNetworkConnection
         }
     }
     

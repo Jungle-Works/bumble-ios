@@ -105,9 +105,9 @@ class PaymentItem: NSObject {
         } else if !priceField.errorMessage.isEmpty {
             errorMessage = priceField.errorMessage
         }else if !((Double(priceField.value) ?? 0.0) >= 0.01){
-            errorMessage = HippoStrings.invalidPriceAmount
+            errorMessage = BumbleStrings.invalidPriceAmount
         }else if !((Double(priceField.value) ?? 0.0) <= 999999.99){
-            errorMessage = HippoStrings.invalidPriceAmount
+            errorMessage = BumbleStrings.invalidPriceAmount
         }else {
             errorMessage = ""
         }
@@ -116,31 +116,31 @@ class PaymentItem: NSObject {
     
     static func getDefaultPriceItem() -> [String: Any]{
         let defaultPriceItem = ["validation_type": "DECIMAL",
-                                "placeholder": HippoStrings.enterPrice,
-                                "title": HippoStrings.price,
+                                "placeholder": BumbleStrings.enterPrice,
+                                "title": BumbleStrings.price,
                                 "is_required": true,
                                 "type": "TEXTFIELD",
-                                "key": HippoStrings.price] as [String : Any]
+                                "key": BumbleStrings.price] as [String : Any]
         return defaultPriceItem
     }
     
     static func defaultDescriptionItem() -> [String: Any]{
         let defaultPriceItem = ["validation_type": "ANY",
-                                "placeholder": HippoStrings.enterDescription,
-                                "title": HippoStrings.description,
+                                "placeholder": BumbleStrings.enterDescription,
+                                "title": BumbleStrings.description,
                                 "is_required": true,
                                 "type": "TEXTFIELD",
-                                "key": HippoStrings.title] as [String : Any]
+                                "key": BumbleStrings.title] as [String : Any]
         return defaultPriceItem
     }
     
     static func defaultTitleItem() -> [String: Any]{
         let defaultTitleItem = ["validation_type": "ANY",
-                                "placeholder": HippoStrings.enterTitle,
-                                "title":  HippoStrings.title,
+                                "placeholder": BumbleStrings.enterTitle,
+                                "title":  BumbleStrings.title,
                                 "is_required": true,
                                 "type": "TEXTFIELD",
-                                "key": HippoStrings.title] as [String : Any]
+                                "key": BumbleStrings.title] as [String : Any]
         return defaultTitleItem
     }
 }

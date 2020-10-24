@@ -66,7 +66,7 @@ extension CreatePaymentDataSource: UITableViewDataSource {
                 customCell.button_CheckBox.imageView?.tintColor = .black
                 customCell.button_CheckBox.isSelected = shouldSavePaymentPlan ?? false
                 customCell.button_CheckBox.setImage((shouldSavePaymentPlan ?? false) ? BumbleConfig.shared.theme.checkBoxActive : BumbleConfig.shared.theme.checkBoxInActive, for: .normal)
-                customCell.totalPriceLabel.text = ((store.canEditPlan ?? false) || (store.isCustomisedPayment ?? false)) ? " " : HippoStrings.savePlan
+                customCell.totalPriceLabel.text = ((store.canEditPlan ?? false) || (store.isCustomisedPayment ?? false)) ? " " : BumbleStrings.savePlan
                 customCell.setupCell(form: value, store: store)
                
                 return customCell

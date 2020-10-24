@@ -23,19 +23,19 @@ struct ConversationState {
     }
     
     static func getReassignedState() -> ConversationState {
-        let obj = ConversationState(labelString: HippoStrings.conversationAssigned, image: BumbleConfig.shared.theme.chatAssignIcon, transitionBckgroundColor: UIColor.pumpkinOrange.withAlphaComponent(0.95))
+        let obj = ConversationState(labelString: BumbleStrings.conversationAssigned, image: BumbleConfig.shared.theme.chatAssignIcon, transitionBckgroundColor: UIColor.pumpkinOrange.withAlphaComponent(0.95))
         return obj
     }
     static func getNewConversationState() -> ConversationState {
-        let obj = ConversationState(labelString: HippoStrings.newConversation, image: BumbleConfig.shared.theme.chatReOpenIcon, transitionBckgroundColor: UIColor.greenApple.withAlphaComponent(0.95))
+        let obj = ConversationState(labelString: BumbleStrings.newConversation, image: BumbleConfig.shared.theme.chatReOpenIcon, transitionBckgroundColor: UIColor.greenApple.withAlphaComponent(0.95))
         return obj
     }
     static func getClosedState() -> ConversationState {
-        let obj = ConversationState(labelString: HippoStrings.coversationClosed, image: BumbleConfig.shared.theme.chatCloseIcon, transitionBckgroundColor: UIColor.dirtyPurple.withAlphaComponent(0.95))
+        let obj = ConversationState(labelString: BumbleStrings.coversationClosed, image: BumbleConfig.shared.theme.chatCloseIcon, transitionBckgroundColor: UIColor.dirtyPurple.withAlphaComponent(0.95))
         return obj
     }
     static func getReopenState() -> ConversationState {
-        let obj = ConversationState(labelString: HippoStrings.conversationReopened, image: BumbleConfig.shared.theme.chatReOpenIcon, transitionBckgroundColor: UIColor.greenApple.withAlphaComponent(0.95))
+        let obj = ConversationState(labelString: BumbleStrings.conversationReopened, image: BumbleConfig.shared.theme.chatReOpenIcon, transitionBckgroundColor: UIColor.greenApple.withAlphaComponent(0.95))
         return obj
     }
 }

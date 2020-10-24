@@ -346,7 +346,7 @@ extension BroadCastViewController: BroadCastTextViewCellDelegate, BroadCastTextF
             
             let channels = parsedStore.broadcasts
             if channels.isEmpty {
-                self?.showAlert(title: "", message: BumbleConfig.shared.strings.noBroadcastAvailable, buttonTitle: HippoStrings.ok, completion: nil)
+                self?.showAlert(title: "", message: BumbleConfig.shared.strings.noBroadcastAvailable, buttonTitle: BumbleStrings.ok, completion: nil)
                 return
             }
             self?.pushListContoller(store: parsedStore)
@@ -356,13 +356,13 @@ extension BroadCastViewController: BroadCastTextViewCellDelegate, BroadCastTextF
     func sendButtonClicked() {
         if let errorMessage = validateData() {
             isValidationFailed = true
-            showAlert(title: "", message: errorMessage, buttonTitle: HippoStrings.ok, completion: nil)
+            showAlert(title: "", message: errorMessage, buttonTitle: BumbleStrings.ok, completion: nil)
             tableView.reloadData()
             return
         }
         self.view.endEditing(true)
         guard FuguNetworkHandler.shared.isNetworkConnected else {
-            showAlert(title: "", message: HippoStrings.noNetworkConnection, buttonTitle: HippoStrings.ok, completion: nil)
+            showAlert(title: "", message: BumbleStrings.noNetworkConnection, buttonTitle: BumbleStrings.ok, completion: nil)
             return
         }
         
@@ -372,10 +372,10 @@ extension BroadCastViewController: BroadCastTextViewCellDelegate, BroadCastTextF
         broadcaster.sendBroadcastMessage(dict: param) {[weak self] (success, message) in
             self?.stopLoaderAnimation()
             guard success else {
-                self?.showAlert(title: "", message: message, buttonTitle: HippoStrings.ok, completion: nil)
+                self?.showAlert(title: "", message: message, buttonTitle: BumbleStrings.ok, completion: nil)
                 return
             }
-            self?.showAlert(title: "", message: message, buttonTitle: HippoStrings.ok, completion: {[weak self] (_) in
+            self?.showAlert(title: "", message: message, buttonTitle: BumbleStrings.ok, completion: {[weak self] (_) in
                 self?.backButtonAction(UIButton())
             })
         }

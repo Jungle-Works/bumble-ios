@@ -22,7 +22,7 @@ class CardListCell: UICollectionViewCell {
     @IBOutlet weak var ratingViewContainer: UIView!
     @IBOutlet weak var imageView: HippoImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: HippoLabel!
+    @IBOutlet weak var descriptionLabel: BumbleLabel!
     @IBOutlet weak var labelContainterView: UIView!
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var bottomContainer: UIView!
@@ -64,7 +64,7 @@ class CardListCell: UICollectionViewCell {
         let readmoreFont = descriptionLabel.font //If font changes calculation is to be changed
         let readmoreFontColor = UIColor.blue
         
-        let isTrailingAdded = self.descriptionLabel.addTrailing(with: "...", moreText: HippoStrings.readMore, moreTextFont: readmoreFont!, moreTextColor: readmoreFontColor)
+        let isTrailingAdded = self.descriptionLabel.addTrailing(with: "...", moreText: BumbleStrings.readMore, moreTextFont: readmoreFont!, moreTextColor: readmoreFontColor)
         
         
         if isTrailingAdded {

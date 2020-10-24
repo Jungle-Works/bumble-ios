@@ -28,8 +28,8 @@ class BotTableView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        sendButton.setTitle(HippoStrings.sendTitle, for: .normal)
-        cancelButton.setTitle(HippoStrings.cancel, for: .normal)
+        sendButton.setTitle(BumbleStrings.sendTitle, for: .normal)
+        cancelButton.setTitle(BumbleStrings.cancel, for: .normal)
         addGesture()
         setLayer()
         setTheme()

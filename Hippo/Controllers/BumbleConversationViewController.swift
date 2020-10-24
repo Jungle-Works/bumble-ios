@@ -130,7 +130,7 @@ class BumbleConversationViewController: UIViewController {
     func reloadVisibleCellsToStartActivityIndicator() { }
     func adjustChatWhenKeyboardIsOpened(withHeight keyboardHeight: CGFloat) { }
     func addRemoveShadowInTextView(toAdd: Bool) { }
-    func startNewConversation(replyMessage: HippoMessage?, completion: ((_ success: Bool, _ result: BumbleChannelCreationResult?) -> Void)?) { }
+//    func startNewConversation(replyMessage: HippoMessage?, completion: ((_ success: Bool, _ result: HippoChannelCreationResult?) -> Void)?) { }
     func startLoaderAnimation() { }
     func stopLoaderAnimation() { }
     
@@ -1147,13 +1147,13 @@ extension BumbleConversationViewController {
     }
     func publishMessageOnChannel(message: HippoMessage) {
         if channelId == -1 {
-            self.startNewConversation(replyMessage: message) {[weak self] (success, result) in
-                let isReplyMessageSent = result?.isReplyMessageSent ?? false
-                
-                if !isReplyMessageSent {
-                    self?.channel?.send(message: message, completion: {})
-                }
-            }
+//            self.startNewConversation(replyMessage: message) {[weak self] (success, result) in
+//                let isReplyMessageSent = result?.isReplyMessageSent ?? false
+//
+//                if !isReplyMessageSent {
+//                    self?.channel?.send(message: message, completion: {})
+//                }
+//            }
         } else {
             channel?.send(message: message, completion: {})
         }
@@ -1452,13 +1452,13 @@ extension BumbleConversationViewController: SelfMessageDelegate {
         tableViewChat.reloadData()
         sendMessage(message: message)
     }
-    func createChannelIfRequiredAndContinue(replyMessage: HippoMessage?, completion: @escaping ((_ success: Bool, _ result: BumbleChannelCreationResult?) -> ())) {
-        if channel != nil {
-            completion(true, nil)
-        } else {
-            startNewConversation(replyMessage: replyMessage, completion: completion)
-        }
-    }
+//    func createChannelIfRequiredAndContinue(replyMessage: HippoMessage?, completion: @escaping ((_ success: Bool, _ result: HippoChannelCreationResult?) -> ())) {
+//        if channel != nil {
+//            completion(true, nil)
+//        } else {
+//            startNewConversation(replyMessage: replyMessage, completion: completion)
+//        }
+//    }
 }
 
 extension BumbleConversationViewController: ActionTableViewDelegate {
@@ -1478,29 +1478,29 @@ extension BumbleConversationViewController: ActionTableViewDelegate {
         if replyMessage?.messageUniqueID == nil {
             replyMessage?.messageUniqueID = String.generateUniqueId()
         }
-        createChannelIfRequiredAndContinue(replyMessage: replyMessage) { (_, result) in
-            let isReplyMessageSent = result?.isReplyMessageSent ?? false
-            
-            if !isReplyMessageSent {
-               self.sendMessage(message: customMessage)
-            }
-            if let button = customMessage.getButtonWithId(id: selectionId), let action = button.action, button.buttonType == .action {
-                switch action {
-                case .audioCall:
-//                    self.showAlert(title: "", message: "Audio call", actionComplete: nil)
-                    self.startAudioCall()
-                case .videoCall:
-//                    self.showAlert(title: "", message: "Video call", actionComplete: nil)
-                    self.startVideoCall()
-                case .openUrl:
-                    if let link = button.getUrlToOpen() {
-                        self.presentSafariViewcontorller(for: link)
-                    }
-                default:
-                    break
-                }
-            }
-        }
+//        createChannelIfRequiredAndContinue(replyMessage: replyMessage) { (_, result) in
+//            let isReplyMessageSent = result?.isReplyMessageSent ?? false
+//
+//            if !isReplyMessageSent {
+//               self.sendMessage(message: customMessage)
+//            }
+//            if let button = customMessage.getButtonWithId(id: selectionId), let action = button.action, button.buttonType == .action {
+//                switch action {
+//                case .audioCall:
+////                    self.showAlert(title: "", message: "Audio call", actionComplete: nil)
+//                    self.startAudioCall()
+//                case .videoCall:
+////                    self.showAlert(title: "", message: "Video call", actionComplete: nil)
+//                    self.startVideoCall()
+//                case .openUrl:
+//                    if let link = button.getUrlToOpen() {
+//                        self.presentSafariViewcontorller(for: link)
+//                    }
+//                default:
+//                    break
+//                }
+//            }
+//        }
     }
     func presentSafariViewcontorller(for url: URL) {
         let safariVC = SFSafariViewController(url: url)
@@ -1772,11 +1772,11 @@ extension BumbleConversationViewController: submitButtonTableViewDelegate
 {
     func submitButtonPressed(hippoMessage: HippoMessage) {
         
-        createChannelIfRequiredAndContinue(replyMessage: nil) { (success, result) in
-            
-            self.sendMessage(message: hippoMessage)
-            self.tableViewChat.reloadData()
-        }
+//        createChannelIfRequiredAndContinue(replyMessage: nil) { (success, result) in
+//
+//            self.sendMessage(message: hippoMessage)
+//            self.tableViewChat.reloadData()
+//        }
     }
     
     

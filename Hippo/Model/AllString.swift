@@ -31,7 +31,7 @@ class AllString{
             }else{
               customerParsing(response)
             }
-            HippoStrings.updateHippoCallClientStrings()
+            BumbleStrings.updateHippoCallClientStrings()
             completion(error as? HippoError, nil)
         }
     }
@@ -41,11 +41,11 @@ class AllString{
             
         }
         if let callAgain = response["call_again"] as? String{
-            HippoStrings.callAgain = callAgain
+            BumbleStrings.callAgain = callAgain
         }
         
         if let cancelPayment = response["cancel_payment_text"] as? String{
-            HippoStrings.cancelPayment = cancelPayment
+            BumbleStrings.cancelPayment = cancelPayment
         }
         
         if let label_StartChat = response["float_label_start_chat"] as? String{
@@ -61,23 +61,23 @@ class AllString{
         }
         
         if let audio = response["fugu_audio"] as? String{
-            HippoStrings.audio = audio
+            BumbleStrings.audio = audio
         }
         if let camera = response["fugu_camera"] as? String{
-            HippoStrings.camera = camera
+            BumbleStrings.camera = camera
         }
         
         if let cancel = response["fugu_cancel"] as? String{
-            HippoStrings.cancel = cancel
+            BumbleStrings.cancel = cancel
         }
         if let connected = response["fugu_connected"] as? String{
-            HippoStrings.connected = connected
+            BumbleStrings.connected = connected
         }
         if let connecting = response["fugu_connecting"] as? String{
-            HippoStrings.connecting = connecting
+            BumbleStrings.connecting = connecting
         }
         if let document = response["fugu_document"] as? String{
-            HippoStrings.document = document
+            BumbleStrings.document = document
         }
         
         if let fileNotFound = response["fugu_file_not_found"] as? String{
@@ -89,11 +89,11 @@ class AllString{
         }
         
         if let loading = response["fugu_loading"] as? String{
-            HippoStrings.loading = loading
+            BumbleStrings.loading = loading
         }
         
         if let retry = response["fugu_menu_retry"] as? String{
-            HippoStrings.retry = retry
+            BumbleStrings.retry = retry
         }
         
         if let newConversation = response["fugu_new_conversation"] as? String{
@@ -105,27 +105,27 @@ class AllString{
         }
         
         if let ok = response["fugu_ok"] as? String{
-            HippoStrings.ok = ok
+            BumbleStrings.ok = ok
         }
         if let payment = response["fugu_payment"] as? String{
-            HippoStrings.payment = payment
+            BumbleStrings.payment = payment
         }
         if let document = response["fugu_pdf"] as? String{
-            HippoStrings.document = document
+            BumbleStrings.document = document
         }
         if let powered_by = response["fugu_powered_by"] as? String{
             // HippoStrings.powered_by = powered_by
         }
         
         if let send_message = response["fugu_send_message"] as? String{
-            HippoStrings.messagePlaceHolderText = send_message
+            BumbleStrings.messagePlaceHolderText = send_message
             
         }
         if let show_more = response["fugu_show_more"] as? String{
             
         }
         if let support = response["fugu_support"] as? String{
-            HippoStrings.support = support
+            BumbleStrings.support = support
             
         }
         
@@ -137,34 +137,34 @@ class AllString{
         }
         
         if let title = response["fugu_title"] as? String{
-            HippoStrings.title = title
+            BumbleStrings.title = title
         }
         
         if let cant_connect = response["fugu_unable_to_connect_internet"] as? String{
         }
         
         if let video = response["fugu_video"] as? String{
-            HippoStrings.video = video
+            BumbleStrings.video = video
             
         }
         if let voice = response["fugu_voice"] as? String{
-            HippoStrings.voice = voice
+            BumbleStrings.voice = voice
             
         }
         if let hippo_activity_image_trans = response["hippo_activity_image_trans"] as? String{
             
         }
         if let hippo_add_an_option = response["hippo_add_an_option"] as? String{
-            HippoStrings.addOption = hippo_add_an_option
+            BumbleStrings.addOption = hippo_add_an_option
         }
         if let hippo_alert = response["hippo_alert"] as? String{
-            HippoStrings.alert = hippo_alert
+            BumbleStrings.alert = hippo_alert
         }
         if let hippo_all_agents_busy = response["hippo_all_agents_busy"] as? String{
             
         }
         if let hippo_at = response["hippo_at"] as? String{
-            HippoStrings.at = hippo_at
+            BumbleStrings.at = hippo_at
         }
         if let hippo_attachment_file = response["hippo_attachment_file"] as? String{
             
@@ -173,25 +173,25 @@ class AllString{
             
         }
         if let hippo_broadcast_detail = response["hippo_broadcast_detail"] as? String{
-            HippoStrings.broadcastDetails = hippo_broadcast_detail
+            BumbleStrings.broadcastDetails = hippo_broadcast_detail
         }
         if let hippo_browse_other_doc = response["hippo_browse_other_doc"] as? String{
             
         }
         if let hippo_busy_on_call = response["hippo_busy_on_call"] as? String{
-            HippoStrings.busyAnotherCall = hippo_busy_on_call
+            BumbleStrings.busyAnotherCall = hippo_busy_on_call
         }
         if let hippo_call = response["hippo_call"] as? String{
-            HippoStrings.call = hippo_call
+            BumbleStrings.call = hippo_call
         }
         if let hippo_call_back = response["hippo_call_back"] as? String{
-            HippoStrings.callback = hippo_call_back
+            BumbleStrings.callback = hippo_call_back
         }
         if let hippo_call_calling = response["hippo_call_calling"] as? String{
-            HippoStrings.calling = hippo_call_calling
+            BumbleStrings.calling = hippo_call_calling
         }
         if let hippo_call_declined = response["hippo_call_declined"] as? String{
-            HippoStrings.callDeclined = hippo_call_declined
+            BumbleStrings.callDeclined = hippo_call_declined
         }
         if let hippo_call_ended = response["hippo_call_ended"] as? String{
             
@@ -215,7 +215,7 @@ class AllString{
             
         }
         if let hippo_call_ringing = response["hippo_call_ringing"] as? String{
-            HippoStrings.ringing = hippo_call_ringing
+            BumbleStrings.ringing = hippo_call_ringing
         }
         if let hippo_call_with = response["hippo_call_with"] as? String{
             
@@ -224,10 +224,10 @@ class AllString{
             
         }
         if let hippo_calling_from_old = response["hippo_calling_from_old"] as? String{
-            HippoStrings.callOldSdk = hippo_calling_from_old
+            BumbleStrings.callOldSdk = hippo_calling_from_old
         }
         if let hippo_cancel_payment = response["hippo_cancel_payment"] as? String{
-            HippoStrings.cancelPaymentTitle = hippo_cancel_payment
+            BumbleStrings.cancelPaymentTitle = hippo_cancel_payment
         }
         if let hippo_card = response["hippo_card"] as? String{
             
@@ -242,7 +242,7 @@ class AllString{
             
         }
         if let hippo_clear_all_notification = response["hippo_clear_all_notification"] as? String{
-            HippoStrings.clearAll = hippo_clear_all_notification
+            BumbleStrings.clearAll = hippo_clear_all_notification
         }
         if let hippo_copy_to_clipboard = response["hippo_copy_to_clipboard"] as? String{
             
@@ -254,10 +254,10 @@ class AllString{
             
         }
         if let hippo_currency = response["hippo_currency"] as? String{
-            HippoStrings.currency = hippo_currency
+            BumbleStrings.currency = hippo_currency
         }
         if let hippo_current = response["hippo_current"] as? String{
-            HippoStrings.ongoing = hippo_current
+            BumbleStrings.ongoing = hippo_current
         }
         if let hippo_customer_missed_a = response["hippo_customer_missed_a"] as? String{
             
@@ -272,7 +272,7 @@ class AllString{
             
         }
         if let hippo_emptymessage = response["hippo_emptymessage"] as? String{
-            HippoStrings.enterSomeText = hippo_emptymessage
+            BumbleStrings.enterSomeText = hippo_emptymessage
         }
         if let hippo_enter_number_only = response["hippo_enter_number_only"] as? String{
             
@@ -281,7 +281,7 @@ class AllString{
             
         }
         if let hippo_enter_title = response["hippo_enter_title"] as? String{
-            HippoStrings.enterTitle = hippo_enter_title
+            BumbleStrings.enterTitle = hippo_enter_title
         }
         
         if let hippo_enter_valid_email = response["hippo_enter_valid_email"] as? String{
@@ -324,37 +324,37 @@ class AllString{
             
         }
         if let hippo_free = response["hippo_free"] as? String{
-            HippoStrings.free = hippo_free
+            BumbleStrings.free = hippo_free
         }
         if let hippo_grant_permission = response["hippo_grant_permission"] as? String{
             
         }
         if let hippo_history = response["hippo_history"] as? String{
-            HippoStrings.chatHistory = hippo_history
+            BumbleStrings.chatHistory = hippo_history
         }
         if let hippo_invalid_price = response["hippo_invalid_price"] as? String{
             
         }
         if let hippo_item_description = response["hippo_item_description"] as? String{
-            HippoStrings.enterDescription = hippo_item_description
+            BumbleStrings.enterDescription = hippo_item_description
         }
         if let hippo_item_price = response["hippo_item_price"] as? String{
-            HippoStrings.enterPrice = hippo_item_price
+            BumbleStrings.enterPrice = hippo_item_price
         }
         if let hippo_large_file = response["hippo_large_file"] as? String{
             
         }
         if let hippo_logout_msg = response["hippo_logout_msg"] as? String{
-            HippoStrings.logout = hippo_logout_msg
+            BumbleStrings.logout = hippo_logout_msg
         }
         if let hippo_message_sucessfully = response["hippo_message_sucessfully"] as? String{
-            HippoStrings.hippoDefaultText = hippo_message_sucessfully
+            BumbleStrings.hippoDefaultText = hippo_message_sucessfully
         }
         if let hippo_minimum_Multiselection = response["hippo_minimum_Multiselection"] as? String{
-            HippoStrings.noMinSelection = hippo_minimum_Multiselection
+            BumbleStrings.noMinSelection = hippo_minimum_Multiselection
         }
         if let hippo_missed = response["hippo_missed"] as? String{
-            HippoStrings.missed = hippo_missed
+            BumbleStrings.missed = hippo_missed
         }
         if let hippo_missed_call = response["hippo_missed_call"] as? String{
             
@@ -363,28 +363,28 @@ class AllString{
             
         }
         if let hippo_no = response["hippo_no"] as? String{
-            HippoStrings.no = hippo_no
+            BumbleStrings.no = hippo_no
         }
         if let hippo_no_chat = response["hippo_no_chat"] as? String{
-            HippoStrings.noChatStarted = hippo_no_chat
+            BumbleStrings.noChatStarted = hippo_no_chat
         }
         if let hippo_no_chat_init = response["hippo_no_chat_init"] as? String{
             
         }
         if let hippo_no_internet_connected = response["hippo_no_internet_connected"] as? String{
-            HippoStrings.noNetworkConnection = hippo_no_internet_connected
+            BumbleStrings.noNetworkConnection = hippo_no_internet_connected
         }
         if let hippo_no_notifications = response["hippo_no_notifications"] as? String{
-            HippoStrings.noNotificationFound = hippo_no_notifications
+            BumbleStrings.noNotificationFound = hippo_no_notifications
         }
         if let hippo_no_payment_methods = response["hippo_no_payment_methods"] as? String{
-            HippoStrings.noPaymentMethod = hippo_no_payment_methods
+            BumbleStrings.noPaymentMethod = hippo_no_payment_methods
         }
         if let hippo_nochats = response["hippo_nochats"] as? String{
-            HippoStrings.noChatInCatagory = hippo_nochats
+            BumbleStrings.noChatInCatagory = hippo_nochats
         }
         if let hippo_notifications = response["hippo_notifications"] as? String{
-            HippoStrings.notifications = hippo_notifications
+            BumbleStrings.notifications = hippo_notifications
         }
         if let hippo_notifications_deleted = response["hippo_notifications_deleted"] as? String{
             
@@ -393,16 +393,16 @@ class AllString{
             
         }
         if let hippo_ongoing = response["hippo_ongoing"] as? String{
-            HippoStrings.ongoing_call = hippo_ongoing
+            BumbleStrings.ongoing_call = hippo_ongoing
         }
         if let hippo_paid = response["hippo_paid"] as? String{
-            HippoStrings.paymentPaid = hippo_paid
+            BumbleStrings.paymentPaid = hippo_paid
         }
         if let hippo_past = response["hippo_past"] as? String{
-            HippoStrings.past = hippo_past
+            BumbleStrings.past = hippo_past
         }
         if let hippo_pay_btnText = response["hippo_pay_btnText"] as? String{
-            HippoStrings.Pay = hippo_pay_btnText
+            BumbleStrings.Pay = hippo_pay_btnText
         }
         if let hippo_pay_with_netbanking = response["hippo_pay_with_netbanking"] as? String{
             
@@ -423,22 +423,22 @@ class AllString{
             
         }
         if let hippo_payment_title = response["hippo_payment_title"] as? String{
-            HippoStrings.payment = hippo_payment_title
+            BumbleStrings.payment = hippo_payment_title
         }
         if let hippo_paytm = response["hippo_paytm"] as? String{
             
         }
         if let hippo_pending = response["hippo_pending"] as? String{
-            HippoStrings.paymentPending = hippo_pending
+            BumbleStrings.paymentPending = hippo_pending
         }
         if let hippo_photo_video_library = response["hippo_photo_video_library"] as? String{
-            HippoStrings.photoLibrary = hippo_photo_video_library
+            BumbleStrings.photoLibrary = hippo_photo_video_library
         }
         if let hippo_proceed_to_pay = response["hippo_proceed_to_pay"] as? String{
-            HippoStrings.proccedToPay = hippo_proceed_to_pay
+            BumbleStrings.proccedToPay = hippo_proceed_to_pay
         }
         if let hippo_rating_review = response["hippo_rating_review"] as? String{
-            HippoStrings.ratingReview = hippo_rating_review
+            BumbleStrings.ratingReview = hippo_rating_review
         }
         if let hippo_rationale_ask = response["hippo_rationale_ask"] as? String{
             
@@ -447,31 +447,31 @@ class AllString{
             
         }
         if let hippo_read_less = response["hippo_read_less"] as? String{
-            HippoStrings.readLess = hippo_read_less
+            BumbleStrings.readLess = hippo_read_less
         }
         if let hippo_read_more = response["hippo_read_more"] as? String{
-            HippoStrings.readMore = hippo_read_more
+            BumbleStrings.readMore = hippo_read_more
         }
         if let hippo_recipients = response["hippo_recipients"] as? String{
-            HippoStrings.recipients = hippo_recipients
+            BumbleStrings.recipients = hippo_recipients
         }
         if let hippo_request_payment = response["hippo_request_payment"] as? String{
-            HippoStrings.requestPayment = hippo_request_payment
+            BumbleStrings.requestPayment = hippo_request_payment
         }
         if let hippo_save_plan = response["hippo_save_plan"] as? String{
-            HippoStrings.savePlan = hippo_save_plan
+            BumbleStrings.savePlan = hippo_save_plan
         }
         if let hippo_search = response["hippo_search"] as? String{
             
         }
         if let hippo_select_string = response["hippo_select_string"] as? String{
-            HippoStrings.selectString = hippo_select_string
+            BumbleStrings.selectString = hippo_select_string
         }
         if let hippo_sent_a_msg = response["hippo_sent_a_msg"] as? String{
-            HippoStrings.messageSent = hippo_sent_a_msg
+            BumbleStrings.messageSent = hippo_sent_a_msg
         }
         if let hippo_something_went_wrong = response["hippo_something_went_wrong"] as? String{
-            HippoStrings.somethingWentWrong = hippo_something_went_wrong
+            BumbleStrings.somethingWentWrong = hippo_something_went_wrong
         }
         if let hippo_something_wentwrong = response["hippo_something_wentwrong"] as? String{
             
@@ -486,7 +486,7 @@ class AllString{
             
         }
         if let hippo_submit = response["hippo_submit"] as? String{
-            HippoStrings.submit = hippo_submit
+            BumbleStrings.submit = hippo_submit
         }
         if let hippo_tap_to_retry = response["hippo_tap_to_retry"] as? String{
             
@@ -495,7 +495,7 @@ class AllString{
             
         }
         if let hippo_the = response["hippo_the"] as? String{
-            HippoStrings.the = hippo_the
+            BumbleStrings.the = hippo_the
         }
         if let hippo_the_video_call = response["hippo_the_video_call"] as? String{
             
@@ -510,19 +510,19 @@ class AllString{
             
         }
         if let hippo_title_item_description = response["hippo_title_item_description"] as? String{
-            HippoStrings.description = hippo_title_item_description
+            BumbleStrings.description = hippo_title_item_description
         }
         if let hippo_title_item_price = response["hippo_title_item_price"] as? String{
-            HippoStrings.price = hippo_title_item_price
+            BumbleStrings.price = hippo_title_item_price
         }
         if let hippo_today = response["hippo_today"] as? String{
-            HippoStrings.today = hippo_today
+            BumbleStrings.today = hippo_today
         }
         if let hippo_total_count = response["hippo_total_count"] as? String{
-            HippoStrings.totalPrice = hippo_total_count
+            BumbleStrings.totalPrice = hippo_total_count
         }
         if let hippo_update_plan = response["hippo_update_plan"] as? String{
-            HippoStrings.updatePlan = hippo_update_plan
+            BumbleStrings.updatePlan = hippo_update_plan
         }
         if let hippo_video = response["hippo_video"] as? String{
             
@@ -530,19 +530,19 @@ class AllString{
         if let hippo_with_country_code = response["hippo_with_country_code"] as? String{
         }
         if let hippo_writereview = response["hippo_writereview"] as? String{
-            HippoStrings.writeReview = hippo_writereview
+            BumbleStrings.writeReview = hippo_writereview
         }
         if let hippo_yes = response["hippo_yes"] as? String{
-            HippoStrings.yes = hippo_yes
+            BumbleStrings.yes = hippo_yes
         }
         if let hippo_yes_cancel = response["hippo_yes_cancel"] as? String{
-            HippoStrings.yesCancel = hippo_yes_cancel
+            BumbleStrings.yesCancel = hippo_yes_cancel
         }
         if let hippo_yesterday = response["hippo_yesterday"] as? String{
-            HippoStrings.yesterday = hippo_yesterday
+            BumbleStrings.yesterday = hippo_yesterday
         }
         if let hippo_you = response["hippo_you"] as? String{
-            HippoStrings.you = hippo_you
+            BumbleStrings.you = hippo_you
         }
         if let hippo_you_have_no_chats = response["hippo_you_have_no_chats"] as? String{
             
@@ -551,7 +551,7 @@ class AllString{
             
         }
         if let logout = response["logout"] as? String{
-            HippoStrings.logoutTitle = logout
+            BumbleStrings.logoutTitle = logout
         }
         if let talk_to = response["talk_to"] as? String{
             
@@ -560,16 +560,16 @@ class AllString{
             
         }
         if let unknown_message = response["unknown_message"] as? String{
-            HippoStrings.unknownMessage = unknown_message
+            BumbleStrings.unknownMessage = unknown_message
         }
         if let uploading_in_progress = response["uploading_in_progress"] as? String{
             
         }
         if let vw_all = response["vw_all"] as? String{
-            HippoStrings.allAgentsString = vw_all
+            BumbleStrings.allAgentsString = vw_all
         }
         if let vw_confirm = response["vw_confirm"] as? String{
-            HippoStrings.Done = vw_confirm
+            BumbleStrings.Done = vw_confirm
         }
         if let vw_no_photo_app = response["vw_no_photo_app"] as? String{
             
@@ -585,27 +585,27 @@ class AllString{
         }
         
         if let hippo_secure_payment = response["hippo_secure_payment"] as? String{
-            HippoStrings.hippoSecurePayment = hippo_secure_payment
+            BumbleStrings.hippoSecurePayment = hippo_secure_payment
         }
         
         if let PAYMENT_REQUESTED = response["PAYMENT_REQUESTED"] as? String{
-            HippoStrings.paymentRequested = PAYMENT_REQUESTED
+            BumbleStrings.paymentRequested = PAYMENT_REQUESTED
         }
         
         if let hippo_clear = response["hippo_clear"] as? String{
-            HippoStrings.clear = hippo_clear
+            BumbleStrings.clear = hippo_clear
         }
         
         if let hippo_calling_you = response["hippo_calling_you"] as? String{
-            HippoStrings.isCallingYou = hippo_calling_you
+            BumbleStrings.isCallingYou = hippo_calling_you
         }
         
         if let hippo_select_a_plan = response["hippo_select_a_plan"] as? String{
-            HippoStrings.selectaPlan = hippo_select_a_plan
+            BumbleStrings.selectaPlan = hippo_select_a_plan
         }
         
         if let hippo_message_not_allow = response["hippo_message_not_allow"] as? String{
-            HippoStrings.donotAllowPersonalInfo = hippo_message_not_allow
+            BumbleStrings.donotAllowPersonalInfo = hippo_message_not_allow
         }
         
     }
@@ -613,111 +613,111 @@ class AllString{
     class func agentParsing(_ response: [String: Any]){
         
         if let hippo_message_not_allow = response["hippo_message_not_allow"] as? String{
-            HippoStrings.donotAllowPersonalInfo = hippo_message_not_allow
+            BumbleStrings.donotAllowPersonalInfo = hippo_message_not_allow
         }
         
         if let hippo_save_plan = response["hippo_save_plan"] as? String{
-            HippoStrings.savePlan = hippo_save_plan
+            BumbleStrings.savePlan = hippo_save_plan
         }
         
         if let hippo_pending = response["hippo_pending"] as? String{
-            HippoStrings.paymentPending = hippo_pending
+            BumbleStrings.paymentPending = hippo_pending
         }
         if let hippo_request_payment = response["hippo_request_payment"] as? String{
-            HippoStrings.requestPayment = hippo_request_payment
+            BumbleStrings.requestPayment = hippo_request_payment
         }
         if let hippo_day_ago = response["hippo_day_ago"] as? String{
-            HippoStrings.daysAgo = hippo_day_ago
+            BumbleStrings.daysAgo = hippo_day_ago
         }
         if let hippo_call = response["hippo_call"] as? String{
-            HippoStrings.call = hippo_call
+            BumbleStrings.call = hippo_call
         }
         if let hippo_imagesaved_title = response["hippo_imagesaved_title"] as? String{
-            HippoStrings.saved = hippo_imagesaved_title
+            BumbleStrings.saved = hippo_imagesaved_title
         }
         if let hippo_image_saved = response["hippo_image_saved"] as? String{
-            HippoStrings.imageSaved = hippo_image_saved
+            BumbleStrings.imageSaved = hippo_image_saved
         }
         if let hippo_photo_video_library = response["hippo_photo_video_library"] as? String{
-            HippoStrings.photoLibrary = hippo_photo_video_library
+            BumbleStrings.photoLibrary = hippo_photo_video_library
         }
         if let FILE_IMAGE = response["FILE_IMAGE"] as? String{
-            HippoStrings.sentAPhoto = FILE_IMAGE
+            BumbleStrings.sentAPhoto = FILE_IMAGE
         }
         if let FILE_ATTACHMENT = response["FILE_ATTACHMENT"] as? String{
-            HippoStrings.sentAFile = FILE_ATTACHMENT
+            BumbleStrings.sentAFile = FILE_ATTACHMENT
         }
         if let PAYMENT_REQUESTED = response["PAYMENT_REQUESTED"] as? String{
-            HippoStrings.paymentRequested = PAYMENT_REQUESTED
+            BumbleStrings.paymentRequested = PAYMENT_REQUESTED
         }
         if let ASSIGNED_TO_THEMSELVES = response["ASSIGNED_TO_THEMSELVES"] as? String{
-            HippoStrings.assignedToThemselves = ASSIGNED_TO_THEMSELVES
+            BumbleStrings.assignedToThemselves = ASSIGNED_TO_THEMSELVES
         }
         if let NEW_CHAT_ASSIGNED_TO_YOU = response["NEW_CHAT_ASSIGNED_TO_YOU"] as? String{
-            HippoStrings.newChatAssignedToYou = NEW_CHAT_ASSIGNED_TO_YOU
+            BumbleStrings.newChatAssignedToYou = NEW_CHAT_ASSIGNED_TO_YOU
         }
         if let ASSIGNED_CHAT_TO = response["ASSIGNED_CHAT_TO"] as? String{
-            HippoStrings.chatAssigned = ASSIGNED_CHAT_TO
+            BumbleStrings.chatAssigned = ASSIGNED_CHAT_TO
         }
         if let CHAT_REOPENED_BY = response["CHAT_REOPENED_BY"] as? String{
-            HippoStrings.chatReopenedby = CHAT_REOPENED_BY
+            BumbleStrings.chatReopenedby = CHAT_REOPENED_BY
         }
         if let CHAT_WAS_AUTO_OPENED = response["CHAT_WAS_AUTO_OPENED"] as? String{
-            HippoStrings.chatAutoOpened = CHAT_WAS_AUTO_OPENED
+            BumbleStrings.chatAutoOpened = CHAT_WAS_AUTO_OPENED
         }
         if let CHAT_WAS_AUTO_CLOSED = response["CHAT_WAS_AUTO_CLOSED"] as? String{
-            HippoStrings.chatAutoClosed = CHAT_WAS_AUTO_CLOSED
+            BumbleStrings.chatAutoClosed = CHAT_WAS_AUTO_CLOSED
         }
         if let CHAT_WAS_RE_OPENED = response["CHAT_WAS_RE_OPENED"] as? String{
-            HippoStrings.chatReopened = CHAT_WAS_RE_OPENED
+            BumbleStrings.chatReopened = CHAT_WAS_RE_OPENED
         }
         if let CHAT_WAS_CLOSED = response["CHAT_WAS_CLOSED"] as? String{
-            HippoStrings.chatClosedBy = CHAT_WAS_CLOSED
+            BumbleStrings.chatClosedBy = CHAT_WAS_CLOSED
         }
         if let WAS_AUTO_ASSIGNED = response["WAS_AUTO_ASSIGNED"] as? String{
-            HippoStrings.chatAutoAssigned = WAS_AUTO_ASSIGNED
+            BumbleStrings.chatAutoAssigned = WAS_AUTO_ASSIGNED
         }
         if let WAS_FORCE_ASSIGNED = response["WAS_FORCE_ASSIGNED"] as? String{
-            HippoStrings.forceAssigned = WAS_FORCE_ASSIGNED
+            BumbleStrings.forceAssigned = WAS_FORCE_ASSIGNED
         }
         if let TAGGED = response["TAGGED"] as? String{
-            HippoStrings.tagged = TAGGED
+            BumbleStrings.tagged = TAGGED
         }
         if let MENTIONED_YOU = response["MENTIONED_YOU"] as? String{
-            HippoStrings.mentionedYou = MENTIONED_YOU
+            BumbleStrings.mentionedYou = MENTIONED_YOU
         }
         if let CALLING_YOU = response["CALLING_YOU"] as? String{
-            HippoStrings.isCallingYou = CALLING_YOU
+            BumbleStrings.isCallingYou = CALLING_YOU
         }
         if let MISSED_CALL_FROM = response["MISSED_CALL_FROM"] as? String{
-            HippoStrings.missedCallFrom = MISSED_CALL_FROM
+            BumbleStrings.missedCallFrom = MISSED_CALL_FROM
         }
         if let RATING_AND_REVIEW = response["RATING_AND_REVIEW"] as? String{
-            HippoStrings.ratingReview = RATING_AND_REVIEW
+            BumbleStrings.ratingReview = RATING_AND_REVIEW
         }
         if let BOT_SKIPPED_FOR_THIS_SESSION = response["BOT_SKIPPED_FOR_THIS_SESSION"] as? String{
-            HippoStrings.botSkipped = BOT_SKIPPED_FOR_THIS_SESSION
+            BumbleStrings.botSkipped = BOT_SKIPPED_FOR_THIS_SESSION
         }
         if let NEW_CUSTOMER = response["NEW_CUSTOMER"] as? String{
-            HippoStrings.newCustomer = NEW_CUSTOMER
+            BumbleStrings.newCustomer = NEW_CUSTOMER
         }
         if let hippo_call_calling = response["hippo_call_calling"] as? String{
-            HippoStrings.calling = hippo_call_calling
+            BumbleStrings.calling = hippo_call_calling
         }
         if let hippo_call_ringing = response["hippo_call_ringing"] as? String{
-            HippoStrings.ringing = hippo_call_ringing
+            BumbleStrings.ringing = hippo_call_ringing
         }
         if let hippo_call_declined = response["hippo_call_declined"] as? String{
-            HippoStrings.callDeclined = hippo_call_declined
+            BumbleStrings.callDeclined = hippo_call_declined
         }
         if let hippo_busy_on_call = response["hippo_busy_on_call"] as? String{
-            HippoStrings.busyAnotherCall = hippo_busy_on_call
+            BumbleStrings.busyAnotherCall = hippo_busy_on_call
         }
         if let closed = response["closed"] as? String{
-            HippoStrings.closed = closed
+            BumbleStrings.closed = closed
         }
         if let hippo_Reopen_Chat = response["hippo_Reopen_Chat"] as? String{
-            HippoStrings.reopenChat = hippo_Reopen_Chat
+            BumbleStrings.reopenChat = hippo_Reopen_Chat
         }
         if let hello_blank_fragment = response["hello_blank_fragment"] as? String{
             
@@ -744,7 +744,7 @@ class AllString{
         }
         
         if let fugu_new_conversation = response["fugu_new_conversation"] as? String{
-            HippoStrings.newConversation = fugu_new_conversation
+            BumbleStrings.newConversation = fugu_new_conversation
         }
         
         if let fugu_new_conversations = response["fugu_new_conversations"] as? String{
@@ -752,7 +752,7 @@ class AllString{
         }
         
         if let fugu_loading = response["fugu_loading"] as? String{
-            HippoStrings.loading = fugu_loading
+            BumbleStrings.loading = fugu_loading
         }
         
         if let fugu_powered_by = response["fugu_powered_by"] as? String{
@@ -852,7 +852,7 @@ class AllString{
         }
         
         if let hippo_you = response["hippo_you"] as? String{
-            HippoStrings.you = hippo_you
+            BumbleStrings.you = hippo_you
         }
         
         if let hippo_user = response["hippo_user"] as? String{
@@ -864,11 +864,11 @@ class AllString{
         }
         
         if let actions = response["actions"] as? String{
-            HippoStrings.actions = actions
+            BumbleStrings.actions = actions
         }
         
         if let close_conversation = response["close_conversation"] as? String{
-            HippoStrings.closeChat = close_conversation
+            BumbleStrings.closeChat = close_conversation
         }
         
         if let assign_conversation = response["assign_conversation"] as? String{
@@ -892,7 +892,7 @@ class AllString{
         }
         
         if let type_a_internal_note = response["type_a_internal_note"] as? String{
-            HippoStrings.privateMessagePlaceHolder = type_a_internal_note
+            BumbleStrings.privateMessagePlaceHolder = type_a_internal_note
         }
         
         if let reopen_conversation = response["reopen_conversation"] as? String{
@@ -904,7 +904,7 @@ class AllString{
         }
         
         if let camera = response["camera"] as? String{
-            HippoStrings.camera = camera
+            BumbleStrings.camera = camera
         }
         
         if let gallery = response["gallery"] as? String{
@@ -920,15 +920,15 @@ class AllString{
         }
         
         if let retry = response["retry"] as? String{
-            HippoStrings.retry = retry
+            BumbleStrings.retry = retry
         }
         
         if let attachment = response["attachment"] as? String{
-            HippoStrings.attachmentImage = attachment
+            BumbleStrings.attachmentImage = attachment
         }
         
         if let send_message = response["send_message"] as? String{
-            HippoStrings.messagePlaceHolderText = send_message
+            BumbleStrings.messagePlaceHolderText = send_message
         }
         
         if let leave_an_internal_note = response["leave_an_internal_note"] as? String{
@@ -960,15 +960,15 @@ class AllString{
         }
         
         if let status = response["status"] as? String{
-            HippoStrings.status = status
+            BumbleStrings.status = status
         }
         
         if let closed_chats = response["closed_chats"] as? String{
-            HippoStrings.closedChat = closed_chats
+            BumbleStrings.closedChat = closed_chats
         }
         
         if let open_chats = response["open_chats"] as? String{
-            HippoStrings.openChat = open_chats
+            BumbleStrings.openChat = open_chats
         }
         
         if let type = response["type"] as? String{
@@ -976,11 +976,11 @@ class AllString{
         }
         
         if let my_chats = response["my_chats"] as? String{
-            HippoStrings.myChats = my_chats
+            BumbleStrings.myChats = my_chats
         }
         
         if let unassigned = response["unassigned"] as? String{
-            HippoStrings.unassigned = unassigned
+            BumbleStrings.unassigned = unassigned
         }
         
         if let tagged = response["tagged"] as? String{
@@ -1000,15 +1000,15 @@ class AllString{
         }
         
         if let cancel = response["cancel"] as? String{
-            HippoStrings.cancel = cancel
+            BumbleStrings.cancel = cancel
         }
         
         if let assign_agent_message = response["assign_agent_message"] as? String{
-            HippoStrings.reasignChat = assign_agent_message
+            BumbleStrings.reasignChat = assign_agent_message
         }
         
         if let self_assign_agent_message = response["self_assign_agent_message"] as? String{
-            HippoStrings.reasignChatToYou = self_assign_agent_message
+            BumbleStrings.reasignChatToYou = self_assign_agent_message
         }
         
         if let confirm = response["confirm"] as? String{
@@ -1016,7 +1016,7 @@ class AllString{
         }
         
         if let close_chat_message = response["close_chat_message"] as? String{
-            HippoStrings.closeChatPopup = close_chat_message
+            BumbleStrings.closeChatPopup = close_chat_message
         }
         
         if let close = response["close"] as? String{
@@ -1024,7 +1024,7 @@ class AllString{
         }
         
         if let reopen_chat_message = response["reopen_chat_message"] as? String{
-            HippoStrings.reopenChatPopup = reopen_chat_message
+            BumbleStrings.reopenChatPopup = reopen_chat_message
         }
         
         if let reopen_caps = response["reopen_caps"] as? String{
@@ -1044,15 +1044,15 @@ class AllString{
         }
         
         if let conversation_closed = response["conversation_closed"] as? String{
-            HippoStrings.coversationClosed = conversation_closed
+            BumbleStrings.coversationClosed = conversation_closed
         }
         
         if let conversation_re_opend = response["conversation_re_opend"] as? String{
-            HippoStrings.conversationReopened = conversation_re_opend
+            BumbleStrings.conversationReopened = conversation_re_opend
         }
         
         if let conversation_assigned = response["conversation_assigned"] as? String{
-            HippoStrings.conversationAssigned = conversation_assigned
+            BumbleStrings.conversationAssigned = conversation_assigned
         }
         
         if let tool_tip_filter = response["tool_tip_filter"] as? String{
@@ -1084,7 +1084,7 @@ class AllString{
         }
         
         if let all_chats = response["all_chats"] as? String{
-            HippoStrings.allChats = all_chats
+            BumbleStrings.allChats = all_chats
         }
         
         if let profile = response["profile"] as? String{
@@ -1120,7 +1120,7 @@ class AllString{
         }
         
         if let apply = response["apply"] as? String{
-            HippoStrings.apply = apply
+            BumbleStrings.apply = apply
         }
         
         if let date = response["date"] as? String{
@@ -1128,11 +1128,11 @@ class AllString{
         }
         
         if let today = response["today"] as? String{
-            HippoStrings.today = today
+            BumbleStrings.today = today
         }
         
         if let yesterday = response["yesterday"] as? String{
-            HippoStrings.yesterday = yesterday
+            BumbleStrings.yesterday = yesterday
         }
         
         if let last_7_days = response["last_7_days"] as? String{
@@ -1168,7 +1168,7 @@ class AllString{
         }
         
         if let channel_info = response["channel_info"] as? String{
-            HippoStrings.channelInfo = channel_info
+            BumbleStrings.channelInfo = channel_info
         }
         
         if let close_small = response["close_small"] as? String{
@@ -1264,7 +1264,7 @@ class AllString{
         }
         
         if let info = response["info"] as? String{
-            HippoStrings.info = info
+            BumbleStrings.info = info
         }
         
         if let change_password = response["change_password"] as? String{
@@ -1316,7 +1316,7 @@ class AllString{
         }
         
         if let empty_msg = response["empty_msg"] as? String{
-            HippoStrings.fieldEmpty = empty_msg
+            BumbleStrings.fieldEmpty = empty_msg
         }
         
         if let phone_empty_msg = response["phone_empty_msg"] as? String{
@@ -1632,15 +1632,15 @@ class AllString{
         }
         
         if let reset = response["reset"] as? String{
-            HippoStrings.reset = reset
+            BumbleStrings.reset = reset
         }
         
         if let filter = response["filter"] as? String{
-            HippoStrings.filter = filter
+            BumbleStrings.filter = filter
         }
         
         if let no_data_found = response["no_data_found"] as? String{
-            HippoStrings.noDataFound = no_data_found
+            BumbleStrings.noDataFound = no_data_found
         }
         
         if let search_here = response["search_here"] as? String{
@@ -1656,11 +1656,11 @@ class AllString{
         }
         
         if let call_again = response["call_again"] as? String{
-             HippoStrings.callAgain = call_again
+             BumbleStrings.callAgain = call_again
         }
         
         if let hippo_call_back = response["hippo_call_back"] as? String{
-            HippoStrings.callback = hippo_call_back
+            BumbleStrings.callback = hippo_call_back
         }
         
         if let agent_video_call = response["agent_video_call"] as? String{
@@ -1696,7 +1696,7 @@ class AllString{
         }
         
         if let hippo_something_wrong = response["hippo_something_wrong"] as? String{
-            HippoStrings.somethingWentWrong = hippo_something_wrong
+            BumbleStrings.somethingWentWrong = hippo_something_wrong
         }
         
         if let broadcast_text = response["broadcast_text"] as? String{
@@ -1716,7 +1716,7 @@ class AllString{
         }
         
         if let broadcast_detail = response["broadcast_detail"] as? String{
-            HippoStrings.broadcastDetails = broadcast_detail
+            BumbleStrings.broadcastDetails = broadcast_detail
         }
         
         if let no_broadcast_found = response["no_broadcast_found"] as? String{
@@ -1748,11 +1748,11 @@ class AllString{
         }
         
         if let fugu_pdf = response["fugu_pdf"] as? String{
-            HippoStrings.document = fugu_pdf
+            BumbleStrings.document = fugu_pdf
         }
         
         if let fugu_camera = response["fugu_camera"] as? String{
-            HippoStrings.camera = fugu_camera
+            BumbleStrings.camera = fugu_camera
         }
         
         if let facing_connectivity_issues = response["facing_connectivity_issues"] as? String{
@@ -1760,7 +1760,7 @@ class AllString{
         }
         
         if let take_over = response["take_over"] as? String{
-            HippoStrings.takeOver = take_over
+            BumbleStrings.takeOver = take_over
         }
         
         if let custom_date = response["custom_date"] as? String{
@@ -1776,19 +1776,19 @@ class AllString{
         }
         
         if let title = response["title"] as? String{
-            HippoStrings.title = title
+            BumbleStrings.title = title
         }
         
         if let hippo_enter_title = response["hippo_enter_title"] as? String{
-            HippoStrings.enterTitle = hippo_enter_title
+            BumbleStrings.enterTitle = hippo_enter_title
         }
         
         if let hippo_title_item_price = response["hippo_title_item_price"] as? String{
-            HippoStrings.price = hippo_title_item_price
+            BumbleStrings.price = hippo_title_item_price
         }
         
         if let hippo_title_item_description = response["hippo_title_item_description"] as? String{
-            HippoStrings.description = hippo_title_item_description
+            BumbleStrings.description = hippo_title_item_description
         }
         
         if let hippo_total_count = response["hippo_total_count"] as? String{
@@ -1796,7 +1796,7 @@ class AllString{
         }
         
         if let hippo_add_an_option = response["hippo_add_an_option"] as? String{
-            HippoStrings.addOption = hippo_add_an_option
+            BumbleStrings.addOption = hippo_add_an_option
         }
         
         if let hippo_request_payment = response["hippo_request_payment"] as? String{
@@ -1804,15 +1804,15 @@ class AllString{
         }
         
         if let hippo_item_price = response["hippo_item_price"] as? String{
-            HippoStrings.enterPrice = hippo_item_price
+            BumbleStrings.enterPrice = hippo_item_price
         }
         
         if let hippo_item_description = response["hippo_item_description"] as? String{
-            HippoStrings.enterDescription = hippo_item_description
+            BumbleStrings.enterDescription = hippo_item_description
         }
         
         if let hippo_currency = response["hippo_currency"] as? String{
-            HippoStrings.currency = hippo_currency
+            BumbleStrings.currency = hippo_currency
         }
         
         if let hippo_search = response["hippo_search"] as? String{
@@ -1832,7 +1832,7 @@ class AllString{
         }
         
         if let hippo_send_payment = response["hippo_send_payment"] as? String{
-            HippoStrings.sendPayment = hippo_send_payment
+            BumbleStrings.sendPayment = hippo_send_payment
         }
         
         if let notes = response["notes"] as? String{
@@ -1868,7 +1868,7 @@ class AllString{
         }
         
         if let saved_plan = response["saved_plan"] as? String{
-            HippoStrings.savedPlans = saved_plan
+            BumbleStrings.savedPlans = saved_plan
         }
         
         if let hippo_plan_title = response["hippo_plan_title"] as? String{
@@ -1876,7 +1876,7 @@ class AllString{
         }
         
         if let plan_name = response["plan_name"] as? String{
-            HippoStrings.planName = plan_name
+            BumbleStrings.planName = plan_name
         }
         
         if let no_plan_available = response["no_plan_available"] as? String{
@@ -1888,7 +1888,7 @@ class AllString{
         }
         
         if let email = response["email"] as? String{
-            HippoStrings.email = email
+            BumbleStrings.email = email
         }
         
         if let phone = response["phone"] as? String{
@@ -1928,15 +1928,15 @@ class AllString{
         }
         
         if let fugu_connecting = response["fugu_connecting"] as? String{
-            HippoStrings.connecting = fugu_connecting
+            BumbleStrings.connecting = fugu_connecting
         }
         
         if let fugu_connected = response["fugu_connected"] as? String{
-            HippoStrings.connected = fugu_connected
+            BumbleStrings.connected = fugu_connected
         }
         
         if let hippo_support = response["hippo_support"] as? String{
-            HippoStrings.support = hippo_support
+            BumbleStrings.support = hippo_support
         }
         
         if let hippo_rating_review = response["hippo_rating_review"] as? String{
@@ -1944,7 +1944,7 @@ class AllString{
         }
         
         if let hippo_in_app = response["hippo_in_app"] as? String{
-            HippoStrings.inApp = hippo_in_app
+            BumbleStrings.inApp = hippo_in_app
         }
         
         if let hippo_sender_name = response["hippo_sender_name"] as? String{
@@ -1972,7 +1972,7 @@ class AllString{
         }
         
         if let hippo_channel_info = response["hippo_channel_info"] as? String{
-            HippoStrings.channelInfo = hippo_channel_info
+            BumbleStrings.channelInfo = hippo_channel_info
         }
         
         if let hippo_no_channel_journey = response["hippo_no_channel_journey"] as? String{
@@ -2000,7 +2000,7 @@ class AllString{
         }
         
         if let hippo_update_plan = response["hippo_update_plan"] as? String{
-            HippoStrings.updatePlan = hippo_update_plan
+            BumbleStrings.updatePlan = hippo_update_plan
         }
         
         if let hippo_add_plan = response["hippo_add_plan"] as? String{
@@ -2008,7 +2008,7 @@ class AllString{
         }
         
         if let hippo_payment_request = response["hippo_payment_request"] as? String{
-            HippoStrings.paymentRequest = hippo_payment_request
+            BumbleStrings.paymentRequest = hippo_payment_request
         }
         
         if let hippo_fill_pre_field = response["hippo_fill_pre_field"] as? String{
@@ -2024,7 +2024,7 @@ class AllString{
         }
         
         if let hippo_payment = response["hippo_payment"] as? String{
-            HippoStrings.payment = hippo_payment
+            BumbleStrings.payment = hippo_payment
         }
         
         if let hippo_verify_details = response["hippo_verify_details"] as? String{
@@ -2040,11 +2040,11 @@ class AllString{
         }
         
         if let hippo_yes = response["hippo_yes"] as? String{
-            HippoStrings.yes = hippo_yes
+            BumbleStrings.yes = hippo_yes
         }
         
         if let hippo_no = response["hippo_no"] as? String{
-            HippoStrings.no = hippo_no
+            BumbleStrings.no = hippo_no
         }
         
         if let hippo_business = response["hippo_business"] as? String{
@@ -2052,23 +2052,23 @@ class AllString{
         }
         
         if let hippo_self = response["hippo_self"] as? String{
-            HippoStrings.selfTag = hippo_self
+            BumbleStrings.selfTag = hippo_self
         }
         
         if let hippo_plan_id = response["hippo_plan_id"] as? String{
-            HippoStrings.planId = hippo_plan_id
+            BumbleStrings.planId = hippo_plan_id
         }
         
         if let hippo_plan_name = response["hippo_plan_name"] as? String{
-            HippoStrings.planNameTitle = hippo_plan_name
+            BumbleStrings.planNameTitle = hippo_plan_name
         }
         
         if let hippo_plan_type = response["hippo_plan_type"] as? String{
-            HippoStrings.planOwner = hippo_plan_type
+            BumbleStrings.planOwner = hippo_plan_type
         }
         
         if let hippo_updated_at = response["hippo_updated_at"] as? String{
-            HippoStrings.updatedAt = hippo_updated_at
+            BumbleStrings.updatedAt = hippo_updated_at
         }
         
         if let file_not_supported = response["file_not_supported"] as? String{
@@ -2096,11 +2096,11 @@ class AllString{
         }
         
         if let hippo_delivered = response["hippo_delivered"] as? String{
-            HippoStrings.delivered = hippo_delivered
+            BumbleStrings.delivered = hippo_delivered
         }
         
         if let hippo_paid = response["hippo_paid"] as? String{
-            HippoStrings.paymentPaid = hippo_paid
+            BumbleStrings.paymentPaid = hippo_paid
         }
         
         if let hippo_new_chat = response["hippo_new_chat"] as? String{
@@ -2108,7 +2108,7 @@ class AllString{
         }
         
         if let hippo_me = response["hippo_me"] as? String{
-            HippoStrings.me = hippo_me
+            BumbleStrings.me = hippo_me
         }
         
         if let hippo_na = response["hippo_na"] as? String{
@@ -2136,7 +2136,7 @@ class AllString{
         }
         
         if let hippo_send = response["hippo_send"] as? String{
-            HippoStrings.sendTitle = hippo_send
+            BumbleStrings.sendTitle = hippo_send
         }
         
         if let hippo_copy_text = response["hippo_copy_text"] as? String{
@@ -2160,7 +2160,7 @@ class AllString{
         }
         
         if let hippo_sent_a_photo = response["hippo_sent_a_photo"] as? String{
-            HippoStrings.sentAPhoto = hippo_sent_a_photo
+            BumbleStrings.sentAPhoto = hippo_sent_a_photo
         }
         
         if let you_receive_a_payment = response["you_receive_a_payment"] as? String{
@@ -2172,19 +2172,19 @@ class AllString{
         }
         
         if let hippo_sent_a_file = response["hippo_sent_a_file"] as? String{
-            HippoStrings.sentAFile = hippo_sent_a_file
+            BumbleStrings.sentAFile = hippo_sent_a_file
         }
         
         if let hippo_voice = response["hippo_voice"] as? String{
-            HippoStrings.voice = hippo_voice
+            BumbleStrings.voice = hippo_voice
         }
         
         if let hippo_customer = response["hippo_customer"] as? String{
-            HippoStrings.customer = hippo_customer
+            BumbleStrings.customer = hippo_customer
         }
         
         if let hippo_call_ended = response["hippo_call_ended"] as? String{
-            HippoStrings.callEnded = hippo_call_ended
+            BumbleStrings.callEnded = hippo_call_ended
         }
         
         if let hippo_call_with = response["hippo_call_with"] as? String{
@@ -2192,11 +2192,11 @@ class AllString{
         }
         
         if let hippo_missed = response["hippo_missed"] as? String{
-            HippoStrings.missed = hippo_missed
+            BumbleStrings.missed = hippo_missed
         }
         
         if let hippo_the = response["hippo_the"] as? String{
-            HippoStrings.the = hippo_the
+            BumbleStrings.the = hippo_the
         }
         
         if let hippo_bot_in_progress = response["hippo_bot_in_progress"] as? String{
@@ -2204,7 +2204,7 @@ class AllString{
         }
         
         if let hippo_no_internet_connected = response["hippo_no_internet_connected"] as? String{
-            HippoStrings.noNetworkConnection = hippo_no_internet_connected
+            BumbleStrings.noNetworkConnection = hippo_no_internet_connected
         }
         
         if let hippo_close_conversation = response["hippo_close_conversation"] as? String{
@@ -2224,15 +2224,15 @@ class AllString{
         }
         
         if let hippo_assign_conversation = response["hippo_assign_conversation"] as? String{
-            HippoStrings.assignConversation = hippo_assign_conversation
+            BumbleStrings.assignConversation = hippo_assign_conversation
         }
         
         if let hippo_internal_notes = response["hippo_internal_notes"] as? String{
-            HippoStrings.internalNotes = hippo_internal_notes
+            BumbleStrings.internalNotes = hippo_internal_notes
         }
         
         if let hippo_text = response["hippo_text"] as? String{
-            HippoStrings.text = hippo_text
+            BumbleStrings.text = hippo_text
         }
         
         if let hippo_Bot = response["hippo_Bot"] as? String{
@@ -2240,28 +2240,28 @@ class AllString{
         }
         
         if let hippo_savePaymentPlan = response["hippo_savePaymentPlan"] as? String{
-            HippoStrings.savePaymentPlan = hippo_savePaymentPlan
+            BumbleStrings.savePaymentPlan = hippo_savePaymentPlan
         }
         
         if let hippo_EditPaymentPlanPopup = response["hippo_EditPaymentPlanPopup"] as? String{
-            HippoStrings.editPaymentPlan = hippo_EditPaymentPlanPopup
+            BumbleStrings.editPaymentPlan = hippo_EditPaymentPlanPopup
         }
         
         if let hippo_DeletePaymentPlanPopup = response["hippo_DeletePaymentPlanPopup"] as? String{
-            HippoStrings.deletePaymentPlan = hippo_DeletePaymentPlanPopup
+            BumbleStrings.deletePaymentPlan = hippo_DeletePaymentPlanPopup
         }
         
         if let hippo_send_this_plan = response["hippo_send_this_plan"] as? String{
-            HippoStrings.sendPaymentRequestPopup = hippo_send_this_plan
+            BumbleStrings.sendPaymentRequestPopup = hippo_send_this_plan
         }
         if let hippo_is_required = response["hippo_is_required"] as? String{
-            HippoStrings.isRequired = hippo_is_required
+            BumbleStrings.isRequired = hippo_is_required
         }
         if let hippo_enter_planname = response["hippo_enter_planname"] as? String{
-            HippoStrings.enterPlanName = hippo_enter_planname
+            BumbleStrings.enterPlanName = hippo_enter_planname
         }
         if let hippo_invalid_price = response["hippo_invalid_price"] as? String{
-            HippoStrings.invalidPriceAmount = hippo_invalid_price
+            BumbleStrings.invalidPriceAmount = hippo_invalid_price
         }
         
     }
