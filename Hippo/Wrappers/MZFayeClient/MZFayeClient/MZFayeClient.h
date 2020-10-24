@@ -26,7 +26,7 @@
 #import <Foundation/Foundation.h>
 //#import "SRWebSocket.h"
 
-@class MZFayeClient;
+//@class MZFayeClient;
 
 extern NSString *const MZFayeClientBayeuxChannelHandshake;
 extern NSString *const MZFayeClientBayeuxChannelConnect;
@@ -59,14 +59,14 @@ typedef void (^MZFayeClientFailureHandler)(NSError *error);
 @protocol MZFayeClientDelegate <NSObject>
 @optional
 
-- (void)fayeClient:(MZFayeClient *)client didConnectToURL:(NSURL *)url;
-- (void)fayeClient:(MZFayeClient *)client didDisconnectWithError:(NSError *)error;
-- (void)fayeClient:(MZFayeClient *)client didUnsubscribeFromChannel:(NSString *)channel;
-- (void)fayeClient:(MZFayeClient *)client didSubscribeToChannel:(NSString *)channel;
-- (void)fayeClient:(MZFayeClient *)client didFailWithError:(NSError *)error;
-- (void)fayeClient:(MZFayeClient *)client didFailDeserializeMessage:(NSDictionary *)message
-         withError:(NSError *)error;
-- (void)fayeClient:(MZFayeClient *)client didReceiveMessage:(NSDictionary *)messageData fromChannel:(NSString *)channel;
+//- (void)fayeClient:(MZFayeClient *)client didConnectToURL:(NSURL *)url;
+//- (void)fayeClient:(MZFayeClient *)client didDisconnectWithError:(NSError *)error;
+//- (void)fayeClient:(MZFayeClient *)client didUnsubscribeFromChannel:(NSString *)channel;
+//- (void)fayeClient:(MZFayeClient *)client didSubscribeToChannel:(NSString *)channel;
+//- (void)fayeClient:(MZFayeClient *)client didFailWithError:(NSError *)error;
+//- (void)fayeClient:(MZFayeClient *)client didFailDeserializeMessage:(NSDictionary *)message
+//         withError:(NSError *)error;
+//- (void)fayeClient:(MZFayeClient *)client didReceiveMessage:(NSDictionary *)messageData fromChannel:(NSString *)channel;
 
 @end
 
