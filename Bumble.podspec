@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
     s.name         = 'Bumble'
 
-    s.version      = '1.0.6'
+    s.version      = '1.0.7'
 
     s.summary      = 'Now add Agent in app for quick support.'
     s.homepage     = 'https://github.com/Jungle-Works/bumble-ios'
