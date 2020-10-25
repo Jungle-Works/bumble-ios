@@ -144,9 +144,9 @@ class AllConversationsViewController: UIViewController, NewChatSentDelegate {
             fuguNewChatAttributes.botGroupId = botID
         }
         
-        let conversation = ConversationsViewController.getWith(chatAttributes: fuguNewChatAttributes)
-        conversation.createConversationOnStart = true
-        self.navigationController?.pushViewController(conversation, animated: true)
+//        let conversation = ConversationsViewController.getWith(chatAttributes: fuguNewChatAttributes)
+//        conversation.createConversationOnStart = true
+//        self.navigationController?.pushViewController(conversation, animated: true)
     }
     
     func handleIntialCustomerForm() -> Bool {
@@ -426,10 +426,10 @@ class AllConversationsViewController: UIViewController, NewChatSentDelegate {
                 fuguNewChatAttributes.botGroupId = botID
             }
             
-            let conversation = ConversationsViewController.getWith(chatAttributes: fuguNewChatAttributes)
-            conversation.createConversationOnStart = true
-            self.navigationController?.pushViewController(conversation, animated: true)
-             self.updateNewConversationBtnUI(isSelected: sender.isSelected)
+//            let conversation = ConversationsViewController.getWith(chatAttributes: fuguNewChatAttributes)
+//            conversation.createConversationOnStart = true
+//            self.navigationController?.pushViewController(conversation, animated: true)
+//             self.updateNewConversationBtnUI(isSelected: sender.isSelected)
         }
         
         
@@ -666,8 +666,8 @@ class AllConversationsViewController: UIViewController, NewChatSentDelegate {
     
     func openDefaultChannel() {
         BumbleConfig.shared.notifyDidLoad()
-        let conVC = ConversationsViewController.getWith(chatAttributes: FuguNewChatAttributes.defaultChat)
-        self.navigationController?.setViewControllers([conVC], animated: false)
+//        let conVC = ConversationsViewController.getWith(chatAttributes: FuguNewChatAttributes.defaultChat)
+//        self.navigationController?.setViewControllers([conVC], animated: false)
     }
     
     func showErrorMessageInTopErrorLabel(withMessage message: String) {
@@ -771,16 +771,16 @@ class AllConversationsViewController: UIViewController, NewChatSentDelegate {
     
     func moveToChatViewController(chatObj: FuguConversation) {
         BumbleConfig.shared.notifyDidLoad()
-        let conversationVC = ConversationsViewController.getWith(conversationObj: chatObj, allConversationConfig: config)
-        conversationVC.delegate = self
-        self.navigationController?.pushViewController(conversationVC, animated: true)
+//        let conversationVC = ConversationsViewController.getWith(conversationObj: chatObj, allConversationConfig: config)
+//        conversationVC.delegate = self
+//        self.navigationController?.pushViewController(conversationVC, animated: true)
     }
     
     func moveToChatViewcontroller(labelId: Int) {
         BumbleConfig.shared.notifyDidLoad()
-        let conversationVC = ConversationsViewController.getWith(labelId: "\(labelId)")
-        conversationVC.delegate = self
-        self.navigationController?.pushViewController(conversationVC, animated: false)
+//        let conversationVC = ConversationsViewController.getWith(labelId: "\(labelId)")
+//        conversationVC.delegate = self
+//        self.navigationController?.pushViewController(conversationVC, animated: false)
     }
     //MARK: - HANDLE PUSH NOTIFICATION
     func updateChannelsWithrespectToPush(pushInfo: [String: Any]) {

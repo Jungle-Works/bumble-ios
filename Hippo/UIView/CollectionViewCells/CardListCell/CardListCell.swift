@@ -149,7 +149,7 @@ extension CardListCell {
         self.card = card
         titleLabel.text = card.title
         let placeholder: UIImage? = UIImage(named: "placeholderImg", in: FuguFlowManager.bundle, compatibleWith: nil)
-        imageView.setImage(resource: card.image, placeholder: placeholder)
+//        imageView.setImage(resource: card.image, placeholder: placeholder)
         addLAbelContainerViewGesture()
         setDescriptionLabel()
         setRating()

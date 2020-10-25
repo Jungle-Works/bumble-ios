@@ -81,15 +81,15 @@ struct CreateConversationWithLabelId {
             params["initiate_bot_group_id"] = botGroupId
         }
       
-        if let vc = getLastVisibleController() as? BumbleConversationViewController{
-            if vc.storeResponse?.createNewChannel == true{
-                //params["initial_bot_messages"] = []
-            }else if !messagesList.isEmpty {
-                params["initial_bot_messages"] = messagesList
-            }
-        }else if !messagesList.isEmpty {
-            params["initial_bot_messages"] = messagesList
-        }
+//        if let vc = getLastVisibleController() as? BumbleConversationViewController{
+//            if vc.storeResponse?.createNewChannel == true{
+//                //params["initial_bot_messages"] = []
+//            }else if !messagesList.isEmpty {
+//                params["initial_bot_messages"] = messagesList
+//            }
+//        }else if !messagesList.isEmpty {
+//            params["initial_bot_messages"] = messagesList
+//        }
         
         return params
     }
@@ -738,11 +738,11 @@ class HippoChannel {
 
         chatDetail.assignedAgentID = users.first?.userID ?? chatDetail.assignedAgentID
         chatDetail.assignedAgentName = users.first?.fullName ?? chatDetail.assignedAgentName
-        if let vc = getLastVisibleController() as? BumbleConversationViewController{
-            vc.storeResponse?.restrictPersonalInfo = dict["restrict_personal_info_sharing"] as? Bool ?? false
+//        if let vc = getLastVisibleController() as? BumbleConversationViewController{
+//            vc.storeResponse?.restrictPersonalInfo = dict["restrict_personal_info_sharing"] as? Bool ?? false
         }
         
-        delegate?.channelDataRefreshed()
+//    func delegate;?.channelDataRefreshed()
     }
     
     
@@ -753,10 +753,10 @@ class HippoChannel {
         }
         
         if message.isANotification() && canChangeStatusOfMessagesToReadAllIf(messageReceived: message) {
-            updateAllMessagesStatusToRead()
+//            updateAllMessagesStatusToRead()
         }
         if message.isTypingMessage() {
-            delegate?.typingMessageReceived(newMessage: message)
+//            delegate?.typingMessageReceived(newMessage: message)
             return
         }
         guard !message.isReadAllNotification() else {
@@ -777,7 +777,7 @@ class HippoChannel {
             }
         }
         appendMessageIfRequired(message: message)
-        delegate?.newMessageReceived(newMessage: message)
+//        delegate?.newMessageReceived(newMessage: message)
     }
     
     //This function  return the value so the tableView should reload
@@ -789,7 +789,7 @@ class HippoChannel {
             }
         case .feedback, .leadForm:
             oldMessage.updateObject(with: newMessage)
-            delegate?.channelDataRefreshed()
+//            delegate?.channelDataRefreshed()
         case .paymentCard:
 //            oldMessage.cards = newMessage.cards
 //            oldMessage.selectedCardId = newMessage.selectedCardId
@@ -820,31 +820,31 @@ class HippoChannel {
         return getMessageWith(muid: muid) ?? getMessageWith(messageId: messageID)
     }
     func getMessageWith(messageId: Int?) -> HippoMessage? {
-        guard let parsedMessageId = messageId, parsedMessageId > 0 else {
+//        guard let parsedMessageId = messageId, parsedMessageId > 0 else {
             return nil
-        }
-        let index = messages.firstIndex(where: { (mes) -> Bool in
-            return mes.messageId == parsedMessageId
-        })
-        return index == nil ? nil : messages[index!]
+//        }
+//        let index = messages.firstIndex(where: { (mes) -> Bool in
+//            return mes.messageId == parsedMessageId
+//        })
+//        return index == nil ? nil : messages[index!]
     }
     func getMessageWith(muid: String?) -> HippoMessage? {
-        guard let parsedMuid = muid else {
+//        guard let parsedMuid = muid else {
             return nil
-        }
-        if let index = messageHashMap[parsedMuid], index > 0, messages.count > index, messages[index].messageUniqueID == muid {
-            return messages[index]
-        }
-        let index = messages.firstIndex(where: { (mes) -> Bool in
-            return mes.messageUniqueID == parsedMuid
-        })
-        return index == nil ? nil : messages[index!]
+//        }
+//        if let index = messageHashMap[parsedMuid], index > 0, messages.count > index, messages[index].messageUniqueID == muid {
+//            return messages[index]
+//        }
+//        let index = messages.firstIndex(where: { (mes) -> Bool in
+//            return mes.messageUniqueID == parsedMuid
+//        })
+//        return index == nil ? nil : messages[index!]
     }
     func isMessageExist(message: HippoMessage) -> Bool {
-        guard let muid = message.messageUniqueID, let _ = messageHashMap[muid] else {
-            return false
-        }
-        return true
+//        guard let muid = message.messageUniqueID, let _ = messageHashMap[muid] else {
+//            return false
+//        }
+        return false
         
     }
     func updateMessageIfRequired(recievedMessage: HippoMessage) {
@@ -857,63 +857,64 @@ class HippoChannel {
             return
         } else {
             message.status = .sent
-            sentMessages.append(message)
-            refreshHashMap()
+//            sentMessages.append(message)
+//            refreshHashMap()
         }
     }
     
-    @objc fileprivate func checkForReconnection() {
+fileprivate func checkForReconnection() {
         guard !isSubscribed() else {
             return
         }
-        subscribe()
+//        subscribe()
     }
     
     
     // MARK: - Methods
     func send(message: HippoMessage, completion: (() -> Void)?) {
-        guard !message.isANotification() else {
+//        guard !message.isANotification() else {
 //            FayeConnection.shared.send(messageDict: message.getJsonToSendToFaye(), toChannelID: id.description, completion: {_ in completion?()})
             return
-        }
-        if isSendingDisabled && !(message.type == .feedback){
-            print("----sending is disabled")
-            return
-        }
-        
-        if !isSubscribed() {
-            subscribe()
-        }
-        
-        if message.messageUniqueID != nil {
-            let value = messageHashMap[message.messageUniqueID!] ?? self.messages.count - 1
-            set(message: message, positionInHashMap: value)
-        }
-        message.creationDateTime = Date()
-        messageSender.addMessagesInQueueToSend(message: message)
-        completion?()
+//        }
+//        if isSendingDisabled && !(message.type == .feedback){
+//            print("----sending is disabled")
+//            return
+//        }
+//
+//        if !isSubscribed() {
+//            subscribe()
+//        }
+//
+//        if message.messageUniqueID != nil {
+//            let value = messageHashMap[message.messageUniqueID!] ?? self.messages.count - 1
+//            set(message: message, positionInHashMap: value)
+//        }
+//        message.creationDateTime = Date()
+//        messageSender.addMessagesInQueueToSend(message: message)
+//        completion?()
     }
     
     fileprivate func set(message: HippoMessage, positionInHashMap position: Int) {
-        messageHashMap[message.messageUniqueID!] = position
+//        messageHashMap[message.messageUniqueID!] = position
     }
     
     fileprivate func changeStatusToRead(message: HippoMessage) {
-        if self.canChangeStatusOfMessagesToReadAllIf(messageReceived: message) {
-            self.updateAllMessagesStatusToRead()
-        } else {
-            // Handle Later
-        }
+//        if self.canChangeStatusOfMessagesToReadAllIf(messageReceived: message) {
+//            self.updateAllMessagesStatusToRead()
+//        } else {
+//            // Handle Later
+//        }
     }
     fileprivate func canHandleBotMessage(message: HippoMessage) -> Bool {
         switch message.type {
         case .quickReply:
-            if message.values.isEmpty {
-                message.status = ReadUnReadStatus.read
-                self.sentMessages.append(message) // Appends the message in channel messages.
-            } else {
-                self.updateBotButtonMessage(newMessage: message) // Updates the quick reply message in the channel message.
-            }
+//            if message.values.isEmpty {
+//                message.status = ReadUnReadStatus.read
+//                self.sentMessages.append(message) // Appends the message in channel messages.
+//            } else {
+//                self.updateBotButtonMessage(newMessage: message) // Updates the quick reply message in the channel message.
+//            }
+        break
         case .leadForm:
             if !message.content.values.isEmpty {
                 return false // Returns because already filled the form.
@@ -921,24 +922,25 @@ class HippoChannel {
                 message.status = ReadUnReadStatus.read // Marks the status read.
             }
         case .feedback:
-            if message.is_rating_given {
-                self.upateFeedbackStatus(newMessage: message) // Updates the feedback message in the channel message.
-            } else {
-                
-            }
+//            if message.is_rating_given {
+//                self.upateFeedbackStatus(newMessage: message) // Updates the feedback message in the channel message.
+//            } else {
+//
+//            }
+        break
         default:
             break
         }
         return true
     }
-    fileprivate func unSubscribe(completion: HippoChannelHandler? = nil) {
+//    fileprivate func unSubscribe(completion: HippoChannelHandler? = nil) {
 //        FayeConnection.shared.unsubscribe(fromChannelId: id.description, completion: { (success, error) in
 //            completion?(success, error)
 //        })
-    }
+//    }
     func send(dict: [String: Any], completion: @escaping  (Bool, NSError?) -> Void) {
         var json = dict
-        json["channel_id"] = id.description
+//        json["channel_id"] = id.description
         
 //        FayeConnection.shared.send(messageDict: json, toChannelID: id.description) { (result) in
 //            completion(result.success, result.error?.error as NSError?)
@@ -946,7 +948,7 @@ class HippoChannel {
     }
     func send(publishable: FuguPublishable, completion: @escaping  (Bool, NSError?) -> Void) {
         var json = publishable.getJsonToSendToFaye()
-        json["channel_id"] = id.description
+//        json["channel_id"] = id.description
         
 //        FayeConnection.shared.send(messageDict: json, toChannelID: id.description) { (result) in
 //            completion(result.success, result.error?.error as NSError?)
@@ -964,25 +966,25 @@ class HippoChannel {
     
     
     func canChangeStatusOfMessagesToReadAllIf(messageReceived: HippoMessage) -> Bool {
-        return (messageReceived.typingStatus == .startTyping || messageReceived.notification == NotificationType.readAll) && !isMessageSentByMe(senderId: messageReceived.senderId)
+        return false
     }
     
     // MARK: - Deintializer
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-        unSubscribe()
-        saveMessagesInCache()
-        print("Channel with \(id) Deintialized")
-    }
+//    deinit {
+//        NotificationCenter.default.removeObserver(self)
+//        unSubscribe()
+//        saveMessagesInCache()
+//        print("Channel with \(id) Deintialized")
+//    }
     
-    func deinitObservers(){
-        NotificationCenter.default.removeObserver(self)
-        unSubscribe()
-        saveMessagesInCache()
-    }
+//    func deinitObservers(){
+//        NotificationCenter.default.removeObserver(self)
+//        unSubscribe()
+//        saveMessagesInCache()
+//    }
     
     
-}
+//}
 
 extension HippoChannel: MessageSenderDelegate {
     func subscribeChannel(completion: @escaping (Bool) -> Void) {

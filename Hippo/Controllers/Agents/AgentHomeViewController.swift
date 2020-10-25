@@ -721,9 +721,9 @@ extension AgentHomeViewController: AgentHomeCollectionViewCellDelegate {
     }
     
     func moveToConversationWith(_ conversationObject: AgentConversation) {
-        let vc = AgentConversationViewController.getWith(conversationObj: conversationObject)
-        vc.agentConversationDelegate = self
-        self.navigationController?.pushViewController(vc, animated: true)
+//        let vc = AgentConversationViewController.getWith(conversationObj: conversationObject)
+//        vc.agentConversationDelegate = self
+//        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

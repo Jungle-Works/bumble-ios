@@ -71,10 +71,10 @@ class BroadcastDetailViewController: UIViewController {
     }
     
     func cellSelectedWith(user: CustomerInfo) {
-        guard let vc = HippoBroadcaster.getChatboxViewController(for: user) else {
+//        guard let vc = HippoBroadcaster.getChatboxViewController(for: user) else {
             return
-        }
-        self.navigationController?.pushViewController(vc, animated: true)
+//        }
+//        self.navigationController?.pushViewController(vc, animated: true)
     }
     class func get(store: BroadcastDetailStore) -> BroadcastDetailViewController {
         let storyboard = UIStoryboard(name: "HippoBroadCast", bundle: FuguFlowManager.bundle)

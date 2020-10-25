@@ -198,13 +198,13 @@ class HippoBroadcaster {
         }
         
     }
-    class func getChatboxViewController(for user: CustomerInfo) -> AgentConversationViewController? {
-        guard let channelId = user.repliedOn else {
-            return nil
-        }
-        let intChannelId = Int(channelId)
-        let vc = AgentConversationViewController.getWith(channelID: intChannelId, channelName: user.customerName)
-        return vc
+    class func getChatboxViewController(for user: CustomerInfo)  {
+//        guard let channelId = user.repliedOn else {
+//            return nil
+//        }
+//        let intChannelId = Int(channelId)
+//        let vc = AgentConversationViewController.getWith(channelID: intChannelId, channelName: user.customerName)
+        
     }
     
     class func getBroadcastDetailInstance(broadcastDetail: BroadcastInfo) -> BroadcastDetailViewController {

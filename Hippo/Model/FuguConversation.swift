@@ -116,9 +116,9 @@ class FuguConversation: BumbleConversation {
             FuguDefaults.set(value: conversationArrayJson, forKey: DefaultName.conversationData.rawValue)
             let arrayOfConversation = getConversationArrayFrom(json: conversationArrayJson)
             
-            if let lastVisibleController = getLastVisibleController() as? ConversationsViewController, let channelId = lastVisibleController.channel?.id {
-                lastVisibleController.clearUnreadCountForChannel(id: channelId)
-            }
+//            if let lastVisibleController = getLastVisibleController() as? ConversationsViewController, let channelId = lastVisibleController.channel?.id {
+//                lastVisibleController.clearUnreadCountForChannel(id: channelId)
+//            }
 
             let result = GetConversationFromServerResult(isSuccessful: true, error: HippoError.general, conversations: arrayOfConversation)
             completion(result)

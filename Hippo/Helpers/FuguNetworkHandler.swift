@@ -99,26 +99,27 @@ class FuguNetworkHandler: NSObject {
     
     fileprivate func errorMessage(errorLabelColor: UIColor? = nil, errorLabelMessage: String = "", isToLoadFirstTime: Bool = true, needToBeHidden hidden: Bool) {
         let erorMessage = errorLabelMessage.isEmpty ? BumbleStrings.noNetworkConnection : errorLabelMessage
-        if let chatBoxVC = getLastVisibleController() as? ConversationsViewController, chatBoxVC.isViewLoaded {
-            if hidden == false {
-                chatBoxVC.errorLabel.text = erorMessage
-            }
-            if let color = errorLabelColor {
-                chatBoxVC.errorLabel.backgroundColor = color
-            } else {
-                chatBoxVC.errorLabel.backgroundColor = UIColor.red
-            }
-            if !isToLoadFirstTime && chatBoxVC.height_errorView.constant == 0 {
-                chatBoxVC.errorLabel.backgroundColor = UIColor.red
-                chatBoxVC.updateErrorLabelView(isHiding: true)
-            } else {
-                chatBoxVC.updateErrorLabelView(isHiding: hidden)
-            }
-            
-            if hidden {
-                chatBoxVC.internetIsBack()
-            }
-        }else if let chatBoxVC = getLastVisibleController() as? PromotionsViewController, chatBoxVC.isViewLoaded {
+//        if let chatBoxVC = getLastVisibleController() as? ConversationsViewController, chatBoxVC.isViewLoaded {
+//            if hidden == false {
+//                chatBoxVC.errorLabel.text = erorMessage
+//            }
+//            if let color = errorLabelColor {
+//                chatBoxVC.errorLabel.backgroundColor = color
+//            } else {
+//                chatBoxVC.errorLabel.backgroundColor = UIColor.red
+//            }
+//            if !isToLoadFirstTime && chatBoxVC.height_errorView.constant == 0 {
+//                chatBoxVC.errorLabel.backgroundColor = UIColor.red
+//                chatBoxVC.updateErrorLabelView(isHiding: true)
+//            } else {
+//                chatBoxVC.updateErrorLabelView(isHiding: hidden)
+//            }
+//
+//            if hidden {
+//                chatBoxVC.internetIsBack()
+//            }
+//        }else
+        if let chatBoxVC = getLastVisibleController() as? PromotionsViewController, chatBoxVC.isViewLoaded {
             if hidden == false {
                 chatBoxVC.errorLabel.text = erorMessage
             }

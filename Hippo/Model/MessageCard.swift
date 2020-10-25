@@ -18,7 +18,7 @@ struct MessageCard: HippoCard {
         return 230
     }
     
-    let image: HippoResource?
+//    let image: HippoResource?
     let title: String
     let description: String
     
@@ -30,9 +30,9 @@ struct MessageCard: HippoCard {
             return nil
         }
         if let imageURL = json["image_url"] as? String, let url = URL(string: imageURL) {
-            self.image = HippoResource(url: url)
+//            self.image = HippoResource(url: url)
         } else {
-            self.image = nil
+//            self.image = nil
         }
         self.title = String.parse(values: json, key: "title")
         self.description = String.parse(values: json, key: "description")
