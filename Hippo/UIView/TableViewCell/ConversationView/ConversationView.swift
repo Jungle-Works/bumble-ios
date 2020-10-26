@@ -9,7 +9,7 @@
 import UIKit
 
 extension UILabel {
-    func setTheme(theme: HippoLabelTheme) {
+    func setTheme(theme: BumbleLabelTheme) {
         textColor = theme.textColor
         font = theme.textFont
     }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-public struct HippoLabelTheme {
+public struct BumbleLabelTheme {
     public let textColor: UIColor
     public let textFont: UIFont?
     
@@ -19,32 +19,32 @@ public struct HippoLabelTheme {
 }
 
 public struct ConversationListTheme {
-    public var titleTheme: HippoLabelTheme
-    public var lastMessageTheme: HippoLabelTheme
-    public var timeTheme: HippoLabelTheme
+    public var titleTheme: BumbleLabelTheme
+    public var lastMessageTheme: BumbleLabelTheme
+    public var timeTheme: BumbleLabelTheme
     
     static func normalTheme() -> ConversationListTheme {
-        let titleTheme: HippoLabelTheme = HippoLabelTheme(textColor: .black, textFont: UIFont.bold(ofSize: 15))
-        let lastMessageTheme: HippoLabelTheme = HippoLabelTheme(textColor: UIColor(red: 152/255 , green: 173/255, blue: 176/255, alpha: 1.0), textFont: UIFont.regular(ofSize: 14.0))
-        let timeTheme: HippoLabelTheme = HippoLabelTheme(textColor: UIColor(red: 152/255 , green: 173/255, blue: 176/255, alpha: 1.0), textFont: UIFont.regular(ofSize: 12.0))
+        let titleTheme: BumbleLabelTheme = BumbleLabelTheme(textColor: .black, textFont: UIFont.bold(ofSize: 15))
+        let lastMessageTheme: BumbleLabelTheme = BumbleLabelTheme(textColor: UIColor(red: 152/255 , green: 173/255, blue: 176/255, alpha: 1.0), textFont: UIFont.regular(ofSize: 14.0))
+        let timeTheme: BumbleLabelTheme = BumbleLabelTheme(textColor: UIColor(red: 152/255 , green: 173/255, blue: 176/255, alpha: 1.0), textFont: UIFont.regular(ofSize: 12.0))
         return ConversationListTheme(titleTheme: titleTheme, lastMessageTheme: lastMessageTheme, timeTheme: timeTheme)
     }
     
     static func unReadTheme() -> ConversationListTheme {
-        let titleTheme: HippoLabelTheme = HippoLabelTheme(textColor: .black, textFont: UIFont.bold(ofSize: 15.0))
-        let lastMessageTheme: HippoLabelTheme = HippoLabelTheme(textColor: UIColor(red: 74/255 , green: 74/255, blue: 74/255, alpha: 1.0), textFont: UIFont.regular(ofSize: 14.0))
-        let timeTheme: HippoLabelTheme = HippoLabelTheme(textColor: UIColor(red: 74/255 , green: 74/255, blue: 74/255, alpha: 1.0), textFont: UIFont.regular(ofSize: 12.0))
+        let titleTheme: BumbleLabelTheme = BumbleLabelTheme(textColor: .black, textFont: UIFont.bold(ofSize: 15.0))
+        let lastMessageTheme: BumbleLabelTheme = BumbleLabelTheme(textColor: UIColor(red: 74/255 , green: 74/255, blue: 74/255, alpha: 1.0), textFont: UIFont.regular(ofSize: 14.0))
+        let timeTheme: BumbleLabelTheme = BumbleLabelTheme(textColor: UIColor(red: 74/255 , green: 74/255, blue: 74/255, alpha: 1.0), textFont: UIFont.regular(ofSize: 12.0))
         
         return ConversationListTheme(titleTheme: titleTheme, lastMessageTheme: lastMessageTheme, timeTheme: timeTheme)
     }
 }
 
-@objc public class HippoTheme: NSObject {
+@objc public class BumbleTheme: NSObject {
     
-    public class func defaultTheme(fontRegular : String = "", fontBold : String = "") -> HippoTheme {
+    public class func defaultTheme(fontRegular : String = "", fontBold : String = "") -> BumbleTheme {
          HippoFont.boldFont = fontBold
          HippoFont.regularFont = fontRegular
-        return HippoTheme()
+        return BumbleTheme()
     }
     
     var chatBoxCornerRadius: CGFloat = 5

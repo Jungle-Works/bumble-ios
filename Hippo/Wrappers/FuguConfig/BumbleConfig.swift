@@ -113,7 +113,7 @@ struct BotAction {
     internal var deviceToken = ""
     internal var voipToken = ""
     internal var ticketDetails = HippoTicketAtrributes(categoryName: "")
-    internal var theme = HippoTheme.defaultTheme()
+    internal var theme = BumbleTheme.defaultTheme()
     internal var userDetail: BumbleUserDetail?
     internal var jitsiUrl : String?
     internal var jitsiOngoingCall : Bool?
@@ -252,11 +252,11 @@ struct BotAction {
     }
     
     @available(*, deprecated, renamed: "setCustomisedHippoTheme", message: "This class will no longer be available, To Continue migrate to setCustomisedHippoTheme")
-    public func setCustomisedFuguTheme(theme: HippoTheme) {
+    public func setCustomisedFuguTheme(theme: BumbleTheme) {
         self.theme = theme
     }
     
-    public func setCustomisedHippoTheme(theme: HippoTheme) {
+    public func setCustomisedHippoTheme(theme: BumbleTheme) {
         self.theme = theme
     }
     
@@ -846,11 +846,11 @@ struct BotAction {
     
     
     @available(*, deprecated, renamed: "clearHippoUserData", message: "This Function is renamed to clearHippoUserData")
-    public func clearFuguUserData(completion: ((Bool) -> Void)? = nil) {
-        clearHippoUserData(completion: completion)
+    public func clearBumbleUserData(completion: ((Bool) -> Void)? = nil) {
+        clearUserDataBumble(completion: completion)
     }
     
-    public func clearHippoUserData(completion: ((Bool) -> Void)? = nil) {
+    public func clearUserDataBumble(completion: ((Bool) -> Void)? = nil) {
         setAgentStoredData()
         switch appUserType {
         case .agent:

@@ -277,7 +277,7 @@ class AllConversationsViewController: UIViewController, NewChatSentDelegate {
     }
     @objc func logoutButtonClicked() {
         showOptionAlert(title: "", message: BumbleStrings.logout, successButtonName: BumbleStrings.yes, successComplete: { (_) in
-            BumbleConfig.shared.clearHippoUserData { (s) in
+            BumbleConfig.shared.clearBumbleUserData { (s) in
                 BumbleUserDetail.clearAllData()
                 BumbleConfig.shared.delegate?.hippoUserLogOut()
             }
