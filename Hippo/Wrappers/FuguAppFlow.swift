@@ -7,15 +7,15 @@
 
 import UIKit
 
-class FuguFlowManager: NSObject {
+class BumbleFlowManager: NSObject {
     
-    public static var shared = FuguFlowManager()
+    public static var shared = BumbleFlowManager()
       
     class var bundle: Bundle? {
-        let podBundle = Bundle()
+        let podBundle = Bundle(for: AllConversationsViewController.self)
         
         guard let bundleURL = podBundle.url(forResource: "Hippo", withExtension: "bundle"), let fetchBundle = Bundle(url: bundleURL) else {
-//        guard let bundleURL = podBundle.url(forResource: "HippoChat", withExtension: "bundle"), let fetchBundle = Bundle(url: bundleURL) else {
+//        guard let bundleURL = podBundle.url(forResource: "HippoChat", withExtension: "bundle"), let fetchBundle = Bundle(url: bundleURL) else { 
             return podBundle
         }
         return fetchBundle

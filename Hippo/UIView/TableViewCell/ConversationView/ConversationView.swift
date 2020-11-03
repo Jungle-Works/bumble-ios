@@ -110,7 +110,7 @@ extension ConversationView {
             headingLabel.text = channelName
         }
         
-        let theme: ConversationListTheme
+        let theme: ConversationListTheme_bumble
         
         if let unreadCount = conersationObj.unreadCount, unreadCount > 0 {//}, isOpened {
             theme = BumbleConfig.shared.theme.conversationListUnreadTheme
@@ -172,12 +172,12 @@ extension ConversationView {
             msgStatusImageView?.contentMode = .center
 //            if let lastMessageStatus = conersationObj.lastMessage?.status, lastMessageStatus == .read {
             if let lastMessageStatus = conersationObj.lastMessage?.status, lastMessageStatus == .read || lastMessageStatus == .delivered{
-                msgStatusImageView?.image = UIImage(named: "readMessageImage", in: FuguFlowManager.bundle, compatibleWith: nil)
+                msgStatusImageView?.image = UIImage(named: "readMessageImage", in: BumbleFlowManager.bundle, compatibleWith: nil)
                 msgStatusImageView?.tintColor = BumbleConfig.shared.theme.readTintColor
             } else {
 //                msgStatusImageView?.image = UIImage(named: "readMessageImage", in: FuguFlowManager.bundle, compatibleWith: nil)
 //                msgStatusImageView?.tintColor = HippoConfig.shared.theme.unreadTintColor
-                msgStatusImageView?.image = UIImage(named: "unreadMessageImage", in: FuguFlowManager.bundle, compatibleWith: nil)
+                msgStatusImageView?.image = UIImage(named: "unreadMessageImage", in: BumbleFlowManager.bundle, compatibleWith: nil)
                 msgStatusImageView?.tintColor = BumbleConfig.shared.theme.unreadTintColor
             }
         } else if let last_sent_by_full_name = conersationObj.lastMessage?.senderFullName, (conersationObj.lastMessage?.senderId ?? -1) > 0 {

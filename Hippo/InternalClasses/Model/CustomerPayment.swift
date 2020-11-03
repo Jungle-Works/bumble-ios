@@ -128,7 +128,7 @@ struct PaymentSecurely {
 //        headerAttributed.append(secondAttributed)
         
         option.attributedText = headerAttributed
-        option.image = BumbleConfig.shared.theme.securePaymentIcon
+//        option.image = BumbleConfig.shared.theme.securePaymentIcon
         option.imageTintColor = BumbleConfig.shared.theme.securePaymentTintColor
         option.imageWidth = 30
         option.labelContainerLayout = ViewLayout(leading: 0, trailing: 0, top: 0, bottom: 0)

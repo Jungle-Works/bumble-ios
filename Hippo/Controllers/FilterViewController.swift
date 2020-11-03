@@ -132,7 +132,7 @@ class FilterViewController: UIViewController {
 //    }
     class func getNewInstance() -> FilterViewController? {
 //        let storyboard = UIStoryboard(name: "FuguUnique", bundle: FuguFlowManager.bundle)
-        let storyboard = UIStoryboard(name: "AgentSdk", bundle: FuguFlowManager.bundle)
+        let storyboard = UIStoryboard(name: "AgentSdk", bundle: BumbleFlowManager.bundle)
         guard let vc = storyboard.instantiateViewController(withIdentifier: "FilterViewController") as? FilterViewController else {
             return nil
         }
@@ -191,12 +191,12 @@ class FilterViewController: UIViewController {
             }
             crossButton.setTitleColor(BumbleConfig.shared.theme.crossBarButtonTextColor, for: .normal)
         } else {
-            if BumbleConfig.shared.theme.crossBarButtonImage != nil {
-                crossButton.setImage(BumbleConfig.shared.theme.crossBarButtonImage, for: .normal)
+            if BumbleConfig.shared.theme.crossBarButtonImage_bumble != nil {
+                crossButton.setImage(BumbleConfig.shared.theme.crossBarButtonImage_bumble, for: .normal)
                 crossButton.tintColor = BumbleConfig.shared.theme.headerTextColor
             }
         }
-                
+                  
         resetButton.setTitleColor(BumbleConfig.shared.theme.titleColorOfFilterResetButton, for: .normal)
         resetButton.backgroundColor = BumbleConfig.shared.theme.backgroundColorOfFilterResetButton
 //        resetButton.font = UIFont.regular(ofSize: 15.0)
@@ -508,7 +508,7 @@ extension FilterViewController: UITableViewDataSource {
         optionsTableView.tableFooterView = UIView()
         resultTableview.tableFooterView = UIView()
         
-        let bundle = FuguFlowManager.bundle
+        let bundle = BumbleFlowManager.bundle
         
         optionsTableView.register(UINib(nibName: "FilterOptionTableViewCell", bundle: bundle), forCellReuseIdentifier: "FilterOptionTableViewCell")
         

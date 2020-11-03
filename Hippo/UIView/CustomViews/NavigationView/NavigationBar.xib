@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -29,7 +30,7 @@
             <rect key="frame" x="0.0" y="0.0" width="488" height="97"/>
             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="whiteBackButton" translatesAutoresizingMaskIntoConstraints="NO" id="sHE-cu-ZOR">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="whiteBackButton_" translatesAutoresizingMaskIntoConstraints="NO" id="sHE-cu-ZOR">
                     <rect key="frame" x="15" y="47" width="13" height="13"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="13" id="Ndz-cT-7y2"/>
@@ -53,7 +54,7 @@
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Kxh-Rn-dD0">
                     <rect key="frame" x="433" y="23.5" width="40" height="50"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oEA-g4-A1P">
+                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oEA-g4-A1P">
                             <rect key="frame" x="0.0" y="0.0" width="40" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="ADK-aM-RVb"/>
@@ -66,7 +67,7 @@
                                     <rect key="frame" x="0.5" y="9.5" width="51" height="31"/>
                                 </switch>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="50" id="J5f-l9-dON"/>
                                 <constraint firstItem="g9T-V1-IH1" firstAttribute="centerX" secondItem="IqM-bH-2t2" secondAttribute="centerX" id="o0q-mx-xgQ"/>
@@ -76,6 +77,7 @@
                     </subviews>
                 </stackView>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="YNn-bR-0b8"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="Kxh-Rn-dD0" firstAttribute="centerY" secondItem="G01-tg-7hU" secondAttribute="centerY" id="2xP-Le-58p"/>
@@ -93,11 +95,13 @@
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="YNn-bR-0b8"/>
             <point key="canvasLocation" x="-34.782608695652179" y="22.433035714285712"/>
         </view>
     </objects>
     <resources>
-        <image name="whiteBackButton" width="8" height="12"/>
+        <image name="whiteBackButton_" width="8" height="12"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

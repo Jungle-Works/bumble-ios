@@ -68,7 +68,7 @@ class SelectImageViewController: UIViewController {
     // MARK: - Type Methods
     class func getWith(pickedImage: UIImage, imageFormat: ImageFormat?, delegate: SelectImageViewControllerDelegate?, isMentioningEnabled: Bool, gifData: Data?, mediaType: CoreMediaSelector.Result.MediaType) -> SelectImageViewController {
         //        let destinationVC = findIn(storyboard: .fuguUnique, withIdentifier: "SelectImageViewController") as! SelectImageViewController
-        let storyboard = UIStoryboard(name: "FuguUnique", bundle: FuguFlowManager.bundle)
+        let storyboard = UIStoryboard(name: "FuguUnique", bundle: BumbleFlowManager.bundle)
         let destinationVC = storyboard.instantiateViewController(withIdentifier: "SelectImageViewController") as! SelectImageViewController
         destinationVC.pickedImage = pickedImage
         //        destinationVC.tempImg = pickedImage

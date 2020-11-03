@@ -217,7 +217,7 @@ class CallManager {
         if BumbleConfig.shared.userDetail == nil {
             BumbleConfig.shared.userDetail = BumbleUserDetail()
         } else if BumbleConfig.shared.agentDetail == nil {
-            BumbleConfig.shared.setAgentStoredData()
+            BumbleConfig.shared.setAgentStoredData_bumble()
         }
         
         guard let currentUser = getCurrentUser() else {

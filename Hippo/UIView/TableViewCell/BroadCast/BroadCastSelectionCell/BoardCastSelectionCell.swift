@@ -32,7 +32,7 @@ class BoardCastSelectionCell: UITableViewCell {
     }
     
     func setInitalUI() {
-        cellImageView.image = BumbleConfig.shared.theme.forwardIcon
+        cellImageView.image = BumbleConfig.shared.theme.forwardIcon_bumble
         cellImageView.tintColor = BumbleConfig.shared.theme.forwordIconTintColor
     }
     

@@ -112,18 +112,18 @@ class AudioTableViewCell: MessageTableViewCell {
         controlButton.isHidden = isFileBeingDownloaded()
         
         guard isFileDownloaded() else {
-            controlButton.setImage(BumbleConfig.shared.theme.downloadIcon, for: .normal)
+            controlButton.setImage(BumbleConfig.shared.theme.downloadIcon_bumble, for: .normal)
             return
         }
         
         if  AudioPlayerManager.shared.tag != cellIdentifier {
-            controlButton.setImage(BumbleConfig.shared.theme.playIcon, for: .normal)
+            controlButton.setImage(BumbleConfig.shared.theme.playIcon_bumble, for: .normal)
             return
         }
         if AudioPlayerManager.shared.audioPlayer?.isPlaying == false {
-            controlButton.setImage(BumbleConfig.shared.theme.playIcon, for: .normal)
+            controlButton.setImage(BumbleConfig.shared.theme.playIcon_bumble, for: .normal)
         } else {
-            controlButton.setImage(BumbleConfig.shared.theme.pauseIcon, for: .normal)
+            controlButton.setImage(BumbleConfig.shared.theme.pauseIcon_bumble, for: .normal)
         }
     }
     

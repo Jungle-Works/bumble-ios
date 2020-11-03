@@ -127,7 +127,7 @@ extension ActionableMessageCellHandler: UITableViewDataSource {
                 if let thumbnailUrl = actionableMessage?.messageImageURL, thumbnailUrl.count > 0, let url = URL(string: thumbnailUrl) {
                     //            self.retryButton.isHidden = true
                     cell.setupIndicatorView(true)
-                    let placeHolderImage = BumbleConfig.shared.theme.placeHolderImage
+                    let placeHolderImage = BumbleConfig.shared.theme.placeHolderImage_bumble
                     
                     cell.messageImageView.kf.setImage(with: url, placeholder: placeHolderImage, completionHandler: { (image, error, _, _) in
                         cell.setupIndicatorView(false)

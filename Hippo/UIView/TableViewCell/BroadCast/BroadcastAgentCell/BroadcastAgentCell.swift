@@ -31,9 +31,9 @@ class BroadcastAgentCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         switch type {
         case .multiple:
-            cellImageView.image = selected ? BumbleConfig.shared.theme.checkBoxActive : BumbleConfig.shared.theme.checkBoxInActive
+            cellImageView.image = selected ? BumbleConfig.shared.theme.checkBoxActive_bumble : BumbleConfig.shared.theme.checkBoxInActive_bumble
         case .single:
-            cellImageView.image = selected ? BumbleConfig.shared.theme.radioActive : BumbleConfig.shared.theme.radioInActive
+            cellImageView.image = selected ? BumbleConfig.shared.theme.radioActive_bumble : BumbleConfig.shared.theme.radioInActive_bumble
         case .none:
             break
             

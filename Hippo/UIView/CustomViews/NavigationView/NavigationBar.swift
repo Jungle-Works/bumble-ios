@@ -51,7 +51,7 @@ final class NavigationBar: UIView {
     
     private func setup(){
         image_back.tintColor = BumbleConfig.shared.theme.headerTextColor
-        image_back.image = BumbleConfig.shared.theme.leftBarButtonImage
+        image_back.image = BumbleConfig.shared.theme.leftBarButtonImage_bumble
     }
     
     
@@ -59,7 +59,7 @@ final class NavigationBar: UIView {
         if self.subviews.contains(view ?? UIView()){
             self.view.removeFromSuperview()
         }
-        FuguFlowManager.bundle?.loadNibNamed(NavigationBar.NIB_NAME, owner: self, options: nil)
+        BumbleFlowManager.bundle?.loadNibNamed(NavigationBar.NIB_NAME, owner: self, options: nil)
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         setupLayout()

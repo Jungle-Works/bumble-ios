@@ -52,7 +52,7 @@ class BroadcastDetailViewController: UIViewController {
         self.view.backgroundColor = BumbleConfig.shared.theme.backgroundColor
         
         backButton.tintColor = BumbleConfig.shared.theme.headerTextColor
-        backButton.image = BumbleConfig.shared.theme.leftBarButtonImage
+        backButton.image = BumbleConfig.shared.theme.leftBarButtonImage_bumble
         
         
         tableView.backgroundColor = UIColor.clear
@@ -65,7 +65,7 @@ class BroadcastDetailViewController: UIViewController {
         
 //        tableView.separatorStyle = .none
         
-        let bundle = FuguFlowManager.bundle
+        let bundle = BumbleFlowManager.bundle
         tableView.register(UINib(nibName: "BroadcastListTableViewCell", bundle: bundle), forCellReuseIdentifier: "BroadcastListTableViewCell")
         tableView.register(UINib(nibName: "BroadcastUserStatusCell", bundle: bundle), forCellReuseIdentifier: "BroadcastUserStatusCell")
     }
@@ -77,7 +77,7 @@ class BroadcastDetailViewController: UIViewController {
 //        self.navigationController?.pushViewController(vc, animated: true)
     }
     class func get(store: BroadcastDetailStore) -> BroadcastDetailViewController {
-        let storyboard = UIStoryboard(name: "HippoBroadCast", bundle: FuguFlowManager.bundle)
+        let storyboard = UIStoryboard(name: "HippoBroadCast", bundle: BumbleFlowManager.bundle)
         let vc = storyboard.instantiateViewController(withIdentifier: "BroadcastDetailViewController") as! BroadcastDetailViewController
         vc.store = store
         return vc

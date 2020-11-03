@@ -115,15 +115,15 @@ extension AgentListTableViewCell {
         }
         
         if selectedAgents.contains(agentId) {
-            userImageView.image = BumbleConfig.shared.theme.checkBoxActive//#imageLiteral(resourceName: "checkbox_active_icon")
+            userImageView.image = BumbleConfig.shared.theme.checkBoxActive_bumble//#imageLiteral(resourceName: "checkbox_active_icon")
         } else {
-            userImageView.image = BumbleConfig.shared.theme.checkBoxInActive//#imageLiteral(resourceName: "checkbox_inactive_icon")
+            userImageView.image = BumbleConfig.shared.theme.checkBoxInActive_bumble//#imageLiteral(resourceName: "checkbox_inactive_icon")
         }
         return self
     }
     
     func setImage() {
-        let placeHolder = BumbleConfig.shared.theme.userPlaceHolderImage        
+        let placeHolder = BumbleConfig.shared.theme.userPlaceHolderImage_bumble        
         if let imageString = agent?.userImageString?.trimmingCharacters(in: .whitespacesAndNewlines), !imageString.isEmpty {
             userImageView.displayImage(imageString: imageString, placeHolderImage: placeHolder)
         } else {

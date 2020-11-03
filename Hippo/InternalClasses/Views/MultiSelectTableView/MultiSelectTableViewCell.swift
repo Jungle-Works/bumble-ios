@@ -66,12 +66,12 @@ class MultiSelectTableViewCell: UITableViewCell {
     }
     
     private func setupTableView() {
-        multiselectTableView.register(UINib(nibName: "MultipleSelectTableViewCell", bundle: FuguFlowManager.bundle), forCellReuseIdentifier: "MultipleSelectTableViewCell")
+        multiselectTableView.register(UINib(nibName: "MultipleSelectTableViewCell", bundle: BumbleFlowManager.bundle), forCellReuseIdentifier: "MultipleSelectTableViewCell")
         
         
-        multiselectTableView.register(UINib(nibName: "MultiSelectHeaderTableViewCell", bundle: FuguFlowManager.bundle), forCellReuseIdentifier: "MultiSelectHeaderTableViewCell")
+        multiselectTableView.register(UINib(nibName: "MultiSelectHeaderTableViewCell", bundle: BumbleFlowManager.bundle), forCellReuseIdentifier: "MultiSelectHeaderTableViewCell")
         
-        multiselectTableView.register(UINib(nibName: "ActionButtonViewCell", bundle: FuguFlowManager.bundle), forCellReuseIdentifier: "ActionButtonViewCell")
+        multiselectTableView.register(UINib(nibName: "ActionButtonViewCell", bundle: BumbleFlowManager.bundle), forCellReuseIdentifier: "ActionButtonViewCell")
        
         multiselectTableView.dataSource = self
         multiselectTableView.delegate = self

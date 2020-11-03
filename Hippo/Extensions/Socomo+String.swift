@@ -48,7 +48,7 @@ extension String {
         }
     }
     var localized: String {
-        if let path = FuguFlowManager.bundle?.path(forResource: getCurrentLanguageLocale(), ofType: "lproj") {
+        if let path = BumbleFlowManager.bundle?.path(forResource: getCurrentLanguageLocale(), ofType: "lproj") {
               let bundle = Bundle(path: path)
               return NSLocalizedString(self, tableName: "HippoLocalizable", bundle: bundle!, value: "", comment: "")
           }

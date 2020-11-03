@@ -61,7 +61,7 @@ extension FilterTableViewCell {
             filterLabel.font = UIFont.bold(ofSize: 19)//UIFont.boldSystemFont(ofSize: 19)
 //            filterLabel.textColor = .darkColor
 //            tickImageView.image = HippoImage.current.multipleAgentSelected
-            tickImageView.image = BumbleConfig.shared.theme.checkBoxActive
+            tickImageView.image = BumbleConfig.shared.theme.checkBoxActive_bumble
 //            tickImageView.tintColor = HippoTheme.current.themeColor
             tickImageView.tintColor = BumbleConfig.shared.theme.checkBoxActiveTintColor
 //            tickImageView.image = #imageLiteral(resourceName: "checkbox_active_icon")
@@ -71,7 +71,7 @@ extension FilterTableViewCell {
 //            filterLabel.textColor = .dirtyPurple
 //            tickImageView.image = #imageLiteral(resourceName: "checkbox_inactive_icon")
 //            tickImageView.image = HippoImage.current.multipleAgentUnSelected?.withRenderingMode(.alwaysOriginal)
-            tickImageView.image = BumbleConfig.shared.theme.checkBoxInActive
+            tickImageView.image = BumbleConfig.shared.theme.checkBoxInActive_bumble
 //            tickImageView.tintColor = HippoTheme.current.buttonUnselectedColor
             tickImageView.tintColor = BumbleConfig.shared.theme.checkBoxInActiveTintColor
 

@@ -64,13 +64,13 @@ class ActionTableView: MessageTableViewCell {
         tableView.allowsSelection = false
         selectionStyle = .none
         
-        tableView.register(UINib(nibName: "ActionLabelViewCell", bundle: FuguFlowManager.bundle), forCellReuseIdentifier: "ActionLabelViewCell")
-        tableView.register(UINib(nibName: "ActionButtonViewCell", bundle: FuguFlowManager.bundle), forCellReuseIdentifier: "ActionButtonViewCell")
-        tableView.register(UINib(nibName: "ActionTagTableViewCell", bundle: FuguFlowManager.bundle), forCellReuseIdentifier: "ActionTagTableViewCell")
+        tableView.register(UINib(nibName: "ActionLabelViewCell", bundle: BumbleFlowManager.bundle), forCellReuseIdentifier: "ActionLabelViewCell")
+        tableView.register(UINib(nibName: "ActionButtonViewCell", bundle: BumbleFlowManager.bundle), forCellReuseIdentifier: "ActionButtonViewCell")
+        tableView.register(UINib(nibName: "ActionTagTableViewCell", bundle: BumbleFlowManager.bundle), forCellReuseIdentifier: "ActionTagTableViewCell")
         
         
-        tableView.register(UINib(nibName: "SelfMessageTableViewCell", bundle: FuguFlowManager.bundle), forCellReuseIdentifier: "SelfMessageTableViewCell")
-        tableView.register(UINib(nibName: "SupportMessageTableViewCell", bundle: FuguFlowManager.bundle), forCellReuseIdentifier: "SupportMessageTableViewCell")
+        tableView.register(UINib(nibName: "SelfMessageTableViewCell", bundle: BumbleFlowManager.bundle), forCellReuseIdentifier: "SelfMessageTableViewCell")
+        tableView.register(UINib(nibName: "SupportMessageTableViewCell", bundle: BumbleFlowManager.bundle), forCellReuseIdentifier: "SupportMessageTableViewCell")
         
     }
     private func setUIData() {

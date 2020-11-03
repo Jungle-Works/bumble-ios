@@ -38,7 +38,7 @@ class PrePayment{
             
             let channelId = data["channel_id"] as? Int
             let paymentUrl = (data["payment_url"] as? NSDictionary)?.value(forKey: "payment_url") as? String
-            FuguFlowManager.shared.presentPrePaymentController(paymentUrl ?? "", channelId ?? -1)
+            BumbleFlowManager.shared.presentPrePaymentController(paymentUrl ?? "", channelId ?? -1)
             completion(nil)
         }
      }

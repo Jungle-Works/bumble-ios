@@ -18,30 +18,30 @@ public struct BumbleLabelTheme {
     
 }
 
-public struct ConversationListTheme {
+public struct ConversationListTheme_bumble {
     public var titleTheme: BumbleLabelTheme
     public var lastMessageTheme: BumbleLabelTheme
     public var timeTheme: BumbleLabelTheme
     
-    static func normalTheme() -> ConversationListTheme {
+    static func normalTheme() -> ConversationListTheme_bumble {
         let titleTheme: BumbleLabelTheme = BumbleLabelTheme(textColor: .black, textFont: UIFont.bold(ofSize: 15))
         let lastMessageTheme: BumbleLabelTheme = BumbleLabelTheme(textColor: UIColor(red: 152/255 , green: 173/255, blue: 176/255, alpha: 1.0), textFont: UIFont.regular(ofSize: 14.0))
         let timeTheme: BumbleLabelTheme = BumbleLabelTheme(textColor: UIColor(red: 152/255 , green: 173/255, blue: 176/255, alpha: 1.0), textFont: UIFont.regular(ofSize: 12.0))
-        return ConversationListTheme(titleTheme: titleTheme, lastMessageTheme: lastMessageTheme, timeTheme: timeTheme)
+        return ConversationListTheme_bumble(titleTheme: titleTheme, lastMessageTheme: lastMessageTheme, timeTheme: timeTheme)
     }
     
-    static func unReadTheme() -> ConversationListTheme {
+    static func unReadTheme() -> ConversationListTheme_bumble {
         let titleTheme: BumbleLabelTheme = BumbleLabelTheme(textColor: .black, textFont: UIFont.bold(ofSize: 15.0))
         let lastMessageTheme: BumbleLabelTheme = BumbleLabelTheme(textColor: UIColor(red: 74/255 , green: 74/255, blue: 74/255, alpha: 1.0), textFont: UIFont.regular(ofSize: 14.0))
         let timeTheme: BumbleLabelTheme = BumbleLabelTheme(textColor: UIColor(red: 74/255 , green: 74/255, blue: 74/255, alpha: 1.0), textFont: UIFont.regular(ofSize: 12.0))
         
-        return ConversationListTheme(titleTheme: titleTheme, lastMessageTheme: lastMessageTheme, timeTheme: timeTheme)
+        return ConversationListTheme_bumble(titleTheme: titleTheme, lastMessageTheme: lastMessageTheme, timeTheme: timeTheme)
     }
 }
 
 @objc public class BumbleTheme: NSObject {
     
-    public class func defaultTheme(fontRegular : String = "", fontBold : String = "") -> BumbleTheme {
+    public class func defaultThemeBumble(fontRegular : String = "", fontBold : String = "") -> BumbleTheme {
          HippoFont.boldFont = fontBold
          HippoFont.regularFont = fontRegular
         return BumbleTheme()
@@ -71,24 +71,24 @@ public struct ConversationListTheme {
     open var darkThemeTextColor = UIColor.white
     open var lightThemeTextColor = UIColor.black
     
-    open var conversationListNormalTheme: ConversationListTheme = ConversationListTheme.normalTheme()
-    open var conversationListUnreadTheme: ConversationListTheme = ConversationListTheme.unReadTheme()
-    open var informationIcon: UIImage? = UIImage(named: "dots", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
-    open var audioCallIcon: UIImage? = UIImage(named: "call", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
-    open var videoCallIcon: UIImage? = UIImage(named: "video", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+    open var conversationListNormalTheme: ConversationListTheme_bumble = ConversationListTheme_bumble.normalTheme()
+    open var conversationListUnreadTheme: ConversationListTheme_bumble = ConversationListTheme_bumble.unReadTheme()
+//    open var informationIcon: UIImage? = UIImage(named: "dots", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+//    open var audioCallIcon: UIImage? = UIImage(named: "call", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+//    open var videoCallIcon: UIImage? = UIImage(named: "video", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
 
-    open var noChatImage : UIImage? = UIImage(named: "noChats", in: FuguFlowManager.bundle, compatibleWith: nil)
-    open var paymentIcon: UIImage? = UIImage(named: "makePayment", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysOriginal)
-    open var AddFileIcon: UIImage? = UIImage(named: "AddFile", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
-    open var editIcon: UIImage? = UIImage(named: "edit", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
-    open var eyeIcon: UIImage? = UIImage(named: "eye", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+//    open var noChatImage : UIImage? = UIImage(named: "noChats", in: BumbleFlowManager.bundle, compatibleWith: nil)
+//    open var paymentIcon: UIImage? = UIImage(named: "makePayment", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysOriginal)
+//    open var AddFileIcon: UIImage? = UIImage(named: "AddFile", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+//    open var editIcon: UIImage? = UIImage(named: "edit", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+//    open var eyeIcon: UIImage? = UIImage(named: "eye", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
 //    open var paymentIcon: UIImage? = UIImage(named: "makePayment", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
-    open var botIcon: UIImage? = UIImage(named: "bot", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysOriginal)
+//    open var botIcon: UIImage? = UIImage(named: "bot", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysOriginal)
 //    open var botIcon: UIImage? = UIImage(named: "bot", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
-    open var alphabetSymbolIcon: UIImage? = UIImage(named: "alphabet_symbol_icon", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysOriginal)
+//    open var alphabetSymbolIcon: UIImage? = UIImage(named: "alphabet_symbol_icon", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysOriginal)
 //    open var alphabetSymbolIcon: UIImage? = UIImage(named: "alphabet_symbol_icon", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
-    open var privateInternalNotesIcon: UIImage? = UIImage(named: "private+message_icon_chat_box", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysOriginal)
-    open var deleteIcon: UIImage? = UIImage(named: "delete", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysOriginal)
+//    open var privateInternalNotesIcon: UIImage? = UIImage(named: "private+message_icon_chat_box", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysOriginal)
+//    open var deleteIcon: UIImage? = UIImage(named: "delete", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysOriginal)
     
     
 //    open var privateInternalNotesIcon: UIImage? = UIImage(named: "private+message_icon_chat_box", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
@@ -103,18 +103,18 @@ public struct ConversationListTheme {
     open var actionableMessagePriceBoldFont: UIFont? = UIFont.bold(ofSize: 15.0)
     open var actionableMessageDescriptionFont: UIFont? = UIFont.bold(ofSize: 13.0)
     open var actionableMessageButtonFont: UIFont? = UIFont.bold(ofSize: 16.0)
-    open var leftBarButtonImage: UIImage? = UIImage(named: "whiteBackButton", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
-    open var leftBarButtonArrowImage: UIImage? = UIImage(named: "whiteBackButton", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
-    open var closeChatImage: UIImage? = UIImage(named: "closeRed", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+    open var leftBarButtonImage_bumble: UIImage? = UIImage(named: "whiteBackButton_", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+    open var leftBarButtonArrowImage_bumble: UIImage? = UIImage(named: "whiteBackButton_", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+    open var closeChatImage_bumble: UIImage? = UIImage(named: "closeRed", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
 
     open var leftBarButtonFont: UIFont? = UIFont.regular(ofSize: 13.0)
     open var leftBarButtonTextColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     open var leftBarButtonText = String()
     
-    open var forwardIcon: UIImage? = UIImage(named: "forword_icon", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+    open var forwardIcon_bumble: UIImage? = UIImage(named: "forword_icon", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
     open var forwordIconTintColor = UIColor.black
     
-    open var homeBarButtonImage: UIImage? = UIImage(named: "home-bubble", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+//    open var homeBarButtonImage_bumble: UIImage? = UIImage(named: "home-bubble", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
     open var homeBarButtonFont: UIFont? = UIFont.regular(ofSize: 13.0)
     open var homeBarButtonTextColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     open var homeBarButtonText = String()
@@ -124,13 +124,13 @@ public struct ConversationListTheme {
     open var broadcastBarButtonText = String()
     
 //    open var filterBarButtonImage: UIImage? = UIImage(named: "filter_button_icon", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
-    open var filterSelectedBarButtonImage: UIImage? = UIImage(named: "filter_button_icon", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysOriginal)
-    open var filterUnselectedBarButtonImage: UIImage? = UIImage(named: "filter_button_icon_unselected", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysOriginal)
+    open var filterSelectedBarButtonImage_bumble: UIImage? = UIImage(named: "filter_button_icon", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysOriginal)
+    open var filterUnselectedBarButtonImage_bumble: UIImage? = UIImage(named: "filter_button_icon_unselected", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysOriginal)
     open var filterBarButtonFont: UIFont? = UIFont.regular(ofSize: 13.0)
     open var filterBarButtonTextColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     open var filterBarButtonText = String()
     
-    open var crossBarButtonImage: UIImage? = UIImage(named: "cancel_icon", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+    open var crossBarButtonImage_bumble: UIImage? = UIImage(named: "cancel_icon", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
     open var crossBarButtonFont: UIFont? = UIFont.regular(ofSize: 13.0)
     open var crossBarButtonTextColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     open var crossBarButtonText = String()
@@ -138,35 +138,35 @@ public struct ConversationListTheme {
     open var conversationTitleColor = #colorLiteral(red: 0.1725490196, green: 0.137254902, blue: 0.2, alpha: 1)
     open var conversationLastMsgColor = #colorLiteral(red: 0.1725490196, green: 0.137254902, blue: 0.2, alpha: 1)
     
-    open var sendBtnIcon: UIImage? = UIImage(named: "send", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+//    open var sendBtnIcon: UIImage? = UIImage(named: "send", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
     
     
     open var sendBtnIconTintColor: UIColor?
     
     open var messageTextViewTintColor = UIColor(red: 11/255, green: 106/255, blue: 255/255, alpha: 1)
     
-    open var addButtonIcon: UIImage? = UIImage(named: "add", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+//    open var addButtonIcon: UIImage? = UIImage(named: "add", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
 
 //    open var moreOptionsButtonIcon: UIImage? = UIImage(named: "moreOptions", in: FuguFlowManager.bundle, compatibleWith: nil)
-        open var moreOptionsButtonIcon: UIImage? = UIImage(named: "moreOptions", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+        open var moreOptionsButtonIcon_bumble: UIImage? = UIImage(named: "moreOptions", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
     open var moreOptionsBtnTintColor: UIColor?
     open var moreOptionsIconsTintColor = UIColor.black
     open var moreOptionsTitlesTintColor = UIColor.black
     open var addBtnTintColor: UIColor?
     
-    open var actionButtonIcon: UIImage? = UIImage(named: "optionIcons", in: FuguFlowManager.bundle, compatibleWith: nil)
+//    open var actionButtonIcon: UIImage? = UIImage(named: "optionIcons", in: BumbleFlowManager.bundle, compatibleWith: nil)
     open var actionButtonIconTintColor: UIColor?
     
     open var readTintColor = UIColor(red: 0/255, green: 221/255, blue: 182/255, alpha: 1)//UIColor(red: 109/255, green: 212/255, blue: 0/255, alpha: 1)//
     open var unreadTintColor = UIColor.gray
     
-    open var readMessageTick: UIImage? = UIImage(named: "readMessageImage", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)//UIImage(named: "readMsgTick", in: FuguFlowManager.bundle, compatibleWith: nil)//
+    open var readMessageTick_bumble: UIImage? = UIImage(named: "readMessageImage", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)//UIImage(named: "readMsgTick", in: FuguFlowManager.bundle, compatibleWith: nil)//
     open var readMessageTintColor: UIColor? //= UIColor(red: 0/255, green: 221/255, blue: 182/255, alpha: 1)//UIColor(red: 109/255, green: 212/255, blue: 0/255, alpha: 1)//
     
-    open var unreadMessageTick: UIImage? = UIImage(named: "unreadMessageImage", in: FuguFlowManager.bundle, compatibleWith: nil)//UIImage(named: "unreadMsgTick", in: FuguFlowManager.bundle, compatibleWith: nil)//
+    open var unreadMessageTick_bumble: UIImage? = UIImage(named: "unreadMessageImage", in: BumbleFlowManager.bundle, compatibleWith: nil)//UIImage(named: "unreadMsgTick", in: FuguFlowManager.bundle, compatibleWith: nil)//
     open var unreadMessageTintColor: UIColor? //= UIColor.gray
     
-    open var unsentMessageIcon: UIImage? = UIImage(named: "unsent_watch_icon", in: FuguFlowManager.bundle, compatibleWith: nil)
+    open var unsentMessageIcon_bumble: UIImage? = UIImage(named: "unsent_watch_icon", in: BumbleFlowManager.bundle, compatibleWith: nil)
     open var unsentMessageTintColor: UIColor?
     
     open var dateTimeTextColor = UIColor.black40
@@ -239,10 +239,10 @@ public struct ConversationListTheme {
     open var broadcastTitleInfoColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
     
 
-    open var checkBoxActive = UIImage(named: "checkbox_active_icon", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+    open var checkBoxActive_bumble = UIImage(named: "checkbox_active_icon", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
     open var checkBoxActiveTintColor = UIColor.black
 //    open var checkBoxInActive = UIImage(named: "checkbox_inactive_icon", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysOriginal)
-    open var checkBoxInActive = UIImage(named: "checkbox_inactive_icon", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+    open var checkBoxInActive_bumble = UIImage(named: "checkbox_inactive_icon", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
     open var checkBoxInActiveTintColor = UIColor.white
     
     open var titleColorOfFilterResetButton = UIColor.white
@@ -251,8 +251,8 @@ public struct ConversationListTheme {
     open var titleColorOfFilterApplyButton = UIColor.white
     open var backgroundColorOfFilterApplyButton = UIColor.black
     
-    open var radioActive = UIImage(named: "radio_button_active", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysOriginal)
-    open var radioInActive = UIImage(named: "radio_button_deactive", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysOriginal)
+    open var radioActive_bumble = UIImage(named: "radio_button_active", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysOriginal)
+    open var radioInActive_bumble = UIImage(named: "radio_button_deactive", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysOriginal)
     
     open var infoIcon: UIImage?
     
@@ -262,49 +262,49 @@ public struct ConversationListTheme {
     
     
     //MARK: Icons
-    open var placeHolderImage = UIImage(named: "placeholderImg", in: FuguFlowManager.bundle, compatibleWith: nil)
-    open var userPlaceHolderImage = UIImage(named: "user_placeholder_icon", in: FuguFlowManager.bundle, compatibleWith: nil)
-    open var csvIcon = UIImage(named: "csv", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
-    open var pdfIcon = UIImage(named: "pdf", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
-    open var docIcon = UIImage(named: "doc", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
-    open var downloadIcon = UIImage(named: "downloadIcon", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
-    open var reloadIcon = UIImage(named: "reload", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
-    open var txtIcon = UIImage(named: "txt", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
-    open var pptIcon = UIImage(named: "ppt", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
-    open var defaultDocIcon = UIImage(named: "defaultDoc", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
-    open var playIcon = UIImage(named: "playIcon", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
-    open var pauseIcon = UIImage(named: "pauseIcon", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
-    open var excelIcon = UIImage(named: "excel", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
-    open var audioIcon = UIImage(named: "AudioIcon", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
-    open var uploadIcon = UIImage(named: "uploadIcon", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
-    open var chatReOpenIcon = UIImage(named: "reopen_conversation_icon", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysOriginal)
-    open var chatReOpenIconWithTemplateMode = UIImage(named: "reopen_conversation_icon", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
-    open var chatCloseIcon = UIImage(named: "cancel_icon", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysOriginal)
-    open var chatAssignIcon = UIImage(named: "assigned_conversation_icon", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysOriginal)
+    open var placeHolderImage_bumble = UIImage(named: "placeholderImg", in: BumbleFlowManager.bundle, compatibleWith: nil)
+    open var userPlaceHolderImage_bumble = UIImage(named: "user_placeholder_icon", in: BumbleFlowManager.bundle, compatibleWith: nil)
+    open var csvIcon_bumble = UIImage(named: "csv", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+    open var pdfIcon_bumble = UIImage(named: "pdf", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+    open var docIcon_bumble = UIImage(named: "doc", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+    open var downloadIcon_bumble = UIImage(named: "downloadIcon", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+    open var reloadIcon_bumble = UIImage(named: "reload", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+    open var txtIcon_bumble = UIImage(named: "txt", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+    open var pptIcon_bumble = UIImage(named: "ppt", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+    open var defaultDocIcon_bumble = UIImage(named: "defaultDoc", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+    open var playIcon_bumble = UIImage(named: "playIcon", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+    open var pauseIcon_bumble = UIImage(named: "pauseIcon", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+    open var excelIcon_bumble = UIImage(named: "excel", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+    open var audioIcon_bumble = UIImage(named: "AudioIcon", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+    open var uploadIcon_bumble = UIImage(named: "uploadIcon", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+    open var chatReOpenIcon_bumble = UIImage(named: "reopen_conversation_icon", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysOriginal)
+    open var chatReOpenIconWithTemplateMode_bumble = UIImage(named: "reopen_conversation_icon", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+    open var chatCloseIcon_bumble = UIImage(named: "cancel_icon", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysOriginal)
+    open var chatAssignIcon_bumble = UIImage(named: "assigned_conversation_icon", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysOriginal)
     
     
-    open var radioImageActive: UIImage? = UIImage(named: "radio_button_active", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
-     open var radioImageInActive: UIImage? = UIImage(named: "radio_button_deactive", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+    open var radioImageActive_bumble: UIImage? = UIImage(named: "radio_button_active", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+     open var radioImageInActive_bumble: UIImage? = UIImage(named: "radio_button_deactive", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
     
-    open var openChatIcon =  UIImage(named: "newChat", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
-    open var cancelIcon =  UIImage(named: "cancel_icon", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+    open var openChatIcon_bumble =  UIImage(named: "newChat", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+    open var cancelIcon_bumble =  UIImage(named: "cancel_icon", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
     
-    open var availableStatusIcon =  UIImage(named: "available_status_icon", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
-    open var awayStatusIcon =  UIImage(named: "away_status_icon", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+    open var availableStatusIcon_bumble =  UIImage(named: "available_status_icon", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+    open var awayStatusIcon_bumble =  UIImage(named: "away_status_icon", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
     
     //Private icons
-    var facebookSourceIcon = UIImage(named: "facebookIcon", in: FuguFlowManager.bundle, compatibleWith: nil)
-    var emailSourceIcon = UIImage(named: "emailIntegrationIcon", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
-    var smsSourceIcon = UIImage(named: "smsIntegrationIcon", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
-     var whatsappIcon = UIImage(named: "whatsapp", in: FuguFlowManager.bundle, compatibleWith: nil)
+    var facebookSourceIcon = UIImage(named: "facebookIcon", in: BumbleFlowManager.bundle, compatibleWith: nil)
+    var emailSourceIcon = UIImage(named: "emailIntegrationIcon", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+    var smsSourceIcon = UIImage(named: "smsIntegrationIcon", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+     var whatsappIcon = UIImage(named: "whatsapp", in: BumbleFlowManager.bundle, compatibleWith: nil)
     
     
     open var sourceIconColor: UIColor = UIColor(red: 34/255, green: 150/255, blue: 255/255, alpha: 1)
     
     //
     
-    open var ratingFullStar = UIImage(named: "starWithShadow", in: FuguFlowManager.bundle, compatibleWith: nil)
-    open var ratingEmptyStar = UIImage(named: "emptyStar", in: FuguFlowManager.bundle, compatibleWith: nil)
+    open var ratingFullStar_bumble = UIImage(named: "starWithShadow", in: BumbleFlowManager.bundle, compatibleWith: nil)
+    open var ratingEmptyStar_bumble = UIImage(named: "emptyStar", in: BumbleFlowManager.bundle, compatibleWith: nil)
     
     open var ratingLabelFont: UIFont? = UIFont(name: "HelveticaNeue-Bold", size: 15)
     open var ratingLabelTextFontColor: UIColor = .black
@@ -327,7 +327,7 @@ public struct ConversationListTheme {
     open var notificationButtonIcon: UIImage?
     open var notificationButtonTintColor: UIColor?
     
-    open var securePaymentIcon: UIImage? = UIImage(named: "securePayment", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+    open var securePaymentIcon_bumble: UIImage? = UIImage(named: "securePayment", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
     open var securePaymentTintColor: UIColor?
     open var secureTextFont: UIFont = UIFont.regular(ofSize: 10)
     open var shouldShowBtnOnChatList : Bool = true

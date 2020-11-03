@@ -66,7 +66,7 @@ class CreatePaymentViewController: UIViewController {
         guard displayEditButton else {
             return
         }
-        view_Navigation.rightButton.setImage(BumbleConfig.shared.theme.editIcon, for: .normal)
+//        view_Navigation.rightButton.setImage(BumbleConfig.shared.theme.editIcon, for: .normal)
         view_Navigation.rightButton.addTarget(self, action: #selector(editButtonPressed), for: .touchUpInside)
     }
     
@@ -81,8 +81,8 @@ class CreatePaymentViewController: UIViewController {
     
     func setUI() {
         view_Navigation.title = store?.isCustomisedPayment ?? false ? BumbleStrings.paymentRequest : BumbleStrings.savedPlans
-        if BumbleConfig.shared.theme.leftBarButtonImage != nil {
-            view_Navigation.image_back.image = BumbleConfig.shared.theme.leftBarButtonImage
+        if BumbleConfig.shared.theme.leftBarButtonImage_bumble != nil {
+            view_Navigation.image_back.image = BumbleConfig.shared.theme.leftBarButtonImage_bumble
             view_Navigation.image_back.tintColor = BumbleConfig.shared.theme.headerTextColor
         }
         
@@ -103,7 +103,7 @@ class CreatePaymentViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
         
-        let bundle = FuguFlowManager.bundle
+        let bundle = BumbleFlowManager.bundle
         
         tableView.register(UINib(nibName: "BroadCastTitleCell", bundle: bundle), forCellReuseIdentifier: "BroadCastTitleCell")
         tableView.register(UINib(nibName: "BroadcastButtonCell", bundle: bundle), forCellReuseIdentifier: "BroadcastButtonCell")
@@ -132,7 +132,7 @@ class CreatePaymentViewController: UIViewController {
     }
 
     class func generateView() -> CreatePaymentViewController {
-        let array = FuguFlowManager.bundle?.loadNibNamed("CreatePaymentViewController", owner: self, options: nil)
+        let array = BumbleFlowManager.bundle?.loadNibNamed("CreatePaymentViewController", owner: self, options: nil)
         let view: CreatePaymentViewController? = array?.first as? CreatePaymentViewController
 //        let storyboard = UIStoryboard(name: "FuguUnique", bundle: FuguFlowManager.bundle)
 //        let view = storyboard.instantiateViewController(withIdentifier: "CreatePaymentViewController") as! CreatePaymentViewController

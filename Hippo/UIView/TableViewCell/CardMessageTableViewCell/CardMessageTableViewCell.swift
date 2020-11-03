@@ -32,7 +32,7 @@ class CardMessageTableViewCell: UITableViewCell {
     }
     
     internal func setupOneTimeSetup() {
-        let nib = UINib(nibName: "CardListCell", bundle: FuguFlowManager.bundle)
+        let nib = UINib(nibName: "CardListCell", bundle: BumbleFlowManager.bundle)
         collectionView.register(nib, forCellWithReuseIdentifier: "CardListCell")
         collectionView.backgroundColor = .clear
         collectionView.delegate = self

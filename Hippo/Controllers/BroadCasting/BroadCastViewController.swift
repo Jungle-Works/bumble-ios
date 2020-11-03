@@ -66,13 +66,13 @@ class BroadCastViewController: UIViewController {
         }
     }
     class func get() -> BroadCastViewController? {
-        let storyboard = UIStoryboard(name: "HippoBroadCast", bundle: FuguFlowManager.bundle)
+        let storyboard = UIStoryboard(name: "HippoBroadCast", bundle: BumbleFlowManager.bundle)
         let vc = storyboard.instantiateViewController(withIdentifier: "BroadCastViewController") as? BroadCastViewController
         return vc
     }
     class func getNavigation() -> UINavigationController? {
         
-        let storyboard = UIStoryboard(name: "HippoBroadCast", bundle: FuguFlowManager.bundle)
+        let storyboard = UIStoryboard(name: "HippoBroadCast", bundle: BumbleFlowManager.bundle)
         guard let navigationController = storyboard.instantiateViewController(withIdentifier: "BroadCastNavigation") as? UINavigationController else {
             return nil
         }
@@ -138,8 +138,8 @@ extension BroadCastViewController {
             }
             backButton.setTitleColor(BumbleConfig.shared.theme.leftBarButtonTextColor, for: .normal)
         } else {
-            if BumbleConfig.shared.theme.leftBarButtonImage != nil {
-                backButton.setImage(BumbleConfig.shared.theme.leftBarButtonImage, for: .normal)
+            if BumbleConfig.shared.theme.leftBarButtonImage_bumble != nil {
+                backButton.setImage(BumbleConfig.shared.theme.leftBarButtonImage_bumble, for: .normal)
                 backButton.tintColor = BumbleConfig.shared.theme.headerTextColor
             }
         }
@@ -157,7 +157,7 @@ extension BroadCastViewController {
     }
     
     func setupTableView() {
-        let bundle = FuguFlowManager.bundle
+        let bundle = BumbleFlowManager.bundle
         tableView.register(UINib(nibName: "BroadCastTextViewCell", bundle: bundle), forCellReuseIdentifier: "BroadCastTextViewCell")
         tableView.register(UINib(nibName: "BroadCastTextFieldCell", bundle: bundle), forCellReuseIdentifier: "BroadCastTextFieldCell")
         tableView.register(UINib(nibName: "BoardCastSelectionCell", bundle: bundle), forCellReuseIdentifier: "BoardCastSelectionCell")

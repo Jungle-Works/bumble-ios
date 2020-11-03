@@ -41,10 +41,10 @@ class PaymentMessageCell: UITableViewCell {
         selectionStyle = .none
     }
     private func setupTableView() {
-        tableView.register(UINib(nibName: "CustomerPaymentCardCell", bundle: FuguFlowManager.bundle), forCellReuseIdentifier: "CustomerPaymentCardCell")
-        tableView.register(UINib(nibName: "ActionButtonViewCell", bundle: FuguFlowManager.bundle), forCellReuseIdentifier: "ActionButtonViewCell")
-        tableView.register(UINib(nibName: "AssignedAgentTableViewCell", bundle: FuguFlowManager.bundle), forCellReuseIdentifier: "AssignedAgentTableViewCell")
-        tableView.register(UINib(nibName: "PaymentSecureView", bundle: FuguFlowManager.bundle), forCellReuseIdentifier: "PaymentSecureView")
+        tableView.register(UINib(nibName: "CustomerPaymentCardCell", bundle: BumbleFlowManager.bundle), forCellReuseIdentifier: "CustomerPaymentCardCell")
+        tableView.register(UINib(nibName: "ActionButtonViewCell", bundle: BumbleFlowManager.bundle), forCellReuseIdentifier: "ActionButtonViewCell")
+        tableView.register(UINib(nibName: "AssignedAgentTableViewCell", bundle: BumbleFlowManager.bundle), forCellReuseIdentifier: "AssignedAgentTableViewCell")
+        tableView.register(UINib(nibName: "PaymentSecureView", bundle: BumbleFlowManager.bundle), forCellReuseIdentifier: "PaymentSecureView")
         
         
         

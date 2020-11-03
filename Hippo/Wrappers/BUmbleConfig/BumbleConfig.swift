@@ -12,8 +12,8 @@ import UIKit
   import HippoCallClient
 #endif
 
-public protocol HippoMessageRecievedDelegate: class {
-    func hippoMessageRecievedWith(response: [String: Any], viewController: UIViewController)
+public protocol BumbleMessageRecievedDelegate: class {
+    func bumbleMessageRecievedWith(response: [String: Any], viewController: UIViewController)
 }
 
 enum AppUserType {
@@ -35,7 +35,7 @@ struct SERVERS {
 // static let liveUrl = "https://api.fuguchat.com/"//"https://api.hippochat.io/"//
 // static let liveFaye = "https://api.fuguchat.com:3002/faye"//"https://api.hippochat.io:3002/faye"//
 
-static let liveUrl = "https://test-api-3040.tookanapp.com/"
+static let liveUrl = "https://api.bumbl.it/"
 static let liveFaye = "wss://faye.hippochat.io/faye"
 
 static let betaUrl = "https://test-api-3040.tookanapp.com/"
@@ -108,12 +108,12 @@ struct BotAction {
     internal var pushArray = [PushInfo]()
     internal var checker: BumbleChecker = BumbleChecker()
     private(set)  open var isBroadcastEnabled: Bool = false
-    open weak var messageDelegate: HippoMessageRecievedDelegate?
+    open weak var messageDelegate: BumbleMessageRecievedDelegate?
     internal weak var delegate: HippoDelegate?
     internal var deviceToken = ""
     internal var voipToken = ""
     internal var ticketDetails = HippoTicketAtrributes(categoryName: "")
-    internal var theme = BumbleTheme.defaultTheme()
+    internal var theme = BumbleTheme.defaultThemeBumble()
     internal var userDetail: BumbleUserDetail?
     internal var jitsiUrl : String?
     internal var jitsiOngoingCall : Bool?
@@ -132,17 +132,17 @@ struct BotAction {
     open var isPaymentRequestEnabled: Bool {
         return HippoProperty.current.isPaymentRequestEnabled
     }
-    internal var groupCallData: [String : Any] {
-         get {
-            guard let groupCallData = UserDefaults.standard.value(forKey: Fugu_groupCallData) as? [String : Any] else {
-                 return [String : Any]()
-             }
-             return groupCallData
-         }
-         set {
-             UserDefaults.standard.set(newValue, forKey: Fugu_groupCallData)
-         }
-     }
+//    internal var groupCallData: [String : Any] {
+//         get {
+//            guard let groupCallData = UserDefaults.standard.value(forKey: Fugu_groupCallData) as? [String : Any] else {
+//                 return [String : Any]()
+//             }
+//             return groupCallData
+//         }
+//         set {
+//             UserDefaults.standard.set(newValue, forKey: Fugu_groupCallData)
+//         }
+//     }
     
     internal var appSecretKey: String {
         get {
@@ -235,7 +235,7 @@ struct BotAction {
 //        return nil
 //    }
     
-    internal func setAgentStoredData() {
+    internal func setAgentStoredData_bumble() {
         guard let storedData = AgentDetail.agentLoginData else {
             return
         }
@@ -256,7 +256,7 @@ struct BotAction {
         self.theme = theme
     }
     
-    public func setCustomisedHippoTheme(theme: BumbleTheme) {
+    public func setCustomisedBumbleTheme(theme: BumbleTheme) {
         self.theme = theme
     }
     
@@ -326,11 +326,11 @@ struct BotAction {
         HippoProperty.current.skipBotReason = reason
     }
     
-    public func updateUserDetail(userDetail: BumbleUserDetail, completion: @escaping (_ success: Bool, _ error: Error?) -> Void) {
+    public func updateUserDetailBumble(userDetail: BumbleUserDetail, completion: @escaping (_ success: Bool, _ error: Error?) -> Void) {
         self.userDetail = userDetail
         self.appUserType = .customer
         AgentDetail.agentLoginData = nil
-        BumbleUserDetail.getUserDetailsAndConversation { (status, error) in
+        BumbleUserDetail.getUserDetailBUmble { (status, error) in
             completion(status, error)
 //            if (self.userDetail?.selectedlanguage ?? "") == ""{
 //               self.userDetail?.selectedlanguage = BussinessProperty.current.buisnessLanguageArr?.filter{$0.is_default == true}.first?.lang_code
@@ -355,15 +355,15 @@ struct BotAction {
 //    }
     
     public func refreshUnreadCount(){
-        if socketsFailed ?? false && currentUserType() == .agent{
-            UnreadCount.getAgentTotalUnreadCount { (result) in
-            
-            }
-            if getLastVisibleController() is AgentHomeViewController{
-              AgentConversationManager.getAllData()
-            }
-            socketsFailed = false
-        }
+//        if socketsFailed ?? false && currentUserType() == .agent{
+//            UnreadCount.getAgentTotalUnreadCount { (result) in
+//
+//            }
+//            if get() is AgentHomeViewController{
+//              AgentConversationManager.getAllData()
+//            }
+//            socketsFailed = false
+//        }
     }
     
     public func isSuggestionNeeded(setValue: Bool) {
@@ -443,7 +443,7 @@ struct BotAction {
     }
     // MARK: - Open Chat UI Methods
     public func presentChatsViewController() {
-        AgentDetail.setAgentStoredData()
+        AgentDetail.setAgentStoredData_bumble()
         checker.presentChatsViewController()
     }
 
@@ -452,7 +452,7 @@ struct BotAction {
     }
     
     class public func showChats(on viewController: UIViewController) {
-        AgentDetail.setAgentStoredData()
+        AgentDetail.setAgentStoredData_bumble()
         BumbleConfig.shared.checker.presentChatsViewController(on: viewController)
     }
     
@@ -461,7 +461,7 @@ struct BotAction {
     }
     
     public func presentPromotionalPushController(){
-        FuguFlowManager.shared.presentPromotionalpushController()
+        BumbleFlowManager.shared.presentPromotionalpushController()
     }
     
     public func initiateBroadcast(displayName: String = "") {
@@ -470,7 +470,7 @@ struct BotAction {
         }
         let name = displayName.isEmpty ? BumbleConfig.shared.strings.displayNameForCustomers : displayName
         BumbleConfig.shared.strings.displayNameForCustomers = name
-        FuguFlowManager.shared.presentBroadcastController()
+        BumbleFlowManager.shared.presentBroadcastController()
     }
     public func openChatScreen(on viewController: UIViewController? = nil, withLabelId labelId: Int, hideBackButton: Bool = false, animation: Bool = true) {
         guard appUserType == .customer else {
@@ -809,7 +809,7 @@ struct BotAction {
             return
         }
         
-        BumbleUserDetail.getUserDetailsAndConversation(completion: { (success, error) in
+        BumbleUserDetail.getUserDetailBUmble(completion: { (success, error) in
             completion(success, error)
         })
     }
@@ -851,7 +851,7 @@ struct BotAction {
     }
     
     public func clearUserDataBumble(completion: ((Bool) -> Void)? = nil) {
-        setAgentStoredData()
+        setAgentStoredData_bumble()
         switch appUserType {
         case .agent:
             AgentDetail.LogoutAgent(completion: completion)
@@ -986,7 +986,7 @@ struct BotAction {
         }
         
         if BumbleConfig.shared.isHippoNotification(withUserInfo: userInfo) {
-            return FuguFlowManager.shared.toShowInAppNotification(userInfo: userInfo)
+            return BumbleFlowManager.shared.toShowInAppNotification(userInfo: userInfo)
         }
         return false
     }
@@ -1013,12 +1013,12 @@ struct BotAction {
     
     public func handleRemoteNotification(userInfo: [String: Any]) {
 //        setAgentStoredData()
-        if validateFuguCredential() == false {
-            return
-        }
-        if BumbleConfig.shared.isHippoNotification(withUserInfo: userInfo) == false {
-            return
-        }
+//        if validateFuguCredential() == false {
+//            return
+//        }
+//        if BumbleConfig.shared.isHippoNotification(withUserInfo: userInfo) == false {
+//            return
+//        }
         
         if let announcementPush = userInfo["is_announcement_push"] as? Int, announcementPush == 1 {
             self.isOpenedFromPush = true
@@ -1030,19 +1030,19 @@ struct BotAction {
         if let muid = userInfo["muid"] as? String, !BumbleConfig.shared.muidList.contains(muid) {
             BumbleConfig.shared.muidList.append(muid)
         }
-        updateStoredUnreadCountFor(with: userInfo)
-        resetForChannel(pushInfo: userInfo)
-        pushTotalUnreadCount()
+//        updateStoredUnreadCountFor(with: userInfo)
+//        resetForChannel(pushInfo: userInfo)
+//        pushTotalUnreadCount()
         if let id = userInfo["channelId"], let channelId = Int("\(id)"){
             HippoNotification.removeAllnotificationFor(channelId: channelId)
         }
         
-        switch BumbleConfig.shared.appUserType {
-        case .agent:
-            handleAgentNotification(userInfo: userInfo)
-        case .customer:
-            handleCustomerNotification(userInfo: userInfo)
-        }
+//        switch BumbleConfig.shared.appUserType {
+//        case .agent:
+//            handleAgentNotification(userInfo: userInfo)
+//        case .customer:
+//            handleCustomerNotification(userInfo: userInfo)
+//        }
     }
     
     
@@ -1292,7 +1292,7 @@ public extension BumbleConfig {
         let temp = param
         temp.FAQName = param.FAQName.trimWhiteSpacesAndNewLine()
         self.ticketDetails = param
-        FuguFlowManager.shared.presentNLevelViewController()
+        BumbleFlowManager.shared.presentNLevelViewController()
     }
 }
 
@@ -1309,7 +1309,7 @@ extension BumbleConfig{
     }
     
     public func restoreSession(_ transactionId : String){
-         groupCallData.removeValue(forKey: transactionId)
+//         groupCallData.removeValue(forKey: transactionId)
     }
     
    
@@ -1358,7 +1358,7 @@ extension BumbleConfig {
     }
     
     func broadCastMessage(dict: [String: Any], contoller: UIViewController) {
-        BumbleConfig.shared.messageDelegate?.hippoMessageRecievedWith(response: dict, viewController: contoller)
+        BumbleConfig.shared.messageDelegate?.bumbleMessageRecievedWith(response: dict, viewController: contoller)
         BumbleConfig.shared.delegate?.hippoMessageRecievedWith(response: dict, viewController: contoller)
     }
     

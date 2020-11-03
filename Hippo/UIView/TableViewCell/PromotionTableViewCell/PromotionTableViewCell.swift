@@ -84,7 +84,7 @@ class PromotionTableViewCell: UITableViewCell {
             self.imageHeightConstraint.constant = self.promotionImage.frame.size.width / 2.5
             self.promotionImage?.isHidden = false
             let url = URL(string: data.imageUrlString)
-                self.promotionImage.kf.setImage(with: url, placeholder: BumbleConfig.shared.theme.placeHolderImage, options: nil, progressBlock: nil)
+                self.promotionImage.kf.setImage(with: url, placeholder: BumbleConfig.shared.theme.placeHolderImage_bumble, options: nil, progressBlock: nil)
             self.constraint_timeLabelBottom.constant = 7
             //}
         }

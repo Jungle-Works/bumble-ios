@@ -122,7 +122,7 @@ extension IncomingImageCell {
         
         if let thumbnailUrl = chatMessageObject.thumbnailUrl, thumbnailUrl.isEmpty == false, let url = URL(string: thumbnailUrl) {
             setupIndicatorView(true)
-            let placeHolderImage = BumbleConfig.shared.theme.placeHolderImage
+            let placeHolderImage = BumbleConfig.shared.theme.placeHolderImage_bumble
             
             thumbnailImageView.kf.setImage(with: url, placeholder: placeHolderImage, completionHandler: { [weak self]  (_, error, _, _) in
                 self?.setupIndicatorView(false)
@@ -169,7 +169,7 @@ extension IncomingImageCell {
 //MARK: - HELPERS
 extension IncomingImageCell {
     func setupIndicatorView(_ show: Bool) {
-        customIndicator.image = UIImage(named: "app_loader_shape", in: FuguFlowManager.bundle, compatibleWith: nil)
+        customIndicator.image = UIImage(named: "app_loader_shape", in: BumbleFlowManager.bundle, compatibleWith: nil)
         
         if show {
             startIndicatorAnimation()

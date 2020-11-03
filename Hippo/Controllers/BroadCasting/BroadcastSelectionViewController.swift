@@ -68,7 +68,7 @@ class BroadcastSelectionViewController: UIViewController {
     }
     
     class func get(manager: HippoBroadcaster, type: BroadCastScreenRow) -> BroadcastSelectionViewController? {
-        let storyboard = UIStoryboard(name: "HippoBroadCast", bundle: FuguFlowManager.bundle)
+        let storyboard = UIStoryboard(name: "HippoBroadCast", bundle: BumbleFlowManager.bundle)
         let vc = storyboard.instantiateViewController(withIdentifier: "BroadcastSelectionViewController") as? BroadcastSelectionViewController
         vc?.broadcaster = manager
         vc?.screenType = type
@@ -120,8 +120,8 @@ extension BroadcastSelectionViewController {
             }
             backButton.setTitleColor(BumbleConfig.shared.theme.leftBarButtonTextColor, for: .normal)
         } else {
-            if BumbleConfig.shared.theme.leftBarButtonImage != nil {
-                backButton.setImage(BumbleConfig.shared.theme.leftBarButtonImage, for: .normal)
+            if BumbleConfig.shared.theme.leftBarButtonImage_bumble != nil {
+                backButton.setImage(BumbleConfig.shared.theme.leftBarButtonImage_bumble, for: .normal)
                 backButton.tintColor = BumbleConfig.shared.theme.headerTextColor
             }
         }
@@ -207,7 +207,7 @@ extension BroadcastSelectionViewController {
             return
         }
         
-        let bundle = FuguFlowManager.bundle
+        let bundle = BumbleFlowManager.bundle
         tableView.register(UINib(nibName: "BroadcastAgentCell", bundle: bundle), forCellReuseIdentifier: "BroadcastAgentCell")
         tableView.delegate = self
         tableView.dataSource = self

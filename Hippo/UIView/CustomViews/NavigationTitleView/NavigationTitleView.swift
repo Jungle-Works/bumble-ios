@@ -37,7 +37,7 @@ class NavigationTitleView: UIView {
     }
     
     class func loadView(_ frame: CGRect, delegate: NavigationTitleViewDelegate) -> NavigationTitleView {
-        let array = FuguFlowManager.bundle?.loadNibNamed("NavigationTitleView", owner: self, options: nil)
+        let array = BumbleFlowManager.bundle?.loadNibNamed("NavigationTitleView", owner: self, options: nil)
         let view: NavigationTitleView? = array?.first as? NavigationTitleView
         view?.frame = frame
         guard let customView = view else {
@@ -52,8 +52,8 @@ class NavigationTitleView: UIView {
         titleLabel.font = BumbleConfig.shared.theme.headerTextFont
         titleLabel.textColor = BumbleConfig.shared.theme.headerTextColor
         
-        if BumbleConfig.shared.theme.leftBarButtonArrowImage != nil {
-            backButton.setImage(BumbleConfig.shared.theme.leftBarButtonArrowImage, for: .normal)
+        if BumbleConfig.shared.theme.leftBarButtonArrowImage_bumble != nil {
+            backButton.setImage(BumbleConfig.shared.theme.leftBarButtonArrowImage_bumble, for: .normal)
         }
     
         backButton.tintColor = BumbleConfig.shared.theme.headerTextColor
@@ -119,7 +119,7 @@ class NavigationTitleView: UIView {
         if let parsedName = name {
             self.profileImageView.setTextInImage(string: parsedName, color: UIColor.lightGray, circular: true)
         } else {
-          self.profileImageView.image = BumbleConfig.shared.theme.placeHolderImage
+          self.profileImageView.image = BumbleConfig.shared.theme.placeHolderImage_bumble
         }
     }
     

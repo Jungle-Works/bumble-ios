@@ -50,7 +50,7 @@ class AgentListViewController: UIViewController {
     }
     class func get(channelInfo: ChatDetail) -> AgentListViewController? {
 //        let storyboard = UIStoryboard(name: "FuguUnique", bundle: FuguFlowManager.bundle)
-        let storyboard = UIStoryboard(name: "AgentSdk", bundle: FuguFlowManager.bundle)
+        let storyboard = UIStoryboard(name: "AgentSdk", bundle: BumbleFlowManager.bundle)
         guard let vc = storyboard.instantiateViewController(withIdentifier: "AgentListViewController") as? AgentListViewController else {
             return nil
         }
@@ -123,7 +123,7 @@ extension AgentListViewController {
     func setUpAgentListScreen() {
         setupNavigationBar()
         self.setUpSearchBar()
-        let bundle = FuguFlowManager.bundle
+        let bundle = BumbleFlowManager.bundle
         tableViewAgent.register(UINib(nibName: "AgentListTableViewCell", bundle: bundle), forCellReuseIdentifier: "AgentListTableViewCell")
     }
     

@@ -102,7 +102,7 @@ class VideoTableViewCell: MessageTableViewCell {
                     viewFrameImageView.image = img
                     self.showPlayButtonForEmbeddedVideoUrl()
                 }else{
-                    viewFrameImageView.image = BumbleConfig.shared.theme.placeHolderImage
+                    viewFrameImageView.image = BumbleConfig.shared.theme.placeHolderImage_bumble
                     self.hidePlayButtonForEmbeddedVideoUrl()
                 }
             }else{
@@ -110,19 +110,19 @@ class VideoTableViewCell: MessageTableViewCell {
                     viewFrameImageView.image = img
                     self.showPlayButtonForEmbeddedVideoUrl()
                 }else{
-                    viewFrameImageView.image = BumbleConfig.shared.theme.placeHolderImage
+                    viewFrameImageView.image = BumbleConfig.shared.theme.placeHolderImage_bumble
                     self.hidePlayButtonForEmbeddedVideoUrl()
                 }
             }
         } else {
-            viewFrameImageView.image = BumbleConfig.shared.theme.placeHolderImage
+            viewFrameImageView.image = BumbleConfig.shared.theme.placeHolderImage_bumble
             self.hidePlayButtonForEmbeddedVideoUrl()
         }
       }else{
         if let imageThumbnailURL = message?.thumbnailUrl, let url = URL(string: imageThumbnailURL) {
-            viewFrameImageView.kf.setImage(with: url, placeholder: BumbleConfig.shared.theme.placeHolderImage)
+            viewFrameImageView.kf.setImage(with: url, placeholder: BumbleConfig.shared.theme.placeHolderImage_bumble)
         } else {
-            viewFrameImageView.image = BumbleConfig.shared.theme.placeHolderImage
+            viewFrameImageView.image = BumbleConfig.shared.theme.placeHolderImage_bumble
         }
       }
     

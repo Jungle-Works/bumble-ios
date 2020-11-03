@@ -148,7 +148,7 @@ extension CardListCell {
     func set(card: MessageCard) {
         self.card = card
         titleLabel.text = card.title
-        let placeholder: UIImage? = UIImage(named: "placeholderImg", in: FuguFlowManager.bundle, compatibleWith: nil)
+        let placeholder: UIImage? = UIImage(named: "placeholderImg", in: BumbleFlowManager.bundle, compatibleWith: nil)
 //        imageView.setImage(resource: card.image, placeholder: placeholder)
         addLAbelContainerViewGesture()
         setDescriptionLabel()

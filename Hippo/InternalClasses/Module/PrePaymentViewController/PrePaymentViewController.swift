@@ -33,7 +33,7 @@ class PrePaymentViewController: UIViewController {
         navigationBar.leftButton.addTarget(self, action: #selector(backAction(_:)), for: .touchUpInside)
         navigationBar.image_back.isHidden = isPrePayment ?? false ? true : false
         navigationBar.leftButton.isEnabled = isPrePayment ?? false ? false : true
-        navigationBar.rightButton.setImage(BumbleConfig.shared.theme.crossBarButtonImage, for: .normal)
+        navigationBar.rightButton.setImage(BumbleConfig.shared.theme.crossBarButtonImage_bumble, for: .normal)
         navigationBar.rightButton.addTarget(self, action: #selector(cancelAction(_:)), for: .touchUpInside)
         navigationBar.rightButton.isHidden = isPrePayment ?? false ? false : true
         navigationBar.rightButton.isEnabled = isPrePayment ?? false ? true : false
@@ -83,7 +83,7 @@ class PrePaymentViewController: UIViewController {
     }
        
     class func getNewInstance(config: WebViewConfig) -> PrePaymentViewController {
-        let storyboard = UIStoryboard(name: "FuguUnique", bundle: FuguFlowManager.bundle)
+        let storyboard = UIStoryboard(name: "FuguUnique", bundle: BumbleFlowManager.bundle)
         let vc = storyboard.instantiateViewController(withIdentifier: "CheckoutViewController") as! PrePaymentViewController
         vc.config = config
         return vc
@@ -142,7 +142,7 @@ extension PrePaymentViewController{
     }
    
     func openCancelPopup(){
-        let bottomPopupController = UIStoryboard(name: "FuguUnique", bundle: FuguFlowManager.bundle).instantiateViewController(withIdentifier: "BottomPopupController") as! BottomPopupController
+        let bottomPopupController = UIStoryboard(name: "FuguUnique", bundle: BumbleFlowManager.bundle).instantiateViewController(withIdentifier: "BottomPopupController") as! BottomPopupController
         bottomPopupController.modalPresentationStyle = .overFullScreen
         bottomPopupController.paymentCancelled = {[weak self]() in
             DispatchQueue.main.async {

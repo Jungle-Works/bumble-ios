@@ -31,7 +31,7 @@ class BotOutgoingMessageTableViewCell: UITableViewCell {
         supportMessageTextView.backgroundColor = .clear
         supportMessageTextView.textContainer.lineFragmentPadding = 0
         supportMessageTextView.textContainerInset = .zero
-        collectionViewReply.register(UINib(nibName: "QuickReplyButtonCollectionViewCell", bundle: FuguFlowManager.bundle), forCellWithReuseIdentifier: String(describing: QuickReplyButtonCollectionViewCell.self))
+        collectionViewReply.register(UINib(nibName: "QuickReplyButtonCollectionViewCell", bundle: BumbleFlowManager.bundle), forCellWithReuseIdentifier: String(describing: QuickReplyButtonCollectionViewCell.self))
         collectionViewReply.dataSource = self
         collectionViewReply.delegate = self
         collectionViewReply.flashScrollIndicators()

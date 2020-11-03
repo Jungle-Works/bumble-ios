@@ -49,20 +49,20 @@ class OutgoingDocumentTableViewCell: DocumentTableViewCell {
         
         switch message!.status {
         case .none where message!.isFileUploading && !message!.wasMessageSendingFailed:
-            tickImage.image = BumbleConfig.shared.theme.unsentMessageIcon
+            tickImage.image = BumbleConfig.shared.theme.unsentMessageIcon_bumble
             activityIndicator.startAnimating()
         case .none where message!.wasMessageSendingFailed:
-            tickImage.image = BumbleConfig.shared.theme.unsentMessageIcon
+            tickImage.image = BumbleConfig.shared.theme.unsentMessageIcon_bumble
             activityIndicator.stopAnimating()
             retryButton.setTitle("", for: .normal)
-            retryButton.setImage(BumbleConfig.shared.theme.uploadIcon, for: .normal)
+            retryButton.setImage(BumbleConfig.shared.theme.uploadIcon_bumble, for: .normal)
             retryButton.isHidden = false
         case .none:
-            tickImage.image = BumbleConfig.shared.theme.unsentMessageIcon
+            tickImage.image = BumbleConfig.shared.theme.unsentMessageIcon_bumble
         case .read, .delivered:
-            tickImage.image = BumbleConfig.shared.theme.readMessageTick
+            tickImage.image = BumbleConfig.shared.theme.readMessageTick_bumble
         case .sent:
-            tickImage.image = BumbleConfig.shared.theme.unreadMessageTick
+            tickImage.image = BumbleConfig.shared.theme.unreadMessageTick_bumble
         }
     }
     
@@ -194,7 +194,7 @@ class DocumentTableViewCell: MessageTableViewCell {
             retryButton.setTitle("", for: .normal)
             activityIndicator.startAnimating()
         case (false, false):
-            retryButton.setImage(BumbleConfig.shared.theme.downloadIcon, for: .normal)
+            retryButton.setImage(BumbleConfig.shared.theme.downloadIcon_bumble, for: .normal)
             activityIndicator.stopAnimating()
         }
     }
@@ -205,19 +205,19 @@ class DocumentTableViewCell: MessageTableViewCell {
         
         switch fileExtension {
         case "pdf":
-            docImage.image = BumbleConfig.shared.theme.pdfIcon
+            docImage.image = BumbleConfig.shared.theme.pdfIcon_bumble
         case "excel", "xlsx", "xls":
-            docImage.image = BumbleConfig.shared.theme.excelIcon
+            docImage.image = BumbleConfig.shared.theme.excelIcon_bumble
         case "doc", "docx":
-            docImage.image = BumbleConfig.shared.theme.docIcon
+            docImage.image = BumbleConfig.shared.theme.docIcon_bumble
         case "csv":
-            docImage.image = BumbleConfig.shared.theme.csvIcon
+            docImage.image = BumbleConfig.shared.theme.csvIcon_bumble
         case "ppt":
-            docImage.image = BumbleConfig.shared.theme.pptIcon
+            docImage.image = BumbleConfig.shared.theme.pptIcon_bumble
         case "txt":
-            docImage.image = BumbleConfig.shared.theme.txtIcon
+            docImage.image = BumbleConfig.shared.theme.txtIcon_bumble
         default:
-            docImage.image = BumbleConfig.shared.theme.defaultDocIcon
+            docImage.image = BumbleConfig.shared.theme.defaultDocIcon_bumble
         }
     }
     

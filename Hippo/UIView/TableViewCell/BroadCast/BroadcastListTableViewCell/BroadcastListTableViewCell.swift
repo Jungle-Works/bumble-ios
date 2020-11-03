@@ -41,7 +41,7 @@ class BroadcastListTableViewCell: UITableViewCell {
         bgView.layer.borderColor = BumbleConfig.shared.theme.chatBoxBorderColor.cgColor
         
         forwardImageView.tintColor = BumbleConfig.shared.theme.headerBackgroundColor
-        forwardImageView.image = BumbleConfig.shared.theme.forwardIcon
+        forwardImageView.image = BumbleConfig.shared.theme.forwardIcon_bumble
         
         let font = UIFont.regular(ofSize: 15)
         

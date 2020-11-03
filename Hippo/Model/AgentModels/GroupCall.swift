@@ -45,56 +45,56 @@ extension GroupCall{
     
     class func getGroupCallChannelDetails(request: GroupCallModel, callback: @escaping HippoResponseRecieved) {
         
-        if let dict = ((BumbleConfig.shared.groupCallData as NSDictionary).value(forKey: request.transactionId ?? "") as? [String : Any]){
-            self.handleResponse(dict, request.callType ?? .video, dict["muid"] as? String ?? "", request.transactionId ?? "")
-            return
-        }
-        
-        let params: [String: Any]
-        
-        params = request.generateParamsForGettingChannel()
-      
-        BumbleConfig.shared.log.trace(params, level: .request)
-        HTTPClient.makeConcurrentConnectionWith(method: .POST, enCodingType: .json, para: params, extendedUrl: AgentEndPoints.getGroupCallChannelDetals.rawValue) { (responseObject, error, tag, statusCode) in
-            
-            guard let unwrappedStatusCode = statusCode, error == nil, unwrappedStatusCode == STATUS_CODE_SUCCESS, error == nil  else {
-                callback(HippoError.general, nil)
-                print("Error",error ?? "")
-                return
-            }
-           
-            guard var response = responseObject as? [String : Any] else{
-                callback(HippoError.general, nil)
-                return
-            }
-            
-            if currentUserType() == .agent{
-                var responseDict = BumbleConfig.shared.groupCallData
-                response["muid"] = String.uuid()
-                responseDict[request.transactionId ?? ""] = response
-                BumbleConfig.shared.groupCallData = responseDict
-            }
-            
-            self.handleResponse(response, request.callType ?? .video, response["muid"] as? String ?? "", request.transactionId ?? "")
-            
-            callback(nil, responseObject as? [String : Any])
-        }
+//        if let dict = ((BumbleConfig.shared.groupCallData as NSDictionary).value(forKey: request.transactionId ?? "") as? [String : Any]){
+//            self.handleResponse(dict, request.callType ?? .video, dict["muid"] as? String ?? "", request.transactionId ?? "")
+//            return
+//        }
+//
+//        let params: [String: Any]
+//
+//        params = request.generateParamsForGettingChannel()
+//
+//        BumbleConfig.shared.log.trace(params, level: .request)
+//        HTTPClient.makeConcurrentConnectionWith(method: .POST, enCodingType: .json, para: params, extendedUrl: AgentEndPoints.getGroupCallChannelDetals.rawValue) { (responseObject, error, tag, statusCode) in
+//
+//            guard let unwrappedStatusCode = statusCode, error == nil, unwrappedStatusCode == STATUS_CODE_SUCCESS, error == nil  else {
+//                callback(HippoError.general, nil)
+//                print("Error",error ?? "")
+//                return
+//            }
+//
+//            guard var response = responseObject as? [String : Any] else{
+//                callback(HippoError.general, nil)
+//                return
+//            }
+//
+//            if currentUserType() == .agent{
+//                var responseDict = BumbleConfig.shared.groupCallData
+//                response["muid"] = String.uuid()
+//                responseDict[request.transactionId ?? ""] = response
+//                BumbleConfig.shared.groupCallData = responseDict
+//            }
+//
+//            self.handleResponse(response, request.callType ?? .video, response["muid"] as? String ?? "", request.transactionId ?? "")
+//
+//            callback(nil, responseObject as? [String : Any])
+//        }
     }
     
     
     private class func handleResponse(_ responseObject : [String : Any], _ callType : CallType, _ muid : String, _ tranactionId : String){
-        var groupCall = GroupCallChannelData().getGroupCallChannelData(responseObject["data"] as? [String : Any] ?? [String : Any]())
-        groupCall.transactionId = tranactionId
-        let user = User(name: currentUserName(), imageURL: currentUserImage(), userId: currentUserId())
-        
-        let groupCallChannel = GroupCallChannel(groupCall.channelId ?? -1)
-        
-        
-        let groupCallData = GroupCallData.init(peerData: user, callType: callType, muid: muid, signallingClient: groupCallChannel)
-         #if canImport(JitsiMeet)
-            CallManager.shared.startGroupCall(call: groupCallData, groupCallChannelData: groupCall) { (status, error) in
-            }
-         #endif
+//        var groupCall = GroupCallChannelData().getGroupCallChannelData(responseObject["data"] as? [String : Any] ?? [String : Any]())
+//        groupCall.transactionId = tranactionId
+//        let user = User(name: currentUserName(), imageURL: currentUserImage(), userId: currentUserId())
+//
+//        let groupCallChannel = GroupCallChannel(groupCall.channelId ?? -1)
+//
+//
+//        let groupCallData = GroupCallData.init(peerData: user, callType: callType, muid: muid, signallingClient: groupCallChannel)
+//         #if canImport(JitsiMeet)
+//            CallManager.shared.startGroupCall(call: groupCallData, groupCallChannelData: groupCall) { (status, error) in
+//            }
+//         #endif
         
     }
     

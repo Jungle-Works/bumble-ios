@@ -29,7 +29,7 @@ class AgentProfileViewController: UIViewController {
         tableView.tableFooterView = UIView()
         datasource.profileDetail = presenter?.profile
 
-        let bundle = FuguFlowManager.bundle
+        let bundle = BumbleFlowManager.bundle
         
         tableView.register(UINib(nibName: "ProfileNameCell", bundle: bundle), forCellReuseIdentifier: "ProfileNameCell")
         tableView.register(UINib(nibName: "ProfileDetailCell", bundle: bundle), forCellReuseIdentifier: "ProfileDetailCell")
@@ -43,11 +43,11 @@ class AgentProfileViewController: UIViewController {
     
     internal func setParallexView() {
         let imageView = HippoImageView()
-        imageView.image = BumbleConfig.shared.theme.placeHolderImage
+        imageView.image = BumbleConfig.shared.theme.placeHolderImage_bumble
         imageView.contentMode = .scaleAspectFill
         if let url = presenter?.profile?.image, let parsedURl = URL(string: url) {
             let resource = HippoResource(url: parsedURl)
-            imageView.setImage(resource: resource, placeholder: BumbleConfig.shared.theme.placeHolderImage)
+            imageView.setImage(resource: resource, placeholder: BumbleConfig.shared.theme.placeHolderImage_bumble)
         }
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(profileClicked))
         imageView.addGestureRecognizer(tapGesture)
@@ -80,7 +80,7 @@ class AgentProfileViewController: UIViewController {
     }
     
     internal class func generateView() -> AgentProfileViewController {
-        let array = FuguFlowManager.bundle?.loadNibNamed("AgentProfileViewController", owner: self, options: nil)
+        let array = BumbleFlowManager.bundle?.loadNibNamed("AgentProfileViewController", owner: self, options: nil)
         let view: AgentProfileViewController? = array?.first as? AgentProfileViewController
         
         guard let customView = view else {

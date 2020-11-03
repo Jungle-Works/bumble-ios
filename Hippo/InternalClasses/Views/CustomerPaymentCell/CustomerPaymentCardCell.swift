@@ -102,7 +102,7 @@ extension CustomerPaymentCardCell {
         amountLabel.attributedText = card.displayAmount
         
         if BumbleConfig.shared.appUserType == .customer{
-            self.selctionImageView?.image = card.isLocalySelected ? BumbleConfig.shared.theme.radioActive : BumbleConfig.shared.theme.radioInActive
+            self.selctionImageView?.image = card.isLocalySelected ? BumbleConfig.shared.theme.radioActive_bumble : BumbleConfig.shared.theme.radioInActive_bumble
         }
         
     }

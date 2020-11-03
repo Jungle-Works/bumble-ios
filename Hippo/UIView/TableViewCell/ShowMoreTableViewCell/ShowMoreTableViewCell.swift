@@ -41,7 +41,7 @@ class ShowMoreTableViewCell: UITableViewCell {
     
     @IBAction func action_SavePlanCheckbox(){
         button_CheckBox.isSelected = !button_CheckBox.isSelected
-        button_CheckBox.setImage(button_CheckBox.isSelected ? BumbleConfig.shared.theme.checkBoxActive : BumbleConfig.shared.theme.checkBoxInActive, for: .normal)
+        button_CheckBox.setImage(button_CheckBox.isSelected ? BumbleConfig.shared.theme.checkBoxActive_bumble : BumbleConfig.shared.theme.checkBoxInActive_bumble, for: .normal)
         delegate?.savePaymentPlanClicked(shouldSavePlan: button_CheckBox.isSelected)
     }
     

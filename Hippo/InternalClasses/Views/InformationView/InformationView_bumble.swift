@@ -54,7 +54,7 @@ class InformationView: UIView {
     }
     
     class func loadView(_ frame: CGRect, delegate: InformationViewDelegate) -> InformationView {
-        let array = FuguFlowManager.bundle?.loadNibNamed("InformationView", owner: self, options: nil)
+        let array = BumbleFlowManager.bundle?.loadNibNamed("InformationView", owner: self, options: nil)
         let view: InformationView? = array?.first as? InformationView
         view?.frame = frame
         guard let customView = view else {

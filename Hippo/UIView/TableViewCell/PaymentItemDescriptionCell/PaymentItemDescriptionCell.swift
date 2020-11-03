@@ -83,7 +83,7 @@ class PaymentItemDescriptionCell: UITableViewCell,UIPickerViewDelegate,UIPickerV
         cancelIcon.tintColor = UIColor.white
         cancelIcon.layer.cornerRadius = cancelIcon.bounds.height / 2
         cancelIcon.layer.masksToBounds = true
-        cancelIcon.setImage(BumbleConfig.shared.theme.cancelIcon, for: .normal)
+        cancelIcon.setImage(BumbleConfig.shared.theme.cancelIcon_bumble, for: .normal)
         
 //        bgView.backgroundColor = theme.systemBackgroundColor.primary
 //

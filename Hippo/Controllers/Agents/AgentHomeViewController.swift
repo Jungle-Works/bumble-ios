@@ -92,8 +92,8 @@ class AgentHomeViewController: BumbleHomeViewController {
     //MARK: Actions
     @IBAction func backButtonClicked(_ sender: UIButton) {
         saveConversationsInCache()
-        resetPushCount()
-        pushTotalUnreadCount()
+//        resetPushCount()
+//        pushTotalUnreadCount()
         BumbleConfig.shared.notifiyDeinit()
         self.dismiss(animated: true, completion: nil)
     }
@@ -152,7 +152,7 @@ class AgentHomeViewController: BumbleHomeViewController {
     //Class methods
     class func get() -> UINavigationController? {
 //        let storyboard = UIStoryboard(name: "FuguUnique", bundle: FuguFlowManager.bundle)
-        let storyboard = UIStoryboard(name: "AgentSdk", bundle: FuguFlowManager.bundle)
+        let storyboard = UIStoryboard(name: "AgentSdk", bundle: BumbleFlowManager.bundle)
         guard let navigationController = storyboard.instantiateViewController(withIdentifier: "FuguAgentNavigationController") as? UINavigationController else {
             return nil
         }
@@ -160,7 +160,7 @@ class AgentHomeViewController: BumbleHomeViewController {
     }
     class func getController() -> UIViewController? {
 //        let storyboard = UIStoryboard(name: "FuguUnique", bundle: FuguFlowManager.bundle)
-        let storyboard = UIStoryboard(name: "AgentSdk", bundle: FuguFlowManager.bundle)
+        let storyboard = UIStoryboard(name: "AgentSdk", bundle: BumbleFlowManager.bundle)
         let vc = storyboard.instantiateViewController(withIdentifier: "AgentHomeViewController") as? AgentHomeViewController
         return vc
     }
@@ -495,11 +495,11 @@ extension AgentHomeViewController {
     
     func setFilterButtonIcon(){
         if BussinessProperty.current.isFilterApplied == true {
-            if BumbleConfig.shared.theme.filterSelectedBarButtonImage != nil {                view_NavigationBar.rightButton.setImage(BumbleConfig.shared.theme.filterSelectedBarButtonImage, for: .normal)
+            if BumbleConfig.shared.theme.filterSelectedBarButtonImage_bumble != nil {                view_NavigationBar.rightButton.setImage(BumbleConfig.shared.theme.filterSelectedBarButtonImage_bumble, for: .normal)
                 view_NavigationBar.rightButton.tintColor = BumbleConfig.shared.theme.headerTextColor
             }
         }else{
-            if BumbleConfig.shared.theme.filterUnselectedBarButtonImage != nil {                view_NavigationBar.rightButton.setImage(BumbleConfig.shared.theme.filterUnselectedBarButtonImage, for: .normal)
+            if BumbleConfig.shared.theme.filterUnselectedBarButtonImage_bumble != nil {                view_NavigationBar.rightButton.setImage(BumbleConfig.shared.theme.filterUnselectedBarButtonImage_bumble, for: .normal)
                 view_NavigationBar.rightButton.tintColor = BumbleConfig.shared.theme.headerTextColor
             }
         }
@@ -628,19 +628,19 @@ extension AgentHomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if (conversationList[indexPath.row].unreadCount ?? 0) > 0{
-            removeChannelForUnreadCount(conversationList[indexPath.row].channel_id ?? -1)
+//            removeChannelForUnreadCount(conversationList[indexPath.row].channel_id ?? -1)
         }
         tableView.deselectRow(at: indexPath, animated: true)
         tableView.isUserInteractionEnabled = false
-        fuguDelay(1) {
-            tableView.isUserInteractionEnabled = true
-        }
+//        fuguDelay(1) {
+//            tableView.isUserInteractionEnabled = true
+//        }
         let conversationObj = conversationList[indexPath.row]
         moveToConversationWith(conversationObj)
         if let unreadCount = conversationObj.unreadCount, unreadCount > 0 {
-            resetPushCount()
+//            resetPushCount()
             conversationObj.unreadCount = 0
-            pushTotalUnreadCount()
+//            pushTotalUnreadCount()
             tableView.reloadRows(at: [indexPath], with: .none)
         }
     }
@@ -679,7 +679,7 @@ extension AgentHomeViewController: UITableViewDelegate, UITableViewDataSource {
             AgentConversationManager.updateChannelStatus(for: channelId, newStatus: newStatus) { (result) in
                 guard result.isSuccessful else {
                     self.stopLoading()
-                    showAlertWith(message: BumbleStrings.somethingWentWrong, action: nil)
+//                    showAlertWith(message: BumbleStrings.somethingWentWrong, action: nil)
                     return
                 }
                 guard let controllers = self.navigationController?.viewControllers else {
@@ -705,7 +705,7 @@ extension AgentHomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     fileprivate func setupTableView() {
         
-        let nib = UINib(nibName: "AgentHomeConversationCell", bundle: FuguFlowManager.bundle)
+        let nib = UINib(nibName: "AgentHomeConversationCell", bundle: BumbleFlowManager.bundle)
         tableView.register(nib, forCellReuseIdentifier: "AgentHomeConversationCell")
         
         tableView.delegate = self

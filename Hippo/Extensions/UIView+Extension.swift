@@ -233,7 +233,7 @@ extension UIStoryboard {
     enum Name: String {
         case onBoarding = "OnBoarding"
         case home = "Home"
-        case fuguUnique = "FuguUnique"
+        case FuguUnique = "FuguUnique"
         case moreOptions = "MoreOptions"
         case inviteGuest = "InviteGuest"
     }

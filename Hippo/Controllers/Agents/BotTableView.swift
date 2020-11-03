@@ -50,7 +50,7 @@ class BotTableView: UIView {
     
     
     class func loadView(_ frame: CGRect) -> BotTableView {
-        let array = FuguFlowManager.bundle?.loadNibNamed("BotTableView", owner: self, options: nil)
+        let array = BumbleFlowManager.bundle?.loadNibNamed("BotTableView", owner: self, options: nil)
         let view: BotTableView? = array?.first as? BotTableView
         view?.frame = frame
         guard let customView = view else {

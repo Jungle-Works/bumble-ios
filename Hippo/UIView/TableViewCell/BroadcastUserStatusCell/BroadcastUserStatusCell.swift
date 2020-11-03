@@ -40,7 +40,7 @@ class BroadcastUserStatusCell: UITableViewCell {
         statusLabel.font = UIFont.regular(ofSize: 13)
         statusLabel.textColor = UIColor.gray
         
-        openChatButton.setImage(BumbleConfig.shared.theme.openChatIcon, for: .normal)
+        openChatButton.setImage(BumbleConfig.shared.theme.openChatIcon_bumble, for: .normal)
         openChatButton.tintColor = UIColor.white
         openChatButton.setTitle("", for: .normal)
         openChatButton.backgroundColor = UIColor.themeColor

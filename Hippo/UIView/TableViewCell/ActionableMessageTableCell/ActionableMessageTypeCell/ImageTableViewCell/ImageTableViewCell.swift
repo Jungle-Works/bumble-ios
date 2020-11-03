@@ -28,7 +28,7 @@ class ImageTableViewCell: UITableViewCell {
 //MARK: - HELPERS
 extension ImageTableViewCell {
     func setupIndicatorView(_ show: Bool) {
-        customImageView.image = UIImage(named: "app_loader_shape", in: FuguFlowManager.bundle, compatibleWith: nil)
+        customImageView.image = UIImage(named: "app_loader_shape", in: BumbleFlowManager.bundle, compatibleWith: nil)
         if show {
             startIndicatorAnimation()
             customImageView.isHidden = false

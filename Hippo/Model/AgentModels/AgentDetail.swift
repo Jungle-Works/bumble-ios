@@ -187,7 +187,7 @@ class AgentDetail: NSObject {
         
         return dict
     }
-    class func setAgentStoredData() {
+    class func setAgentStoredData_bumble() {
         guard let storedData = AgentDetail.agentLoginData else {
             return
         }

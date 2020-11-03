@@ -142,7 +142,7 @@ class MessageTableViewCell: UITableViewCell {
     
     func setImageInSenderView(imageURL: URL?) {
         senderImageView.contentMode = .scaleAspectFill
-        senderImageView.kf.setImage(with: imageURL, placeholder: BumbleConfig.shared.theme.placeHolderImage,  completionHandler: {(_, error, _, _) in
+        senderImageView.kf.setImage(with: imageURL, placeholder: BumbleConfig.shared.theme.placeHolderImage_bumble,  completionHandler: {(_, error, _, _) in
             guard let parsedError = error else {
                 return
             }
@@ -154,7 +154,7 @@ class MessageTableViewCell: UITableViewCell {
         if let parsedName = name {
             self.senderImageView.setTextInImage(string: parsedName, color: UIColor.lightGray, circular: false)
         } else {
-            self.senderImageView.image = BumbleConfig.shared.theme.placeHolderImage
+            self.senderImageView.image = BumbleConfig.shared.theme.placeHolderImage_bumble
         }
     }
     

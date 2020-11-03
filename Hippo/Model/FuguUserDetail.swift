@@ -23,10 +23,10 @@ class User: NSObject {
     
     
     init?(dict: [String: Any]) {
-        guard let rawUserId = Int.parse(values: dict, key: "user_id") else {
-            return nil
-        }
-        self.userID = rawUserId
+//        guard let rawUserId = Int.parse(values: dict, key: "user_id") else {
+//            return nil
+//        }
+        self.userID = 0
         self.fullName = dict["full_name"] as? String ?? ""
         self.image = dict["user_image"] as? String
     }
@@ -108,10 +108,10 @@ public class UserTag: NSObject {
     
     class var HippoUserChannelId: String? {
         get {
-            return UserDefaults.standard.value(forKey: Hippo_User_Channel_Id) as? String
+            return ""
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: Hippo_User_Channel_Id)
+//            UserDefaults.standard.set(newValue, forKey: Hippo_User_Channel_Id)
         }
     }
     
@@ -225,7 +225,7 @@ public class UserTag: NSObject {
         
         if let applicationType = BumbleConfig.shared.appType,
             applicationType.isEmpty == false {
-            params["app_type"] = applicationType
+            params["app_type"] = 1
         }
         
         let userName = self.fullName ?? ""
@@ -283,7 +283,7 @@ public class UserTag: NSObject {
     
     
     // MARK: - Type Methods
-    class func getUserDetailsAndConversation(completion: FuguUserDetailCallback? = nil) {
+    class func getUserDetailBUmble(completion: FuguUserDetailCallback? = nil) {
         var endPointName = FuguEndPoints.API_PUT_USER_DETAILS.rawValue
     
         
@@ -483,7 +483,7 @@ public class UserTag: NSObject {
         clearAgentData()
         
         //unSubscribe(userChannelId: HippoUserDetail.HippoUserChannelId ?? "")
-        BumbleConfig.shared.groupCallData.removeAll()
+//        BumbleConfig.shared.groupCallData.removeAll()
         HippoProperty.current = HippoProperty()
         //FuguConfig.shared.deviceToken = ""
         BumbleConfig.shared.appSecretKey = ""
@@ -492,7 +492,7 @@ public class UserTag: NSObject {
         BumbleConfig.shared.appType = nil
         BumbleConfig.shared.userDetail = nil
         BumbleConfig.shared.muidList = []
-        resetPushCount()
+//        resetPushCount()
         
         userDetailData = [String: Any]()
         FuguChannelPersistancyManager.shared.clearChannels()
@@ -513,9 +513,9 @@ public class UserTag: NSObject {
         CallManager.shared.hungupCall()
         
         let defaults = UserDefaults.standard
-        defaults.removeObject(forKey: Hippo_User_Channel_Id)
-        defaults.removeObject(forKey: FUGU_USER_ID)
-        defaults.removeObject(forKey: Fugu_en_user_id)
+//        defaults.removeObject(forKey: Hippo_User_Channel_Id)
+//        defaults.removeObject(forKey: FUGU_USER_ID)
+//        defaults.removeObject(forKey: Fugu_en_user_id)
 
         defaults.synchronize()
         completion?(true)
@@ -535,22 +535,22 @@ public class UserTag: NSObject {
             params["en_user_id"] = savedUserId
         }
         
-        let deviceToken = TokenManager.deviceToken
-        let voipToken = TokenManager.voipToken
+//        let deviceToken = TokenManager.deviceToken
+//        let voipToken = TokenManager.voipToken
         
-        HTTPClient.makeConcurrentConnectionWith(method: .POST, para: params, extendedUrl: FuguEndPoints.API_CLEAR_USER_DATA_LOGOUT.rawValue) { (responseObject, error, tag, statusCode) in
-            if currentUserType() == .customer{
-                unSubscribe(userChannelId: BumbleUserDetail.HippoUserChannelId ?? "")
-            }else{
-                unSubscribe(userChannelId: BumbleConfig.shared.agentDetail?.userChannel ?? "")
-            }
-            clearAllData(completion: completion)
-            TokenManager.deviceToken = deviceToken
-            TokenManager.voipToken = voipToken
-            unSubscribe(userChannelId: BumbleConfig.shared.appSecretKey + "/" + "markConversation")
-//            let tempStatusCode = statusCode ?? 0
-//            let success = (200 <= tempStatusCode) && (300 > tempStatusCode)
-//            completion?(success)
-        }
+//        HTTPClient.makeConcurrentConnectionWith(method: .POST, para: params, extendedUrl: FuguEndPoints.API_CLEAR_USER_DATA_LOGOUT.rawValue) { (responseObject, error, tag, statusCode) in
+//            if currentUserType() == .customer{
+//                unSubscribe(userChannelId: BumbleUserDetail.HippoUserChannelId ?? "")
+//            }else{
+//                unSubscribe(userChannelId: BumbleConfig.shared.agentDetail?.userChannel ?? "")
+//            }
+//            clearAllData(completion: completion)
+//            TokenManager.deviceToken = deviceToken
+//            TokenManager.voipToken = voipToken
+//            unSubscribe(userChannelId: BumbleConfig.shared.appSecretKey + "/" + "markConversation")
+////            let tempStatusCode = statusCode ?? 0
+////            let success = (200 <= tempStatusCode) && (300 > tempStatusCode)
+////            completion?(success)
+//        }
     }
 }

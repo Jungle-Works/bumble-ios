@@ -127,12 +127,12 @@ class NLevelViewController: UIViewController {
             backButton.title = " " + BumbleConfig.shared.theme.leftBarButtonText
             
         } else {
-            if BumbleConfig.shared.theme.leftBarButtonImage != nil {
-                backButton.image = BumbleConfig.shared.theme.leftBarButtonImage
+            if BumbleConfig.shared.theme.leftBarButtonImage_bumble != nil {
+                backButton.image = BumbleConfig.shared.theme.leftBarButtonImage_bumble
             }
         }
         
-        poweredByLabel.attributedText = attributedStringForLabelForTwoStrings("Runs on ", secondString: "Hippo", colorOfFirstString: BumbleConfig.shared.powererdByColor, colorOfSecondString: BumbleConfig.shared.FuguColor, fontOfFirstString: BumbleConfig.shared.poweredByFont, fontOfSecondString: BumbleConfig.shared.FuguStringFont, textAlighnment: .center, dateAlignment: .center)
+        poweredByLabel.attributedText = attributedStringForLabelForTwoStrings("Runs on ", secondString: "Bumble", colorOfFirstString: BumbleConfig.shared.powererdByColor, colorOfSecondString: BumbleConfig.shared.FuguColor, fontOfFirstString: BumbleConfig.shared.poweredByFont, fontOfSecondString: BumbleConfig.shared.FuguStringFont, textAlighnment: .center, dateAlignment: .center)
         poweredByLabel.isUserInteractionEnabled = true
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.openHippoChatWebLink(_:)))
         poweredByLabel.addGestureRecognizer(tap)
@@ -167,7 +167,7 @@ class NLevelViewController: UIViewController {
         guard HippoSupportList.FAQData.count <= 0 || userDetailData.count <= 0 else {
             return
         }
-        BumbleUserDetail.getUserDetailsAndConversation(completion: { [weak self] (success, error) in
+        BumbleUserDetail.getUserDetailBUmble(completion: { [weak self] (success, error) in
             if success || BumbleUserDetail.fuguUserID != nil {
                 self?.setInitialData()
             }
@@ -197,7 +197,7 @@ class NLevelViewController: UIViewController {
     }
     
     class func get(with object: [HippoSupportList], title: String) -> NLevelViewController? {
-        let storyboard = UIStoryboard(name: "FuguUnique", bundle: FuguFlowManager.bundle)
+        let storyboard = UIStoryboard(name: "FuguUnique", bundle: BumbleFlowManager.bundle)
         guard let vc = storyboard.instantiateViewController(withIdentifier: "NLevelViewController") as? NLevelViewController else {
             return nil
         }
@@ -279,7 +279,7 @@ extension NLevelViewController: UITableViewDelegate, UITableViewDataSource {
     func setupTableView() {
         tableView.tableFooterView = UIView()
         
-        tableView.register(UINib(nibName: "CategoryTableViewCell", bundle: FuguFlowManager.bundle), forCellReuseIdentifier: "CategoryTableViewCell")
+        tableView.register(UINib(nibName: "CategoryTableViewCell", bundle: BumbleFlowManager.bundle), forCellReuseIdentifier: "CategoryTableViewCell")
     }
     func pushToDetailScreen(with obj: HippoSupportList, title: String) {
         let vc = ListDescriptionViewController.get(with: obj)

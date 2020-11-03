@@ -14,7 +14,7 @@ class ShowImageViewController: UIViewController , UIScrollViewDelegate, UIGestur
     @IBOutlet var crossButton: UIButton!{
         didSet{
             crossButton.imageView?.tintColor = .white
-            crossButton.setImage(BumbleConfig.shared.theme.closeChatImage, for: .normal)
+            crossButton.setImage(BumbleConfig.shared.theme.closeChatImage_bumble, for: .normal)
         }
     }
     @IBOutlet weak var downloadButton: UIButton!
@@ -52,7 +52,7 @@ class ShowImageViewController: UIViewController , UIScrollViewDelegate, UIGestur
             self.imageView.image = imageToShow
         } else if imageURLString.isEmpty == false,
             let url = URL(string: imageURLString) {
-            let placeHolderImage = BumbleConfig.shared.theme.placeHolderImage
+            let placeHolderImage = BumbleConfig.shared.theme.placeHolderImage_bumble
             imageView.kf.setImage(with: url, placeholder: placeHolderImage)
         } else if let localPath = localImagePath, doesFileExistsAt(filePath: localPath) {
             self.imageView.image = UIImage(contentsOfFile: localPath)
@@ -104,13 +104,13 @@ class ShowImageViewController: UIViewController , UIScrollViewDelegate, UIGestur
     
    // MARK: - Type Methods
    class func getFor(imageUrlString: String) -> ShowImageViewController {
-      let storyboard = UIStoryboard(name: "FuguUnique", bundle: FuguFlowManager.bundle)
+      let storyboard = UIStoryboard(name: "FuguUnique", bundle: BumbleFlowManager.bundle)
       let vc = storyboard.instantiateViewController(withIdentifier: "ShowImageViewController") as! ShowImageViewController
       vc.imageURLString = imageUrlString
       return vc
    }
     class func getFor(localPath: String) -> ShowImageViewController {
-        let storyboard = UIStoryboard(name: "FuguUnique", bundle: FuguFlowManager.bundle)
+        let storyboard = UIStoryboard(name: "FuguUnique", bundle: BumbleFlowManager.bundle)
         let vc = storyboard.instantiateViewController(withIdentifier: "ShowImageViewController") as! ShowImageViewController
         vc.localImagePath = localPath
         return vc

@@ -82,11 +82,11 @@ extension MultipleSelectTableViewCell {
         var image:UIImage?
         if button.isMultiSelect
         {
-            image = button.status! ? BumbleConfig.shared.theme.checkBoxActive : BumbleConfig.shared.theme.checkBoxInActive
+            image = button.status! ? BumbleConfig.shared.theme.checkBoxActive_bumble : BumbleConfig.shared.theme.checkBoxInActive_bumble
         }
         else
         {
-            image = button.status! ? BumbleConfig.shared.theme.radioActive : BumbleConfig.shared.theme.radioInActive
+            image = button.status! ? BumbleConfig.shared.theme.radioActive_bumble : BumbleConfig.shared.theme.radioInActive_bumble
         }
         
         

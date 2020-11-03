@@ -57,7 +57,7 @@ class LeadTableViewCell: MessageTableViewCell {
     }
     // MARK: Functions
     private func setup() {
-        self.tableView.register(UINib(nibName: leadCellIdentifier, bundle: FuguFlowManager.bundle), forCellReuseIdentifier: leadCellIdentifier)
+        self.tableView.register(UINib(nibName: leadCellIdentifier, bundle: BumbleFlowManager.bundle), forCellReuseIdentifier: leadCellIdentifier)
         tableView.layer.cornerRadius = 10
         
         tableView.backgroundColor = BumbleConfig.shared.theme.gradientBackgroundColor //.clear

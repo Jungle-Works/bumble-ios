@@ -111,7 +111,7 @@ class SelfMessageTableViewCell: MessageTableViewCell {
         bgView.layer.borderWidth = BumbleConfig.shared.theme.chatBoxBorderWidth
         bgView.layer.borderColor = BumbleConfig.shared.theme.chatBoxBorderColor.cgColor
         
-        readUnreadImageView.image = BumbleConfig.shared.theme.unreadMessageTick
+        readUnreadImageView.image = BumbleConfig.shared.theme.unreadMessageTick_bumble
         if let tintColor = BumbleConfig.shared.theme.unreadMessageTintColor {
             readUnreadImageView.tintColor = tintColor
         }
@@ -186,17 +186,17 @@ class SelfMessageTableViewCell: MessageTableViewCell {
         switch messageReadStatus {
 //        case .read:
         case .read, .delivered:
-            readUnreadImageView.image = BumbleConfig.shared.theme.readMessageTick
+            readUnreadImageView.image = BumbleConfig.shared.theme.readMessageTick_bumble
             if let tintColor = BumbleConfig.shared.theme.readMessageTintColor {
                 readUnreadImageView.tintColor = tintColor
             }
         case .sent:
-            readUnreadImageView.image = BumbleConfig.shared.theme.unreadMessageTick
+            readUnreadImageView.image = BumbleConfig.shared.theme.unreadMessageTick_bumble
             if let tintColor = BumbleConfig.shared.theme.unreadMessageTintColor {
                 readUnreadImageView.tintColor = tintColor
             }
         default:
-            readUnreadImageView.image = BumbleConfig.shared.theme.unsentMessageIcon
+            readUnreadImageView.image = BumbleConfig.shared.theme.unsentMessageIcon_bumble
             if let tintColor = BumbleConfig.shared.theme.unsentMessageTintColor {
                 readUnreadImageView.tintColor = tintColor
             }

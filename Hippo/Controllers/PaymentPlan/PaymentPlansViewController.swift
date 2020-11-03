@@ -48,7 +48,7 @@ class PaymentPlansViewController: UIViewController {
         view_Navigation.setupNavigationBar = {[weak self]() in
             DispatchQueue.main.async {
                 self?.view_Navigation.image_back.tintColor = BumbleConfig.shared.theme.headerTextColor
-                self?.view_Navigation.image_back.image = BumbleConfig.shared.theme.crossBarButtonImage
+                self?.view_Navigation.image_back.image = BumbleConfig.shared.theme.crossBarButtonImage_bumble
                 self?.view_Navigation.title = BumbleStrings.savedPlans
                 self?.view_Navigation.leftButton.addTarget(self, action: #selector(self?.cancelButtonClicked(_:)), for: .touchUpInside)
                 self?.setaddIcon()
@@ -110,7 +110,7 @@ class PaymentPlansViewController: UIViewController {
     
     internal func setaddIcon() {
         view_Navigation.rightButton.tintColor = BumbleConfig.shared.theme.headerTextColor
-        view_Navigation.rightButton.setImage(BumbleConfig.shared.theme.AddFileIcon, for: .normal)
+//        view_Navigation.rightButton.setImage(BumbleConfig.shared.theme.AddFileIcon, for: .normal)
         view_Navigation.rightButton.addTarget(self, action: #selector(addButtonClicked), for: .touchUpInside)
     }
     @objc internal func addButtonClicked() {
@@ -119,7 +119,7 @@ class PaymentPlansViewController: UIViewController {
     
     internal func registerCell() {
 //        tableView.register(UINib(nibName: "PaymentPlanHomeCell", bundle: nil), forCellReuseIdentifier: "PaymentPlanHomeCell")
-        let bundle = FuguFlowManager.bundle
+        let bundle = BumbleFlowManager.bundle
         tableView.register(UINib(nibName: "PaymentPlanHomeCell", bundle: bundle), forCellReuseIdentifier: "PaymentPlanHomeCell")
         
     }
@@ -131,7 +131,7 @@ class PaymentPlansViewController: UIViewController {
     }
     
     class func generateView() -> PaymentPlansViewController {
-        let array = FuguFlowManager.bundle?.loadNibNamed("PaymentPlansViewController", owner: self, options: nil)
+        let array = BumbleFlowManager.bundle?.loadNibNamed("PaymentPlansViewController", owner: self, options: nil)
         let view: PaymentPlansViewController? = array?.first as? PaymentPlansViewController
 //        let storyboard = UIStoryboard(name: "FuguUnique", bundle: FuguFlowManager.bundle)
 //        let view = storyboard.instantiateViewController(withIdentifier: "PaymentPlansViewController") as! PaymentPlansViewController

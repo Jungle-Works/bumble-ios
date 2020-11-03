@@ -101,14 +101,14 @@ extension PaymentPlanHomeCell {
         }
         button_DeletePlan.layer.borderColor = UIColor.clear.cgColor
         button_DeletePlan.layer.borderWidth = 1
-        button_DeletePlan.setImage(BumbleConfig.shared.theme.deleteIcon, for: .normal)
+//        button_DeletePlan.setImage(BumbleConfig.shared.theme.deleteIcon, for: .normal)
         button_DeletePlan.isHidden = plan.type == .agentPlan ? false : true
         button_DeletePlan.isEnabled = plan.type == .agentPlan ? true : false
         
         button_EditPlan.layer.borderColor =  UIColor.clear.cgColor
         button_EditPlan.layer.borderWidth = 1
         button_EditPlan.imageView?.tintColor = .darkGray
-        button_EditPlan.setImage(plan.type == .agentPlan ? BumbleConfig.shared.theme.editIcon : BumbleConfig.shared.theme.eyeIcon, for: .normal)
+//        button_EditPlan.setImage(plan.type == .agentPlan ? BumbleConfig.shared.theme.editIcon : BumbleConfig.shared.theme.eyeIcon, for: .normal)
         
     }
 }

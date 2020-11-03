@@ -24,7 +24,7 @@ class ButtonTableViewCell: UITableViewCell {
     }
     
     func registerCell() {
-        self.buttonCollectionView.register(UINib(nibName: "ButtonCollectionCell", bundle: FuguFlowManager.bundle), forCellWithReuseIdentifier: "ButtonCollectionCell")
+        self.buttonCollectionView.register(UINib(nibName: "ButtonCollectionCell", bundle: BumbleFlowManager.bundle), forCellWithReuseIdentifier: "ButtonCollectionCell")
     }
     
     func reloadButtonActionCollection() {

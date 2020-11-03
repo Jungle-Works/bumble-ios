@@ -94,7 +94,7 @@ extension OutgoingImageCell {
         retryButton.isHidden = true
         
 //        readUnreadImageView.image = UIImage(named: "readMessageImage", in: FuguFlowManager.bundle, compatibleWith: nil)
-        readUnreadImageView.image = UIImage(named: "unreadMessageImage", in: FuguFlowManager.bundle, compatibleWith: nil)
+        readUnreadImageView.image = UIImage(named: "unreadMessageImage", in: BumbleFlowManager.bundle, compatibleWith: nil)
         readUnreadImageView.tintColor = BumbleConfig.shared.theme.unreadTintColor
     }
     
@@ -130,7 +130,7 @@ extension OutgoingImageCell {
             
             setupIndicatorView(true)
             hideUnhideRetryButton(hide: true)
-            let placeHolderImage = BumbleConfig.shared.theme.placeHolderImage
+            let placeHolderImage = BumbleConfig.shared.theme.placeHolderImage_bumble
             
             thumbnailImageView.kf.setImage(with: url, placeholder: placeHolderImage,  completionHandler: { [weak self] (_, error, _, _) in
                 self?.retryButton.isHidden = !chatMessageObject.wasMessageSendingFailed
@@ -177,7 +177,7 @@ extension OutgoingImageCell {
         
         switch messageReadStatus {
         case .sent:
-            readUnreadImageView.image = BumbleConfig.shared.theme.unreadMessageTick
+            readUnreadImageView.image = BumbleConfig.shared.theme.unreadMessageTick_bumble
             if let tintColor = BumbleConfig.shared.theme.readMessageTintColor {
 //            if let tintColor = HippoConfig.shared.theme.unreadMessageTintColor {
                 readUnreadImageView.tintColor = tintColor
@@ -185,12 +185,12 @@ extension OutgoingImageCell {
             
 //        case .read:
         case .read, .delivered:
-            readUnreadImageView.image = BumbleConfig.shared.theme.readMessageTick
+            readUnreadImageView.image = BumbleConfig.shared.theme.readMessageTick_bumble
             if let tintColor = BumbleConfig.shared.theme.readMessageTintColor {
                 readUnreadImageView.tintColor = tintColor
             }
         default:
-            readUnreadImageView.image = BumbleConfig.shared.theme.unsentMessageIcon
+            readUnreadImageView.image = BumbleConfig.shared.theme.unsentMessageIcon_bumble
             if let tintColor = BumbleConfig.shared.theme.unsentMessageTintColor {
                 readUnreadImageView.tintColor = tintColor
             }
@@ -202,7 +202,7 @@ extension OutgoingImageCell {
 //MARK: - HELPERS
 extension OutgoingImageCell {
     func setupIndicatorView(_ show: Bool) {
-        customIndicator.image = UIImage(named: "app_loader_shape", in: FuguFlowManager.bundle, compatibleWith: nil)
+        customIndicator.image = UIImage(named: "app_loader_shape", in: BumbleFlowManager.bundle, compatibleWith: nil)
         if show {
             startIndicatorAnimation()
             customIndicator.isHidden = false

@@ -34,8 +34,8 @@ class HippoDataCollectorController: UIViewController {
     }
     func setUI() {
         title = HippoProperty.current.formCollectorTitle
-        if BumbleConfig.shared.theme.leftBarButtonImage != nil {
-            backButton.image = BumbleConfig.shared.theme.leftBarButtonImage
+        if BumbleConfig.shared.theme.leftBarButtonImage_bumble != nil {
+            backButton.image = BumbleConfig.shared.theme.leftBarButtonImage_bumble
             backButton.tintColor = BumbleConfig.shared.theme.headerTextColor
         }
     }
@@ -47,7 +47,7 @@ class HippoDataCollectorController: UIViewController {
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
         
-        let bundle = FuguFlowManager.bundle
+        let bundle = BumbleFlowManager.bundle
         
         tableView.register(UINib(nibName: "BroadCastTitleCell", bundle: bundle), forCellReuseIdentifier: "BroadCastTitleCell")
         tableView.register(UINib(nibName: "BroadcastButtonCell", bundle: bundle), forCellReuseIdentifier: "BroadcastButtonCell")
@@ -59,7 +59,7 @@ class HippoDataCollectorController: UIViewController {
     }
     
     class func get(forms: [FormData]) -> HippoDataCollectorController {
-        let storyboard = UIStoryboard(name: "FuguUnique", bundle: FuguFlowManager.bundle)
+        let storyboard = UIStoryboard(name: "FuguUnique", bundle: BumbleFlowManager.bundle)
         let vc = storyboard.instantiateViewController(withIdentifier: "HippoDataCollectorController") as! HippoDataCollectorController
         vc.forms = forms
         return vc

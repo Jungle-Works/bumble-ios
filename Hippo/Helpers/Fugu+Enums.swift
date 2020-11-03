@@ -234,11 +234,11 @@ enum ReadUnReadStatus: Int {
     func getIcon() -> UIImage? {
         switch self {
         case .none:
-            return BumbleConfig.shared.theme.unsentMessageIcon
+            return BumbleConfig.shared.theme.unsentMessageIcon_bumble
         case .read, .delivered:
-            return BumbleConfig.shared.theme.readMessageTick
+            return BumbleConfig.shared.theme.readMessageTick_bumble
         case .sent:
-            return BumbleConfig.shared.theme.unreadMessageTick
+            return BumbleConfig.shared.theme.unreadMessageTick_bumble
         }
     }
 }

@@ -20,7 +20,7 @@ class BumbleChecker {
     var request: BumbleCheckerRequest?
     
     func presentChatsViewController() {
-        AgentDetail.setAgentStoredData()
+        AgentDetail.setAgentStoredData_bumble()
 //        switch config.appUserType {
 //        case .customer:
 //            FuguFlowManager.shared.presentCustomerConversations()
@@ -40,7 +40,7 @@ class BumbleChecker {
     
     func presentPromotionalPushController()
     {
-        FuguFlowManager.shared.presentPromotionalpushController()
+        BumbleFlowManager.shared.presentPromotionalpushController()
     }
     
     

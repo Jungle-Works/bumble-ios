@@ -84,7 +84,7 @@ class OutgoingVideoTableViewCell: VideoTableViewCell {
   
    func setMessageStatusView() {
       guard let unwrappedMessage = message else {
-         messageStatusImageView.image = BumbleConfig.shared.theme.unsentMessageIcon
+         messageStatusImageView.image = BumbleConfig.shared.theme.unsentMessageIcon_bumble
          return
       }
       
@@ -92,13 +92,13 @@ class OutgoingVideoTableViewCell: VideoTableViewCell {
       
       switch status {
       case .none:
-         messageStatusImageView.image = BumbleConfig.shared.theme.unsentMessageIcon
+         messageStatusImageView.image = BumbleConfig.shared.theme.unsentMessageIcon_bumble
 //      case .sent, .delivered:
       case .sent:
-         messageStatusImageView.image = BumbleConfig.shared.theme.unreadMessageTick
+         messageStatusImageView.image = BumbleConfig.shared.theme.unreadMessageTick_bumble
 //      case .read:
       case .read, .delivered:
-         messageStatusImageView.image = BumbleConfig.shared.theme.readMessageTick
+         messageStatusImageView.image = BumbleConfig.shared.theme.readMessageTick_bumble
       }
    }
 }

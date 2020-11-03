@@ -62,8 +62,8 @@ class FeedbackTableViewCell: MessageTableViewCell {
     @IBOutlet weak var view_Rating : FloatRatingView!{
         didSet{
             view_Rating.delegate = self
-            view_Rating.emptyImage = BumbleConfig.shared.theme.ratingEmptyStar
-            view_Rating.fullImage = BumbleConfig.shared.theme.ratingFullStar
+            view_Rating.emptyImage = BumbleConfig.shared.theme.ratingEmptyStar_bumble
+            view_Rating.fullImage = BumbleConfig.shared.theme.ratingFullStar_bumble
             view_Rating.minRating = 1
         }
     }
@@ -407,11 +407,11 @@ struct FeedbackAttributes {
     
     static func getArray() -> [FeedbackAttributes] {
         var temp = [FeedbackAttributes]()
-        let rate_1 = UIImage(named: "rate_1", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysOriginal)
-        let rate_2 = UIImage(named: "rate_2", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysOriginal)
-        let rate_3 = UIImage(named: "rate_3", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysOriginal)
-        let rate_4 = UIImage(named: "rate_4", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysOriginal)
-        let rate_5 = UIImage(named: "rate_5", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysOriginal)
+        let rate_1 = UIImage(named: "rate_1", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysOriginal)
+        let rate_2 = UIImage(named: "rate_2", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysOriginal)
+        let rate_3 = UIImage(named: "rate_3", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysOriginal)
+        let rate_4 = UIImage(named: "rate_4", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysOriginal)
+        let rate_5 = UIImage(named: "rate_5", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysOriginal)
         
         temp.append(FeedbackAttributes(title: "Terrible", image: rate_1))
         temp.append(FeedbackAttributes(title: "Bad", image: rate_2))

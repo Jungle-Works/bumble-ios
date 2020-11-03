@@ -104,7 +104,7 @@ extension AgentHomeCollectionViewCell {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = UIView()
-        let nib = UINib(nibName: "AgentHomeConversationCell", bundle: FuguFlowManager.bundle)
+        let nib = UINib(nibName: "AgentHomeConversationCell", bundle: BumbleFlowManager.bundle)
         tableView.register(nib, forCellReuseIdentifier: "AgentHomeConversationCell")
     }
     internal func setupRefreshController() {

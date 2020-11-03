@@ -64,7 +64,7 @@ class AgentChatInfoViewController: UIViewController {
     //MARK: Class methods
     class func get(chatDetail: ChatDetail, userImage : String?) -> AgentChatInfoViewController? {
 //        let storyboard = UIStoryboard(name: "FuguUnique", bundle: FuguFlowManager.bundle)
-        let storyboard = UIStoryboard(name: "AgentSdk", bundle: FuguFlowManager.bundle)
+        let storyboard = UIStoryboard(name: "AgentSdk", bundle: BumbleFlowManager.bundle)
         let vc = storyboard.instantiateViewController(withIdentifier: "AgentChatInfoViewController") as? AgentChatInfoViewController
         vc?.channelDetail = chatDetail
         vc?.userImage = userImage
@@ -78,8 +78,8 @@ extension AgentChatInfoViewController {
         guard channelDetail != nil else {
             return
         }
-        let closeImage = BumbleConfig.shared.theme.closeChatImage
-        let reopenImage = BumbleConfig.shared.theme.chatReOpenIconWithTemplateMode
+        let closeImage = BumbleConfig.shared.theme.closeChatImage_bumble
+        let reopenImage = BumbleConfig.shared.theme.chatReOpenIconWithTemplateMode_bumble
         if channelDetail?.channelStatus == .open {
             actionArray.append(ChatInfoCell(infoImage: closeImage, nameOfCell: BumbleStrings.closeChat))
         } else {
@@ -118,13 +118,13 @@ extension AgentChatInfoViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = UIView()
-        var nib = UINib(nibName: "ChatInfoActionCell", bundle: FuguFlowManager.bundle)
+        var nib = UINib(nibName: "ChatInfoActionCell", bundle: BumbleFlowManager.bundle)
         tableView.register(nib, forCellReuseIdentifier: "ChatInfoActionCell")
-        nib = UINib(nibName: "ChatProfileTableViewCell", bundle: FuguFlowManager.bundle)
+        nib = UINib(nibName: "ChatProfileTableViewCell", bundle: BumbleFlowManager.bundle)
         tableView.register(nib, forCellReuseIdentifier: "ChatProfileTableViewCell")
-        nib = UINib(nibName: "ChatInfoAgentTableViewCell", bundle: FuguFlowManager.bundle)
+        nib = UINib(nibName: "ChatInfoAgentTableViewCell", bundle: BumbleFlowManager.bundle)
         tableView.register(nib, forCellReuseIdentifier: "ChatInfoAgentTableViewCell")
-        nib = UINib(nibName: "ChatInfoTagViewCell", bundle: FuguFlowManager.bundle)
+        nib = UINib(nibName: "ChatInfoTagViewCell", bundle: BumbleFlowManager.bundle)
         tableView.register(nib, forCellReuseIdentifier: "ChatInfoTagViewCell")
     }
     
@@ -345,9 +345,9 @@ extension AgentChatInfoViewController: UITableViewDataSource {
         }
         cell.setupCell(with: channelDetail!)
         if let url = URL(string: self.userImage ?? ""){
-            cell.userImage.kf.setImage(with: url, placeholder: BumbleConfig.shared.theme.userPlaceHolderImage, options: nil, progressBlock: nil, completionHandler: nil)
+            cell.userImage.kf.setImage(with: url, placeholder: BumbleConfig.shared.theme.userPlaceHolderImage_bumble, options: nil, progressBlock: nil, completionHandler: nil)
         }else{
-            cell.userImage.image = BumbleConfig.shared.theme.userPlaceHolderImage
+            cell.userImage.image = BumbleConfig.shared.theme.userPlaceHolderImage_bumble
         }
     
         cell.containerViewForStatus.isHidden = true

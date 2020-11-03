@@ -163,7 +163,7 @@ class AllConversationsViewController: UIViewController, NewChatSentDelegate {
         return true
     }
     func putUserDetails() {
-        BumbleUserDetail.getUserDetailsAndConversation(completion: { [weak self] (success, error) in
+        BumbleUserDetail.getUserDetailBUmble(completion: { [weak self] (success, error) in
             guard success else {
                 let errorMessage = error?.localizedDescription ?? BumbleStrings.somethingWentWrong
                 
@@ -293,7 +293,7 @@ class AllConversationsViewController: UIViewController, NewChatSentDelegate {
     }
     
     func setTableView() {
-        let bundle = FuguFlowManager.bundle
+        let bundle = BumbleFlowManager.bundle
         showConversationsTableView.register(UINib(nibName: "ConversationView", bundle: bundle), forCellReuseIdentifier: "ConversationCellCustom")
     }
 
@@ -308,8 +308,8 @@ class AllConversationsViewController: UIViewController, NewChatSentDelegate {
 
         backButton.tintColor = BumbleConfig.shared.theme.headerTextColor
         
-        if BumbleConfig.shared.theme.leftBarButtonImage != nil {
-            backButton.image = BumbleConfig.shared.theme.leftBarButtonImage
+        if BumbleConfig.shared.theme.leftBarButtonImage_bumble != nil {
+            backButton.image = BumbleConfig.shared.theme.leftBarButtonImage_bumble
             backButton.tintColor = BumbleConfig.shared.theme.headerTextColor
         }
         if config.disbaleBackButton {
@@ -358,14 +358,14 @@ class AllConversationsViewController: UIViewController, NewChatSentDelegate {
     func updateNewConversationBtnUI(isSelected : Bool){
         if isSelected{
            // width_NewConversation.constant = 210
-            let chatImage = UIImage(named: "chat", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+            let chatImage = UIImage(named: "chat", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
             self.newConversationBiutton.setImage(chatImage, for: .normal)
             self.newConversationBiutton.setTitle("  " + BumbleConfig.shared.strings.newConversation, for: .normal)
             self.newConversationBiutton.tintColor = .white//HippoConfig.shared.theme.themeTextcolor
             self.newConversationBiutton.backgroundColor = BumbleConfig.shared.theme.themeColor
         }else{
           //  width_NewConversation.constant = 50
-            let chatImage = UIImage(named: "chat", in: FuguFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+            let chatImage = UIImage(named: "chat", in: BumbleFlowManager.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
             self.newConversationBiutton.tintColor = .white//HippoConfig.shared.theme.themeTextcolor
             self.newConversationBiutton.setImage(chatImage, for: .normal)
             self.newConversationBiutton.setTitle("", for: .normal)
@@ -549,8 +549,8 @@ class AllConversationsViewController: UIViewController, NewChatSentDelegate {
         
         FuguConversation.getAllConversationFromServer(config: config) { [weak self] (result) in
             self?.refreshControl.endRefreshing()
-            resetPushCount()
-            pushTotalUnreadCount()
+//            resetPushCount()
+//            pushTotalUnreadCount()
             
             guard result.isSuccessful else {
                 let errorMessage = result.error?.localizedDescription ?? BumbleStrings.somethingWentWrong
@@ -638,7 +638,7 @@ class AllConversationsViewController: UIViewController, NewChatSentDelegate {
             }
             self.informationView?.informationLabel.text = errorMessage
             //self.showConversationsTableView.isHidden = true
-            self.informationView?.informationImageView.image = BumbleConfig.shared.theme.noChatImage
+//            self.informationView?.informationImageView.image = BumbleConfig.shared.theme.noChatImage
             self.informationView?.isButtonInfoHidden = !shouldShowBtn
             self.informationView?.button_Info.setTitle(BumbleConfig.shared.theme.chatListRetryBtnText == nil ? BumbleStrings.retry : BumbleConfig.shared.theme.chatListRetryBtnText, for: .normal)
             
@@ -756,9 +756,9 @@ class AllConversationsViewController: UIViewController, NewChatSentDelegate {
         
         let obj = arrayOfFullConversation.filter{$0.channelId == conversationObj.channelId}.first
         obj?.unreadCount = 0
-        resetPushCount()
+//        resetPushCount()
         saveConversationsInCache()
-        pushTotalUnreadCount()
+//        pushTotalUnreadCount()
         
         guard isViewLoaded else {
             return
@@ -865,8 +865,8 @@ class AllConversationsViewController: UIViewController, NewChatSentDelegate {
 //            convObj.channelStatus = .open
         }
         saveConversationsInCache()
-        resetPushCount()
-        pushTotalUnreadCount()
+//        resetPushCount()
+//        pushTotalUnreadCount()
         
         if showConversationsTableView != nil {
             showConversationsTableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
@@ -874,7 +874,7 @@ class AllConversationsViewController: UIViewController, NewChatSentDelegate {
     }
     
     class func get(config: AllConversationsConfig) -> AllConversationsViewController? {
-        let storyboard = UIStoryboard(name: "FuguUnique", bundle: FuguFlowManager.bundle)
+        let storyboard = UIStoryboard(name: "FuguUnique", bundle: BumbleFlowManager.bundle)
         guard let vc = storyboard.instantiateViewController(withIdentifier: "AllConversationsViewController") as? AllConversationsViewController else {
             return nil
         }
@@ -960,19 +960,19 @@ extension AllConversationsViewController: UITableViewDelegate, UITableViewDataSo
         tableView.deselectRow(at: indexPath, animated: true)
         
         tableView.isUserInteractionEnabled = false
-        fuguDelay(1) {
-            tableView.isUserInteractionEnabled = true
-        }
+//        fuguDelay(1) {
+//            tableView.isUserInteractionEnabled = true
+//        }
         
         let conversationObj = arrayOfConversation[indexPath.row]
         let fullconversationObj = arrayOfFullConversation.filter{$0.channelId == arrayOfConversation[indexPath.row].channelId}
         moveToChatViewController(chatObj: conversationObj)
         if let unreadCount = conversationObj.unreadCount, unreadCount > 0 {
-            resetPushCount()
+//            resetPushCount()
             conversationObj.unreadCount = 0
             fullconversationObj.first?.unreadCount = 0
             saveConversationsInCache()
-            pushTotalUnreadCount()
+//            pushTotalUnreadCount()
             showConversationsTableView.reloadRows(at: [indexPath], with: .none)
         }
     }
@@ -981,9 +981,9 @@ extension AllConversationsViewController: UITableViewDelegate, UITableViewDataSo
 
 extension AllConversationsViewController: BumbleDataCollectorControllerDelegate {
     func userUpdated() {
-        fuguDelay(0.4) {
-            self.putUserDetails()
-        }
+//        fuguDelay(0.4) {
+//          self.putUserDetails()
+//        }
     }
 }
 struct AllConversationsConfig {

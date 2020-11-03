@@ -57,35 +57,35 @@ class OutgoingAudioTableViewCell: AudioTableViewCell {
       
       switch message!.status {
       case .none where message!.isFileUploading && !message!.wasMessageSendingFailed:
-         messageStatusImageView.image = BumbleConfig.shared.theme.unsentMessageIcon
+         messageStatusImageView.image = BumbleConfig.shared.theme.unsentMessageIcon_bumble
          activityIndicator.isHidden = false
          controlButton.isHidden = true
          activityIndicator.startAnimating()
       case .none where message!.wasMessageSendingFailed:
-         messageStatusImageView.image = BumbleConfig.shared.theme.unsentMessageIcon
+         messageStatusImageView.image = BumbleConfig.shared.theme.unsentMessageIcon_bumble
          activityIndicator.isHidden = true
          controlButton.isHidden = false
          activityIndicator.stopAnimating()
       case .none:
          activityIndicator.isHidden = true
          controlButton.isHidden = false
-         messageStatusImageView.image = BumbleConfig.shared.theme.unsentMessageIcon
+         messageStatusImageView.image = BumbleConfig.shared.theme.unsentMessageIcon_bumble
       case .read, .delivered:
          activityIndicator.isHidden = true
          controlButton.isHidden = false
-         messageStatusImageView.image = BumbleConfig.shared.theme.readMessageTick
+         messageStatusImageView.image = BumbleConfig.shared.theme.readMessageTick_bumble
          
       case .sent:
          activityIndicator.isHidden = true
          controlButton.isHidden = false
-         messageStatusImageView.image = BumbleConfig.shared.theme.unreadMessageTick
+         messageStatusImageView.image = BumbleConfig.shared.theme.unreadMessageTick_bumble
       }
    }
    
    @IBAction override func controlButtonAction(_ sender: Any) {
       
       if message != nil, message!.status == .none, message!.wasMessageSendingFailed {
-         controlButton.setImage(BumbleConfig.shared.theme.uploadIcon, for: .normal)
+         controlButton.setImage(BumbleConfig.shared.theme.uploadIcon_bumble, for: .normal)
          self.activityIndicator.isHidden = false
          controlButton.isHidden = true
          self.activityIndicator.startAnimating()
@@ -103,7 +103,7 @@ class OutgoingAudioTableViewCell: AudioTableViewCell {
          
          if message!.wasMessageSendingFailed {
             self.activityIndicator.stopAnimating()
-            controlButton.setImage(BumbleConfig.shared.theme.uploadIcon, for: .normal)
+            controlButton.setImage(BumbleConfig.shared.theme.uploadIcon_bumble, for: .normal)
          } else if message!.isFileUploading {
             
             DispatchQueue.main.async {

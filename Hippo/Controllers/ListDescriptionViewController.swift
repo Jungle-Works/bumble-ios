@@ -135,7 +135,7 @@ class ListDescriptionViewController: UIViewController {
     }
     
     class func get(with object: HippoSupportList) -> ListDescriptionViewController? {
-        let storyboard = UIStoryboard(name: "FuguUnique", bundle: FuguFlowManager.bundle)
+        let storyboard = UIStoryboard(name: "FuguUnique", bundle: BumbleFlowManager.bundle)
         guard let vc = storyboard.instantiateViewController(withIdentifier: "ListDescriptionViewController") as? ListDescriptionViewController else {
             return nil
         }
@@ -384,8 +384,8 @@ class ListDescriptionViewController: UIViewController {
         if BumbleConfig.shared.theme.leftBarButtonText.count > 0 {
             backButton.title = " " + BumbleConfig.shared.theme.leftBarButtonText
         } else {
-            if BumbleConfig.shared.theme.leftBarButtonImage != nil {
-                backButton.image = BumbleConfig.shared.theme.leftBarButtonImage
+            if BumbleConfig.shared.theme.leftBarButtonImage_bumble != nil {
+                backButton.image = BumbleConfig.shared.theme.leftBarButtonImage_bumble
             }
         }
         

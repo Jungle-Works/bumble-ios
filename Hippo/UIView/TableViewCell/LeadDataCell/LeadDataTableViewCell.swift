@@ -81,13 +81,13 @@ class LeadDataTableViewCell: UITableViewCell {
         valueTextfield.placeholder = data.value
         DispatchQueue.main.async {
             if data.isCompleted {
-                let image = UIImage(named: "tick_green", in: FuguFlowManager.bundle, compatibleWith: nil)
+                let image = UIImage(named: "tick_green", in: BumbleFlowManager.bundle, compatibleWith: nil)
                 self.buttonSend.setImage(image, for: .normal)
                 self.buttonSend.isUserInteractionEnabled = false
                 self.valueTextfield.isUserInteractionEnabled = false
                 self.buttonSend.backgroundColor = UIColor.clear
             } else {
-                let image = UIImage(named: "next_dark_icon", in: FuguFlowManager.bundle, compatibleWith: nil)
+                let image = UIImage(named: "next_dark_icon", in: BumbleFlowManager.bundle, compatibleWith: nil)
                 self.buttonSend.setImage(image!.withRenderingMode(.alwaysTemplate), for: .normal)
                 self.buttonSend.tintColor = UIColor.white
                 self.buttonSend.isUserInteractionEnabled = true

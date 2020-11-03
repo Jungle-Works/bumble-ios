@@ -90,11 +90,11 @@ class ActionableMessageTableViewCell: UITableViewCell {
     }
     
     func registerNib() {
-        actionableMessageTableView.register(UINib(nibName: "ImageTableViewCell", bundle: FuguFlowManager.bundle), forCellReuseIdentifier: "ImageTableViewCell")
-        actionableMessageTableView.register(UINib(nibName: "HeaderTableViewCell", bundle: FuguFlowManager.bundle), forCellReuseIdentifier: "HeaderTableViewCell")
-        actionableMessageTableView.register(UINib(nibName: "ItemTableViewCell", bundle: FuguFlowManager.bundle), forCellReuseIdentifier: "ItemTableViewCell")
-        actionableMessageTableView.register(UINib(nibName: "ButtonTableViewCell", bundle: FuguFlowManager.bundle), forCellReuseIdentifier: "ButtonTableViewCell")
-        actionableMessageTableView.register(UINib(nibName: "SenderNameTableCell", bundle: FuguFlowManager.bundle), forCellReuseIdentifier: "SenderNameTableCell")
+        actionableMessageTableView.register(UINib(nibName: "ImageTableViewCell", bundle: BumbleFlowManager.bundle), forCellReuseIdentifier: "ImageTableViewCell")
+        actionableMessageTableView.register(UINib(nibName: "HeaderTableViewCell", bundle: BumbleFlowManager.bundle), forCellReuseIdentifier: "HeaderTableViewCell")
+        actionableMessageTableView.register(UINib(nibName: "ItemTableViewCell", bundle: BumbleFlowManager.bundle), forCellReuseIdentifier: "ItemTableViewCell")
+        actionableMessageTableView.register(UINib(nibName: "ButtonTableViewCell", bundle: BumbleFlowManager.bundle), forCellReuseIdentifier: "ButtonTableViewCell")
+        actionableMessageTableView.register(UINib(nibName: "SenderNameTableCell", bundle: BumbleFlowManager.bundle), forCellReuseIdentifier: "SenderNameTableCell")
         
     }
     

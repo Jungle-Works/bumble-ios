@@ -39,7 +39,7 @@ extension UIImageView {
             
         case AgentStatus.away.rawValue:
             self.backgroundColor = UIColor.awayStatusColor
-            self.image = BumbleConfig.shared.theme.awayStatusIcon
+            self.image = BumbleConfig.shared.theme.awayStatusIcon_bumble
             self.contentMode = .center
             
         default:

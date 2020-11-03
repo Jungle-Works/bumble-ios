@@ -28,13 +28,13 @@ final class NavigationBarChat: UIView {
     @IBOutlet weak var titleLabel : UILabel!
     @IBOutlet weak var call_button : UIButton!{
         didSet{
-            call_button.setImage(BumbleConfig.shared.theme.audioCallIcon, for: .normal)
+//            call_button.setImage(BumbleConfig.shared.theme.audioCallIcon, for: .normal)
             call_button.tintColor = BumbleConfig.shared.theme.headerTextColor
         }
     }
     @IBOutlet weak var video_button : UIButton!{
         didSet{
-           video_button.setImage(BumbleConfig.shared.theme.videoCallIcon, for: .normal)
+//           video_button.setImage(BumbleConfig.shared.theme.videoCallIcon, for: .normal)
            video_button.tintColor = BumbleConfig.shared.theme.headerTextColor
         }
     }
@@ -43,7 +43,7 @@ final class NavigationBarChat: UIView {
     @IBOutlet private weak var image_back : UIImageView!{
         didSet{
             image_back.tintColor = BumbleConfig.shared.theme.titleTextColor
-            image_back.image = BumbleConfig.shared.theme.leftBarButtonImage
+            image_back.image = BumbleConfig.shared.theme.leftBarButtonImage_bumble
         }
     }
     @IBOutlet weak var info_button : UIButton!
@@ -70,7 +70,7 @@ final class NavigationBarChat: UIView {
     }
     
     private func initWithNib() {
-        FuguFlowManager.bundle?.loadNibNamed(NavigationBarChat.NIB_NAME, owner: self, options: nil)
+        BumbleFlowManager.bundle?.loadNibNamed(NavigationBarChat.NIB_NAME, owner: self, options: nil)
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         setupLayout()
@@ -165,7 +165,7 @@ final class NavigationBarChat: UIView {
         if let parsedName = name {
             self.image_profile.setTextInImage(string: parsedName, color: UIColor.lightGray, circular: false)
         } else {
-          self.image_profile.image = BumbleConfig.shared.theme.placeHolderImage
+          self.image_profile.image = BumbleConfig.shared.theme.placeHolderImage_bumble
         }
     }
 }
