@@ -304,8 +304,14 @@ class PromotionsViewController: UIViewController {
     
 }
 
+
 extension PromotionsViewController: UITableViewDelegate,UITableViewDataSource
 {
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.data.count
     }
@@ -316,7 +322,8 @@ extension PromotionsViewController: UITableViewDelegate,UITableViewDataSource
             guard let cell = tableView.dequeueReusableCell(withIdentifier: c.cellIdentifier, for: indexPath) as? PromtionCutomCell else {
                 return UITableView.defaultCell()
             }
-            
+            cell.clipsToBounds = true
+
             cell.selectionStyle = .none
             cell.backgroundColor = .clear
             //            cell.promotionTitle.text = "This is a new tittle"
@@ -328,7 +335,8 @@ extension PromotionsViewController: UITableViewDelegate,UITableViewDataSource
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "PromotionTableViewCell", for: indexPath) as? PromotionTableViewCell else {
                 return UITableView.defaultCell()
             }
-            
+            cell.clipsToBounds = true
+
             cell.selectionStyle = .none
             cell.backgroundColor = .clear
             cell.previewImage = {[weak self]() in
